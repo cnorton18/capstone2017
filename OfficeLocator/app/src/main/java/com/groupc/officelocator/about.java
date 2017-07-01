@@ -4,6 +4,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,7 @@ import java.io.IOException;
  */
 
 public class about extends AppCompatActivity {
+
     public TextView textView4;
     String vNum = null;
 
@@ -25,8 +27,11 @@ public class about extends AppCompatActivity {
     * If the version number cannot be found, String set to ERROR message
     * */
     public String retrieveVNum(){
+        PackageManager mngr = this.getPackageManager();
         try {
-            PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), 0);
+            Log.d("","problem");
+            PackageInfo info = mngr.getPackageInfo(getPackageName(), 0);
+            Log.d("","here");
             vNum = "Version: " + info.versionName;
         }catch(PackageManager.NameNotFoundException e){
             vNum = "ERROR: Version Number Not Found";
@@ -36,11 +41,14 @@ public class about extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
+        Log.d("","why");
         super.onCreate(savedInstanceState);
+        Log.d("","sigh");
         setContentView(R.layout.about);
-
+        Log.d("","whyyyy");
         textView4 = (TextView)findViewById(R.id.textView4);
         textView4.setText(retrieveVNum());//Sets version number to textfield
+
     }
 
 }
