@@ -10,7 +10,7 @@
     tools:context="com.groupc.officelocator.directions">
 
     <TextView
-        android:id="@+id/revieworder"
+        android:id="@+id/splashbutton3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"

@@ -23,7 +23,7 @@
         android:id="@+id/onlineordering"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/backbutton"
+        android:layout_above="@+id/splashbutton1"
         android:layout_alignLeft="@+id/textView3"
         android:layout_alignStart="@+id/textView3"
         android:layout_marginBottom="28dp"
@@ -32,10 +32,10 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/backbutton"
+        android:id="@+id/splashbutton1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/addadrink"
+        android:layout_above="@+id/splashbutton2"
         android:layout_alignEnd="@+id/onlineordering"
         android:layout_alignLeft="@+id/onlineordering"
         android:layout_alignRight="@+id/onlineordering"
@@ -46,27 +46,27 @@
         android:text="to 2nd screen" />
 
     <Button
-        android:id="@+id/addadrink"
+        android:id="@+id/splashbutton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/revieworder"
-        android:layout_alignEnd="@+id/backbutton"
-        android:layout_alignLeft="@+id/backbutton"
-        android:layout_alignRight="@+id/backbutton"
-        android:layout_alignStart="@+id/backbutton"
+        android:layout_above="@+id/splashbutton3"
+        android:layout_alignLeft="@+id/splashbutton1"
+        android:layout_alignStart="@+id/splashbutton1"
         android:layout_marginBottom="75dp"
         android:clickable="true"
-        android:text="to 3rd screen" />
+        android:text="to 3rd screen"
+        android:layout_alignRight="@+id/splashbutton1"
+        android:layout_alignEnd="@+id/splashbutton1" />
 
     <Button
-        android:id="@+id/revieworder"
+        android:id="@+id/splashbutton3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/addadrink"
-        android:layout_alignLeft="@+id/addadrink"
+        android:layout_alignEnd="@+id/splashbutton2"
+        android:layout_alignLeft="@+id/splashbutton2"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/addadrink"
-        android:layout_alignStart="@+id/addadrink"
+        android:layout_alignRight="@+id/splashbutton2"
+        android:layout_alignStart="@+id/splashbutton2"
         android:layout_marginBottom="75dp"
         android:text="to 4th screen" />
 
