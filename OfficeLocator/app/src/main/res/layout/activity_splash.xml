@@ -15,11 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-<<<<<<< HEAD
         android:text="Home Menu"
-=======
-        android:text="Main Screen"
->>>>>>> nhi's-branch
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold" />
 
@@ -73,6 +69,15 @@
         android:layout_alignStart="@+id/splashbutton2"
         android:layout_marginBottom="75dp"
         android:text="to 4th screen" />
+
+    <Button
+        android:id="@+id/AboutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:text="About" />
 
 
 </RelativeLayout>
