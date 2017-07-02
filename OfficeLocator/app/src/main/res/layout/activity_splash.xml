@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="Home Menu"
+        android:text="Main Screen"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold" />
 
@@ -43,20 +43,20 @@
         android:layout_marginBottom="75dp"
 
         android:clickable="true"
-        android:text="to 2nd screen" />
+        android:text="Campus Map" />
 
     <Button
         android:id="@+id/splashbutton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/splashbutton3"
+        android:layout_alignEnd="@+id/splashbutton1"
         android:layout_alignLeft="@+id/splashbutton1"
+        android:layout_alignRight="@+id/splashbutton1"
         android:layout_alignStart="@+id/splashbutton1"
         android:layout_marginBottom="75dp"
         android:clickable="true"
-        android:text="to 3rd screen"
-        android:layout_alignRight="@+id/splashbutton1"
-        android:layout_alignEnd="@+id/splashbutton1" />
+        android:text="Floor Plans" />
 
     <Button
         android:id="@+id/splashbutton3"
@@ -68,16 +68,7 @@
         android:layout_alignRight="@+id/splashbutton2"
         android:layout_alignStart="@+id/splashbutton2"
         android:layout_marginBottom="75dp"
-        android:text="to 4th screen" />
-
-    <Button
-        android:id="@+id/AboutButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:text="About" />
+        android:text="Directions" />
 
 
 </RelativeLayout>
