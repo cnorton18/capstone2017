@@ -12,17 +12,11 @@ import android.util.Log;
 public class splash extends AppCompatActivity {
 
 
-<<<<<<< HEAD
-    public Button pizzamenubut;
-    public Button drinkmenubut;
-    public Button ordermenubut;
-    public Button aboutPage;
-=======
+
     public Button splashb1;
     public Button splashb2;
     public Button splashb3;
 
->>>>>>> master
 
 
 
@@ -83,7 +77,7 @@ public class splash extends AppCompatActivity {
 
         );
 
-        aboutPage = (Button)findViewById(R.id.AboutButton);
+        /*aboutPage = (Button)findViewById(R.id.AboutButton);
         aboutPage.setOnClickListener(new View.OnClickListener(){
                                          public void onClick(View v) {
                                              Intent theintent = new Intent(splash.this, about.class);
@@ -93,7 +87,7 @@ public class splash extends AppCompatActivity {
                                      }
 
 
-        );
+        );*/
 
 
 
