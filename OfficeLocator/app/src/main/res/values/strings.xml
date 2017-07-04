@@ -1,5 +1,32 @@
 <resources>
-    <string name="app_name">Office Locator</string>
+    <string name="app_name">Swoosh Room Finder</string>
     <string name="campus_name">Nike Campus</string>
+
+    <string-array name="miaHamm">
+        <item>Flyknit</item>
+        <item>Air Max</item>
+    </string-array>
+
+    <string-array name="mikeSchmidt">
+        <item>Air Jordan</item>
+        <item>Roshe</item>
+    </string-array>
+
+    <string-array name="tigerWoods">
+        <item>Woods 1</item>
+        <item>Woods 2</item>
+    </string-array>
+
+    <string-array name="danFouts">
+        <item>Fouts 1</item>
+        <item>Fouts 2</item>
+    </string-array>
+
+    <string-array name="nolanRyan">
+        <item>Ryan 1</item>
+        <item>Ryan 2</item>
+    </string-array>
+
+    <string name="room_prompt">Choose a room</string>
 
 </resources>

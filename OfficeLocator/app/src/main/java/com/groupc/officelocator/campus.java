@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 public class campus extends AppCompatActivity {
 
-    //6/29/2017 Nhi - Adding buttons for the individual buildings
-    public int numberBuildings = 5; //16;
+    //Buttons for buildings
+    public int numberBuildings = 5; //16 total;
     public Button miaHamm;
     public Button mikeSchmidt;
     public Button danFouts;
@@ -21,12 +21,14 @@ public class campus extends AppCompatActivity {
 
     Button[] arrayButtons = {miaHamm, mikeSchmidt, danFouts, tigerWoods, nolanRyan1};
     int[] buttonNames = {R.id.mh1, R.id.ms1, R.id.df1, R.id.tw1, R.id.nr1};
-    String[] arrayFloorNames = {"Mia Hamm Floor Plan", "Mike Schmidt Floor Plan", "Dan Fouts Floor Plan", "Tiger Woods Floor Plan", "Nolan Ryan Floor Plan"};
+    String[] arrayFloorNames = {"Mia Hamm", "Mike Schmidt", "Dan Fouts", "Tiger Woods", "Nolan Ryan"};
     //Need to add more generic floor plans
     String[] arrayFloorPlanImages = {"miahammfloorplan", "mikeschmidtfloorplan", "danfoutsfloorplan", "miahammfloorplan", "danfoutsfloorplan"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_campus);
 
@@ -39,6 +41,7 @@ public class campus extends AppCompatActivity {
                     Intent goToFloorPlan = new Intent(campus.this, floorplan.class);
                     goToFloorPlan.putExtra("fpname", arrayFloorNames[j]);
                     goToFloorPlan.putExtra("imageName", arrayFloorPlanImages[j]);
+                    goToFloorPlan.putExtra("spinnerNumber", j);
                     startActivity(goToFloorPlan);
                 }
             });
