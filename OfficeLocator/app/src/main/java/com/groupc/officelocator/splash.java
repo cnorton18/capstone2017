@@ -6,9 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.util.Log;
 
 
 public class splash extends AppCompatActivity {
+
 
 
     public Button splashb1;
@@ -74,6 +76,18 @@ public class splash extends AppCompatActivity {
                                         }
 
         );
+
+        /*aboutPage = (Button)findViewById(R.id.AboutButton);
+        aboutPage.setOnClickListener(new View.OnClickListener(){
+                                         public void onClick(View v) {
+                                             Intent theintent = new Intent(splash.this, about.class);
+                                             int theproblem = Log.d("", "theproblem");
+                                             startActivity(theintent);
+                                         }
+                                     }
+
+
+        );*/
 
 
 
