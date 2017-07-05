@@ -13,8 +13,8 @@ import android.widget.TextView;
 
 public class directions extends AppCompatActivity {
 
-    public Button directionsb1;
-    public Button directionsb2;
+    public Button back;
+    public Button exit;
     ImageView chosenRoom;
 
 
@@ -38,21 +38,18 @@ public class directions extends AppCompatActivity {
         chosenRoom.setImageResource(res);
 
 
-        directionsb1 = (Button) findViewById(R.id.directionsbutton1);
-        directionsb1.setOnClickListener(new View.OnClickListener() {
+        back = (Button) findViewById(R.id.directionsbutton1);
+        back.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 finish();
             }}
         );
 
-        directionsb2 = (Button) findViewById(R.id.directionsbutton2);
-        directionsb2.setOnClickListener(new View.OnClickListener() {
-
-                                            public void onClick(View v) {
-                                                exitit();
-                                            }
-
-                                        }
+        exit = (Button) findViewById(R.id.directionsbutton2);
+        exit.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                exitit();
+            }}
         );
     }
     private void exitit() {

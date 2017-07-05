@@ -26,8 +26,7 @@ import android.widget.Toast;
 
 public class floorplan extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    public Button floorplanb1;
-    public Button floorplanb2;
+    public Button back;
     ImageView floorPlanImage;
     private Spinner chooseRoom;
     int[] buildingNames = {R.array.miaHamm, R.array.mikeSchmidt};//, R.array.danFouts, R.array.tigerWoods, R.array.nolanRyan};
@@ -53,13 +52,14 @@ public class floorplan extends AppCompatActivity implements AdapterView.OnItemSe
         floorPlanImage.setImageResource(res);
 
         //Back button
-        floorplanb1 = (Button) findViewById(R.id.floorplanbutton1);
-        floorplanb1.setOnClickListener(new View.OnClickListener() {
+        back = (Button) findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 finish();
             }}
         );
 
+        //Dropdown menu
         int spinnerNumber = goToFloorPlan.getIntExtra("spinnerNumber",0);
         chooseRoom = (Spinner) findViewById(R.id.roomSelector);
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this, buildingNames[spinnerNumber], android.R.layout.simple_spinner_item);
