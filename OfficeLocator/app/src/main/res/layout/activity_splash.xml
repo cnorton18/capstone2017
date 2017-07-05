@@ -36,40 +36,13 @@
         android:id="@+id/splashbutton1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/splashbutton2"
-        android:layout_alignEnd="@+id/onlineordering"
-        android:layout_alignLeft="@+id/onlineordering"
-        android:layout_alignRight="@+id/onlineordering"
-        android:layout_alignStart="@+id/onlineordering"
-        android:layout_marginBottom="75dp"
 
         android:clickable="true"
-        android:text="Campus Map" />
-
-    <Button
-        android:id="@+id/splashbutton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/splashbutton3"
-        android:layout_alignEnd="@+id/splashbutton1"
-        android:layout_alignLeft="@+id/splashbutton1"
-        android:layout_alignRight="@+id/splashbutton1"
-        android:layout_alignStart="@+id/splashbutton1"
-        android:layout_marginBottom="75dp"
-        android:clickable="true"
-        android:text="Floor Plans" />
-
-    <Button
-        android:id="@+id/splashbutton3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/splashbutton2"
-        android:layout_alignLeft="@+id/splashbutton2"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/splashbutton2"
-        android:layout_alignStart="@+id/splashbutton2"
-        android:layout_marginBottom="75dp"
-        android:text="Directions" />
+        android:text="Campus Map"
+        android:layout_marginTop="155dp"
+        android:layout_below="@+id/textView3"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignStart="@+id/textView3" />
 
 
 </RelativeLayout>

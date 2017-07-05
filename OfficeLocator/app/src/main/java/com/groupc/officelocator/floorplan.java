@@ -30,7 +30,8 @@ public class floorplan extends AppCompatActivity implements AdapterView.OnItemSe
     public Button floorplanb2;
     ImageView floorPlanImage;
     private Spinner chooseRoom;
-    int[] buildingNames = {R.array.miaHamm, R.array.mikeSchmidt, R.array.danFouts, R.array.tigerWoods, R.array.nolanRyan};
+    int[] buildingNames = {R.array.miaHamm, R.array.mikeSchmidt};//, R.array.danFouts, R.array.tigerWoods, R.array.nolanRyan};
+    private boolean isFirstSelection = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,41 +52,35 @@ public class floorplan extends AppCompatActivity implements AdapterView.OnItemSe
         floorPlanImage = (ImageView) findViewById(R.id.floorPlanImage);
         floorPlanImage.setImageResource(res);
 
-        //Back and Next buildings
+        //Back button
         floorplanb1 = (Button) findViewById(R.id.floorplanbutton1);
         floorplanb1.setOnClickListener(new View.OnClickListener() {
-                                           public void onClick(View v) {
-                                               Intent theintent = new Intent(floorplan.this, campus.class);
-                                               startActivity(theintent);
-                                           }
-                                       }
-        );
-        floorplanb2 = (Button) findViewById(R.id.floorplanbutton2);
-        floorplanb2.setOnClickListener(new View.OnClickListener() {
-
-                                           public void onClick(View v) {
-                                               Intent theintent = new Intent(floorplan.this, directions.class);
-                                               startActivity(theintent);
-                                           }
-
-                                       }
+            public void onClick(View v) {
+                finish();
+            }}
         );
 
         int spinnerNumber = goToFloorPlan.getIntExtra("spinnerNumber",0);
-
         chooseRoom = (Spinner) findViewById(R.id.roomSelector);
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this, buildingNames[spinnerNumber], android.R.layout.simple_spinner_item);
         chooseRoom.setAdapter(adapter);
+        chooseRoom.setSelection(0);
         chooseRoom.setOnItemSelectedListener(this);
-
     }
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l){
+        if(isFirstSelection){
+            isFirstSelection = false;
+            return;
+        }
         TextView myText = (TextView) view;
-        //Right now the drop down button causes a "Toast" to appear (onscreen text), need to change
-        //this to choosing which page to open instead...
-        Toast.makeText(this,"You chose "+myText.getText(), Toast.LENGTH_SHORT).show();
+        Intent goToRoom = new Intent(floorplan.this, directions.class);
+        goToRoom.putExtra("roomName", myText.getText());
+        if(myText.getText().equals("Choose a room")) {
+            return;
+        }
+        startActivity(goToRoom);
     }
 
     @Override

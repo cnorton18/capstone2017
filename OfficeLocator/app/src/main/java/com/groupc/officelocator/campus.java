@@ -11,19 +11,19 @@ import android.widget.TextView;
 
 public class campus extends AppCompatActivity {
 
-    //Buttons for buildings
-    public int numberBuildings = 5; //16 total;
+    //Buttons for just 2 buildings
+    public int numberBuildings = 2; //16 total;
     public Button miaHamm;
     public Button mikeSchmidt;
     public Button danFouts;
     public Button tigerWoods;
     public Button nolanRyan1;
 
-    Button[] arrayButtons = {miaHamm, mikeSchmidt, danFouts, tigerWoods, nolanRyan1};
-    int[] buttonNames = {R.id.mh1, R.id.ms1, R.id.df1, R.id.tw1, R.id.nr1};
-    String[] arrayFloorNames = {"Mia Hamm", "Mike Schmidt", "Dan Fouts", "Tiger Woods", "Nolan Ryan"};
+    Button[] arrayButtons = {miaHamm, mikeSchmidt};//, danFouts, tigerWoods, nolanRyan1};
+    int[] buttonNames = {R.id.mh1, R.id.ms1};// R.id.df1, R.id.tw1, R.id.nr1};
+    String[] arrayFloorNames = {"Mia Hamm", "Mike Schmidt"};//, "Dan Fouts", "Tiger Woods", "Nolan Ryan"};
     //Need to add more generic floor plans
-    String[] arrayFloorPlanImages = {"miahammfloorplan", "mikeschmidtfloorplan", "danfoutsfloorplan", "miahammfloorplan", "danfoutsfloorplan"};
+    String[] arrayFloorPlanImages = {"miahamm", "mikeschmidt"};//, "danfouts", "miahamm", "danfouts"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

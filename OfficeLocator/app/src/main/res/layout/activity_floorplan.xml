@@ -16,23 +16,12 @@
         android:layout_alignParentStart="true"
         android:text="back" />
 
-    <Button
-        android:id="@+id/floorplanbutton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:text="next" />
-
     <RadioGroup
         android:id="@+id/rgdsize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
-
-
     </RadioGroup>
 
     <TextView
@@ -42,7 +31,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:text="Floor plan"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold" />
 
@@ -61,27 +49,19 @@
         android:id="@+id/floorPlanImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:srcCompat="@drawable/miahamm"
+        android:layout_below="@+id/floorPlanName"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        app:srcCompat="@drawable/miahammfloorplan" />
+        android:layout_marginTop="28dp" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Please select a room"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:layout_below="@+id/floorPlanImage"
-        android:layout_toRightOf="@+id/rgsodatype"
-        android:layout_toEndOf="@+id/rgsodatype" />
 
     <Spinner
         android:id="@+id/roomSelector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#ff6600"
+        android:layout_toEndOf="@+id/rgsodatype"
         android:layout_toRightOf="@+id/rgsodatype"
-        android:layout_below="@+id/textView4"
-        android:layout_toEndOf="@+id/rgsodatype" />
+        android:layout_below="@+id/floorPlanImage"
+        android:background="#c0c0c0" />
 </RelativeLayout>

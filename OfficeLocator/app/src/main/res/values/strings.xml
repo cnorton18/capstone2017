@@ -3,26 +3,31 @@
     <string name="campus_name">Nike Campus</string>
 
     <string-array name="miaHamm">
+        <item>Choose a room</item>
         <item>Flyknit</item>
         <item>Air Max</item>
     </string-array>
 
     <string-array name="mikeSchmidt">
+        <item>Choose a room</item>
         <item>Air Jordan</item>
         <item>Roshe</item>
     </string-array>
 
     <string-array name="tigerWoods">
+        <item>Choose a room</item>
         <item>Woods 1</item>
         <item>Woods 2</item>
     </string-array>
 
     <string-array name="danFouts">
+        <item>Choose a room</item>
         <item>Fouts 1</item>
         <item>Fouts 2</item>
     </string-array>
 
     <string-array name="nolanRyan">
+        <item>Choose a room</item>
         <item>Ryan 1</item>
         <item>Ryan 2</item>
     </string-array>
