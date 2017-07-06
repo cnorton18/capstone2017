@@ -1,75 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/whitebg"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
     tools:context="com.groupc.officelocator.campus">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false"
+        android:paddingEnd="275dp"
+        android:scaleType="center"
+        app:srcCompat="@drawable/betterqualitymap" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_centerInParent="false"
+        android:layout_marginBottom="15dp"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false"
+        android:scaleType="center"
+        app:srcCompat="@drawable/blankbubble"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="false"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_centerInParent="false"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false"
+        android:paddingLeft="25dp"
+        android:scaleType="center"
+        app:srcCompat="@drawable/blankbar" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-
         android:layout_alignParentTop="true"
-        android:text="campus map"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="5dp"
+        android:text="@string/campus_name"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@android:color/black"
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/campusbutton2"
+        android:id="@+id/mh1"
+        android:layout_width="52dip"
+        android:layout_height="208dip"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="56dp"
+        android:background="@android:color/transparent"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:text="next" />
+        android:text="@string/selecttxt"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:layout_marginBottom="30dp"
+        android:layout_alignBottom="@+id/imageView2"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/tw1"
+        android:layout_width="110dip"
+        android:layout_height="75dip"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:layout_alignTop="@+id/mh1"
+        android:layout_marginLeft="58dp"
+        android:layout_marginStart="58dp"
+        android:layout_marginTop="18dp"
+        android:background="@android:color/transparent"
+        android:visibility="visible" />
 
 
-
-
-
-    <RadioGroup
-        android:id="@+id/rgpizzasize"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
-
-
-    </RadioGroup><![CDATA[
-
-
-
-    TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="($5)"
-        android:layout_marginTop="70dp"
-        android:layout_marginLeft="32dp"
-        android:id="@+id/textView2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-
-        />
-
-    extView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="($10)"
-        android:id="@+id/textView3"
-        android:layout_alignTop="@+id/textView2"
-        android:layout_centerHorizontal="true"
-        />
-
-
-
-
-
-]]>
 </RelativeLayout>
