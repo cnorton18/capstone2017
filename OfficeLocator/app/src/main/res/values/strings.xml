@@ -1,20 +1,32 @@
 <resources>
     <string name="app_name">Swoosh Room Finder</string>
-    <string name="campus_name">Nike Campus</string>
+    <string name="campus_name">World Headquarters</string>
+    <string name="selecttxt">Please select office building</string>
 
+
+    //IN USE
     <string-array name="miaHamm">
         <item>Choose a room</item>
         <item>Flyknit</item>
         <item>Air Max</item>
     </string-array>
 
-    <string-array name="mikeSchmidt">
+    <string-array name="tigerWoods">
         <item>Choose a room</item>
         <item>Air Jordan</item>
         <item>Roshe</item>
     </string-array>
 
-    <string-array name="tigerWoods">
+
+
+
+
+
+
+
+
+    //NOT IN USE
+    <string-array name="mikeSchmidt">
         <item>Choose a room</item>
         <item>Woods 1</item>
         <item>Woods 2</item>

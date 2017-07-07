@@ -1,5 +1,6 @@
 package com.groupc.officelocator;
 
+import android.graphics.Typeface;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,8 +14,8 @@ import android.widget.TextView;
 
 public class directions extends AppCompatActivity {
 
-    public Button back;
-    public Button exit;
+    public Button directionsb1;
+    public Button directionsb2;
     ImageView chosenRoom;
 
 
@@ -29,6 +30,8 @@ public class directions extends AppCompatActivity {
         //Setting chosen room name
         String room = goToRoom.getStringExtra("roomName");
         TextView floorplanname = (TextView) findViewById(R.id.roomName);
+        Typeface myCustomfont = Typeface.createFromAsset(getAssets(), "fonts/futuracondensedextrabold.ttf");
+        floorplanname.setTypeface(myCustomfont);
         floorplanname.setText(room);
         //Setting chosen room highlighted image
         room = room.replaceAll("\\s+","");
@@ -38,18 +41,21 @@ public class directions extends AppCompatActivity {
         chosenRoom.setImageResource(res);
 
 
-        back = (Button) findViewById(R.id.directionsbutton1);
-        back.setOnClickListener(new View.OnClickListener() {
+        directionsb1 = (Button) findViewById(R.id.directionsbutton1);
+        directionsb1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 finish();
             }}
         );
 
-        exit = (Button) findViewById(R.id.directionsbutton2);
-        exit.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                exitit();
-            }}
+        directionsb2 = (Button) findViewById(R.id.directionsbutton2);
+        directionsb2.setOnClickListener(new View.OnClickListener() {
+
+                                            public void onClick(View v) {
+                                                exitit();
+                                            }
+
+                                        }
         );
     }
     private void exitit() {

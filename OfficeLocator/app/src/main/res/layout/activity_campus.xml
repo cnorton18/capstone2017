@@ -4,36 +4,67 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/nikecampus"
+    android:background="@drawable/gray"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
     tools:context="com.groupc.officelocator.campus">
 
-    <Button
-        android:id="@+id/mh1"
-        android:layout_width="55dip"
-        android:layout_height="200dip"
-        android:layout_marginTop="72dp"
-        android:background="@android:color/transparent"
-        android:visibility="visible"
-        android:layout_alignParentTop="true"
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/campusmap"
+        android:layout_centerVertical="true"
+        android:cropToPadding="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+
+    <TextView
+        android:id="@+id/campus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="5dp"
+        android:text="@string/campus_name"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
+
     <Button
-        android:id="@+id/ms1"
-        android:layout_width="61dip"
-        android:layout_height="80dip"
-        android:visibility="visible"
+        android:id="@+id/mh1"
+        android:layout_width="52dip"
+        android:layout_height="208dip"
+        android:layout_below="@+id/campus"
+        android:layout_marginTop="56dp"
         android:background="@android:color/transparent"
-        android:layout_marginTop="26dp"
-        android:layout_below="@+id/mh1"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="96dp"
-        android:layout_marginEnd="96dp" />
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/selecttxt"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@android:color/white"
+        android:textSize="15sp"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/tw1"
+        android:layout_width="110dip"
+        android:layout_height="75dip"
+        android:background="@android:color/transparent"
+        android:visibility="visible"
+        android:layout_marginTop="27dp"
+        android:layout_alignTop="@+id/mh1"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

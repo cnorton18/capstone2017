@@ -4,71 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/generalbg"
+    android:background="@drawable/gray"
     tools:context="com.groupc.officelocator.floorplan">
 
     <Button
-        android:id="@+id/back"
+        android:id="@+id/floorplanbutton1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="back"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="16dp" />
-
-    <RadioGroup
-        android:id="@+id/rgdsize"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-    </RadioGroup>
+        android:text="back" />
 
     <TextView
         android:id="@+id/floorPlanName"
-        android:text="Floor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#ffffff"
+        android:text="Office Name"
+        android:textColor="@android:color/white"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold"
-        android:layout_below="@+id/rgdsize"
-        android:layout_alignLeft="@+id/floorPlanImage"
-        android:layout_alignStart="@+id/floorPlanImage"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp" />
-
-    <RadioGroup
-        android:id="@+id/rgsodatype"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:orientation="vertical">
-
-    </RadioGroup>
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp" />
 
     <ImageView
         android:id="@+id/floorPlanImage"
-        android:layout_width="370dip"
-        android:layout_height="320dip"
-        android:layout_marginBottom="24dp"
-        app:srcCompat="@drawable/miahamm"
-        android:layout_above="@+id/roomSelector"
-        android:layout_centerHorizontal="true" />
+        android:layout_width="380dip"
+        android:layout_height="380dip"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/floorPlanName"
+        android:layout_marginTop="28dp"
+        app:srcCompat="@drawable/miahamm" />
 
 
     <Spinner
         android:id="@+id/roomSelector"
         android:layout_width="wrap_content"
-        android:layout_height="40dip"
-        android:theme="@style/ThemeOverlay.AppCompat.Light"
-        android:spinnerMode="dropdown"
-        android:layout_marginBottom="10dp"
-        android:layout_above="@+id/back"
-        android:layout_centerHorizontal="true" />
-
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/floorPlanImage"
+        android:layout_marginBottom="15dip"
+        android:layout_centerHorizontal="true"
+        android:background="#c0c0c0" />
 </RelativeLayout>
