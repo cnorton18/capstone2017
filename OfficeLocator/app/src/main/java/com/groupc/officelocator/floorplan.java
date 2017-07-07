@@ -35,6 +35,7 @@ public class floorplan extends AppCompatActivity implements AdapterView.OnItemSe
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+       // chooseRoom.setSelection(0);
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
         super.onCreate(savedInstanceState);
@@ -63,10 +64,14 @@ public class floorplan extends AppCompatActivity implements AdapterView.OnItemSe
         int spinnerNumber = goToFloorPlan.getIntExtra("spinnerNumber",0);
         chooseRoom = (Spinner) findViewById(R.id.roomSelector);
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this, buildingNames[spinnerNumber], android.R.layout.simple_spinner_item);
+       // chooseRoom.clear();
         chooseRoom.setAdapter(adapter);
-        chooseRoom.setSelection(0);
+        //chooseRoom.setSelection(0);
         chooseRoom.setOnItemSelectedListener(this);
+        chooseRoom.setSelection(0);
     }
+
+
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l){
@@ -89,7 +94,15 @@ public class floorplan extends AppCompatActivity implements AdapterView.OnItemSe
     }
 
 
-
+    @Override
+    public void onBackPressed(){
+        chooseRoom.setSelection(0);
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+        chooseRoom.setSelection(0);//Resets spinner choice when going back to this page (e.g. back button press)
+    }
 
 
 }
