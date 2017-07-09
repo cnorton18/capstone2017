@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -22,6 +23,7 @@ import android.view.View.OnClickListener;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ListView;
 
 
 public class floorplan extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -30,14 +32,19 @@ public class floorplan extends AppCompatActivity implements AdapterView.OnItemSe
     public Button floorplanb2;
     ImageView floorPlanImage;
     private Spinner chooseRoom;
+
     int[] buildingNames = {R.array.miaHamm, R.array.mikeSchmidt};//, R.array.danFouts, R.array.tigerWoods, R.array.nolanRyan};
     private boolean isFirstSelection = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
        // chooseRoom.setSelection(0);
+        
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        if(actionBar!=null) {
+            actionBar.hide();
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_floorplan);
         Intent goToFloorPlan = getIntent();
