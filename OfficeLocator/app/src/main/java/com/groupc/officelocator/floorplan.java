@@ -1,34 +1,21 @@
 package com.groupc.officelocator;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-//import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.view.View.OnClickListener;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class floorplan extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    public Button floorplanb1;
-    public Button floorplanb2;
+    public Button back;
     ImageView floorPlanImage;
     private Spinner chooseRoom;
     int[] buildingNames = {R.array.miaHamm, R.array.tigerWoods};//, R.array.danFouts, R.array.tigerWoods, R.array.nolanRyan};
@@ -56,8 +43,8 @@ public class floorplan extends AppCompatActivity implements AdapterView.OnItemSe
         floorPlanImage.setImageResource(res);
 
         //Back button
-        floorplanb1 = (Button) findViewById(R.id.floorplanbutton1);
-        floorplanb1.setOnClickListener(new View.OnClickListener() {
+        back = (Button) findViewById(R.id.floorplanbutton1);
+        back.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 finish();
             }}
@@ -67,8 +54,8 @@ public class floorplan extends AppCompatActivity implements AdapterView.OnItemSe
         chooseRoom = (Spinner) findViewById(R.id.roomSelector);
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this, buildingNames[spinnerNumber], android.R.layout.simple_spinner_item);
         chooseRoom.setAdapter(adapter);
-        chooseRoom.setSelection(0);
         chooseRoom.setOnItemSelectedListener(this);
+        chooseRoom.setSelection(0);
     }
 
     @Override
@@ -88,7 +75,16 @@ public class floorplan extends AppCompatActivity implements AdapterView.OnItemSe
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView){
+    }
 
+    @Override
+    public void onBackPressed(){
+        chooseRoom.setSelection(0);
+    }
+
+    public void onResume(){
+        super.onResume();
+        chooseRoom.setSelection(0);//Resets spinner choice when going back to this page (e.g. back button press)
     }
 
 

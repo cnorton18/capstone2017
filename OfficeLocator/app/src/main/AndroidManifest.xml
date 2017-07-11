@@ -18,6 +18,9 @@
         <activity android:name="com.groupc.officelocator.campus" />
         <activity android:name="com.groupc.officelocator.floorplan" />
         <activity android:name="com.groupc.officelocator.directions" />
+        <activity android:name="com.groupc.officelocator.splash"/>
+        <activity android:name="com.groupc.officelocator.search"
+            android:windowSoftInputMode="stateHidden"/>
     </application>
 
 </manifest>
