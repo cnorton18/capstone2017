@@ -14,12 +14,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-<<<<<<< HEAD
 import android.widget.Toast;
 import android.widget.ListView;
 import android.widget.EditText;
-=======
->>>>>>> nhi's-branch
 
 
 public class floorplan extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -27,14 +24,11 @@ public class floorplan extends AppCompatActivity implements AdapterView.OnItemSe
     public Button back;
     ImageView floorPlanImage;
     private Spinner chooseRoom;
-<<<<<<< HEAD
     private ListView lvSearch;
     private EditText etItems;
 
-    int[] buildingNames = {R.array.miaHamm, R.array.mikeSchmidt};//, R.array.danFouts, R.array.tigerWoods, R.array.nolanRyan};
-=======
+    //int[] buildingNames = {R.array.miaHamm, R.array.mikeSchmidt};//, R.array.danFouts, R.array.tigerWoods, R.array.nolanRyan};
     int[] buildingNames = {R.array.miaHamm, R.array.tigerWoods};//, R.array.danFouts, R.array.tigerWoods, R.array.nolanRyan};
->>>>>>> nhi's-branch
     private boolean isFirstSelection = true;
 
     @Override
@@ -64,20 +58,12 @@ public class floorplan extends AppCompatActivity implements AdapterView.OnItemSe
         floorPlanImage.setImageResource(res);
 
         //Back button
-<<<<<<< HEAD
-        floorplanb1 = (Button) findViewById(R.id.floorplanbutton1);
-        floorplanb1.setOnClickListener(new View.OnClickListener() {
-                                           public void onClick(View v) {
-                                               finish();
-                                           }
-                                       }
-=======
+
         back = (Button) findViewById(R.id.floorplanbutton1);
         back.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 finish();
             }}
->>>>>>> nhi's-branch
         );
 
         int spinnerNumber = goToFloorPlan.getIntExtra("spinnerNumber", 0);
@@ -85,7 +71,6 @@ public class floorplan extends AppCompatActivity implements AdapterView.OnItemSe
         final ArrayAdapter adapter = ArrayAdapter.createFromResource(this, buildingNames[spinnerNumber], android.R.layout.simple_spinner_item);
         // chooseRoom.clear();
         chooseRoom.setAdapter(adapter);
-<<<<<<< HEAD
         //chooseRoom.setSelection(0);
         chooseRoom.setOnItemSelectedListener(this);
         chooseRoom.setSelection(0);
@@ -107,10 +92,8 @@ public class floorplan extends AppCompatActivity implements AdapterView.OnItemSe
 
         });
 
-=======
         chooseRoom.setOnItemSelectedListener(this);
         chooseRoom.setSelection(0);
->>>>>>> nhi's-branch
     }
 
 
@@ -132,16 +115,6 @@ public class floorplan extends AppCompatActivity implements AdapterView.OnItemSe
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView){
-    }
-
-    @Override
-    public void onBackPressed(){
-        chooseRoom.setSelection(0);
-    }
-
-    public void onResume(){
-        super.onResume();
-        chooseRoom.setSelection(0);//Resets spinner choice when going back to this page (e.g. back button press)
     }
 
 
