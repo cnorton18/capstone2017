@@ -34,6 +34,7 @@ public class search extends AppCompatActivity {
         setContentView(R.layout.activity_search);
 
         searchList = (ListView)findViewById(R.id.searchList);
+        searchList.setEmptyView(findViewById(R.id.empty));
         searchBar = (EditText)findViewById(R.id.searchBar);
         adapter = new ArrayAdapter<String>(this,R.layout.list_items,R.id.textView,locations);
         searchList.setAdapter(adapter);
