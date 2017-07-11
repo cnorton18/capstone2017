@@ -1,5 +1,6 @@
 package com.groupc.officelocator;
 
+import android.graphics.Typeface;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,6 +30,8 @@ public class directions extends AppCompatActivity {
         //Setting chosen room name
         String room = goToRoom.getStringExtra("roomName");
         TextView floorplanname = (TextView) findViewById(R.id.roomName);
+        Typeface myCustomfont = Typeface.createFromAsset(getAssets(), "fonts/futuracondensedextrabold.ttf");
+        floorplanname.setTypeface(myCustomfont);
         floorplanname.setText(room);
         //Setting chosen room highlighted image
         room = room.replaceAll("\\s+","");
