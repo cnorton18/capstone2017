@@ -12,6 +12,9 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 public class floorplan extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -77,16 +80,10 @@ public class floorplan extends AppCompatActivity implements AdapterView.OnItemSe
     public void onNothingSelected(AdapterView<?> adapterView){
     }
 
-    @Override
-    public void onBackPressed(){
-        chooseRoom.setSelection(0);
-    }
-
     public void onResume(){
         super.onResume();
         chooseRoom.setSelection(0);//Resets spinner choice when going back to this page (e.g. back button press)
     }
-
 
 
 
