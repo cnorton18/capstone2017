@@ -4,42 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gray"
-    android:paddingBottom="0dp"
-    android:paddingLeft="0dp"
-    android:paddingRight="0dp"
-    android:paddingTop="0dp"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/whitebg"
     tools:context="com.groupc.officelocator.campus">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/campus_name"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/campusmap"
-        android:layout_centerVertical="true"
-        android:cropToPadding="true"
+        app:srcCompat="@drawable/nike"
+        android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-
-
-    <TextView
-        android:id="@+id/campus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:paddingTop="5dp"
-        android:text="@string/campus_name"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@android:color/white"
-        android:textStyle="bold" />
 
     <Button
         android:id="@+id/mh1"
         android:layout_width="52dip"
         android:layout_height="208dip"
-        android:layout_below="@+id/campus"
+        android:layout_below="@+id/textView"
         android:layout_marginTop="56dp"
         android:background="@android:color/transparent"
         android:visibility="visible" />
@@ -48,23 +44,58 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/selecttxt"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="@android:color/white"
-        android:textSize="15sp"
-        android:layout_marginBottom="20dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="13dp"
+        android:text="Please select a building"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+    <Button
+        android:id="@+id/ms1"
+        android:layout_width="49dip"
+        android:layout_height="100dip"
+        android:layout_above="@+id/textView4"
+        android:layout_alignEnd="@+id/textView"
+        android:layout_alignRight="@+id/textView"
+        android:layout_marginBottom="15dp"
+        android:background="@android:color/transparent"
+        android:visibility="visible" />
+
+    <Button
+        android:id="@+id/df1"
+        android:layout_width="80dip"
+        android:layout_height="30dip"
+        android:background="@android:color/transparent"
+        android:visibility="visible"
+        android:layout_below="@+id/tw1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="39dp" />
 
     <Button
         android:id="@+id/tw1"
         android:layout_width="110dip"
         android:layout_height="75dip"
+        android:layout_marginLeft="58dp"
+        android:layout_marginStart="58dp"
+        android:layout_marginTop="18dp"
         android:background="@android:color/transparent"
         android:visibility="visible"
-        android:layout_marginTop="27dp"
         android:layout_alignTop="@+id/mh1"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView" />
+
+    <Button
+        android:id="@+id/nr1"
+        android:layout_width="90dip"
+        android:layout_height="80dip"
+        android:background="@android:color/transparent"
+        android:visibility="visible"
+        android:layout_alignBottom="@+id/ms1"
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_alignStart="@+id/textView4" />
 
 
 </RelativeLayout>
