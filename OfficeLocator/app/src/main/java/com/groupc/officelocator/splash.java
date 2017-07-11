@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+
 public class splash extends AppCompatActivity {
 
-    public Button splashb1;
+    public Button locate;
+    public Button search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,11 +20,22 @@ public class splash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        splashb1 = (Button)findViewById(R.id.splashbutton1);
-        splashb1.setOnClickListener(new View.OnClickListener(){
+        locate = (Button)findViewById(R.id.locate);
+        locate.setOnClickListener(new View.OnClickListener(){
 
                                             public void onClick(View v){
                                                 Intent theintent = new Intent(splash.this, campus.class);
+                                                startActivity(theintent);
+                                            }
+
+                                        }
+        );
+
+        search = (Button)findViewById(R.id.search);
+        search.setOnClickListener(new View.OnClickListener(){
+
+                                            public void onClick(View v){
+                                                Intent theintent = new Intent(splash.this, search.class);
                                                 startActivity(theintent);
                                             }
 
