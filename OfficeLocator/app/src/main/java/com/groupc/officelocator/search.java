@@ -31,7 +31,6 @@ public class search extends AppCompatActivity {
         searchBar = (EditText)findViewById(R.id.searchBar);
         adapter = new ArrayAdapter<String>(this,R.layout.list_items,R.id.textView,locations);
         searchList.setAdapter(adapter);
-        searchList.setVisibility((adapter.isEmpty())?View.GONE:View.VISIBLE);
 
         searchBar.addTextChangedListener(new TextWatcher(){
 
