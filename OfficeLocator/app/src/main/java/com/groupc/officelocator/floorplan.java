@@ -1,6 +1,10 @@
 package com.groupc.officelocator;
 
-import android.graphics.Typeface;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
@@ -8,33 +12,33 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+//import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.view.View.OnClickListener;
 import android.widget.Spinner;
 import android.widget.TextView;
-<<<<<<< HEAD
 import android.widget.Toast;
 import android.widget.ListView;
 import android.widget.EditText;
-=======
->>>>>>> nhi's-branch
 
 
 public class floorplan extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    public Button back;
+    public Button floorplanb1;
+    public Button floorplanb2;
     ImageView floorPlanImage;
     private Spinner chooseRoom;
-<<<<<<< HEAD
     private ListView lvSearch;
     private EditText etItems;
 
     int[] buildingNames = {R.array.miaHamm, R.array.mikeSchmidt};//, R.array.danFouts, R.array.tigerWoods, R.array.nolanRyan};
-=======
-    int[] buildingNames = {R.array.miaHamm, R.array.tigerWoods};//, R.array.danFouts, R.array.tigerWoods, R.array.nolanRyan};
->>>>>>> nhi's-branch
     private boolean isFirstSelection = true;
 
     @Override
@@ -54,8 +58,6 @@ public class floorplan extends AppCompatActivity implements AdapterView.OnItemSe
         //Setting floor plan name
         String fpname = goToFloorPlan.getStringExtra("fpname");
         TextView floorplanname = (TextView) findViewById(R.id.floorPlanName);
-        Typeface myCustomfont = Typeface.createFromAsset(getAssets(), "fonts/futuracondensedextrabold.ttf");
-        floorplanname.setTypeface(myCustomfont);
         floorplanname.setText(fpname);
         //Setting floor plan image
         String imageName = goToFloorPlan.getStringExtra("imageName");
@@ -64,20 +66,12 @@ public class floorplan extends AppCompatActivity implements AdapterView.OnItemSe
         floorPlanImage.setImageResource(res);
 
         //Back button
-<<<<<<< HEAD
         floorplanb1 = (Button) findViewById(R.id.floorplanbutton1);
         floorplanb1.setOnClickListener(new View.OnClickListener() {
                                            public void onClick(View v) {
                                                finish();
                                            }
                                        }
-=======
-        back = (Button) findViewById(R.id.floorplanbutton1);
-        back.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                finish();
-            }}
->>>>>>> nhi's-branch
         );
 
         int spinnerNumber = goToFloorPlan.getIntExtra("spinnerNumber", 0);
@@ -85,7 +79,6 @@ public class floorplan extends AppCompatActivity implements AdapterView.OnItemSe
         final ArrayAdapter adapter = ArrayAdapter.createFromResource(this, buildingNames[spinnerNumber], android.R.layout.simple_spinner_item);
         // chooseRoom.clear();
         chooseRoom.setAdapter(adapter);
-<<<<<<< HEAD
         //chooseRoom.setSelection(0);
         chooseRoom.setOnItemSelectedListener(this);
         chooseRoom.setSelection(0);
@@ -107,10 +100,6 @@ public class floorplan extends AppCompatActivity implements AdapterView.OnItemSe
 
         });
 
-=======
-        chooseRoom.setOnItemSelectedListener(this);
-        chooseRoom.setSelection(0);
->>>>>>> nhi's-branch
     }
 
 
@@ -132,16 +121,7 @@ public class floorplan extends AppCompatActivity implements AdapterView.OnItemSe
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView){
-    }
 
-    @Override
-    public void onBackPressed(){
-        chooseRoom.setSelection(0);
-    }
-
-    public void onResume(){
-        super.onResume();
-        chooseRoom.setSelection(0);//Resets spinner choice when going back to this page (e.g. back button press)
     }
 
 
