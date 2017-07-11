@@ -8,6 +8,8 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
@@ -24,6 +26,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ListView;
+import android.widget.EditText;
 
 
 public class floorplan extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -32,16 +35,18 @@ public class floorplan extends AppCompatActivity implements AdapterView.OnItemSe
     public Button floorplanb2;
     ImageView floorPlanImage;
     private Spinner chooseRoom;
+    private ListView lvSearch;
+    private EditText etItems;
 
     int[] buildingNames = {R.array.miaHamm, R.array.mikeSchmidt};//, R.array.danFouts, R.array.tigerWoods, R.array.nolanRyan};
     private boolean isFirstSelection = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-       // chooseRoom.setSelection(0);
-        
+        // chooseRoom.setSelection(0);
+
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-        if(actionBar!=null) {
+        if (actionBar != null) {
             actionBar.hide();
         }
 
@@ -63,19 +68,38 @@ public class floorplan extends AppCompatActivity implements AdapterView.OnItemSe
         //Back button
         floorplanb1 = (Button) findViewById(R.id.floorplanbutton1);
         floorplanb1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                finish();
-            }}
+                                           public void onClick(View v) {
+                                               finish();
+                                           }
+                                       }
         );
 
-        int spinnerNumber = goToFloorPlan.getIntExtra("spinnerNumber",0);
+        int spinnerNumber = goToFloorPlan.getIntExtra("spinnerNumber", 0);
         chooseRoom = (Spinner) findViewById(R.id.roomSelector);
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, buildingNames[spinnerNumber], android.R.layout.simple_spinner_item);
-       // chooseRoom.clear();
+        final ArrayAdapter adapter = ArrayAdapter.createFromResource(this, buildingNames[spinnerNumber], android.R.layout.simple_spinner_item);
+        // chooseRoom.clear();
         chooseRoom.setAdapter(adapter);
         //chooseRoom.setSelection(0);
         chooseRoom.setOnItemSelectedListener(this);
         chooseRoom.setSelection(0);
+        etItems.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                adapter.getFilter().filter(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+
+        });
+
     }
 
 
