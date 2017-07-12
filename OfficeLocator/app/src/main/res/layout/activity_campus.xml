@@ -73,11 +73,12 @@
         android:layout_height="wrap_content"
         android:text="Search"
         android:textColor="@android:color/white"
-        android:layout_alignBottom="@+id/textView4"
-        android:layout_alignRight="@+id/searchbutton"
-        android:layout_alignEnd="@+id/searchbutton"
-        android:layout_marginRight="20dp"
-        android:layout_marginEnd="20dp" />
+        android:layout_marginRight="17dp"
+        android:layout_marginEnd="17dp"
+        android:layout_alignBaseline="@+id/searchbutton"
+        android:layout_alignBottom="@+id/searchbutton"
+        android:layout_toLeftOf="@+id/campus"
+        android:layout_toStartOf="@+id/campus" />
 
     <Button
         android:id="@+id/searchbutton"
@@ -85,8 +86,20 @@
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/campus"
-        android:layout_toStartOf="@+id/campus" />
+        android:layout_toLeftOf="@+id/textView4"
+        android:layout_toStartOf="@+id/textView4" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/searchbutton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/searchbutton"
+        app:srcCompat="@drawable/searchicon"
+        android:layout_alignTop="@+id/searchbutton"
+        android:layout_toLeftOf="@+id/textView2"
+        android:layout_toStartOf="@+id/textView2" />
 
 
 </RelativeLayout>
