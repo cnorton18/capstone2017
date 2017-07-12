@@ -56,7 +56,7 @@ public class campus extends AppCompatActivity {
         search.setOnClickListener(new View.OnClickListener(){
 
                                       public void onClick(View v){
-                                          Intent theintent = new Intent(campus.this, search.class);
+                                          Intent theintent = new Intent(campus.this, buildingsearch.class);
                                           startActivity(theintent);
                                       }
 
