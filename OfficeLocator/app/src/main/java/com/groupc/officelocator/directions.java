@@ -30,7 +30,7 @@ public class directions extends AppCompatActivity {
         //Setting chosen room name
         String room = goToRoom.getStringExtra("roomName");
         TextView floorplanname = (TextView) findViewById(R.id.roomName);
-        Typeface myCustomfont = Typeface.createFromAsset(getAssets(), "fonts/futuracondensedextrabold.ttf");
+        Typeface myCustomfont = Typeface.createFromAsset(getAssets(), "fonts/newsgothiccondensedbold.ttf");
         floorplanname.setTypeface(myCustomfont);
         floorplanname.setText(room);
         //Setting chosen room highlighted image

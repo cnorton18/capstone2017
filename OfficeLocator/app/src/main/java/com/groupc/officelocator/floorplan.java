@@ -36,7 +36,7 @@ public class floorplan extends AppCompatActivity implements AdapterView.OnItemSe
         //Setting floor plan name
         String fpname = goToFloorPlan.getStringExtra("fpname");
         TextView floorplanname = (TextView) findViewById(R.id.floorPlanName);
-        Typeface myCustomfont = Typeface.createFromAsset(getAssets(), "fonts/futuracondensedextrabold.ttf");
+        Typeface myCustomfont = Typeface.createFromAsset(getAssets(), "fonts/newsgothiccondensedbold.ttf");
         floorplanname.setTypeface(myCustomfont);
         floorplanname.setText(fpname);
         //Setting floor plan image
