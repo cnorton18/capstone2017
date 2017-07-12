@@ -17,8 +17,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/campusmap"
-        android:layout_centerVertical="true"
         android:cropToPadding="true"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -56,6 +56,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
+
     <Button
         android:id="@+id/tw1"
         android:layout_width="110dip"
@@ -65,6 +66,27 @@
         android:layout_marginTop="27dp"
         android:layout_alignTop="@+id/mh1"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:textColor="@android:color/white"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_alignRight="@+id/searchbutton"
+        android:layout_alignEnd="@+id/searchbutton"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp" />
+
+    <Button
+        android:id="@+id/searchbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/campus"
+        android:layout_toStartOf="@+id/campus" />
 
 
 </RelativeLayout>
