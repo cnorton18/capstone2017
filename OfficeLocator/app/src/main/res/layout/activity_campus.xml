@@ -11,7 +11,6 @@
     android:paddingTop="0dp"
     tools:context="com.groupc.officelocator.campus">
 
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
@@ -19,11 +18,7 @@
         app:srcCompat="@drawable/campusorange"
         android:cropToPadding="true"
         android:paddingTop="13dp"
-        android:scaleType="fitCenter"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
+        android:scaleType="fitCenter" />
 
     <TextView
         android:id="@+id/campus"
@@ -60,7 +55,6 @@
         android:layout_toRightOf="@+id/mh1"
         android:layout_toEndOf="@+id/mh1" />
 
-
     <Button
         android:id="@+id/tw1"
         android:layout_width="110dip"
@@ -91,6 +85,5 @@
         android:layout_toEndOf="@+id/textView4"
         android:layout_marginLeft="13dp"
         android:layout_marginStart="13dp" />
-
 
 </RelativeLayout>
