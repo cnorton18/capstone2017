@@ -14,10 +14,7 @@ import android.widget.TextView;
 
 public class directions extends AppCompatActivity {
 
-    public Button directionsb1;
-    public Button directionsb2;
     ImageView chosenRoom;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,16 +36,6 @@ public class directions extends AppCompatActivity {
         int res = getResources().getIdentifier(room, "drawable", this.getPackageName());
         chosenRoom = (ImageView) findViewById(R.id.chosenRoom);
         chosenRoom.setImageResource(res);
-
-        directionsb2 = (Button) findViewById(R.id.directionsbutton2);
-        directionsb2.setOnClickListener(new View.OnClickListener() {
-
-                                            public void onClick(View v) {
-                                                exitit();
-                                            }
-
-                                        }
-        );
     }
     private void exitit() {
         ActivityCompat.finishAffinity(this);
