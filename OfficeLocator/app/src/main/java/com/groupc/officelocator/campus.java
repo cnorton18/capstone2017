@@ -32,7 +32,7 @@ public class campus extends AppCompatActivity {
         setContentView(R.layout.activity_campus);
 
         TextView text = (TextView)findViewById(R.id.campus);
-        Typeface myCustomfont = Typeface.createFromAsset(getAssets(), "fonts/futuracondensedextrabold.ttf");
+        Typeface myCustomfont = Typeface.createFromAsset(getAssets(), "fonts/newsgothiccondensedbold.ttf");
         text.setTypeface(myCustomfont);
 
         text = (TextView)findViewById(R.id.textView4);
