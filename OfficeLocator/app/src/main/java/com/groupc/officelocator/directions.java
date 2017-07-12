@@ -40,14 +40,6 @@ public class directions extends AppCompatActivity {
         chosenRoom = (ImageView) findViewById(R.id.chosenRoom);
         chosenRoom.setImageResource(res);
 
-
-        directionsb1 = (Button) findViewById(R.id.directionsbutton1);
-        directionsb1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                finish();
-            }}
-        );
-
         directionsb2 = (Button) findViewById(R.id.directionsbutton2);
         directionsb2.setOnClickListener(new View.OnClickListener() {
 

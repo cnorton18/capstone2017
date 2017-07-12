@@ -11,32 +11,31 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
-/**
- * Created by Nhi Vu on 7/10/2017.
- */
+import com.groupc.officelocator.R;
+import com.groupc.officelocator.directions;
 
-public class search extends AppCompatActivity {
+public class roomsearch extends mapstorage {
     private ListView searchList;
     private EditText searchBar;
     private ArrayAdapter<String> adapter;
     private String choice;
 
-    String locations[] = {"Mia Hamm", "Air Max", "Flyknit", "Tiger Woods", "Air Jordan", "Roshe"};
-    String rooms[] = {"Air Max", "Flyknit", "Air Jordan", "Roshe"};
-    String buildings[] = {"Mia Hamm", "Tiger Woods"};
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        Intent extras = getIntent();
+        final String building = extras.getStringExtra("building");
+        final String[] rooms = campusMap.get(building);
+
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+        setContentView(R.layout.activity_roomsearch);
 
         searchList = (ListView)findViewById(R.id.searchList);
         searchList.setEmptyView(findViewById(R.id.empty));
         searchBar = (EditText)findViewById(R.id.searchBar);
-        adapter = new ArrayAdapter<String>(this,R.layout.list_items,R.id.textView,locations);
+        adapter = new ArrayAdapter<String>(this,R.layout.list_items,R.id.textView,rooms);
         searchList.setAdapter(adapter);
         searchList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -44,21 +43,13 @@ public class search extends AppCompatActivity {
                 choice = searchList.getItemAtPosition(position).toString();
                 for (int i = 0; i < rooms.length; ++i) {
                     if (choice.equals(rooms[i])) {
-                        Intent goToRoom = new Intent(search.this, directions.class);
+                        Intent goToRoom = new Intent(roomsearch.this, directions.class);
                         goToRoom.putExtra("roomName", choice);
+                        goToRoom.putExtra("buildingName", building);
                         startActivity(goToRoom);
                     }
                 }
-                for (int i = 0; i < buildings.length; ++i) {
-                    if (choice.equals(buildings[i])) {
-                        Intent goToRoom = new Intent(search.this, floorplan.class);
-                        goToRoom.putExtra("fpname", choice);
-                        choice = choice.replaceAll("\\s+", "");
-                        choice = choice.toLowerCase();
-                        goToRoom.putExtra("imageName", choice);
-                        startActivity(goToRoom);
-                    }
-                }
+
             }
         });
 
@@ -70,7 +61,7 @@ public class search extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                search.this.adapter.getFilter().filter(charSequence);
+                roomsearch.this.adapter.getFilter().filter(charSequence);
             }
 
             @Override
