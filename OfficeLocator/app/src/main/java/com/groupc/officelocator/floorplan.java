@@ -18,7 +18,7 @@ import java.util.TimerTask;
 
 public class floorplan extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    public Button back;
+    //public Button back;  - Took out the back button
     ImageView floorPlanImage;
     private Spinner chooseRoom;
     int[] buildingNames = {R.array.miaHamm, R.array.tigerWoods};//, R.array.danFouts, R.array.tigerWoods, R.array.nolanRyan};
@@ -45,6 +45,7 @@ public class floorplan extends AppCompatActivity implements AdapterView.OnItemSe
         floorPlanImage = (ImageView) findViewById(R.id.floorPlanImage);
         floorPlanImage.setImageResource(res);
 
+        /*
         //Back button
         back = (Button) findViewById(R.id.floorplanbutton1);
         back.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +53,7 @@ public class floorplan extends AppCompatActivity implements AdapterView.OnItemSe
                 finish();
             }}
         );
+        */
 
         int spinnerNumber = goToFloorPlan.getIntExtra("spinnerNumber",0);
         chooseRoom = (Spinner) findViewById(R.id.roomSelector);
