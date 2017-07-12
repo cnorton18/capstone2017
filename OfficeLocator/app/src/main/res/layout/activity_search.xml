@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@android:color/white"
+        android:drawableBottom="@android:color/white"
         android:textCursorDrawable="@null"/>
 
     <ListView
