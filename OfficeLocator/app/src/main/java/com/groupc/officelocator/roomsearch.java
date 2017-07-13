@@ -21,7 +21,7 @@ public class roomsearch extends mapstorage {
     private String choice;
     //String[] arrayFloorPlanImages = {"miahamm", "tigerwoods"};
     private String[] mia = {"flyknit", "airmax"};
-    private String[] tiger = {"airjordan", "airmax"};
+    private String[] tiger = {"airjordan", "roshe"};
     private String[][] roomList = {mia, tiger};
 
     @Override
@@ -59,7 +59,7 @@ public class roomsearch extends mapstorage {
                         Intent goToRoom = new Intent(roomsearch.this, floorplan.class);
                         goToRoom.putExtra("fpname", choice);
                         goToRoom.putExtra("imageName", roomList[buildings][j]);
-                        goToRoom.putExtra("spinnerNumber", j);
+                        goToRoom.putExtra("spinnerNumber", buildings);
 
                         //goToRoom.putExtra("buildingName", building);
                         startActivity(goToRoom);
