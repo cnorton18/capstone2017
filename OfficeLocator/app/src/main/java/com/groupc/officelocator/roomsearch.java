@@ -19,9 +19,14 @@ public class roomsearch extends mapstorage {
     private EditText searchBar;
     private ArrayAdapter<String> adapter;
     private String choice;
-    String[] arrayFloorPlanImages = {"miahamm", "tigerwoods"};
+    //String[] arrayFloorPlanImages = {"miahamm", "tigerwoods"};
+    private String[] mia = {"flyknit", "airmax"};
+    private String[] tiger = {"airjordan", "airmax"};
+    private String[][] roomList = {mia, tiger};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+       // roomList[0] = {"flyknit", "airmax"};
 
         Intent extras = getIntent();
         final String building = extras.getStringExtra("building");
@@ -41,12 +46,19 @@ public class roomsearch extends mapstorage {
             @Override
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
                 choice = searchList.getItemAtPosition(position).toString();
+                int buildings = -1;
+                if(building.equals("Mia Hamm")){
+                    buildings = 0;
+                }
+                if(building.equals("Tiger Woods")){
+                    buildings = 1;
+                }
                 for (int i = 0; i < rooms.length; ++i) {
                     final int j = i;
                     if (choice.equals(rooms[i])) {
                         Intent goToRoom = new Intent(roomsearch.this, floorplan.class);
                         goToRoom.putExtra("fpname", choice);
-                        goToRoom.putExtra("imageName", arrayFloorPlanImages[j]);
+                        goToRoom.putExtra("imageName", roomList[buildings][j]);
                         goToRoom.putExtra("spinnerNumber", j);
 
                         //goToRoom.putExtra("buildingName", building);
