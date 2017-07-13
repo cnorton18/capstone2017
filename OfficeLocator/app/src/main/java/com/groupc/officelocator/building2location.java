@@ -12,11 +12,11 @@ import android.widget.TextView;
 
 public class building2location extends AppCompatActivity {
 
-
     //Buttons for just 2 buildings
     public int numberBuildings = 2; //16 total;
     public Button miaHamm;
     public Button tigerWoods;
+    public Button search;
 
     Button[] arrayButtons = {miaHamm, tigerWoods};//, danFouts, tigerWoods, nolanRyan1};
     int[] buttonNames = {R.id.mh1, R.id.tw1};// R.id.df1, R.id.tw1, R.id.nr1};
@@ -32,7 +32,7 @@ public class building2location extends AppCompatActivity {
         setContentView(R.layout.activity_building2location);
 
         TextView text = (TextView)findViewById(R.id.campus);
-        Typeface myCustomfont = Typeface.createFromAsset(getAssets(), "fonts/futuracondensedextrabold.ttf");
+        Typeface myCustomfont = Typeface.createFromAsset(getAssets(), "fonts/newsgothiccondensedbold.ttf");
         text.setTypeface(myCustomfont);
 
         text = (TextView)findViewById(R.id.textView4);
@@ -52,5 +52,17 @@ public class building2location extends AppCompatActivity {
                 }
             });
         }
+        search = (Button)findViewById(R.id.searchbutton);
+        search.setOnClickListener(new View.OnClickListener(){
+
+                                      public void onClick(View v){
+                                          Intent theintent = new Intent(building2location.this, buildingsearch.class);
+                                          startActivity(theintent);
+                                      }
+
+                                  }
+
+        );
+
     }
 }
