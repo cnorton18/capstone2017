@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">Swoosh Room Finder</string>
+    <string name="campus_name">World Headquarters</string>
+    <string name="selecttxt">Select A Building Or Search</string>
+
+
+    //IN USE
+    <string-array name="miaHamm">
+        <item>Choose a room</item>
+        <item>Flyknit</item>
+        <item>Air Max</item>
+    </string-array>
+
+    <string-array name="tigerWoods">
+        <item>Choose a room</item>
+        <item>Air Jordan</item>
+        <item>Roshe</item>
+    </string-array>
+
+
+
+
+
+
+
+
+
+    //NOT IN USE
+    <string-array name="mikeSchmidt">
+        <item>Choose a room</item>
+        <item>Woods 1</item>
+        <item>Woods 2</item>
+    </string-array>
+
+    <string-array name="danFouts">
+        <item>Choose a room</item>
+        <item>Fouts 1</item>
+        <item>Fouts 2</item>
+    </string-array>
+
+    <string-array name="nolanRyan">
+        <item>Choose a room</item>
+        <item>Ryan 1</item>
+        <item>Ryan 2</item>
+    </string-array>
+
+    <string name="room_prompt">Choose a room</string>
+
+</resources>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gray"
+    tools:context="com.groupc.officelocator.directions">
+
+    <TextView
+        android:id="@+id/roomName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Office directions"
+        android:textColor="@android:color/white"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp"/>
+
+    <ImageView
+        android:id="@+id/chosenRoom"
+        android:layout_width="380dip"
+        android:layout_height="380dip"
+        android:layout_below="@+id/roomName"
+        android:layout_marginTop="28dp"
+        app:srcCompat="@drawable/airjordan" />
+
+</RelativeLayout>
