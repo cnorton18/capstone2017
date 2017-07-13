@@ -38,4 +38,22 @@
         android:layout_marginBottom="15dip"
         android:layout_centerHorizontal="true"
         android:background="#c0c0c0" />
+
+    <Button
+        android:id="@+id/floorplanbutton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:text="Building Location" />
+
+    <Button
+        android:id="@+id/floorplanbutton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Search"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
