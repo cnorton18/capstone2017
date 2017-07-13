@@ -19,7 +19,7 @@ public class roomsearch extends mapstorage {
     private EditText searchBar;
     private ArrayAdapter<String> adapter;
     private String choice;
-
+    String[] arrayFloorPlanImages = {"miahamm", "tigerwoods"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -42,10 +42,14 @@ public class roomsearch extends mapstorage {
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
                 choice = searchList.getItemAtPosition(position).toString();
                 for (int i = 0; i < rooms.length; ++i) {
+                    final int j = i;
                     if (choice.equals(rooms[i])) {
-                        Intent goToRoom = new Intent(roomsearch.this, directions.class);
-                        goToRoom.putExtra("roomName", choice);
-                        goToRoom.putExtra("buildingName", building);
+                        Intent goToRoom = new Intent(roomsearch.this, floorplan.class);
+                        goToRoom.putExtra("fpname", choice);
+                        goToRoom.putExtra("imageName", arrayFloorPlanImages[j]);
+                        goToRoom.putExtra("spinnerNumber", j);
+
+                        //goToRoom.putExtra("buildingName", building);
                         startActivity(goToRoom);
                     }
                 }
