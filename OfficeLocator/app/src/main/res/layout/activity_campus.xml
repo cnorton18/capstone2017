@@ -54,11 +54,10 @@
         android:text="@string/selecttxt"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="@android:color/white"
-        android:textSize="20sp"
-        android:layout_alignBaseline="@+id/searchbutton"
-        android:layout_alignBottom="@+id/searchbutton"
-        android:layout_toRightOf="@+id/mh1"
-        android:layout_toEndOf="@+id/mh1" />
+        android:textSize="10sp"
+        android:layout_marginBottom="44dp"
+        android:layout_above="@+id/searchbutton"
+        android:layout_centerHorizontal="true" />
 
 
     <Button
@@ -73,24 +72,21 @@
 
     <Button
         android:id="@+id/searchbutton"
-        android:layout_width="70dip"
-        android:layout_height="40dip"
+        android:layout_width="65dip"
+        android:layout_height="65dip"
         android:background="@android:color/transparent"
         android:layout_alignTop="@+id/imageView5"
-        android:layout_toRightOf="@+id/textView4"
-        android:layout_toEndOf="@+id/textView4" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="30dip"
-        android:layout_height="30dip"
-        app:srcCompat="@drawable/searchicon"
-        android:layout_marginBottom="25dp"
+        android:layout_width="65dip"
+        android:layout_height="65dip"
+        app:srcCompat="@drawable/search"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/textView4"
-        android:layout_toEndOf="@+id/textView4"
-        android:layout_marginLeft="13dp"
-        android:layout_marginStart="13dp" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 
 </RelativeLayout>

@@ -1,6 +1,5 @@
 package com.groupc.officelocator;
 
-import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,7 +7,6 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-//import android.widget.CheckBox;
 
 public class campus extends AppCompatActivity {
 
@@ -33,9 +31,6 @@ public class campus extends AppCompatActivity {
 
         TextView text = (TextView)findViewById(R.id.campus);
         Typeface myCustomfont = Typeface.createFromAsset(getAssets(), "fonts/newsgothiccondensedbold.ttf");
-        text.setTypeface(myCustomfont);
-
-        text = (TextView)findViewById(R.id.textView4);
         text.setTypeface(myCustomfont);
 
         for (int i = 0; i < numberBuildings; i++) {

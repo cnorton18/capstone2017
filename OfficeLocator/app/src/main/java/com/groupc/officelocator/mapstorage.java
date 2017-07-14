@@ -4,10 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import java.util.HashMap;
 import java.util.Map;
 
-import android.support.v7.app.AppCompatActivity;
-import java.util.HashMap;
-import java.util.Map;
-
 public class mapstorage extends AppCompatActivity {
     public Map<String, String[]> campusMap;;
 

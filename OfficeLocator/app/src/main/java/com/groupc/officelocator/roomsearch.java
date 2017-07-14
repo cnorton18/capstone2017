@@ -2,7 +2,6 @@ package com.groupc.officelocator;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -10,9 +9,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-
-import com.groupc.officelocator.R;
-import com.groupc.officelocator.directions;
 
 public class roomsearch extends mapstorage {
     private ListView searchList;
@@ -60,8 +56,6 @@ public class roomsearch extends mapstorage {
                         goToRoom.putExtra("fpname", choice);
                         goToRoom.putExtra("imageName", roomList[buildings][j]);
                         goToRoom.putExtra("spinnerNumber", buildings);
-
-                        //goToRoom.putExtra("buildingName", building);
                         startActivity(goToRoom);
                     }
                 }
