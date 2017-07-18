@@ -53,7 +53,7 @@ public class roomsearch extends mapstorage {
                     final int j = i;
                     if (choice.equals(rooms[i])) {
                         Intent goToRoom = new Intent(roomsearch.this, floorplan.class);
-                        goToRoom.putExtra("fpname", choice);
+                        goToRoom.putExtra("fpname", building);
                         goToRoom.putExtra("imageName", roomList[buildings][j]);
                         goToRoom.putExtra("spinnerNumber", buildings);
                         startActivity(goToRoom);
