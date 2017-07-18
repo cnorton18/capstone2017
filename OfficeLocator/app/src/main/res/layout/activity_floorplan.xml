@@ -11,53 +11,33 @@
         android:id="@+id/floorPlanName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Office Name"
+        android:text="Building + Floor"
         android:textColor="@android:color/white"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="12dp" />
+        android:layout_centerHorizontal="true" />
 
     <ImageView
         android:id="@+id/floorPlanImage"
         android:layout_width="380dip"
         android:layout_height="380dip"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/floorPlanName"
-        android:layout_marginTop="28dp"
-        app:srcCompat="@drawable/miahamm" />
+        app:srcCompat="@drawable/miahamm"
+        android:layout_alignTop="@+id/floorplanbutton2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="5dp"/>
 
-    <Spinner
-        android:id="@+id/roomSelector"
-        android:layout_width="190dip"
-        android:layout_height="40dip"
-        android:layout_below="@+id/floorPlanImage"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="15dip"
-        android:layout_centerHorizontal="true"
-        android:background="#ff7921"
-        android:popupBackground="#ff7921"/>
-
-    <ImageView
-        android:layout_width="16dip"
-        android:layout_height="16dip"
-        android:src="@drawable/drop"
-        android:layout_below="@+id/floorPlanImage"
-        android:layout_marginLeft="245dp"
-        android:layout_marginTop="25dp"
-        android:id="@+id/imageView7" />
 
     <Button
         android:id="@+id/floorplanbutton2"
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:background="@android:color/transparent"
+        android:layout_marginTop="27dp"
         android:layout_below="@+id/floorPlanName"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="15dp" />
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:id="@+id/floorplanbutton1"
@@ -103,5 +83,56 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         app:srcCompat="@drawable/search" />
+
+    <Spinner
+        android:id="@+id/floorSelector"
+        android:layout_width="190dip"
+        android:layout_height="40dip"
+        android:background="#ff7921"
+        android:popupBackground="#ff7921"
+        android:layout_below="@+id/floorPlanImage"
+        android:layout_centerHorizontal="true"/>
+
+    <Spinner
+        android:id="@+id/roomSelector"
+        android:layout_width="190dip"
+        android:layout_height="40dip"
+        android:layout_below="@+id/floorPlanImage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:background="#ff7921"
+        android:popupBackground="#ff7921"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:layout_width="16dip"
+        android:layout_height="16dip"
+        android:src="@drawable/drop"
+        android:layout_marginLeft="245dp"
+        android:layout_alignTop="@+id/floorSelector"
+        android:layout_marginTop="20dp"
+        android:id="@+id/imageView7" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="16dip"
+        android:layout_height="16dip"
+        android:layout_marginLeft="245dp"
+        android:layout_alignTop="@+id/roomSelector"
+        android:layout_marginTop="20dp"
+        app:srcCompat="@drawable/drop"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/roomName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Room Name"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:layout_below="@+id/floorPlanName"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"/>
 
 </RelativeLayout>

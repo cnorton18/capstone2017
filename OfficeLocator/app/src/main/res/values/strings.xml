@@ -3,20 +3,36 @@
     <string name="campus_name">World Headquarters</string>
     <string name="selecttxt">Select A Building Or Search</string>
 
-
     //IN USE
-    <string-array name="miaHamm">
+    <string-array name = "Buildings">
+        <item>Choose a room</item>
+        <item>Mia Hamm</item>
+        <item>Tiger Woods</item>
+    </string-array>
+
+    <string-array name="miaHamm1">
         <item>Choose a room</item>
         <item>Flyknit</item>
         <item>Air Max</item>
     </string-array>
 
-    <string-array name="tigerWoods">
+    <string-array name="miaHamm2">
+        <item>Choose a room</item>
+        <item>LunarCharge</item>
+        <item>Kobe Mamba</item>
+    </string-array>
+
+    <string-array name="tigerWoods1">
         <item>Choose a room</item>
         <item>Air Jordan</item>
         <item>Roshe</item>
     </string-array>
 
+    <string-array name="tigerWoods2">
+        <item>Choose a room</item>
+        <item>Pegasus</item>
+        <item>VaporMax</item>
+    </string-array>
 
 
 

@@ -12,15 +12,14 @@ public class campus extends AppCompatActivity {
 
     //Buttons for just 2 buildings
     public int numberBuildings = 2; //16 total;
-    public Button miaHamm;
-    public Button tigerWoods;
-    public Button search;
+    public Button miaHamm, tigerWoods, search;
 
     Button[] arrayButtons = {miaHamm, tigerWoods};//, danFouts, tigerWoods, nolanRyan1};
     int[] buttonNames = {R.id.mh1, R.id.tw1};// R.id.df1, R.id.tw1, R.id.nr1};
     String[] arrayFloorNames = {"Mia Hamm", "Tiger Woods"};//, "Dan Fouts", "Tiger Woods", "Nolan Ryan"};
     //Need to add more generic floor plans
     String[] arrayFloorPlanImages = {"miahamm", "tigerwoods"};//, "danfouts", "miahamm", "danfouts"};
+    int [] numberOfFloors = {2,2};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +42,7 @@ public class campus extends AppCompatActivity {
                     goToFloorPlan.putExtra("fpname", arrayFloorNames[j]);
                     goToFloorPlan.putExtra("imageName", arrayFloorPlanImages[j]);
                     goToFloorPlan.putExtra("spinnerNumber", j);
+                    goToFloorPlan.putExtra("numberOfFloors", numberOfFloors[j]);
                     startActivity(goToFloorPlan);
                 }
             });
