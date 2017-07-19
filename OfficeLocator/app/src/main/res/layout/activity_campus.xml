@@ -71,8 +71,8 @@
 
     <Button
         android:id="@+id/searchbutton"
-        android:layout_width="65dip"
-        android:layout_height="65dip"
+        android:layout_width="55dip"
+        android:layout_height="55dip"
         android:background="@android:color/transparent"
         android:layout_alignTop="@+id/imageView5"
         android:layout_alignParentRight="true"
@@ -80,8 +80,8 @@
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="65dip"
-        android:layout_height="65dip"
+        android:layout_width="55dip"
+        android:layout_height="55dip"
         app:srcCompat="@drawable/search"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
