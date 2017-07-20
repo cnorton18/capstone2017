@@ -24,8 +24,6 @@
             android:screenOrientation="portrait"/>
         <activity android:name="com.groupc.officelocator.splash"
             android:screenOrientation="portrait"/>
-        <activity android:name="com.groupc.officelocator.mastersearch"
-            android:screenOrientation="portrait"/>
         <activity android:name="com.groupc.officelocator.buildingsearch"
             android:screenOrientation="portrait"/>
         <activity android:name="com.groupc.officelocator.roomsearch"

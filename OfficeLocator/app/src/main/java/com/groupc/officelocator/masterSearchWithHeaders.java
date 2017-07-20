@@ -89,6 +89,7 @@ public class masterSearchWithHeaders extends AppCompatActivity {
                 if(object.isSection()){
                     goToFloorPlan.putExtra("imageName",fpname.toLowerCase().replaceAll("\\s",""));
                     goToFloorPlan.putExtra("floorNumber", "0");
+                    goToFloorPlan.putExtra("roomName", "");
                 }
                 //If the user clicks a non section header ("Mia Hamm 1" or "Mia Hamm Flyknit")
                 else{

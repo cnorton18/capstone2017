@@ -122,10 +122,12 @@ public class floorplan extends AppCompatActivity{
                 chooseRoom.setSelected(true);
                 int selection = 0;
                 String chosenRoomFromSearch = goToFloorPlan.getStringExtra("roomName");
-                if (chosenRoomFromSearch.matches("Flyknit|LunarCharge|Air Jordan|Pegasus"))
-                    selection = 1;
-                else if(chosenRoomFromSearch.matches("Air Max|Kobe Mamba|Roshe|VaporMax"))
-                    selection = 2;
+                if(chosenRoomFromSearch != null) {
+                    if (chosenRoomFromSearch.matches("Flyknit|LunarCharge|Air Jordan|Pegasus"))
+                        selection = 1;
+                    else if (chosenRoomFromSearch.matches("Air Max|Kobe Mamba|Roshe|VaporMax"))
+                        selection = 2;
+                }
                 chooseRoom.setSelection(selection,true);
             }
         }
