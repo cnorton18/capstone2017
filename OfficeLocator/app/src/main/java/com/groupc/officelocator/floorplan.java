@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,9 @@ public class floorplan extends AppCompatActivity{
 
     //Tracks which building
     public static int buildingselected = 0;
+    public static int setRoomfromSearch = 0;
     public static int floorselected = 0;
+    public static int fromSearch = 0;
 
     Button maplocationbut, home, search;
     ImageView floorPlanImage, buildingLocation, spinner2drop;
@@ -41,17 +44,26 @@ public class floorplan extends AppCompatActivity{
         actionBar.hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_floorplan);
-        Intent goToFloorPlan = getIntent();
+        final Intent goToFloorPlan = getIntent();
         spinner2drop = (ImageView)findViewById(R.id.imageView10);
         roomName = (TextView) findViewById(R.id.roomName);
         Typeface myCustomfont = Typeface.createFromAsset(getAssets(), "fonts/newsgothiccondensedbold.ttf");
         roomName.setTypeface(myCustomfont);
+        //If a room was chosen through search, must cause the room title to appear since by default it doesn't until you choose the
+        //room through the second spinner
+        if(setRoomfromSearch == 1){
+            roomName.setText(goToFloorPlan.getStringExtra("roomName"));
+            roomName.setVisibility(View.VISIBLE);
+        }
 
         //Setting floor plan name + font style
         fpname = goToFloorPlan.getStringExtra("fpname");
         floorplanname = (TextView) findViewById(R.id.floorPlanName);
         floorplanname.setTypeface(myCustomfont);
-        floorplanname.setText(fpname + " Floor 1");
+        String floorNumber = goToFloorPlan.getStringExtra("floorNumber");
+        if(Integer.parseInt(floorNumber) == 0)
+            floorNumber = "1";
+        floorplanname.setText(fpname + " Floor " + floorNumber);
 
         //Setting floor plan image
         imageName = goToFloorPlan.getStringExtra("imageName");
@@ -80,9 +92,48 @@ public class floorplan extends AppCompatActivity{
         chooseFloor.setAdapter(numberAdapter);
         chooseFloor.setSelected(false);
         chooseFloor.setSelection(0,true);
+        //When coming from the search menu, the floor is already chosen. So we must set the first spinner to the correct floor
+        //and also show the second spinner for the room choices
+        if(fromSearch == 1){
+            int floor = Integer.parseInt(floorNumber);
+            chooseFloor.setSelection(floor,true);
+            chooseFloor.setSelected(true);
+
+            spinner2drop.setVisibility(View.VISIBLE);
+            chooseRoom.setVisibility(View.VISIBLE);
+
+            if(floor > 0) {
+                //Mia Hamm
+                if (buildingselected == 1) {
+                    ArrayAdapter adapter = ArrayAdapter.createFromResource(floorplan.this, miaHamm[floor - 1], R.layout.spinner_layout);
+                    chooseRoom.setAdapter(adapter);
+                }
+                //Tiger Woods
+                else if (buildingselected == 2) {
+                    ArrayAdapter adapter = ArrayAdapter.createFromResource(floorplan.this, tigerWoods[floor - 1], R.layout.spinner_layout);
+                    chooseRoom.setAdapter(adapter);
+                }
+            }
+            chooseRoom.setSelected(false);
+            chooseRoom.setSelection(0,true);
+            select();
+
+            if(setRoomfromSearch==1){
+                chooseRoom.setSelected(true);
+                int selection = 0;
+                String chosenRoomFromSearch = goToFloorPlan.getStringExtra("roomName");
+                if (chosenRoomFromSearch.matches("Flyknit|LunarCharge|Air Jordan|Pegasus"))
+                    selection = 1;
+                else if(chosenRoomFromSearch.matches("Air Max|Kobe Mamba|Roshe|VaporMax"))
+                    selection = 2;
+                chooseRoom.setSelection(selection,true);
+            }
+        }
+
         chooseFloor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                //User selects the floor #
                 String theChoice = ((TextView) view).getText().toString();
                 roomName.setVisibility(View.INVISIBLE);
                 if(theChoice.equals("Choose a floor")){
@@ -91,7 +142,7 @@ public class floorplan extends AppCompatActivity{
                     return;
                 }
                 floorplanname.setText(fpname + " Floor " + theChoice);
-                String chosenImage = imageName + theChoice;
+                String chosenImage = fpname.replaceAll("\\s", "").toLowerCase() + theChoice;
                 int res = getResources().getIdentifier(chosenImage, "drawable", floorplan.this.getPackageName());
                 floorPlanImage.setImageResource(res);
                 floorselected = Integer.parseInt(theChoice);
@@ -153,11 +204,10 @@ public class floorplan extends AppCompatActivity{
         search = (Button) findViewById(R.id.search);
         search.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent theintent = new Intent(floorplan.this, buildingsearch.class);
+                Intent theintent = new Intent(floorplan.this, masterSearchWithHeaders.class);
                 startActivity(theintent);
             }}
         );
-
     }
 
     //Sets up pop up dialog
@@ -173,7 +223,6 @@ public class floorplan extends AppCompatActivity{
             buildingLocation.setImageResource(R.drawable.building2highlight);
         cancel = (TextView) dialog.findViewById(R.id.cancelTxt);
     }
-
 
     private void select(){
         chooseRoom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -198,15 +247,7 @@ public class floorplan extends AppCompatActivity{
         });
     }
 
-    //Resetting Spinner
-    public void onResume(){
-        super.onResume();
-        if(fpname.equals("Mia Hamm"))
-            buildingselected = 1;
-        else if (fpname.equals("Tiger Woods"))
-            buildingselected = 2;
-
-    }
+    
 
 
 
