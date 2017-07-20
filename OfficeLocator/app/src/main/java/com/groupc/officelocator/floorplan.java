@@ -21,11 +21,10 @@ import java.util.List;
 
 public class floorplan extends AppCompatActivity{
 
-    //Tracks which building
-    public static int buildingselected = 0;
-    public static int setRoomfromSearch = 0;
-    public static int floorselected = 0;
-    public static int fromSearch = 0;
+    public static int buildingselected = 0; //Tracks which building
+    public static int setRoomfromSearch = 0; //Determines if a room was chosen in Search
+    public static int floorselected = 0; //Determines if a floor number was chosen in Search or through Spinner
+    public static int fromSearch = 0; //Determines if the previous page was Search before coming to the floorplan page
 
     Button maplocationbut, home, search;
     ImageView floorPlanImage, buildingLocation, spinner2drop;
@@ -35,6 +34,7 @@ public class floorplan extends AppCompatActivity{
     TextView cancel, floorplanname, roomName;
     String fpname, imageName;
 
+    //Provides the room choices for each building for the 2nd spinner that chooses rooms
     int[] miaHamm = {R.array.miaHamm1, R.array.miaHamm2};
     int[] tigerWoods = {R.array.tigerWoods1, R.array.tigerWoods2};
 
@@ -45,10 +45,14 @@ public class floorplan extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_floorplan);
         final Intent goToFloorPlan = getIntent();
-        spinner2drop = (ImageView)findViewById(R.id.imageView10);
+
+        spinner2drop = (ImageView)findViewById(R.id.imageView10); //Dropdown arrow for 2nd spinner
+
+        //Room title on the floorplan page
         roomName = (TextView) findViewById(R.id.roomName);
         Typeface myCustomfont = Typeface.createFromAsset(getAssets(), "fonts/newsgothiccondensedbold.ttf");
         roomName.setTypeface(myCustomfont);
+
         //If a room was chosen through search, must cause the room title to appear since by default it doesn't until you choose the
         //room through the second spinner
         if(setRoomfromSearch == 1){
@@ -56,12 +60,14 @@ public class floorplan extends AppCompatActivity{
             roomName.setVisibility(View.VISIBLE);
         }
 
-        //Setting floor plan name + font style
+        //Setting floor plan title name + font style
         fpname = goToFloorPlan.getStringExtra("fpname");
         floorplanname = (TextView) findViewById(R.id.floorPlanName);
         floorplanname.setTypeface(myCustomfont);
         String floorNumber = goToFloorPlan.getStringExtra("floorNumber");
-        if(Integer.parseInt(floorNumber) == 0)
+        //If the floor plan title has a floor number, we add that to the title
+        if(Integer.parseInt(floorNumber) == 0) //For those without a floor number ("Mia Hamm"/"Tiger Woods"
+        //the default is the first floor
             floorNumber = "1";
         floorplanname.setText(fpname + " Floor " + floorNumber);
 
@@ -77,7 +83,9 @@ public class floorplan extends AppCompatActivity{
         //Tiger Woods
         else if(spinnerNumber == 1){ buildingselected = 2;}
 
-        //Creating drop down menus
+        //Creating the two spinner drop down menus that choose the floor and rooms
+        //Choosing a floor in the first spinner causes the second spinner to be visible
+        //The choice of the floor also determines the choices of rooms for the second spinner
         chooseFloor = (Spinner)findViewById(R.id.floorSelector);
         chooseRoom = (Spinner) findViewById(R.id.roomSelector);
 
@@ -92,9 +100,12 @@ public class floorplan extends AppCompatActivity{
         chooseFloor.setAdapter(numberAdapter);
         chooseFloor.setSelected(false);
         chooseFloor.setSelection(0,true);
-        //When coming from the search menu, the floor is already chosen. So we must set the first spinner to the correct floor
-        //and also show the second spinner for the room choices
+
+        //When coming from the search menu, the floor number is already chosen and the room can be chosen through the search
+        //results. If they are we must set the spinners to reflect these predetermined choices
         if(fromSearch == 1){
+            //All search results have floor values set into them (if there is not one explicitly set, it gets sent
+            //to the first floor
             int floor = Integer.parseInt(floorNumber);
             chooseFloor.setSelection(floor,true);
             chooseFloor.setSelected(true);
@@ -102,6 +113,7 @@ public class floorplan extends AppCompatActivity{
             spinner2drop.setVisibility(View.VISIBLE);
             chooseRoom.setVisibility(View.VISIBLE);
 
+            //Choose the correct choices for the second room spinner
             if(floor > 0) {
                 //Mia Hamm
                 if (buildingselected == 1) {
@@ -118,6 +130,8 @@ public class floorplan extends AppCompatActivity{
             chooseRoom.setSelection(0,true);
             select();
 
+            //If the room was also chosen through the search result chosen, we choose that value to
+            //appear in the second spinner for the rooms
             if(setRoomfromSearch==1){
                 chooseRoom.setSelected(true);
                 int selection = 0;
@@ -132,6 +146,7 @@ public class floorplan extends AppCompatActivity{
             }
         }
 
+        //What to do when the user clicks on a choice for the first spinner for choosing floors
         chooseFloor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -143,11 +158,16 @@ public class floorplan extends AppCompatActivity{
                     chooseRoom.setSelection(0,true);
                     return;
                 }
+
                 floorplanname.setText(fpname + " Floor " + theChoice);
                 String chosenImage = fpname.replaceAll("\\s", "").toLowerCase() + theChoice;
+
+                //Set the new floor plan image to reflect the user's choice
                 int res = getResources().getIdentifier(chosenImage, "drawable", floorplan.this.getPackageName());
                 floorPlanImage.setImageResource(res);
                 floorselected = Integer.parseInt(theChoice);
+                //Must subtract 1 since the array of choices begins with 0; this is used to set the right room
+                //values for the room spinner menu
                 int choice = floorselected - 1;
 
                 //After selecting first spinner, now the second one is populated
@@ -170,9 +190,7 @@ public class floorplan extends AppCompatActivity{
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
+            public void onNothingSelected(AdapterView<?> adapterView) {}
         });
 
         //Pop up dialog for building location
@@ -219,8 +237,10 @@ public class floorplan extends AppCompatActivity{
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.imagedialog);
         buildingLocation = (ImageView)dialog.findViewById(R.id.buildingLocation);
+        //Mia Hamm
         if(buildingselected == 1)
             buildingLocation.setImageResource(R.drawable.building1highlight);
+        //Tiger Woods
         else if (buildingselected == 2)
             buildingLocation.setImageResource(R.drawable.building2highlight);
         cancel = (TextView) dialog.findViewById(R.id.cancelTxt);
@@ -234,18 +254,19 @@ public class floorplan extends AppCompatActivity{
                 if(selection.equals("Choose a room")){
                     return;
                 }
+
+                //Set the room title on the page to the user's choice
                 roomName.setVisibility(View.VISIBLE);
                 roomName.setText(selection);
 
+                //Set the image on the page to reflect the user's choice
                 selection = selection.toLowerCase().replaceAll("\\s","");
                 int resource = getResources().getIdentifier(selection, "drawable", floorplan.this.getPackageName());
                 floorPlanImage.setImageResource(resource);
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
+            public void onNothingSelected(AdapterView<?> adapterView) {}
         });
     }
 
