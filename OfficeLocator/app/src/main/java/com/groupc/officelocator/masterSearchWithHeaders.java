@@ -161,9 +161,6 @@ public class masterSearchWithHeaders extends AppCompatActivity {
         private Context context;
         private ArrayList<SearchItem> searchItem;
         private ArrayList<SearchItem> originalSearchItem;
-
-//        public CampusAdapter() {super();}
-
         public CampusAdapter(Context context, ArrayList<SearchItem> searchItem) {
             this.context = context;
             this.searchItem = searchItem;

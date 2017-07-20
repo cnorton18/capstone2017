@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -239,10 +238,10 @@ public class floorplan extends AppCompatActivity{
         buildingLocation = (ImageView)dialog.findViewById(R.id.buildingLocation);
         //Mia Hamm
         if(buildingselected == 1)
-            buildingLocation.setImageResource(R.drawable.building1highlight);
+            buildingLocation.setImageResource(R.drawable.miahammhighlighted);
         //Tiger Woods
         else if (buildingselected == 2)
-            buildingLocation.setImageResource(R.drawable.building2highlight);
+            buildingLocation.setImageResource(R.drawable.tigerwoodshighlighted);
         cancel = (TextView) dialog.findViewById(R.id.cancelTxt);
     }
 
@@ -270,7 +269,7 @@ public class floorplan extends AppCompatActivity{
         });
     }
 
-    
+
 
 
 

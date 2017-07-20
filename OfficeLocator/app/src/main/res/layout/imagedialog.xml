@@ -9,7 +9,7 @@
         android:id="@+id/buildingLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/building1highlight"
+        app:srcCompat="@drawable/miahammhighlighted"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
