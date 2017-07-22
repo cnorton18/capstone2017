@@ -66,13 +66,21 @@ public class masterSearchWithHeaders extends mapstorage {
                 SearchItem object = (SearchItem) allSearchResults.getItemAtPosition(position);
                 choice = object.getName(); //Gets the name of the object at the position
                 //Toast.makeText(v.getContext(), choice, Toast.LENGTH_LONG).show(); - For debugging
-                if (choice.contains("Mia Hamm")) {
+                /*if (choice.contains("Mia Hamm")) {
                     fpname = "Mia Hamm";
                     floorCode = 0; //Set to match the spinner values in the campus and floorplan class
                 }
                 else if(choice.contains("Tiger Woods")){
                     fpname = "Tiger Woods";
                     floorCode = 1;
+                }*/
+                String floors[] = campusMap.keySet().toArray(new String[0]);
+                for(int i = 0; i < floors.length; ++i){
+                    if(choice.contains(floors[i])){
+                        fpname = floors[i];
+                        floorCode = i;
+                        break;
+                    }
                 }
                 Intent goToFloorPlan = new Intent(masterSearchWithHeaders.this, floorplan.class);
                 //If the user clicks a section header ("Mia Hamm"/"Tiger Woods")
