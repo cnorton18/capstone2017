@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class campus extends AppCompatActivity {
+public class campus extends mapstorage {
 
     //Buttons for just 2 buildings
     public int numberBuildings = 2; //16 total;
@@ -16,13 +16,15 @@ public class campus extends AppCompatActivity {
 
     Button[] arrayButtons = {miaHamm, tigerWoods};//, danFouts, tigerWoods, nolanRyan1};
     int[] buttonNames = {R.id.mh1, R.id.tw1};// R.id.df1, R.id.tw1, R.id.nr1};
-    String[] arrayFloorNames = {"Mia Hamm", "Tiger Woods"};//, "Dan Fouts", "Tiger Woods", "Nolan Ryan"};
+    String[] arrayFloorNames = campusMap.keySet().toArray(new String[0]); //{"Mia Hamm", "Tiger Woods"};//, "Dan Fouts", "Tiger Woods", "Nolan Ryan"};
     int [] numberOfFloors = {2,2};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        if(actionBar!=null) {
+            actionBar.hide();
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_campus);
 
