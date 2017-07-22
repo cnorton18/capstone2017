@@ -214,7 +214,7 @@ public class masterSearchWithHeaders extends mapstorage {
                         originalSearchItem = new ArrayList<SearchItem>(searchItem);
 
                     //if userEnteredString is null then we return the original value, else return the filtered value
-                    if(userEnteredString == null && userEnteredString.length() == 0){
+                    if(userEnteredString == null || userEnteredString.length() == 0){
                         results.count = originalSearchItem.size();
                         results.values = originalSearchItem;
                     }
