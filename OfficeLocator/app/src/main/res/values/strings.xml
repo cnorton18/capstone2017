@@ -3,12 +3,13 @@
     <string name="campus_name">World Headquarters</string>
     <string name="selecttxt">Select A Building Or Search</string>
 
-    //IN USE
+    //List of buildings
     <string-array name = "Buildings" >
         <item>Mia Hamm</item>
         <item>Tiger Woods</item>
     </string-array>
 
+    //Choices for spinners
     <string-array name="miaHamm1">
         <item>Choose a room</item>
         <item>Flyknit</item>
@@ -33,28 +34,5 @@
         <item>VaporMax</item>
     </string-array>
 
-
-
-
-    //NOT IN USE
-    <string-array name="mikeSchmidt">
-        <item>Choose a room</item>
-        <item>Woods 1</item>
-        <item>Woods 2</item>
-    </string-array>
-
-    <string-array name="danFouts">
-        <item>Choose a room</item>
-        <item>Fouts 1</item>
-        <item>Fouts 2</item>
-    </string-array>
-
-    <string-array name="nolanRyan">
-        <item>Choose a room</item>
-        <item>Ryan 1</item>
-        <item>Ryan 2</item>
-    </string-array>
-
-    <string name="room_prompt">Choose a room</string>
 
 </resources>
