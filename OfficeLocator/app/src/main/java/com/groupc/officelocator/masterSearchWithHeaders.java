@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatCallback;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -20,12 +21,12 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class masterSearchWithHeaders extends AppCompatActivity {
+public class masterSearchWithHeaders extends mapstorage {
     private ListView allSearchResults;
     private EditText searchBar;
     private String choice, fpname, floorNumber;
     private int floorCode;
-    int [] numberOfFloors = {2,2}; //Mia Hamm, Tiger Wood # of floors
+    private int [] numberOfFloors = {2,2}; //Mia Hamm, Tiger Wood # of floors
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,28 +43,15 @@ public class masterSearchWithHeaders extends AppCompatActivity {
         allSearchResults.setEmptyView(findViewById(R.id.empty));
 
         ArrayList<SearchItem> campusList = new ArrayList<masterSearchWithHeaders.SearchItem>();
-
-        //Mia Hamm
-        // Building Header
-        campusList.add(new BuildingName("Mia Hamm"));
-        // Room Names
-        campusList.add(new RoomName("Mia Hamm 1"));
-        campusList.add(new RoomName("Mia Hamm 1 Flyknit"));
-        campusList.add(new RoomName("Mia Hamm 1 Air Max"));
-        campusList.add(new RoomName("Mia Hamm 2"));
-        campusList.add(new RoomName("Mia Hamm 2 LunarCharge"));
-        campusList.add(new RoomName("Mia Hamm 2 Kobe Mamba"));
-
-        //Tiger Woods
-        // Building Header
-        campusList.add(new BuildingName("Tiger Woods"));
-        // Room Names
-        campusList.add(new RoomName("Tiger Woods 1"));
-        campusList.add(new RoomName("Tiger Woods 1 Air Jordan"));
-        campusList.add(new RoomName("Tiger Woods 1 Roshe"));
-        campusList.add(new RoomName("Tiger Woods 2"));
-        campusList.add(new RoomName("Tiger Woods 2 Pegasus"));
-        campusList.add(new RoomName("Tiger Woods 2 VaporMax"));
+        String [] buildings = getResources().getStringArray(R.array.Buildings);
+        String [] searchResultValues; //grabbed from Hash map
+        for (int i = 0; i < buildings.length; ++i){
+            campusList.add(new BuildingName(buildings[i])); // Add building header ("Mia Hamm", "Tiger Woods")
+            searchResultValues = campusMap.get(buildings[i]); //Add search results for each building ("Mia Hamm 1, Mia Hamm 1 Flyknit"...)
+            for (int j = 0; j < searchResultValues.length; ++j){
+                campusList.add(new RoomName(searchResultValues[j]));
+            }
+        }
 
         // set adapter
         final CampusAdapter adapter = new CampusAdapter(this, campusList);

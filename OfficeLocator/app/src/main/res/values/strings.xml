@@ -4,8 +4,7 @@
     <string name="selecttxt">Select A Building Or Search</string>
 
     //IN USE
-    <string-array name = "Buildings">
-        <item>Choose a room</item>
+    <string-array name = "Buildings" >
         <item>Mia Hamm</item>
         <item>Tiger Woods</item>
     </string-array>
@@ -32,21 +31,6 @@
         <item>Choose a room</item>
         <item>Pegasus</item>
         <item>VaporMax</item>
-    </string-array>
-
-    <string-array name = "entireCampus">
-        <item>Mia Hamm 1</item>
-        <item>Mia Hamm 1 Flyknit</item>
-        <item>Mia Hamm 1 Air Max</item>
-        <item>Mia Hamm 2</item>
-        <item>Mia Hamm 2 LunarCharge</item>
-        <item>Mia Hamm 2 Kobe Mamba</item>
-        <item>Tiger Woods 1</item>
-        <item>Tiger Woods 1 Air Jordan</item>
-        <item>Tiger Woods 1 Roshe</item>
-        <item>Tiger Woods 2</item>
-        <item>Tiger Woods 2 Pegasus</item>
-        <item>Tiger Woods 2 VaporMax</item>
     </string-array>
 
 
