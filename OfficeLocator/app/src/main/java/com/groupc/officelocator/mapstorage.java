@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +14,7 @@ public class mapstorage extends AppCompatActivity {
     public Map<String, String[]> campusMap;;
 
     public mapstorage() {
-        campusMap = new HashMap<String, String[]>();
+        campusMap = new LinkedHashMap<String, String[]>();
         String[] MiaHammSearchStrings = {"Mia Hamm 1", "Mia Hamm 1 Flyknit", "Mia Hamm 1 Air Max",
                 "Mia Hamm 2", "Mia Hamm 2 LunarCharge", "Mia Hamm 2 Kobe Mamba"};
         campusMap.put("Mia Hamm", MiaHammSearchStrings);
