@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<com.groupc.officelocator.ZoomLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_campus"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,7 +16,8 @@
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
-    tools:context="com.groupc.officelocator.campus">
+    tools:context="com.groupc.officelocator.campus"
+    android:id="@+id/zoom">
 
 
     <ImageView
@@ -26,28 +34,6 @@
 
 
     <TextView
-        android:id="@+id/campus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:paddingTop="5dp"
-        android:textSize="25sp"
-        android:text="@string/campus_name"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@android:color/white"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/mh1"
-        android:layout_width="52dip"
-        android:layout_height="208dip"
-        android:layout_below="@+id/campus"
-        android:layout_marginTop="56dp"
-        android:background="@android:color/transparent"
-        android:visibility="visible" />
-
-    <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -62,12 +48,14 @@
     <Button
         android:id="@+id/tw1"
         android:layout_width="110dip"
-        android:layout_height="75dip"
+        android:layout_height="90dip"
         android:background="@android:color/transparent"
-        android:visibility="visible"
-        android:layout_marginTop="16dp"
+        android:layout_alignEnd="@+id/campus"
+        android:layout_alignRight="@+id/campus"
         android:layout_alignTop="@+id/mh1"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginEnd="14dp"
+        android:layout_marginRight="14dp"
+        android:visibility="visible" />
 
     <Button
         android:id="@+id/searchbutton"
@@ -87,5 +75,28 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
+    <Button
+        android:id="@+id/mh1"
+        android:background="@android:color/transparent"
+        android:layout_width="60dip"
+        android:layout_height="230dip"
+        android:layout_below="@+id/campus"
+        android:layout_marginTop="56dp"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/campus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="5dp"
+        android:text="@string/campus_name"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@android:color/white"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
 
 </RelativeLayout>
+</com.groupc.officelocator.ZoomLayout>
