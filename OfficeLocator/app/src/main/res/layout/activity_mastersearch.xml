@@ -9,7 +9,7 @@
         android:id="@+id/searchBar"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
-        android:hint="Enter a building..."
+        android:hint="Search..."
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@android:color/white"

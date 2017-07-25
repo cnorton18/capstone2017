@@ -35,7 +35,7 @@ public class splash extends AppCompatActivity {
         search.setOnClickListener(new View.OnClickListener(){
 
                                             public void onClick(View v){
-                                                Intent theintent = new Intent(splash.this, buildingsearch.class);
+                                                Intent theintent = new Intent(splash.this,masterSearchWithHeaders.class);
                                                 startActivity(theintent);
                                             }
 
