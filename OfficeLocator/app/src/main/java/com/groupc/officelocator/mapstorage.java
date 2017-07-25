@@ -18,7 +18,7 @@ public class mapstorage extends AppCompatActivity {
         String[] MiaHammSearchStrings = {"Mia Hamm 1", "Mia Hamm 1 Flyknit", "Mia Hamm 1 Air Max",
                 "Mia Hamm 2", "Mia Hamm 2 LunarCharge", "Mia Hamm 2 Kobe Mamba"};
         campusMap.put("Mia Hamm", MiaHammSearchStrings);
-        String[] TigerWoodsSearchStrings = {"Tiger Woods 1", "Tiger Woods 1 Air Jord;an", "Tiger Woods 1 Roshe",
+        String[] TigerWoodsSearchStrings = {"Tiger Woods 1", "Tiger Woods 1 Air Jordan", "Tiger Woods 1 Roshe",
                 "Tiger Woods 2", "Tiger Woods 2 Pegasus", "Tiger Woods 2 VaporMax"};
         campusMap.put("Tiger Woods", TigerWoodsSearchStrings);
     }
