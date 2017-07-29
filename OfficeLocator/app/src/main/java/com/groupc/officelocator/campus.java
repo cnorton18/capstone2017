@@ -12,13 +12,10 @@ public class campus extends mapstorage {
         RelativeLayout relativeLayout;
 
         //Buttons for just 2 buildings
-        public int numberBuildings = 2; //16 total;
         public Button miaHamm, tigerWoods, search;
 
         Button[] arrayButtons = {miaHamm, tigerWoods};//, danFouts, tigerWoods, nolanRyan1};
         int[] buttonNames = {R.id.mh1, R.id.tw1};// R.id.df1, R.id.tw1, R.id.nr1};
-        String[] arrayFloorNames = campusMap.keySet().toArray(new String[0]); //{"Mia Hamm", "Tiger Woods"};//, "Dan Fouts", "Tiger Woods", "Nolan Ryan"};
-        int[] numberOfFloors = {2, 2};
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +35,15 @@ public class campus extends mapstorage {
             Typeface myCustomfont = Typeface.createFromAsset(getAssets(), "fonts/newsgothiccondensedbold.ttf");
             text.setTypeface(myCustomfont);
 
-            for (int i = 0; i < numberBuildings; i++) {
+            for (int i = 0; i < numberOfBuildings; i++) {
                 final int j = i;
                 arrayButtons[i] = (Button) findViewById(buttonNames[i]);
                 arrayButtons[i].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent goToFloorPlan = new Intent(campus.this, floorplan.class);
-                        goToFloorPlan.putExtra("fpname", arrayFloorNames[j]);
-                        goToFloorPlan.putExtra("imageName", arrayFloorNames[j].replaceAll("\\s", "").toLowerCase());
+                        goToFloorPlan.putExtra("fpname", buildingNames[j]);
+                        goToFloorPlan.putExtra("imageName", buildingNames[j].replaceAll("\\s", "").toLowerCase());
                         goToFloorPlan.putExtra("spinnerNumber", j);
                         goToFloorPlan.putExtra("numberOfFloors", numberOfFloors[j]);
                         goToFloorPlan.putExtra("floorNumber", "1");
