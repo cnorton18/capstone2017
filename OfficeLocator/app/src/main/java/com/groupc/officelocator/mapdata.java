@@ -1,16 +1,6 @@
 package com.groupc.officelocator;
 
-import android.content.Context;
-import android.content.res.AssetManager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
-
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 public class mapdata extends AppCompatActivity {
@@ -22,7 +12,8 @@ public class mapdata extends AppCompatActivity {
     }
 
     public class floor {
-        public String[] roomNames;
+        public ArrayList<String> roomNames;
+        public int level;
     }
 
     public String campusName;

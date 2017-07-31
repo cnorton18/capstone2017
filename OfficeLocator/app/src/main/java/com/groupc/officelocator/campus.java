@@ -91,7 +91,6 @@ public class campus extends mapdata {
                                       }
 
             );
-
         }
 
     @Override
@@ -104,31 +103,53 @@ public class campus extends mapdata {
         buildings = null; //Move this to a constructor later.
         int eventType = parser.getEventType();
         building currentBuilding = null;
+        floor currentFloor = null;
 
         while(eventType != XmlPullParser.END_DOCUMENT) {
             String name = null;
             switch(eventType) {
+
                 case XmlPullParser.START_DOCUMENT:
-                    buildings = new ArrayList();
                     break;
+
                 case XmlPullParser.START_TAG:
                     name = parser.getName();
-                    if(name.equals("building")) {
+                    if(name.equals("campus")){
+                        buildings = new ArrayList();
+                        campusName = new String();
+                    }
+                    if(name.equals("campusName"))
+                        campusName = parser.nextText();
+                    if(name.equals("numberofBuildings"))
+                        numberofBuildings = Integer.parseInt(parser.nextText());
+                    else if(name.equals("building")) {
                         currentBuilding = new building();
+                        currentBuilding.floors = new ArrayList();
                     }
                     else if(currentBuilding != null) {
-                        if(name.equals("buildingName")) {
+                        if(name.equals("buildingName"))
                             currentBuilding.buildingName = parser.nextText();
-                        }
-                        else if(name.equals("numberofFloors")) {
+                        else if(name.equals("numberofFloors"))
                             currentBuilding.numberofFloors = Integer.parseInt(parser.nextText());
+                        else if(name.equals("floor") && currentFloor == null) {
+                            currentFloor = new floor();
+                            currentFloor.level = Integer.parseInt(parser.getAttributeValue(null,"level"));
+                            currentFloor.roomNames = new ArrayList();
                         }
+                        else if(name.equals("roomName") && currentFloor != null)
+                            currentFloor.roomNames.add(parser.nextText());
                     }
                     break;
+
                 case XmlPullParser.END_TAG:
                     name = parser.getName();
                     if(name.equalsIgnoreCase("building") && currentBuilding != null) {
                         buildings.add(currentBuilding);
+                        currentBuilding = null;
+                    }
+                    if(name.equalsIgnoreCase("floor") && currentFloor != null) {
+                        currentBuilding.floors.add(currentFloor);
+                        currentFloor = null;
                     }
                     break;
             }
