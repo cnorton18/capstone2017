@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<campus>
+    <campusName>Nike</campusName>
+    <numberofBuildings>2</numberofBuildings>
+    <building>
+        <buildingName>Mia Hamm</buildingName>
+        <numberofFloors>2</numberofFloors>
+        <floor level="1">
+            <roomName>Flyknit</roomName>
+            <roomName>Air Max</roomName>
+        </floor>
+        <floor level="2">
+            <roomName>LunarCharge</roomName>
+            <roomName>Kobe Mamba</roomName>
+        </floor>
+    </building>
+    <building>
+        <buildingName>Tiger Woods</buildingName>
+        <numberofFloors>2</numberofFloors>
+        <floor level="1">
+            <roomName>Air Jordan</roomName>
+            <roomName>Roshe</roomName>
+        </floor>
+        <floor level="2">
+            <roomName>Pegasus</roomName>
+            <roomName>VaporMax</roomName>
+        </floor>
+    </building>
+</campus>

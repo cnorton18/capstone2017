@@ -1,10 +1,12 @@
 package com.groupc.officelocator;
 
 import android.app.Dialog;
+import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -14,11 +16,17 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class floorplan extends AppCompatActivity{
+public class floorplan extends mapstorage{
 
     public static int buildingselected = 0; //Tracks which building
     public static int setRoomfromSearch = 0; //Determines if a room was chosen in Search
@@ -43,6 +51,7 @@ public class floorplan extends AppCompatActivity{
         actionBar.hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_floorplan);
+
         final Intent goToFloorPlan = getIntent();
 
         spinner2drop = (ImageView)findViewById(R.id.imageView10); //Dropdown arrow for 2nd spinner
@@ -268,9 +277,5 @@ public class floorplan extends AppCompatActivity{
             public void onNothingSelected(AdapterView<?> adapterView) {}
         });
     }
-
-
-
-
 
 }
