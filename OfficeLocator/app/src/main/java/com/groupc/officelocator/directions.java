@@ -5,12 +5,17 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
+<<<<<<< HEAD
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 //import android.widget.CheckBox;
 
+=======
+import android.widget.ImageView;
+import android.widget.TextView;
+>>>>>>> master
 
 public class directions extends AppCompatActivity {
 
@@ -30,6 +35,10 @@ public class directions extends AppCompatActivity {
         Typeface myCustomfont = Typeface.createFromAsset(getAssets(), "fonts/newsgothiccondensedbold.ttf");
         floorplanname.setTypeface(myCustomfont);
         floorplanname.setText(room);
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
         //Setting chosen room highlighted image
         room = room.replaceAll("\\s+","");
         room = room.toLowerCase();
