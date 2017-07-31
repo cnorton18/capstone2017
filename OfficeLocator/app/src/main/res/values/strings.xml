@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">Swoosh Room Finder</string>
     <string name="campus_name">World Headquarters</string>
-    <string name="selecttxt">Select A Building Or Search</string>
+    <string name="office_directions">Office Directions</string>
+    <string name="selecttxt">Select A Building</string>
 
     //List of buildings
     <string-array name = "Buildings" >

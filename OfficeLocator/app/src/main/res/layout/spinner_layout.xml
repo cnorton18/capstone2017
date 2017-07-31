@@ -2,7 +2,7 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/custom_spinner"
     android:textSize="14sp"
-    android:text="Choose a room"
+    android:text="Room"
     android:padding="5dp"
     android:textColor="#ffffff"
     android:layout_width="match_parent"
