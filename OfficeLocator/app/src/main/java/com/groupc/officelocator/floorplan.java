@@ -255,8 +255,8 @@ public class floorplan extends AppCompatActivity{
                 }
 
                 //Set the room title on the page to the user's choice
-                roomName.setVisibility(View.VISIBLE);
-                roomName.setText(selection);
+                //roomName.setVisibility(View.VISIBLE);
+                //roomName.setText(selection);
 
                 //Set the image on the page to reflect the user's choice
                 selection = selection.toLowerCase().replaceAll("\\s","");

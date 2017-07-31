@@ -23,11 +23,12 @@
         android:id="@+id/floorPlanImage"
         android:layout_width="380dip"
         android:layout_height="380dip"
-        app:srcCompat="@drawable/miahamm"
-        android:layout_alignTop="@+id/floorplanbutton2"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="5dp"/>
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/roomName"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp"
+        app:srcCompat="@drawable/miahamm" />
 
 
     <Button
@@ -35,10 +36,9 @@
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:background="@android:color/transparent"
-        android:layout_marginTop="27dp"
-        android:layout_below="@+id/floorPlanName"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/imageView6"
+        android:layout_alignStart="@+id/imageView6" />
 
     <Button
         android:id="@+id/floorplanbutton1"
@@ -62,10 +62,10 @@
         android:id="@+id/imageView6"
         android:layout_width="65dp"
         android:layout_height="65dp"
-        app:srcCompat="@drawable/locator"
-        android:layout_alignTop="@+id/floorplanbutton2"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="5dp"
+        app:srcCompat="@drawable/locator" />
 
     <Button
         android:id="@+id/search"
