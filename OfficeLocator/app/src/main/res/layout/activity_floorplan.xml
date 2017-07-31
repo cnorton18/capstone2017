@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gray"
-    tools:context="com.groupc.officelocator.floorplan">
+    tools:context="com.groupc.officelocator.floorplan"
+    android:theme="@style/UniversalBackground">
 
     <TextView
         android:id="@+id/floorPlanName"

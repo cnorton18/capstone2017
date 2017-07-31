@@ -40,7 +40,9 @@ public class floorplan extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        if(actionBar!=null) {
+            actionBar.hide();
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_floorplan);
         final Intent goToFloorPlan = getIntent();
