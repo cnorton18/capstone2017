@@ -16,17 +16,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
-        <activity android:name="com.groupc.officelocator.campus" />
-        <activity android:name="com.groupc.officelocator.floorplan" />
-        <activity android:name="com.groupc.officelocator.directions" />
-        <activity android:name="com.groupc.officelocator.splash"/>
-        <activity android:name="com.groupc.officelocator.buildingsearch"/>
-        <activity android:name="com.groupc.officelocator.building1location"/>
-        <activity android:name="com.groupc.officelocator.building2location"/>
-        <activity android:name="com.groupc.officelocator.roomsearch"
-            android:windowSoftInputMode="stateHidden"/>
-=======
         <activity android:name="com.groupc.officelocator.campus"
             android:screenOrientation="portrait"/>
         <activity android:name="com.groupc.officelocator.floorplan"
@@ -40,7 +29,6 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan"/>
 
->>>>>>> master
     </application>
 
 </manifest>

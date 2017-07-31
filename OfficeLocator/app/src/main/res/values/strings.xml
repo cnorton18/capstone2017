@@ -3,11 +3,6 @@
     <string name="campus_name">World Headquarters</string>
     <string name="selecttxt">Select A Building Or Search</string>
 
-<<<<<<< HEAD
-
-    //IN USE
-    <string-array name="miaHamm">
-=======
     //List of buildings
     <string-array name = "Buildings" >
         <item>Mia Hamm</item>
@@ -16,48 +11,11 @@
 
     //Choices for spinners
     <string-array name="miaHamm1">
->>>>>>> master
         <item>Choose a room</item>
         <item>Flyknit</item>
         <item>Air Max</item>
     </string-array>
 
-<<<<<<< HEAD
-    <string-array name="tigerWoods">
-        <item>Choose a room</item>
-        <item>Air Jordan</item>
-        <item>Roshe</item>
-    </string-array>
-
-
-
-
-
-
-
-
-
-    //NOT IN USE
-    <string-array name="mikeSchmidt">
-        <item>Choose a room</item>
-        <item>Woods 1</item>
-        <item>Woods 2</item>
-    </string-array>
-
-    <string-array name="danFouts">
-        <item>Choose a room</item>
-        <item>Fouts 1</item>
-        <item>Fouts 2</item>
-    </string-array>
-
-    <string-array name="nolanRyan">
-        <item>Choose a room</item>
-        <item>Ryan 1</item>
-        <item>Ryan 2</item>
-    </string-array>
-
-    <string name="room_prompt">Choose a room</string>
-=======
     <string-array name="miaHamm2">
         <item>Choose a room</item>
         <item>LunarCharge</item>
@@ -76,6 +34,5 @@
         <item>VaporMax</item>
     </string-array>
 
->>>>>>> master
 
 </resources>

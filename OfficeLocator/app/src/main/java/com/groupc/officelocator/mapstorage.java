@@ -1,13 +1,5 @@
 package com.groupc.officelocator;
 
-<<<<<<< HEAD
-import android.support.v7.app.AppCompatActivity;
-import java.util.HashMap;
-import java.util.Map;
-
-import android.support.v7.app.AppCompatActivity;
-import java.util.HashMap;
-=======
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 
@@ -16,20 +8,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
->>>>>>> master
 import java.util.Map;
 
 public class mapstorage extends AppCompatActivity {
     public Map<String, String[]> campusMap;;
-<<<<<<< HEAD
-
-    public mapstorage() {
-        campusMap = new HashMap<String, String[]>();
-        String[] HammRooms = {"Flyknit", "Air Max"};
-        campusMap.put("Mia Hamm", HammRooms);
-        String[] WoodsRooms = {"Air Jordan", "Roshe"};
-        campusMap.put("Tiger Woods", WoodsRooms);
-=======
     public int[] numberOfFloors;
     public int numberOfBuildings;
     public String[] buildingNames;
@@ -50,6 +32,5 @@ public class mapstorage extends AppCompatActivity {
 
         buildingNames = campusMap.keySet().toArray(new String[0]);
         numberOfBuildings = buildingNames.length;
->>>>>>> master
     }
 }

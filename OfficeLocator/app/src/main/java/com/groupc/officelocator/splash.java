@@ -27,19 +27,6 @@ public class splash extends AppCompatActivity {
                                                 Intent theintent = new Intent(splash.this, campus.class);
                                                 startActivity(theintent);
                                             }
-<<<<<<< HEAD
-
-                                        }
-        );
-
-        search = (Button)findViewById(R.id.search);
-        search.setOnClickListener(new View.OnClickListener(){
-
-                                            public void onClick(View v){
-                                                Intent theintent = new Intent(splash.this, buildingsearch.class);
-                                                startActivity(theintent);
-                                            }
-=======
 
                                         }
         );
@@ -97,14 +84,11 @@ LIST OF STYLE ASSETS TO EXTRACT:
     building locations (pictures change for every building, linked up)
 */
 
->>>>>>> master
 
 
-<<<<<<< HEAD
-    }
-=======
 
 
->>>>>>> master
+
+
 
 }

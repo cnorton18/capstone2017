@@ -11,43 +11,17 @@
         android:id="@+id/floorPlanName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-<<<<<<< HEAD
-        android:text="Office Name"
-=======
         android:text="Building + Floor"
->>>>>>> master
         android:textColor="@android:color/white"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold"
         android:layout_alignParentTop="true"
-<<<<<<< HEAD
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="12dp" />
-=======
         android:layout_centerHorizontal="true" />
->>>>>>> master
 
     <ImageView
         android:id="@+id/floorPlanImage"
         android:layout_width="380dip"
         android:layout_height="380dip"
-<<<<<<< HEAD
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/floorPlanName"
-        android:layout_marginTop="28dp"
-        app:srcCompat="@drawable/miahamm" />
-
-
-    <Spinner
-        android:id="@+id/roomSelector"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/floorPlanImage"
-        android:layout_marginBottom="15dip"
-        android:layout_centerHorizontal="true"
-        android:background="#c0c0c0" />
-=======
         app:srcCompat="@drawable/miahamm"
         android:layout_alignTop="@+id/floorplanbutton2"
         android:layout_alignParentRight="true"
@@ -91,7 +65,6 @@
         android:layout_alignTop="@+id/floorplanbutton2"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
->>>>>>> master
 
     <Button
         android:id="@+id/search"
@@ -109,18 +82,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-<<<<<<< HEAD
-        android:text="Building Location" />
-
-    <Button
-        android:id="@+id/floorplanbutton1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Search"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-=======
         app:srcCompat="@drawable/search" />
 
     <Spinner
@@ -174,5 +135,4 @@
         android:layout_centerHorizontal="true"
         android:visibility="invisible"/>
 
->>>>>>> master
 </RelativeLayout>
