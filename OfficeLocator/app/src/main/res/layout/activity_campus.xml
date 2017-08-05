@@ -11,12 +11,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@style/UniversalBackground"
     android:paddingBottom="0dp"
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
     tools:context="com.groupc.officelocator.campus"
+    android:theme="@style/UniversalBackground"
+    android:fitsSystemWindows="true"
     android:id="@+id/zoom">
 
 
