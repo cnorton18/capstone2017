@@ -26,5 +26,9 @@
         <item name="android:colorBackground">@drawable/gray</item>
         <item name="android:windowDrawsSystemBarBackgrounds">false</item>
     </style>
+    <!--<style name="Logo" parent="ThemeOverlay.AppCompat">
+        <item name="ImageView">@drawable/on_screen_logo.png</item>
+    </style>-->
+
 
 </resources>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.groupc.officelocator.ZoomLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_campus"
     android:layout_width="match_parent"
@@ -97,6 +98,31 @@
         android:textColor="@android:color/white"
         android:textSize="25sp"
         android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/on_screen_logo"
+        android:paddingStart="5dp"
+        android:paddingEnd="10dp"
+        android:paddingTop="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/mh1"
+        android:layout_toStartOf="@+id/campus" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/mh1"
+        android:layout_alignParentStart="true"
+        android:id="@+id/space2" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/mh1"
+        android:layout_toEndOf="@+id/space2" />
 
 
 </RelativeLayout>
