@@ -12,25 +12,25 @@
 
     //Choices for spinners
     <string-array name="miaHamm1">
-        <item>Room</item>
+        <item>Select</item>
         <item>Flyknit</item>
         <item>Air Max</item>
     </string-array>
 
     <string-array name="miaHamm2">
-        <item>Room</item>
+        <item>Select</item>
         <item>LunarCharge</item>
         <item>Kobe Mamba</item>
     </string-array>
 
     <string-array name="tigerWoods1">
-        <item>Room</item>
+        <item>Select</item>
         <item>Air Jordan</item>
         <item>Roshe</item>
     </string-array>
 
     <string-array name="tigerWoods2">
-        <item>Room</item>
+        <item>Select</item>
         <item>Pegasus</item>
         <item>VaporMax</item>
     </string-array>

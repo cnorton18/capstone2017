@@ -91,7 +91,7 @@ public class floorplan extends AppCompatActivity{
         //First spinner - Choosing which floor
         int numberOfFloors = goToFloorPlan.getIntExtra("numberOfFloors",0);
         List<String> list = new ArrayList<String>();
-        list.add("Floor");
+        list.add("Select");
         for (int i = 1; i <= numberOfFloors; i++){
             list.add(String.valueOf(i));
         }
@@ -152,7 +152,7 @@ public class floorplan extends AppCompatActivity{
                 //User selects the floor #
                 String theChoice = ((TextView) view).getText().toString();
                 roomName.setVisibility(View.INVISIBLE);
-                if(theChoice.equals("Floor")){
+                if(theChoice.equals("Select")){
                     chooseRoom.setSelected(false);
                     chooseRoom.setSelection(0,true);
                     return;
@@ -250,7 +250,7 @@ public class floorplan extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selection = ((TextView) view).getText().toString();
-                if(selection.equals("Room")){
+                if(selection.equals("Select")){
                     return;
                 }
 
