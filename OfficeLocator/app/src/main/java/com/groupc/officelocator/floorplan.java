@@ -1,12 +1,10 @@
 package com.groupc.officelocator;
 
 import android.app.Dialog;
-import android.content.res.AssetManager;
 import android.graphics.Typeface;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -15,18 +13,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
-
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class floorplan extends mapstorage{
+public class floorplan extends AppCompatActivity{
 
     public static int buildingselected = 0; //Tracks which building
     public static int setRoomfromSearch = 0; //Determines if a room was chosen in Search
@@ -41,6 +31,8 @@ public class floorplan extends mapstorage{
     TextView cancel, floorplanname, roomName;
     String fpname, imageName;
 
+    public mapdata data;
+
     //Provides the room choices for each building for the 2nd spinner that chooses rooms
     int[] miaHamm = {R.array.miaHamm1, R.array.miaHamm2};
     int[] tigerWoods = {R.array.tigerWoods1, R.array.tigerWoods2};
@@ -51,6 +43,11 @@ public class floorplan extends mapstorage{
         actionBar.hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_floorplan);
+
+        data = new mapdata();
+        Intent priorInt = getIntent();
+        final Bundle dataContainer = priorInt.getExtras();
+        data = dataContainer.getParcelable("parse");
 
         final Intent goToFloorPlan = getIntent();
 
@@ -224,6 +221,7 @@ public class floorplan extends mapstorage{
         home.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent theintent = new Intent(floorplan.this, campus.class);
+                theintent.putExtras(dataContainer);
                 startActivity(theintent);
             }}
         );
@@ -233,6 +231,7 @@ public class floorplan extends mapstorage{
         search.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent theintent = new Intent(floorplan.this, masterSearchWithHeaders.class);
+                theintent.putExtras(dataContainer);
                 startActivity(theintent);
             }}
         );

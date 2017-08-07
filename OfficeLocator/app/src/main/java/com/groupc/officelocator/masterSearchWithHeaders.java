@@ -5,9 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatCallback;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,15 +21,18 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class masterSearchWithHeaders extends mapstorage {
+public class masterSearchWithHeaders extends AppCompatActivity {
     private ListView allSearchResults;
     private EditText searchBar;
     private String choice, fpname, floorNumber;
     private int floorCode;
+    public mapdata data;
+    public int choiceFloors; //Number of floors in chosen building
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+
         if(actionBar!=null) {
             actionBar.hide();
         }
@@ -41,17 +44,17 @@ public class masterSearchWithHeaders extends mapstorage {
         allSearchResults = (ListView) findViewById(R.id.searchList);
         allSearchResults.setEmptyView(findViewById(R.id.empty));
 
+        Intent priorInt = getIntent();
+        final Bundle dataContainer = priorInt.getExtras();
+        data = new mapdata();
+        data = dataContainer.getParcelable("parse");
+
         ArrayList<SearchItem> campusList = new ArrayList<masterSearchWithHeaders.SearchItem>();
-        String [] searchResultValues; //grabbed from Hash map
-        for (int i = 0; i < numberOfBuildings; ++i){
-            campusList.add(new BuildingName(buildingNames[i])); // Add building header ("Mia Hamm", "Tiger Woods")
-            searchResultValues = campusMap.get(buildingNames[i]); //Add search results for each building ("Mia Hamm 1, Mia Hamm 1 Flyknit"...)
-            for (int j = 0; j < searchResultValues.length; ++j) {
-                //Identifies room for indentation
-                if((searchResultValues[j].replaceAll("\\d+","")).length() - 1 != ((buildingNames[i].replaceAll("\\d+",""))).length())
-                campusList.add(new RoomName("\t\t\t\t\t\t\t" + searchResultValues[j]));
-                else
-                    campusList.add(new RoomName(searchResultValues[j])); //Floors
+        for (int i = 0; i < data.numberofBuildings; ++i){
+            campusList.add(new BuildingName(data.buildings.get(i).buildingName));
+            for(int j = 0; j < data.buildings.get(i).floors.size(); ++j) {
+                for(int k = 0; k < data.buildings.get(i).floors.get(j).rooms.size(); ++k)
+                    campusList.add(new RoomName(data.buildings.get(i).floors.get(j).rooms.get(k).roomName));
             }
         }
 
@@ -67,23 +70,26 @@ public class masterSearchWithHeaders extends mapstorage {
                 //Gets object at the position
                 SearchItem object = (SearchItem) allSearchResults.getItemAtPosition(position);
                 choice = object.getName(); //Gets the name of the object at the position
-                //Toast.makeText(v.getContext(), choice, Toast.LENGTH_LONG).show(); - For debugging
-                /*if (choice.contains("Mia Hamm")) {
-                    fpname = "Mia Hamm";
-                    floorCode = 0; //Set to match the spinner values in the campus and floorplan class
-                }
-                else if(choice.contains("Tiger Woods")){
-                    fpname = "Tiger Woods";
-                    floorCode = 1;
-                }*/
-
-                for(int i = 0; i < buildingNames.length; ++i){
-                    if(choice.contains(buildingNames[i])){
-                        fpname = buildingNames[i];
+                for(int i = 0; i < data.numberofBuildings; ++i){
+                    if(choice.contains(data.buildings.get(i).buildingName)){
+                        fpname = data.buildings.get(i).buildingName;
                         floorCode = i;
+                        choiceFloors = data.buildings.get(i).numberofFloors;
                         break;
                     }
+                    for(int j = 0; j < data.buildings.get(i).numberofFloors; ++j) {
+                        for(int k = 0; k < data.buildings.get(i).floors.get(j).rooms.size(); ++k) {
+                            if(choice.contains(data.buildings.get(i).floors.get(j).rooms.get(k).roomName)) {
+                                fpname = data.buildings.get(i).buildingName;
+                                floorCode = i;
+                                floorNumber = Integer.toString(data.buildings.get(i).floors.get(j).level);
+                                choiceFloors = data.buildings.get(i).numberofFloors;
+                                break;
+                            }
+                        }
+                    }
                 }
+
                 Intent goToFloorPlan = new Intent(masterSearchWithHeaders.this, floorplan.class);
                 //If the user clicks a section header ("Mia Hamm"/"Tiger Woods")
                 if(object.isSection()){
@@ -93,23 +99,16 @@ public class masterSearchWithHeaders extends mapstorage {
                 }
                 //If the user clicks a non section header ("Mia Hamm 1" or "Mia Hamm Flyknit")
                 else{
-                    floorNumber = choice.replaceAll("\\D+",""); //Grab the floor # from the search result
                     floorplan.buildingselected = floorCode + 1; //Used in floorplan class
-                    //If there's no room in the result
-                    if(choice.equals(fpname + " " + floorNumber)) {
-                        goToFloorPlan.putExtra("imageName", choice.toLowerCase().replaceAll("\\s", ""));
-                    }
-                    //If there's a room in the result
-                    else{
-                        floorplan.setRoomfromSearch = 1;
-                        goToFloorPlan.putExtra("roomName", choice.replaceAll(fpname + " " + floorNumber + " ",""));
-                        goToFloorPlan.putExtra("imageName", choice.replaceAll(fpname + " " + floorNumber + " ","").toLowerCase().replaceAll("\\s",""));
-                    }
+                    floorplan.setRoomfromSearch = 1;
+                    goToFloorPlan.putExtra("roomName", choice);
+                    goToFloorPlan.putExtra("imageName", choice.toLowerCase().replaceAll("\\s",""));
                     goToFloorPlan.putExtra("floorNumber", floorNumber);
                 }
                 goToFloorPlan.putExtra("fpname", fpname);
                 goToFloorPlan.putExtra("spinnerNumber", floorCode);
-                goToFloorPlan.putExtra("numberOfFloors", numberOfFloors[floorCode]);
+                goToFloorPlan.putExtra("numberOfFloors", choiceFloors);
+                goToFloorPlan.putExtras(dataContainer);
                 startActivity(goToFloorPlan);
             }
 
