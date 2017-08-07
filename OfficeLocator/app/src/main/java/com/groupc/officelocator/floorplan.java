@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -33,10 +34,6 @@ public class floorplan extends AppCompatActivity{
 
     public mapdata data;
 
-    //Provides the room choices for each building for the 2nd spinner that chooses rooms
-    int[] miaHamm = {R.array.miaHamm1, R.array.miaHamm2};
-    int[] tigerWoods = {R.array.tigerWoods1, R.array.tigerWoods2};
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
@@ -46,10 +43,9 @@ public class floorplan extends AppCompatActivity{
 
         data = new mapdata();
         Intent priorInt = getIntent();
-        final Bundle dataContainer = priorInt.getExtras();
-        data = dataContainer.getParcelable("parse");
-
         final Intent goToFloorPlan = getIntent();
+        final Bundle dataContainer = goToFloorPlan.getExtras();
+        data = dataContainer.getParcelable("parse");
 
         spinner2drop = (ImageView)findViewById(R.id.imageView10); //Dropdown arrow for 2nd spinner
 
@@ -83,10 +79,7 @@ public class floorplan extends AppCompatActivity{
         floorPlanImage.setImageResource(res);
 
         int spinnerNumber = goToFloorPlan.getIntExtra("spinnerNumber",0);
-        //Mia Hamm
-        if(spinnerNumber == 0){ buildingselected = 1;}
-        //Tiger Woods
-        else if(spinnerNumber == 1){ buildingselected = 2;}
+        buildingselected = spinnerNumber + 1;
 
         //Creating the two spinner drop down menus that choose the floor and rooms
         //Choosing a floor in the first spinner causes the second spinner to be visible
@@ -118,22 +111,22 @@ public class floorplan extends AppCompatActivity{
             spinner2drop.setVisibility(View.VISIBLE);
             chooseRoom.setVisibility(View.VISIBLE);
 
-            //Choose the correct choices for the second room spinner
-            if(floor > 0) {
-                //Mia Hamm
-                if (buildingselected == 1) {
-                    ArrayAdapter adapter = ArrayAdapter.createFromResource(floorplan.this, miaHamm[floor - 1], R.layout.spinner_layout);
-                    chooseRoom.setAdapter(adapter);
-                }
-                //Tiger Woods
-                else if (buildingselected == 2) {
-                    ArrayAdapter adapter = ArrayAdapter.createFromResource(floorplan.this, tigerWoods[floor - 1], R.layout.spinner_layout);
-                    chooseRoom.setAdapter(adapter);
+            List<String> spinnerArray = new ArrayList<String>();
+            for(int i = 0; i < data.numberofBuildings; ++i) {
+                for(int j = 0; j < data.buildings.get(i).floors.size(); ++j) {
+                    if(buildingselected == (i + 1) && data.buildings.get(i).floors.get(j).level == floor) {
+                        for(int k = 0; k < data.buildings.get(i).floors.get(j).rooms.size(); ++k) {
+                            spinnerArray.add(data.buildings.get(i).floors.get(j).rooms.get(k).roomName);
+                        }
+                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(floorplan.this,  R.layout.spinner_layout, spinnerArray);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        chooseRoom.setAdapter(adapter);
+                        break;
+                    }
                 }
             }
             chooseRoom.setSelected(false);
             chooseRoom.setSelection(0,true);
-            select();
 
             //If the room was also chosen through the search result chosen, we choose that value to
             //appear in the second spinner for the rooms
@@ -142,13 +135,18 @@ public class floorplan extends AppCompatActivity{
                 int selection = 0;
                 String chosenRoomFromSearch = goToFloorPlan.getStringExtra("roomName");
                 if(chosenRoomFromSearch != null) {
-                    if (chosenRoomFromSearch.matches("Flyknit|LunarCharge|Air Jordan|Pegasus"))
-                        selection = 1;
-                    else if (chosenRoomFromSearch.matches("Air Max|Kobe Mamba|Roshe|VaporMax"))
-                        selection = 2;
+                    for(int i = 0; i < data.numberofBuildings; ++i) {
+                        for (int j = 0; j < data.buildings.get(i).floors.size(); ++j) {
+                            for (int k = 0; k < data.buildings.get(i).floors.get(j).rooms.size(); ++k) {
+                                if (chosenRoomFromSearch.matches(data.buildings.get(i).floors.get(j).rooms.get(k).roomName))
+                                    selection = k;
+                            }
+                        }
+                    }
                 }
                 chooseRoom.setSelection(selection,true);
             }
+            select();
         }
 
         //What to do when the user clicks on a choice for the first spinner for choosing floors
@@ -173,21 +171,25 @@ public class floorplan extends AppCompatActivity{
                 floorselected = Integer.parseInt(theChoice);
                 //Must subtract 1 since the array of choices begins with 0; this is used to set the right room
                 //values for the room spinner menu
-                int choice = floorselected - 1;
+                int choice = floorselected;
 
                 //After selecting first spinner, now the second one is populated
                 spinner2drop.setVisibility(View.VISIBLE);
                 chooseRoom.setVisibility(View.VISIBLE);
 
-                //Mia Hamm
-                if(buildingselected == 1){
-                    ArrayAdapter adapter = ArrayAdapter.createFromResource(floorplan.this, miaHamm[choice], R.layout.spinner_layout);
-                    chooseRoom.setAdapter(adapter);
-                }
-                //Tiger Woods
-                else if (buildingselected == 2){
-                    ArrayAdapter adapter = ArrayAdapter.createFromResource(floorplan.this, tigerWoods[choice], R.layout.spinner_layout);
-                    chooseRoom.setAdapter(adapter);
+                List<String> spinnerArray = new ArrayList<String>();
+                for(int j = 0; j < data.numberofBuildings; ++j) {
+                    for(int k = 0; k < data.buildings.get(j).floors.size(); ++k) {
+                        if(buildingselected == (j + 1) && data.buildings.get(j).floors.get(k).level == choice) {
+                            for(int m = 0; m < data.buildings.get(j).floors.get(k).rooms.size(); ++m) {
+                                spinnerArray.add(data.buildings.get(j).floors.get(k).rooms.get(m).roomName);
+                            }
+                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(floorplan.this,  R.layout.spinner_layout, spinnerArray);
+                            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            chooseRoom.setAdapter(adapter);
+                            break;
+                        }
+                    }
                 }
                 chooseRoom.setSelected(false);
                 chooseRoom.setSelection(0,true);
@@ -237,6 +239,7 @@ public class floorplan extends AppCompatActivity{
         );
     }
 
+    //Come back to fix this perhaps after room class stores images
     //Sets up pop up dialog
     private void createDialog()
     {
