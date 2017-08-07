@@ -236,4 +236,17 @@ public class masterSearchWithHeaders extends AppCompatActivity {
             return filter;
         }
     }
+
+    //Temporary implementation
+    @Override
+    public void onBackPressed() {
+        final Bundle dataContainer = new Bundle();
+        dataContainer.putParcelable("parse", data);
+
+        Intent intent = new Intent(masterSearchWithHeaders.this, campus.class);
+        intent.putExtras(dataContainer);
+        masterSearchWithHeaders.this.startActivity(intent);
+
+        super.onBackPressed();
+    }
 }

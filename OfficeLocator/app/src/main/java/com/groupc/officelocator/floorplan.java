@@ -280,4 +280,17 @@ public class floorplan extends AppCompatActivity{
         });
     }
 
+    //Temporary implementation
+    @Override
+    public void onBackPressed() {
+        final Bundle dataContainer = new Bundle();
+        dataContainer.putParcelable("parse", data);
+
+        Intent intent = new Intent(floorplan.this, campus.class);
+        intent.putExtras(dataContainer);
+        floorplan.this.startActivity(intent);
+
+        super.onBackPressed();
+    }
+
 }

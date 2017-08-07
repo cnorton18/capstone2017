@@ -102,11 +102,17 @@ public class MainActivity extends AppCompatActivity {
                             currentFloor.level = Integer.parseInt(parser.getAttributeValue(null,"level"));
                             currentFloor.rooms = new ArrayList();
                         }
-                        else if(name.equals("roomName") && currentFloor != null) {
-                            currentRoom = new mapdata.room();
-                            currentRoom.roomName = parser.nextText();
-                            currentFloor.rooms.add(currentRoom);
-                            currentRoom = null;
+                        else if(currentFloor != null) {
+                            if (name.equals("room")) {
+                                currentRoom = new mapdata.room();
+                            } else if (name.equals("roomName")) {
+                                currentRoom.roomName = parser.nextText();
+                            } else if (name.equals("coords")) {
+                                String coords = parser.nextText();
+                                //parse later
+                                currentRoom.vert = 0;
+                                currentRoom.horiz = 0;
+                            }
                         }
                     }
                     break;
@@ -120,6 +126,10 @@ public class MainActivity extends AppCompatActivity {
                     if(name.equalsIgnoreCase("floor") && currentFloor != null) {
                         currentBuilding.floors.add(currentFloor);
                         currentFloor = null;
+                    }
+                    if(name.equalsIgnoreCase("room") && currentRoom != null) {
+                        currentFloor.rooms.add(currentRoom);
+                        currentRoom = null;
                     }
                     break;
             }

@@ -88,8 +88,11 @@ public class mapdata implements Parcelable{
 
     static public class room implements Parcelable {
         public String roomName;
+        public int vert;
+        public int horiz;
 
-        room() {roomName = null;}
+        room() {roomName = null; vert = 0; horiz = 0;}
+        room(String newName) {this.roomName = newName;}
 
         @Override
         public int describeContents() {
@@ -97,9 +100,17 @@ public class mapdata implements Parcelable{
         }
 
         @Override
-        public void writeToParcel(Parcel dest, int flags) {dest.writeString(roomName);}
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString(roomName);
+            dest.writeInt(vert);
+            dest.writeInt(horiz);
+        }
 
-        public room(Parcel source) {roomName = source.readString();}
+        public room(Parcel source) {
+            roomName = source.readString();
+            vert = source.readInt();
+            horiz = source.readInt();
+        }
 
         public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
             @Override
