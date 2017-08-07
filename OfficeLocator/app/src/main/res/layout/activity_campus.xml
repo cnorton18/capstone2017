@@ -98,18 +98,24 @@
         android:textColor="@android:color/white"
         android:textSize="25sp"
         android:textStyle="bold" />
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dip"
+        android:layout_below="@+id/campus"
+        android:background="#ff6600" />
 
     <ImageView
-        android:id="@+id/imageView11"
+        android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/on_screen_logo"
-        android:paddingStart="5dp"
-        android:paddingEnd="10dp"
-        android:paddingTop="10dp"
-        android:layout_alignParentTop="true"
         android:layout_above="@+id/mh1"
-        android:layout_toStartOf="@+id/campus" />
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/campus"
+        android:paddingBottom="4dp"
+        android:paddingEnd="10dp"
+        android:paddingStart="5dp"
+        android:paddingTop="5dp"
+        app:srcCompat="@drawable/on_screen_logo" />
 
     <Space
         android:layout_width="wrap_content"
@@ -123,6 +129,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/mh1"
         android:layout_toEndOf="@+id/space2" />
+
 
 
 </RelativeLayout>
