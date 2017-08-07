@@ -86,12 +86,12 @@ public class floorplan extends AppCompatActivity{
         //Choosing a floor in the first spinner causes the second spinner to be visible
         //The choice of the floor also determines the choices of rooms for the second spinner
         chooseFloor = (Spinner)findViewById(R.id.floorSelector);
-        chooseRoom = (Spinner) findViewById(R.id.roomSelector);
+        chooseRoom = (Spinner)findViewById(R.id.roomSelector);
 
         //First spinner - Choosing which floor
         int numberOfFloors = goToFloorPlan.getIntExtra("numberOfFloors",0);
         List<String> list = new ArrayList<String>();
-        list.add("Choose a floor");
+        list.add("Select");
         for (int i = 1; i <= numberOfFloors; i++){
             list.add(String.valueOf(i));
         }
@@ -152,7 +152,7 @@ public class floorplan extends AppCompatActivity{
                 //User selects the floor #
                 String theChoice = ((TextView) view).getText().toString();
                 roomName.setVisibility(View.INVISIBLE);
-                if(theChoice.equals("Choose a floor")){
+                if(theChoice.equals("Select")){
                     chooseRoom.setSelected(false);
                     chooseRoom.setSelection(0,true);
                     return;
@@ -250,13 +250,13 @@ public class floorplan extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selection = ((TextView) view).getText().toString();
-                if(selection.equals("Choose a room")){
+                if(selection.equals("Select")){
                     return;
                 }
 
                 //Set the room title on the page to the user's choice
-                roomName.setVisibility(View.VISIBLE);
-                roomName.setText(selection);
+                //roomName.setVisibility(View.VISIBLE);
+                //roomName.setText(selection);
 
                 //Set the image on the page to reflect the user's choice
                 selection = selection.toLowerCase().replaceAll("\\s","");

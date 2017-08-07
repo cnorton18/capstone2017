@@ -11,22 +11,54 @@
         android:id="@+id/floorPlanName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Building + Floor"
-        android:textColor="@android:color/white"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textStyle="bold"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:paddingTop="5dp"
+        android:text="Building + Floor"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/floorPlanImage"
+        android:layout_toLeftOf="@+id/floorSelector"
+        android:layout_toStartOf="@+id/floorSelector"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:text="Floor:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/roomSelector"
+        android:layout_toLeftOf="@+id/roomSelector"
+        android:layout_toStartOf="@+id/roomSelector"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:text="Room:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/floorPlanImage"
         android:layout_width="380dip"
         android:layout_height="380dip"
-        app:srcCompat="@drawable/miahamm"
-        android:layout_alignTop="@+id/floorplanbutton2"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="5dp"/>
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/roomName"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp"
+        app:srcCompat="@drawable/miahamm" />
 
 
     <Button
@@ -34,10 +66,9 @@
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:background="@android:color/transparent"
-        android:layout_marginTop="27dp"
-        android:layout_below="@+id/floorPlanName"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/imageView6"
+        android:layout_alignStart="@+id/imageView6" />
 
     <Button
         android:id="@+id/floorplanbutton1"
@@ -61,10 +92,10 @@
         android:id="@+id/imageView6"
         android:layout_width="65dp"
         android:layout_height="65dp"
-        app:srcCompat="@drawable/locator"
-        android:layout_alignTop="@+id/floorplanbutton2"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="5dp"
+        app:srcCompat="@drawable/locator" />
 
     <Button
         android:id="@+id/search"
@@ -101,8 +132,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:background="#ff7921"
-        android:popupBackground="#ff7921"
-        android:visibility="invisible" />
+        android:popupBackground="#ff7921" />
 
     <ImageView
         android:layout_width="16dip"
