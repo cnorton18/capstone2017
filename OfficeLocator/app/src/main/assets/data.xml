@@ -5,7 +5,7 @@
     <building>
         <buildingName>Mia Hamm</buildingName>
         <numberofFloors>2</numberofFloors>
-        <floor level="1">
+        <floor level="1" src="miahamm1">
             <room>
                 <roomName>Flyknit</roomName>
                 <coords>0,0</coords>
@@ -15,7 +15,7 @@
                 <coords>0,0</coords>
             </room>
         </floor>
-        <floor level="2">
+        <floor level="2" src="miahamm2">
             <room>
                 <roomName>LunarCharge</roomName>
                 <coords>0,0</coords>
@@ -29,7 +29,7 @@
     <building>
         <buildingName>Tiger Woods</buildingName>
         <numberofFloors>2</numberofFloors>
-        <floor level="1">
+        <floor level="1" src="tigerwoods1">
             <room>
                 <roomName>Air Jordan</roomName>
                 <coords>0,0</coords>
@@ -39,7 +39,7 @@
                 <coords>0,0</coords>
             </room>
         </floor>
-        <floor level="2">
+        <floor level="2" src="tigerwoods2">
             <room>
                 <roomName>Pegasus</roomName>
                 <coords>0,0</coords>

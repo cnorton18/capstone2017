@@ -1,11 +1,17 @@
 package com.groupc.officelocator;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -101,6 +107,12 @@ public class MainActivity extends AppCompatActivity {
                             currentFloor = new mapdata.floor();
                             currentFloor.level = Integer.parseInt(parser.getAttributeValue(null,"level"));
                             currentFloor.rooms = new ArrayList();
+                            currentFloor.image = parser.getAttributeValue(null, "src");
+                            /* Example of how to load a drawable from string
+                            Context context = getApplicationContext();
+                            int id = context.getResources().getIdentifier(parser.getAttributeValue(null, "src"), "drawable", getPackageName());
+                            Drawable d = getResources().getDrawable(id, null);
+                            */
                         }
                         else if(currentFloor != null) {
                             if (name.equals("room")) {

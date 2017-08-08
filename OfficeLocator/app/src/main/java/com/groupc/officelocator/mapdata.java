@@ -1,7 +1,10 @@
 package com.groupc.officelocator;
 
+import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.widget.ImageView;
+
 import java.util.ArrayList;
 
 public class mapdata implements Parcelable{
@@ -51,10 +54,12 @@ public class mapdata implements Parcelable{
     static public class floor implements Parcelable {
         public ArrayList<room> rooms;
         public int level;
+        public String image;
 
         floor() {
             level = 0;
             rooms = null;
+            image = null;
         }
 
         @Override
@@ -66,12 +71,14 @@ public class mapdata implements Parcelable{
         public void writeToParcel(Parcel dest, int flags) {
             dest.writeInt(level);
             dest.writeList(rooms);
+            dest.writeString(image);
         }
 
         public floor(Parcel source) {
             level = source.readInt();
             rooms = new ArrayList<room>();
             source.readList(rooms, getClass().getClassLoader());
+            image = source.readString();
         }
 
         public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
