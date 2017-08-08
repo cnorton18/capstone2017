@@ -4,24 +4,32 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/hirezlogo"
+        android:icon="@drawable/appicon"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name="com.groupc.officelocator.MainActivity">
+        android:theme="@style/AppTheme"
+        android:minSdkVersion="21">
+        <activity android:name="com.groupc.officelocator.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.groupc.officelocator.campus" />
-        <activity android:name="com.groupc.officelocator.floorplan" />
-        <activity android:name="com.groupc.officelocator.directions" />
-        <activity android:name="com.groupc.officelocator.splash"/>
-        <activity android:name="com.groupc.officelocator.buildingsearch"/>
-        <activity android:name="com.groupc.officelocator.roomsearch"
+        <activity android:name="com.groupc.officelocator.campus"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.groupc.officelocator.floorplan"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.groupc.officelocator.directions"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.groupc.officelocator.splash"
+            android:screenOrientation="portrait"/>
             android:windowSoftInputMode="stateHidden"/>
+        <activity android:name="com.groupc.officelocator.masterSearchWithHeaders"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
+
     </application>
 
 </manifest>

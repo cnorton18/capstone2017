@@ -1,49 +1,38 @@
 <resources>
     <string name="app_name">Swoosh Room Finder</string>
     <string name="campus_name">World Headquarters</string>
-    <string name="selecttxt">Select a building or search</string>
+    <string name="selecttxt">Select A Building Or Search</string>
 
+    //List of buildings
+    <string-array name = "buildings">
+        <item>Mia Hamm</item>
+        <item>Tiger Woods</item>
+    </string-array>
 
-    //IN USE
-    <string-array name="miaHamm">
+    //Choices for spinners
+    <string-array name="miaHamm1">
         <item>Choose a room</item>
         <item>Flyknit</item>
         <item>Air Max</item>
     </string-array>
 
-    <string-array name="tigerWoods">
+    <string-array name="miaHamm2">
+        <item>Choose a room</item>
+        <item>LunarCharge</item>
+        <item>Kobe Mamba</item>
+    </string-array>
+
+    <string-array name="tigerWoods1">
         <item>Choose a room</item>
         <item>Air Jordan</item>
         <item>Roshe</item>
     </string-array>
 
-
-
-
-
-
-
-
-
-    //NOT IN USE
-    <string-array name="mikeSchmidt">
+    <string-array name="tigerWoods2">
         <item>Choose a room</item>
-        <item>Woods 1</item>
-        <item>Woods 2</item>
+        <item>Pegasus</item>
+        <item>VaporMax</item>
     </string-array>
 
-    <string-array name="danFouts">
-        <item>Choose a room</item>
-        <item>Fouts 1</item>
-        <item>Fouts 2</item>
-    </string-array>
-
-    <string-array name="nolanRyan">
-        <item>Choose a room</item>
-        <item>Ryan 1</item>
-        <item>Ryan 2</item>
-    </string-array>
-
-    <string name="room_prompt">Choose a room</string>
 
 </resources>
