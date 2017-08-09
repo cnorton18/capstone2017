@@ -1,14 +1,11 @@
 package com.groupc.officelocator;
 
-
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +13,6 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.Filter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -95,22 +91,35 @@ public class masterSearchWithHeaders extends AppCompatActivity {
                 Intent goToFloorPlan = new Intent(masterSearchWithHeaders.this, floorplan.class);
                 //If the user clicks a section header ("Mia Hamm"/"Tiger Woods")
                 if(object.isSection()){
-                    goToFloorPlan.putExtra("imageName",fpname.toLowerCase().replaceAll("\\s",""));
-                    goToFloorPlan.putExtra("floorNumber", "0");
-                    goToFloorPlan.putExtra("roomName", "");
+                    //goToFloorPlan.putExtra("imageName",fpname.toLowerCase().replaceAll("\\s",""));
+                    //goToFloorPlan.putExtra("floorNumber", "0");
+                    //goToFloorPlan.putExtra("roomName", "");
+                    floorplan.floorNumber = "0";
+                    floorplan.rmName = "";
+                    floorplan.imageName = fpname.toLowerCase().replaceAll("\\s","");
+                    floorplan.chosenRoomFromSearch = "";
+
                 }
                 //If the user clicks a non section header ("Mia Hamm 1" or "Mia Hamm Flyknit")
                 else{
                     floorplan.buildingselected = floorCode + 1; //Used in floorplan class
                     floorplan.setRoomfromSearch = 1;
-                    goToFloorPlan.putExtra("roomName", choice);
-                    goToFloorPlan.putExtra("imageName", choice.toLowerCase().replaceAll("\\s",""));
-                    goToFloorPlan.putExtra("floorNumber", floorNumber);
+                    //goToFloorPlan.putExtra("roomName", choice);
+                    //goToFloorPlan.putExtra("imageName", choice.toLowerCase().replaceAll("\\s",""));
+                    //goToFloorPlan.putExtra("floorNumber", floorNumber);
+                    floorplan.floorNumber = floorNumber;
+                    floorplan.imageName = choice.toLowerCase().replaceAll("\\s","");
+                    floorplan.rmName = choice;
+                    floorplan.chosenRoomFromSearch = choice;
                 }
-                goToFloorPlan.putExtra("fpname", fpname);
-                goToFloorPlan.putExtra("spinnerNumber", floorCode);
-                goToFloorPlan.putExtra("numberOfFloors", choiceFloors);
+                //goToFloorPlan.putExtra("fpname", fpname);
+                //goToFloorPlan.putExtra("spinnerNumber", floorCode);
+                //goToFloorPlan.putExtra("numberOfFloors", choiceFloors);
                 goToFloorPlan.putExtras(dataContainer);
+                floorplan.fpname = fpname;
+                floorplan.spinnerNumber = floorCode;
+                floorplan.numberOfFloors = choiceFloors;
+
                 startActivity(goToFloorPlan);
             }
 
@@ -237,18 +246,5 @@ public class masterSearchWithHeaders extends AppCompatActivity {
             };
             return filter;
         }
-    }
-
-    //Temporary implementation
-    @Override
-    public void onBackPressed() {
-        final Bundle dataContainer = new Bundle();
-        dataContainer.putParcelable("parse", data);
-
-        Intent intent = new Intent(masterSearchWithHeaders.this, campus.class);
-        intent.putExtras(dataContainer);
-        masterSearchWithHeaders.this.startActivity(intent);
-
-        super.onBackPressed();
     }
 }
