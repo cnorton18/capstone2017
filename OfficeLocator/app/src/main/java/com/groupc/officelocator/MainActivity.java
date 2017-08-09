@@ -22,16 +22,14 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-
-    private static int SPLASH_TIME_OUT = 1500;
-
     public Button locate;
     public Button search;
     public mapdata data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        final int SPLASH_TIME_OUT = 1500;
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar(); assert actionBar != null;
         actionBar.hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -48,10 +46,7 @@ public class MainActivity extends AppCompatActivity {
             parser.setInput(input,null);
             parseXML(parser);
         }
-        catch(XmlPullParserException e) {
-            e.printStackTrace();
-        }
-        catch(IOException e) {
+        catch(XmlPullParserException|IOException e) {
             e.printStackTrace();
         }
 
@@ -75,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         int eventType = parser.getEventType();
         mapdata.building currentBuilding = null;
         mapdata.floor currentFloor = null;
-        mapdata.room currentRoom = null;
+        mapdata.room currentRoom;
 
         while(eventType != XmlPullParser.END_DOCUMENT) {
             String name;
@@ -123,8 +118,7 @@ public class MainActivity extends AppCompatActivity {
                     if(name.equalsIgnoreCase("building") && currentBuilding != null) {
                         data.buildings.add(currentBuilding);
                         currentBuilding = null;
-                    }
-                    if(name.equalsIgnoreCase("floor") && currentFloor != null) {
+                    } else if(name.equalsIgnoreCase("floor") && currentFloor != null && currentBuilding != null) {
                         currentBuilding.floors.add(currentFloor);
                         currentFloor = null;
                     }
