@@ -1,6 +1,5 @@
 package com.groupc.officelocator;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -148,7 +147,6 @@ public class floorplan extends AppCompatActivity{
                         }
                     }
                 }
-                Log.d("helpmee", Integer.toString(selection));
                 chooseRoom.setSelection(selection,true);
             }
             select();
@@ -253,12 +251,11 @@ public class floorplan extends AppCompatActivity{
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.imagedialog);
         buildingLocation = (ImageView)dialog.findViewById(R.id.buildingLocation);
-        //Mia Hamm
-        if(buildingselected == 1)
-            buildingLocation.setImageResource(R.drawable.miahammhighlighted);
-        //Tiger Woods
-        else if (buildingselected == 2)
-            buildingLocation.setImageResource(R.drawable.tigerwoodshighlighted);
+
+        String dialogImage = fpname.toLowerCase().replaceAll("\\s", "") + "highlighted";
+        int imgid = getResources().getIdentifier(dialogImage, "drawable", getPackageName());
+        buildingLocation.setImageResource(imgid);
+
         cancel = (TextView) dialog.findViewById(R.id.cancelTxt);
     }
 
