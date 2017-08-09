@@ -1,53 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<campus>
-    <campusName>Nike</campusName>
-    <numberofBuildings>2</numberofBuildings>
-    <building>
-        <buildingName>Mia Hamm</buildingName>
-        <numberofFloors>2</numberofFloors>
+<campus campusName="Nike" numberOfBuildings = "2">
+    <building buildingName="Mia Hamm" numberOfFloors="2">
         <floor level="1" src="miahamm1">
-            <room>
-                <roomName>Flyknit</roomName>
-                <coords>0,0</coords>
-            </room>
-            <room>
-                <roomName>Air Max</roomName>
-                <coords>0,0</coords>
-            </room>
+            <room roomName="Flyknit" vert="0" horiz="0"/>
+            <room roomName="Air Max" vert="0" horiz="0"/>
         </floor>
         <floor level="2" src="miahamm2">
-            <room>
-                <roomName>LunarCharge</roomName>
-                <coords>0,0</coords>
-            </room>
-            <room>
-                <roomName>Kobe Mamba</roomName>
-                <coords>0,0</coords>
-            </room>
+            <room roomName="LunarCharge" vert="0" horiz="0"/>
+            <room roomName="Kobe Mamba" vert="0" horiz="0"/>
         </floor>
     </building>
-    <building>
-        <buildingName>Tiger Woods</buildingName>
-        <numberofFloors>2</numberofFloors>
+    <building buildingName="Tiger Woods" numberOfFloors="2">
         <floor level="1" src="tigerwoods1">
-            <room>
-                <roomName>Air Jordan</roomName>
-                <coords>0,0</coords>
-            </room>
-            <room>
-                <roomName>Roshe</roomName>
-                <coords>0,0</coords>
-            </room>
+            <room roomName="Air Jordan" vert="0" horiz="0"/>
+            <room roomName="Roshe" vert="0" horiz="0"/>
         </floor>
         <floor level="2" src="tigerwoods2">
-            <room>
-                <roomName>Pegasus</roomName>
-                <coords>0,0</coords>
-            </room>
-            <room>
-                <roomName>VaporMax</roomName>
-                <coords>0,0</coords>
-            </room>
+            <room roomName="Pegasus" vert="0" horiz="0"/>
+            <room roomName="VaporMax" vert="0" horiz="0"/>
         </floor>
     </building>
 </campus>

@@ -152,8 +152,8 @@ public class mapdata implements Parcelable{
     public mapdata(Parcel source) {
         campusName = source.readString();
         numberofBuildings = source.readInt();
-        buildings = new ArrayList<building>();
-        source.readList(buildings,getClass().getClassLoader());
+        buildings = new ArrayList<>();
+        source.readList(buildings, mapdata.class.getClassLoader());
     }
 
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
