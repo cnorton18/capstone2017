@@ -1,5 +1,6 @@
 package com.groupc.officelocator;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -30,9 +31,11 @@ public class floorplan extends AppCompatActivity{
 
     Dialog dialog;
     TextView cancel, floorplanname, roomName;
-    String fpname, imageName;
+    public static String fpname, imageName, floorNumber, chosenRoomFromSearch, rmName;
+    public static int spinnerNumber, numberOfFloors;
 
     public mapdata data;
+    Bundle dataContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +45,8 @@ public class floorplan extends AppCompatActivity{
         setContentView(R.layout.activity_floorplan);
 
         data = new mapdata();
-        Intent priorInt = getIntent();
-        final Intent goToFloorPlan = getIntent();
+
+        Intent goToFloorPlan = getIntent();
         final Bundle dataContainer = goToFloorPlan.getExtras();
         data = dataContainer.getParcelable("parse");
 
@@ -57,15 +60,16 @@ public class floorplan extends AppCompatActivity{
         //If a room was chosen through search, must cause the room title to appear since by default it doesn't until you choose the
         //room through the second spinner
         if(setRoomfromSearch == 1){
-            roomName.setText(goToFloorPlan.getStringExtra("roomName"));
+            //rmName = goToFloorPlan.getStringExtra("roomName");
+            roomName.setText(rmName);
             roomName.setVisibility(View.VISIBLE);
         }
 
         //Setting floor plan title name + font style
-        fpname = goToFloorPlan.getStringExtra("fpname");
+        //fpname = goToFloorPlan.getStringExtra("fpname");
         floorplanname = (TextView) findViewById(R.id.floorPlanName);
         floorplanname.setTypeface(myCustomfont);
-        String floorNumber = goToFloorPlan.getStringExtra("floorNumber");
+        //floorNumber = goToFloorPlan.getStringExtra("floorNumber");
         //If the floor plan title has a floor number, we add that to the title
         if(Integer.parseInt(floorNumber) == 0) //For those without a floor number ("Mia Hamm"/"Tiger Woods"
         //the default is the first floor
@@ -73,12 +77,12 @@ public class floorplan extends AppCompatActivity{
         floorplanname.setText(fpname + " Floor " + floorNumber);
 
         //Setting floor plan image
-        imageName = goToFloorPlan.getStringExtra("imageName");
+        //imageName = goToFloorPlan.getStringExtra("imageName");
         int res = getResources().getIdentifier(imageName, "drawable", this.getPackageName());
         floorPlanImage = (ImageView) findViewById(R.id.floorPlanImage);
         floorPlanImage.setImageResource(res);
 
-        int spinnerNumber = goToFloorPlan.getIntExtra("spinnerNumber",0);
+        //spinnerNumber = goToFloorPlan.getIntExtra("spinnerNumber",0);
         buildingselected = spinnerNumber + 1;
 
         //Creating the two spinner drop down menus that choose the floor and rooms
@@ -88,7 +92,7 @@ public class floorplan extends AppCompatActivity{
         chooseRoom = (Spinner) findViewById(R.id.roomSelector);
 
         //First spinner - Choosing which floor
-        int numberOfFloors = goToFloorPlan.getIntExtra("numberOfFloors",0);
+        //numberOfFloors = goToFloorPlan.getIntExtra("numberOfFloors",0);
         List<String> list = new ArrayList<String>();
         list.add("Choose a floor");
         for (int i = 1; i <= numberOfFloors; i++){
@@ -133,7 +137,7 @@ public class floorplan extends AppCompatActivity{
             if(setRoomfromSearch==1){
                 chooseRoom.setSelected(true);
                 int selection = 0;
-                String chosenRoomFromSearch = goToFloorPlan.getStringExtra("roomName");
+                //chosenRoomFromSearch = goToFloorPlan.getStringExtra("roomName");
                 if(chosenRoomFromSearch != null) {
                     for(int i = 0; i < data.numberofBuildings; ++i) {
                         for (int j = 0; j < data.buildings.get(i).floors.size(); ++j) {
@@ -144,6 +148,7 @@ public class floorplan extends AppCompatActivity{
                         }
                     }
                 }
+                Log.d("helpmee", Integer.toString(selection));
                 chooseRoom.setSelection(selection,true);
             }
             select();
@@ -234,6 +239,7 @@ public class floorplan extends AppCompatActivity{
             public void onClick(View v) {
                 Intent theintent = new Intent(floorplan.this, masterSearchWithHeaders.class);
                 theintent.putExtras(dataContainer);
+                floorplan.this.finish();
                 startActivity(theintent);
             }}
         );
@@ -279,18 +285,4 @@ public class floorplan extends AppCompatActivity{
             public void onNothingSelected(AdapterView<?> adapterView) {}
         });
     }
-
-    //Temporary implementation
-    @Override
-    public void onBackPressed() {
-        final Bundle dataContainer = new Bundle();
-        dataContainer.putParcelable("parse", data);
-
-        Intent intent = new Intent(floorplan.this, campus.class);
-        intent.putExtras(dataContainer);
-        floorplan.this.startActivity(intent);
-
-        super.onBackPressed();
-    }
-
 }

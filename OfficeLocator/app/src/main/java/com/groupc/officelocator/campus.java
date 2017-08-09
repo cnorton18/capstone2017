@@ -74,10 +74,4 @@ public class campus extends AppCompatActivity {
 
             );
         }
-
-    @Override
-    public void onRestart(){
-        super.onRestart();
-        startActivity(new Intent(this, campus.class));
-    }
 }

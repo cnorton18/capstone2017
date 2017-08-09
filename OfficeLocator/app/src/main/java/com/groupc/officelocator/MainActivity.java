@@ -103,11 +103,11 @@ public class MainActivity extends AppCompatActivity {
                             currentFloor.rooms = new ArrayList();
                         }
                         else if(currentFloor != null) {
-                            if (name.equals("room")) {
+                            if(name.equals("room"))
                                 currentRoom = new mapdata.room();
-                            } else if (name.equals("roomName")) {
+                            else if(name.equals("roomName") && currentRoom != null)
                                 currentRoom.roomName = parser.nextText();
-                            } else if (name.equals("coords")) {
+                            else if(name.equals("coords")) {
                                 String coords = parser.nextText();
                                 //parse later
                                 currentRoom.vert = 0;
