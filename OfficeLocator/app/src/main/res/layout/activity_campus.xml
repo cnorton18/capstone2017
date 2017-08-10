@@ -7,32 +7,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<<<<<<< HEAD
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="0dp"
-    android:paddingLeft="0dp"
-    android:paddingRight="0dp"
-    android:paddingTop="0dp"
-    tools:context="com.groupc.officelocator.campus"
-    android:theme="@style/UniversalBackground"
-    android:fitsSystemWindows="true"
-    android:id="@+id/zoom">
-=======
+
     <RelativeLayout
         android:id="@+id/zoom"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/gray"
         android:paddingBottom="0dp"
         android:paddingLeft="0dp"
         android:paddingRight="0dp"
         android:paddingTop="0dp"
         tools:context="com.groupc.officelocator.campus">
->>>>>>> master
 
 
         <ImageView
@@ -112,25 +96,6 @@
             android:background="@android:color/transparent"
             android:visibility="visible" />
 
-<<<<<<< HEAD
-    <TextView
-        android:id="@+id/campus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:paddingTop="5dp"
-        android:text="@string/campus_name"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@android:color/white"
-        android:textSize="25sp"
-        android:textStyle="bold" />
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="2dip"
-        android:layout_below="@+id/campus"
-        android:background="#ff6600" />
-
     <ImageView
         android:id="@+id/logo"
         android:layout_width="wrap_content"
@@ -157,7 +122,6 @@
         android:layout_above="@+id/mh1"
         android:layout_toEndOf="@+id/space2" />
 
-=======
         <TextView
             android:id="@+id/campus"
             android:layout_width="wrap_content"
@@ -175,7 +139,11 @@
             android:textColor="@android:color/white"
             android:textSize="25sp"
             android:textStyle="bold" />
->>>>>>> master
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dip"
+            android:layout_below="@+id/campus"
+            android:background="#ff6600" />
 
 
     </RelativeLayout>
