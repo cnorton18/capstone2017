@@ -7,14 +7,14 @@
 
     <EditText
         android:id="@+id/searchBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@android:color/holo_orange_dark"
-        android:drawableBottom="@android:color/holo_orange_dark"
-        android:hint="Search..."
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
-        android:textCursorDrawable="@null" />
+        android:hint="Search..."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/white"
+        android:drawableBottom="@android:color/white"
+        android:textCursorDrawable="@null"/>
 
     <ListView
         android:id="@+id/searchList"
