@@ -30,7 +30,7 @@
         android:paddingTop="10dp"
         android:text="Floor:"
         android:textAppearance="?android:attr/textAppearanceLarge"
-<<<<<<< HEAD
+
         android:textStyle="bold"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
@@ -40,10 +40,7 @@
         android:layout_below="@+id/floorPlanName"
         android:background="#ff6600"
         android:id="@+id/view" />
-=======
-        android:textColor="@android:color/white"
-        android:textSize="14sp"
-        android:textStyle="bold" />
+
 
     <TextView
         android:id="@+id/textView8"
@@ -59,7 +56,7 @@
         android:textColor="@android:color/white"
         android:textSize="14sp"
         android:textStyle="bold" />
->>>>>>> master
+
 
     <ImageView
         android:id="@+id/floorPlanImage"

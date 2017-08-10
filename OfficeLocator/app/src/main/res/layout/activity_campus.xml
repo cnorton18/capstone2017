@@ -7,7 +7,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<<<<<<< HEAD
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -21,18 +20,6 @@
     android:theme="@style/UniversalBackground"
     android:fitsSystemWindows="true"
     android:id="@+id/zoom">
-=======
-    <RelativeLayout
-        android:id="@+id/zoom"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/gray"
-        android:paddingBottom="0dp"
-        android:paddingLeft="0dp"
-        android:paddingRight="0dp"
-        android:paddingTop="0dp"
-        tools:context="com.groupc.officelocator.campus">
->>>>>>> master
 
 
         <ImageView
