@@ -26,6 +26,7 @@ public class masterSearchWithHeaders extends mapstorage {
     private EditText searchBar;
     private String choice, fpname, floorNumber;
     private int floorCode;
+    private int [] numberOfFloors = {2,2}; //Mia Hamm, Tiger Wood # of floors
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,16 +43,13 @@ public class masterSearchWithHeaders extends mapstorage {
         allSearchResults.setEmptyView(findViewById(R.id.empty));
 
         ArrayList<SearchItem> campusList = new ArrayList<masterSearchWithHeaders.SearchItem>();
+        String [] buildings = getResources().getStringArray(R.array.Buildings);
         String [] searchResultValues; //grabbed from Hash map
-        for (int i = 0; i < numberOfBuildings; ++i){
-            campusList.add(new BuildingName(buildingNames[i])); // Add building header ("Mia Hamm", "Tiger Woods")
-            searchResultValues = campusMap.get(buildingNames[i]); //Add search results for each building ("Mia Hamm 1, Mia Hamm 1 Flyknit"...)
-            for (int j = 0; j < searchResultValues.length; ++j) {
-                //Identifies room for indentation
-                if((searchResultValues[j].replaceAll("\\d+","")).length() - 1 != ((buildingNames[i].replaceAll("\\d+",""))).length())
-                campusList.add(new RoomName("\t\t\t\t\t\t\t" + searchResultValues[j]));
-                else
-                    campusList.add(new RoomName(searchResultValues[j])); //Floors
+        for (int i = 0; i < buildings.length; ++i){
+            campusList.add(new BuildingName(buildings[i])); // Add building header ("Mia Hamm", "Tiger Woods")
+            searchResultValues = campusMap.get(buildings[i]); //Add search results for each building ("Mia Hamm 1, Mia Hamm 1 Flyknit"...)
+            for (int j = 0; j < searchResultValues.length; ++j){
+                campusList.add(new RoomName(searchResultValues[j]));
             }
         }
 
@@ -76,10 +74,10 @@ public class masterSearchWithHeaders extends mapstorage {
                     fpname = "Tiger Woods";
                     floorCode = 1;
                 }*/
-
-                for(int i = 0; i < buildingNames.length; ++i){
-                    if(choice.contains(buildingNames[i])){
-                        fpname = buildingNames[i];
+                String floors[] = campusMap.keySet().toArray(new String[0]);
+                for(int i = 0; i < floors.length; ++i){
+                    if(choice.contains(floors[i])){
+                        fpname = floors[i];
                         floorCode = i;
                         break;
                     }

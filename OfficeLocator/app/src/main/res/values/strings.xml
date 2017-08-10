@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">Swoosh Room Finder</string>
     <string name="campus_name">World Headquarters</string>
-    <string name="office_directions">Office Directions</string>
-    <string name="selecttxt">Select A Building</string>
+    <string name="selecttxt">Select A Building Or Search</string>
 
     //List of buildings
     <string-array name = "Buildings" >
@@ -12,25 +11,25 @@
 
     //Choices for spinners
     <string-array name="miaHamm1">
-        <item>Select</item>
+        <item>Choose a room</item>
         <item>Flyknit</item>
         <item>Air Max</item>
     </string-array>
 
     <string-array name="miaHamm2">
-        <item>Select</item>
+        <item>Choose a room</item>
         <item>LunarCharge</item>
         <item>Kobe Mamba</item>
     </string-array>
 
     <string-array name="tigerWoods1">
-        <item>Select</item>
+        <item>Choose a room</item>
         <item>Air Jordan</item>
         <item>Roshe</item>
     </string-array>
 
     <string-array name="tigerWoods2">
-        <item>Select</item>
+        <item>Choose a room</item>
         <item>Pegasus</item>
         <item>VaporMax</item>
     </string-array>
