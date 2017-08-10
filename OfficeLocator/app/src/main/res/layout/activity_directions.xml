@@ -11,13 +11,13 @@
         android:id="@+id/roomName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Office directions"
-        android:textColor="@android:color/white"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textStyle="bold"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="12dp"/>
+        android:layout_marginTop="12dp"
+        android:text="@string/office_directions"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/chosenRoom"
