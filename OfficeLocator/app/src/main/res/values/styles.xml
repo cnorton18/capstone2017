@@ -26,6 +26,12 @@
         <item name="android:colorBackground">@drawable/gray</item>
         <item name="android:windowDrawsSystemBarBackgrounds">false</item>
     </style>
+    <style name="CusFont" parent="@android:style/TextAppearance.Large">
+        <item name="android:fontFamily">fonts/LeagueGothic-Regular.ttf</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowRadius">6</item>
+        <item name="android:textColor">#ff7921</item>
+    </style>
     <!--<style name="Logo" parent="ThemeOverlay.AppCompat">
         <item name="ImageView">@drawable/on_screen_logo.png</item>
     </style>-->

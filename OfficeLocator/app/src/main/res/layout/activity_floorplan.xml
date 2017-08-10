@@ -17,6 +17,12 @@
         android:textStyle="bold"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dip"
+        android:layout_below="@+id/floorPlanName"
+        android:background="#ff6600"
+        android:id="@+id/view" />
 
     <ImageView
         android:id="@+id/floorPlanImage"
@@ -28,7 +34,19 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="5dp"/>
 
-
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/campus"
+        android:paddingBottom="4dp"
+        android:paddingEnd="10dp"
+        android:paddingStart="5dp"
+        android:paddingTop="5dp"
+        app:srcCompat="@drawable/on_screen_logo"
+        android:layout_alignBottom="@+id/view"
+        android:layout_alignEnd="@+id/floorplanbutton1" />
     <Button
         android:id="@+id/floorplanbutton2"
         android:layout_width="65dp"
