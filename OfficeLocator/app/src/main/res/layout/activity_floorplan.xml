@@ -31,7 +31,6 @@
         android:text="Floor:"
         android:textAppearance="?android:attr/textAppearanceLarge"
 <<<<<<< HEAD
-<<<<<<< HEAD
         android:textStyle="bold"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
@@ -42,8 +41,6 @@
         android:background="#ff6600"
         android:id="@+id/view" />
 =======
-=======
->>>>>>> master
         android:textColor="@android:color/white"
         android:textSize="14sp"
         android:textStyle="bold" />
@@ -62,9 +59,6 @@
         android:textColor="@android:color/white"
         android:textSize="14sp"
         android:textStyle="bold" />
-<<<<<<< HEAD
->>>>>>> master
-=======
 >>>>>>> master
 
     <ImageView
@@ -77,10 +71,6 @@
         android:paddingBottom="20dp"
         android:paddingTop="20dp"
         app:srcCompat="@drawable/miahamm" />
-<<<<<<< HEAD
-=======
-
->>>>>>> master
 
     <ImageView
         android:id="@+id/logo"
