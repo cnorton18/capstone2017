@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<campus campusName="Nike" numberOfBuildings = "11">
+<campus campusName="Nike" numberOfBuildings = "15">
     <building buildingName="Alberto Salazar" numberOfFloors="2">
         <floor level="1" src="albertosalazar1">
             <room roomName="Track" vert="0" horiz="0"/>
@@ -212,6 +212,89 @@
             <room roomName="Bazooka" vert="0" horiz="0"/>
             <room roomName="Balk" vert="0" horiz="0"/>
             <room roomName="Backstop" vert="0" horiz="0"/>
+        </floor>
+    </building>
+    <building buildingName="Nike Child Development Center" numberOfFloors="2">
+        <floor level="1" src="nikechilddevelopmentcenter1">
+            <room roomName="Hockey" vert="0" horiz="0"/>
+            <room roomName="Swimming" vert="0" horiz="0"/>
+            <room roomName="Lacrosse" vert="0" horiz="0"/>
+            <room roomName="Cricket" vert="0" horiz="0"/>
+            <room roomName="Running" vert="0" horiz="0"/>
+            <room roomName="Softball" vert="0" horiz="0"/>
+            <room roomName="Volleyball" vert="0" horiz="0"/>
+        </floor>
+        <floor level="2" src="nikechilddevelopmentcenter2">
+            <room roomName="Cross Training" vert="0" horiz="0"/>
+            <room roomName="Snowboarding" vert="0" horiz="0"/>
+            <room roomName="Boxing" vert="0" horiz="0"/>
+            <room roomName="Skating" vert="0" horiz="0"/>
+            <room roomName="Golf" vert="0" horiz="0"/>
+            <room roomName="Ski" vert="0" horiz="0"/>
+            <room roomName="Cycling" vert="0" horiz="0"/>
+            <room roomName="Wrestling" vert="0" horiz="0"/>
+        </floor>
+    </building>
+    <building buildingName="Nike Sports Center" numberOfFloors="3">
+        <floor level="1" src="nikesportscenter1">
+            <room roomName="Phil Knight" vert="0" horiz="0"/>
+            <room roomName="Training" vert="0" horiz="0"/>
+            <room roomName="Sports" vert="0" horiz="0"/>
+            <room roomName="Shoe Dog" vert="0" horiz="0"/>
+        </floor>
+        <floor level="2" src="nikesportscenter2">
+            <room roomName="Footwear" vert="0" horiz="0"/>
+            <room roomName="Apparel" vert="0" horiz="0"/>
+            <room roomName="Sneakers" vert="0" horiz="0"/>
+            <room roomName="Accessories" vert="0" horiz="0"/>
+        </floor>
+        <floor level="3" src="nikesportscenter3">
+            <room roomName="Equipment" vert="0" horiz="0"/>
+            <room roomName="Victory" vert="0" horiz="0"/>
+            <room roomName="Blue Ribbon Sports" vert="0" horiz="0"/>
+            <room roomName="Bill Bowerman" vert="0" horiz="0"/>
+        </floor>
+    </building>
+    <building buildingName="Nolan Ryan" numberOfFloors="2">
+        <floor level="1" src="nolanryan1">
+            <room roomName="Baseball" vert="0" horiz="0"/>
+            <room roomName="Right Handed" vert="0" horiz="0"/>
+            <room roomName="Homerun" vert="0" horiz="0"/>
+            <room roomName="Pitcher" vert="0" horiz="0"/>
+            <room roomName="Curveball" vert="0" horiz="0"/>
+            <room roomName="Strike" vert="0" horiz="0"/>
+            <room roomName="Foul" vert="0" horiz="0"/>
+            <room roomName="Strikeout" vert="0" horiz="0"/>
+        </floor>
+        <floor level="2" src="nolanryan2">
+            <room roomName="Batter" vert="0" horiz="0"/>
+            <room roomName="Dugout" vert="0" horiz="0"/>
+            <room roomName="Inning" vert="0" horiz="0"/>
+            <room roomName="Grand Slam" vert="0" horiz="0"/>
+            <room roomName="Error" vert="0" horiz="0"/>
+            <room roomName="Ground Ball" vert="0" horiz="0"/>
+            <room roomName="No Hitter" vert="0" horiz="0"/>
+        </floor>
+    </building>
+    <building buildingName="Pete Sampras" numberOfFloors="3">
+        <floor level="1" src="petesampras1">
+            <room roomName="Air Alarm" vert="0" horiz="0"/>
+            <room roomName="Air Tension" vert="0" horiz="0"/>
+            <room roomName="Courtster" vert="0" horiz="0"/>
+            <room roomName="Court Diva" vert="0" horiz="0"/>
+        </floor>
+        <floor level="2" src="petesampras2">
+            <room roomName="Air Resistance" vert="0" horiz="0"/>
+            <room roomName="Air Bonita" vert="0" horiz="0"/>
+            <room roomName="Air Tour" vert="0" horiz="0"/>
+        </floor>
+        <floor level="3" src="petesampras3">
+            <room roomName="Grandstand" vert="0" horiz="0"/>
+            <room roomName="Air Flare" vert="0" horiz="0"/>
+            <room roomName="Air Advantage" vert="0" horiz="0"/>
+            <room roomName="Air Mista" vert="0" horiz="0"/>
+            <room roomName="Rivalry" vert="0" horiz="0"/>
+            <room roomName="Ultra Court" vert="0" horiz="0"/>
         </floor>
     </building>
     <building buildingName="Tiger Woods" numberOfFloors="3">
