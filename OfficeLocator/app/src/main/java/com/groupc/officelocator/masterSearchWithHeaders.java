@@ -26,8 +26,8 @@ import java.util.Locale;
 public class masterSearchWithHeaders extends AppCompatActivity {
     private ListView allSearchResults;
     private EditText searchBar;
-    private String choice, fpname, floorNumber;
-    private int floorCode;
+    private String choice, fpname, floorNumber, image;
+    private int floorCode, level;
     public mapdata data;
     public int choiceFloors; //Number of floors in chosen building
 
@@ -83,6 +83,8 @@ public class masterSearchWithHeaders extends AppCompatActivity {
                         for(int k = 0; k < data.buildings.get(i).floors.get(j).rooms.size(); ++k) {
                             if(choice.contains(data.buildings.get(i).floors.get(j).rooms.get(k).roomName)) {
                                 fpname = data.buildings.get(i).buildingName;
+                                image = data.buildings.get(i).floors.get(j).image;
+                                level = data.buildings.get(i).floors.get(j).level;
                                 floorCode = i;
                                 floorNumber = Integer.toString(data.buildings.get(i).floors.get(j).level);
                                 choiceFloors = data.buildings.get(i).numberofFloors;
@@ -95,8 +97,9 @@ public class masterSearchWithHeaders extends AppCompatActivity {
                 Intent goToFloorPlan = new Intent(masterSearchWithHeaders.this, floorplan.class);
                 //If the user clicks a section header ("Mia Hamm"/"Tiger Woods")
                 if(object.isSection()){
-                    goToFloorPlan.putExtra("imageName",fpname.toLowerCase().replaceAll("\\s",""));
-                    goToFloorPlan.putExtra("floorNumber", "0");
+                    goToFloorPlan.putExtra("imageName", image);
+                    //goToFloorPlan.putExtra("imageName",fpname.toLowerCase().replaceAll("\\s",""));
+                    goToFloorPlan.putExtra("floorNumber", level);
                     goToFloorPlan.putExtra("roomName", "");
                 }
                 //If the user clicks a non section header ("Mia Hamm 1" or "Mia Hamm Flyknit")
@@ -104,7 +107,8 @@ public class masterSearchWithHeaders extends AppCompatActivity {
                     floorplan.buildingselected = floorCode + 1; //Used in floorplan class
                     floorplan.setRoomfromSearch = 1;
                     goToFloorPlan.putExtra("roomName", choice);
-                    goToFloorPlan.putExtra("imageName", choice.toLowerCase().replaceAll("\\s",""));
+                    goToFloorPlan.putExtra("imageName", image);
+                    //goToFloorPlan.putExtra("imageName", choice.toLowerCase().replaceAll("\\s",""));
                     goToFloorPlan.putExtra("floorNumber", floorNumber);
                 }
                 goToFloorPlan.putExtra("fpname", fpname);

@@ -1,23 +1,250 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<campus campusName="Nike" numberOfBuildings = "2">
-    <building buildingName="Mia Hamm" numberOfFloors="2">
-        <floor level="1" src="miahamm1">
-            <room roomName="Flyknit" vert="0" horiz="0"/>
-            <room roomName="Air Max" vert="0" horiz="0"/>
+<campus campusName="Nike" numberOfBuildings = "11">
+    <building buildingName="Alberto Salazar" numberOfFloors="2">
+        <floor level="1" src="albertosalazar1">
+            <room roomName="Track" vert="0" horiz="0"/>
+            <room roomName="Long Distance" vert="0" horiz="0"/>
+            <room roomName="Marathon" vert="0" horiz="0"/>
+            <room roomName="Cross Country" vert="0" horiz="0"/>
+            <room roomName="All American" vert="0" horiz="0"/>
+            <room roomName="Field" vert="0" horiz="0"/>
+            <room roomName="Record" vert="0" horiz="0"/>
+            <room roomName="Run" vert="0" horiz="0"/>
         </floor>
-        <floor level="2" src="miahamm2">
-            <room roomName="LunarCharge" vert="0" horiz="0"/>
-            <room roomName="Kobe Mamba" vert="0" horiz="0"/>
+        <floor level="2" src="albertosalazar2">
+            <room roomName="UO" vert="0" horiz="0"/>
+            <room roomName="Greater Boston Track Club" vert="0" horiz="0"/>
+            <room roomName="The Rookie" vert="0" horiz="0"/>
+            <room roomName="Olympic Trials" vert="0" horiz="0"/>
+            <room roomName="Millrose Games" vert="0" horiz="0"/>
+            <room roomName="Gold" vert="0" horiz="0"/>
+            <room roomName="Race" vert="0" horiz="0"/>
+            <room roomName="Medal" vert="0" horiz="0"/>
         </floor>
     </building>
-    <building buildingName="Tiger Woods" numberOfFloors="2">
-        <floor level="1" src="tigerwoods1">
-            <room roomName="Air Jordan" vert="0" horiz="0"/>
+    <building buildingName="Bo Jackson" numberOfFloors="2">
+        <floor level="1" src="bojackson1">
+            <room roomName="Baseball" vert="0" horiz="0"/>
+            <room roomName="Football" vert="0" horiz="0"/>
+            <room roomName="Heisman" vert="0" horiz="0"/>
+            <room roomName="Auburn" vert="0" horiz="0"/>
+            <room roomName="Pro Bowl" vert="0" horiz="0"/>
+            <room roomName="Running Back" vert="0" horiz="0"/>
+            <room roomName="Rushing" vert="0" horiz="0"/>
+        </floor>
+        <floor level="2" src="bojackson2">
+            <room roomName="End Zone" vert="0" horiz="0"/>
+            <room roomName="Touchdown" vert="0" horiz="0"/>
+            <room roomName="Goal" vert="0" horiz="0"/>
+            <room roomName="Yards" vert="0" horiz="0"/>
+            <room roomName="Homerun" vert="0" horiz="0"/>
+            <room roomName="Raiders" vert="0" horiz="0"/>
+            <room roomName="All Star" vert="0" horiz="0"/>
+        </floor>
+    </building>
+    <building buildingName="Dan Fouts" numberOfFloors="2">
+        <floor level="1" src="danfouts1">
+            <room roomName="Ordem" vert="0" horiz="0"/>
+            <room roomName="Tiempo" vert="0" horiz="0"/>
+            <room roomName="Fuel Band" vert="0" horiz="0"/>
+            <room roomName="Vision" vert="0" horiz="0"/>
+            <room roomName="Air Force" vert="0" horiz="0"/>
             <room roomName="Roshe" vert="0" horiz="0"/>
+            <room roomName="Hypervenom" vert="0" horiz="0"/>
+            <room roomName="Air Jordan" vert="0" horiz="0"/>
+            <room roomName="Zoom Fly" vert="0" horiz="0"/>
+            <room roomName="Terminator" vert="0" horiz="0"/>
+            <room roomName="Grind" vert="0" horiz="0"/>
+        </floor>
+        <floor level="2" src="danfouts2">
+            <room roomName="Metcon" vert="0" horiz="0"/>
+            <room roomName="VaporMax" vert="0" horiz="0"/>
+            <room roomName="Presto" vert="0" horiz="0"/>
+            <room roomName="Fearless" vert="0" horiz="0"/>
+            <room roomName="Pegasus" vert="0" horiz="0"/>
+            <room roomName="Lebron Soldier" vert="0" horiz="0"/>
+            <room roomName="Huarache" vert="0" horiz="0"/>
+            <room roomName="Cortez" vert="0" horiz="0"/>
+            <room roomName="Tanjun" vert="0" horiz="0"/>
+            <room roomName="Sock Dart" vert="0" horiz="0"/>
+            <room roomName="Kawa" vert="0" horiz="0"/>
+        </floor>
+    </building>
+    <building buildingName="Jerry Rice" numberOfFloors="2">
+        <floor level="1" src="jerryrice1">
+            <room roomName="Niners" vert="0" horiz="0"/>
+            <room roomName="Catches" vert="0" horiz="0"/>
+            <room roomName="Wide Receiver" vert="0" horiz="0"/>
+            <room roomName="Cleats" vert="0" horiz="0"/>
+            <room roomName="Super Bowl" vert="0" horiz="0"/>
+            <room roomName="Receptions" vert="0" horiz="0"/>
+        </floor>
+        <floor level="2" src="jerryrice2">
+            <room roomName="False Start" vert="0" horiz="0"/>
+            <room roomName="Offside" vert="0" horiz="0"/>
+            <room roomName="Hail Mary" vert="0" horiz="0"/>
+            <room roomName="Pass Interference" vert="0" horiz="0"/>
+            <room roomName="Extra Point" vert="0" horiz="0"/>
+            <room roomName="Safety" vert="0" horiz="0"/>
+        </floor>
+    </building>
+    <building buildingName="Joan Benoit Samuelson" numberOfFloors="2">
+        <floor level="1" src="joanbenoitsamuelson1">
+            <room roomName="Swoosh" vert="0" horiz="0"/>
+            <room roomName="Aeroloft" vert="0" horiz="0"/>
+            <room roomName="Dri Fit" vert="0" horiz="0"/>
+            <room roomName="Hyperfuse" vert="0" horiz="0"/>
+            <room roomName="Air" vert="0" horiz="0"/>
+            <room roomName="Flyease" vert="0" horiz="0"/>
+            <room roomName="Dynamic Fit" vert="0" horiz="0"/>
+        </floor>
+        <floor level="2" src="joanbenoitsamuelson2">
+            <room roomName="Jersey" vert="0" horiz="0"/>
+            <room roomName="Leggings" vert="0" horiz="0"/>
+            <room roomName="Baselayer" vert="0" horiz="0"/>
+            <room roomName="Shorts" vert="0" horiz="0"/>
+            <room roomName="Compression" vert="0" horiz="0"/>
+            <room roomName="Swimwear" vert="0" horiz="0"/>
+            <room roomName="Hoodies" vert="0" horiz="0"/>
+        </floor>
+    </building>
+    <building buildingName="John McEnroe" numberOfFloors="2">
+        <floor level="1" src="johnmcenroe1">
+            <room roomName="Racket" vert="0" horiz="0"/>
+            <room roomName="Singles" vert="0" horiz="0"/>
+            <room roomName="Tennis" vert="0" horiz="0"/>
+            <room roomName="Doubles" vert="0" horiz="0"/>
+            <room roomName="Love" vert="0" horiz="0"/>
+            <room roomName="Deuce" vert="0" horiz="0"/>
+        </floor>
+        <floor level="2" src="johnmcenroe2">
+            <room roomName="Davis Cup" vert="0" horiz="0"/>
+            <room roomName="Ace" vert="0" horiz="0"/>
+            <room roomName="Error" vert="0" horiz="0"/>
+            <room roomName="Wimbledon" vert="0" horiz="0"/>
+            <room roomName="US Open" vert="0" horiz="0"/>
+            <room roomName="Court" vert="0" horiz="0"/>
+            <room roomName="Backspin" vert="0" horiz="0"/>
+        </floor>
+    </building>
+    <building buildingName="Ken Griffey Jr." numberOfFloors="2">
+        <floor level="1" src="kengriffeyjr1">
+            <room roomName="Junior" vert="0" horiz="0"/>
+            <room roomName="Bat" vert="0" horiz="0"/>
+            <room roomName="The Kid" vert="0" horiz="0"/>
+            <room roomName="MLB" vert="0" horiz="0"/>
+            <room roomName="Outfield" vert="0" horiz="0"/>
+            <room roomName="Clubhouse" vert="0" horiz="0"/>
+            <room roomName="First Base" vert="0" horiz="0"/>
+        </floor>
+        <floor level="2" src="kengriffeyjr2">
+            <room roomName="Pitch" vert="0" horiz="0"/>
+            <room roomName="Catch" vert="0" horiz="0"/>
+            <room roomName="Swing" vert="0" horiz="0"/>
+            <room roomName="Bullpen" vert="0" horiz="0"/>
+            <room roomName="Infield" vert="0" horiz="0"/>
+            <room roomName="Umpire" vert="0" horiz="0"/>
+            <room roomName="Doubleheader" vert="0" horiz="0"/>
+        </floor>
+    </building>
+    <building buildingName="Mia Hamm" numberOfFloors="2">
+        <floor level="1" src="miahamm1">
+            <room roomName="Air Max" vert="0" horiz="0"/>
+            <room roomName="Multi Turf" vert="0" horiz="0"/>
+            <room roomName="Free" vert="0" horiz="0"/>
+            <room roomName="Cachana" vert="0" horiz="0"/>
+            <room roomName="Shox" vert="0" horiz="0"/>
+            <room roomName="Mercurial Vapor" vert="0" horiz="0"/>
+            <room roomName="Flywire" vert="0" horiz="0"/>
+            <room roomName="Grind" vert="0" horiz="0"/>
+            <room roomName="Flyknit" vert="0" horiz="0"/>
+            <room roomName="Hyper Adapt" vert="0" horiz="0"/>
+        </floor>
+        <floor level="2" src="miahamm2">
+            <room roomName="Kobe Mamba" vert="0" horiz="0"/>
+            <room roomName="Flight" vert="0" horiz="0"/>
+            <room roomName="Benassi" vert="0" horiz="0"/>
+            <room roomName="Duel Racer" vert="0" horiz="0"/>
+            <room roomName="Juvenate" vert="0" horiz="0"/>
+            <room roomName="Vomero" vert="0" horiz="0"/>
+            <room roomName="LunarCharge" vert="0" horiz="0"/>
+            <room roomName="Manoadome" vert="0" horiz="0"/>
+            <room roomName="Blazer" vert="0" horiz="0"/>
+            <room roomName="Mayfly" vert="0" horiz="0"/>
+        </floor>
+    </building>
+    <building buildingName="Michael Jordan" numberOfFloors="3">
+        <floor level="1" src="michaeljordan1">
+            <room roomName="Basketball" vert="0" horiz="0"/>
+            <room roomName="Chicago Bulls" vert="0" horiz="0"/>
+            <room roomName="Slam Dunk" vert="0" horiz="0"/>
+            <room roomName="Points" vert="0" horiz="0"/>
+            <room roomName="MVP" vert="0" horiz="0"/>
+        </floor>
+        <floor level="2" src="michaeljordan2">
+            <room roomName="Alley Oop" vert="0" horiz="0"/>
+            <room roomName="Dribble" vert="0" horiz="0"/>
+            <room roomName="Assist" vert="0" horiz="0"/>
+            <room roomName="Steals" vert="0" horiz="0"/>
+            <room roomName="Rebounds" vert="0" horiz="0"/>
+        </floor>
+        <floor level="3" src="michaeljordan3">
+            <room roomName="Free Throw" vert="0" horiz="0"/>
+            <room roomName="Defense" vert="0" horiz="0"/>
+            <room roomName="Carry" vert="0" horiz="0"/>
+            <room roomName="Key" vert="0" horiz="0"/>
+            <room roomName="Offense" vert="0" horiz="0"/>
+        </floor>
+    </building>
+    <building buildingName="Mike Schmidt" numberOfFloors="2">
+        <floor level="1" src="mikeschmidt1">
+            <room roomName="Third Baseman" vert="0" horiz="0"/>
+            <room roomName="Ohio Bobcats" vert="0" horiz="0"/>
+            <room roomName="Phillies" vert="0" horiz="0"/>
+            <room roomName="Shortstop" vert="0" horiz="0"/>
+            <room roomName="Batters Box" vert="0" horiz="0"/>
+            <room roomName="Gold Glove" vert="0" horiz="0"/>
+        </floor>
+        <floor level="2" src="mikeschmidt2">
+            <room roomName="Alley" vert="0" horiz="0"/>
+            <room roomName="Belt" vert="0" horiz="0"/>
+            <room roomName="Appeal Play" vert="0" horiz="0"/>
+            <room roomName="Bazooka" vert="0" horiz="0"/>
+            <room roomName="Balk" vert="0" horiz="0"/>
+            <room roomName="Backstop" vert="0" horiz="0"/>
+        </floor>
+    </building>
+    <building buildingName="Tiger Woods" numberOfFloors="3">
+        <floor level="1" src="tigerwoods1">
+            <room roomName="Bay hill" vert="0" horiz="0"/>
+            <room roomName="Coghill" vert="0" horiz="0"/>
+            <room roomName="Newport" vert="0" horiz="0"/>
+            <room roomName="Pumpkin Ridge" vert="0" horiz="0"/>
+            <room roomName="Rotunda" vert="0" horiz="0"/>
+            <room roomName="Sawgrass" vert="0" horiz="0"/>
+            <room roomName="The Standford Theatre" vert="0" horiz="0"/>
+            <room roomName="Torrey Pines" vert="0" horiz="0"/>
+            <room roomName="Waverley" vert="0" horiz="0"/>
+            <room roomName="Wollaston" vert="0" horiz="0"/>
         </floor>
         <floor level="2" src="tigerwoods2">
-            <room roomName="Pegasus" vert="0" horiz="0"/>
-            <room roomName="VaporMax" vert="0" horiz="0"/>
+            <room roomName="Alpine" vert="0" horiz="0"/>
+            <room roomName="Blue Canyon" vert="0" horiz="0"/>
+            <room roomName="Glen Abbey" vert="0" horiz="0"/>
+            <room roomName="Las Colinas" vert="0" horiz="0"/>
+            <room roomName="Mojo" vert="0" horiz="0"/>
+            <room roomName="Muirfield" vert="0" horiz="0"/>
+            <room roomName="Summerlin" vert="0" horiz="0"/>
+            <room roomName="Tour Accuracy" vert="0" horiz="0"/>
+            <room roomName="Tour TW" vert="0" horiz="0"/>
+            <room roomName="Valderrama" vert="0" horiz="0"/>
+            <room roomName="Wentworth North" vert="0" horiz="0"/>
+            <room roomName="Wentworth South" vert="0" horiz="0"/>
+        </floor>
+        <floor level="3" src="tigerwoods3">
+            <room roomName="Air Birkdale" vert="0" horiz="0"/>
+            <room roomName="Elite Feel" vert="0" horiz="0"/>
+            <room roomName="Lounge 270" vert="0" horiz="0"/>
         </floor>
     </building>
 </campus>

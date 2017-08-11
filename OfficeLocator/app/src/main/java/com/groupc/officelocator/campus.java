@@ -44,7 +44,8 @@ public class campus extends AppCompatActivity {
             if(data == null)
                 android.os.Process.killProcess(android.os.Process.myPid());
 
-            for (int i = 0; i < data.buildings.size(); i++) {
+            /*
+            for (int i = 0; i < 2; i++) {//data.buildings.size(); i++) {
                 final int j = i;
                 arrayButtons[i] = (Button) findViewById(buttonNames[i]);
                 arrayButtons[i].setOnClickListener(new View.OnClickListener() {
@@ -61,6 +62,8 @@ public class campus extends AppCompatActivity {
                     }
                 });
             }
+            */
+
             search = (Button) findViewById(R.id.searchbutton);
             search.setOnClickListener(new View.OnClickListener() {
 

@@ -75,6 +75,7 @@ public class floorplan extends AppCompatActivity{
         //Setting floor plan image
         imageName = goToFloorPlan.getStringExtra("imageName");
         int res = getResources().getIdentifier(imageName, "drawable", this.getPackageName());
+        //floorPlanImage = (ImageView) findViewById(R.id.floorPlanImage);
         floorPlanImage = (ImageView) findViewById(R.id.floorPlanImage);
         floorPlanImage.setImageResource(res);
 
@@ -270,9 +271,9 @@ public class floorplan extends AppCompatActivity{
                 roomName.setText(selection);
 
                 //Set the image on the page to reflect the user's choice
-                selection = selection.toLowerCase().replaceAll("\\s","");
-                int resource = getResources().getIdentifier(selection, "drawable", floorplan.this.getPackageName());
-                floorPlanImage.setImageResource(resource);
+                    selection = selection.toLowerCase().replaceAll("\\s", "");
+                    int resource = getResources().getIdentifier(selection, "drawable", floorplan.this.getPackageName());
+                    floorPlanImage.setImageResource(resource);
             }
 
             @Override
