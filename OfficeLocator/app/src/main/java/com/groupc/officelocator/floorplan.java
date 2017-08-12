@@ -18,19 +18,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class floorplan extends AppCompatActivity{
-
     public static int buildingselected = 0; //Tracks which building
     public static int setRoomfromSearch = 0; //Determines if a room was chosen in Search
     public static int floorselected = 0; //Determines if a floor number was chosen in Search or through Spinner
     public static int fromSearch = 0; //Determines if the previous page was Search before coming to the floorplan page
 
     Button maplocationbut, home, search;
-    ImageView floorPlanImage, buildingLocation, spinner2drop;
+    ImageView floorPlanImage, buildingLocation, spinner2drop, selectedRoom;
     private Spinner chooseFloor, chooseRoom;
 
     Dialog dialog;
     TextView cancel, floorplanname, roomName;
-    public static String fpname, imageName, floorNumber, chosenRoomFromSearch, rmName;
+    public static String fpname, imageName, floorNumber, chosenRoomFromSearch, rmName = "";
     public static int spinnerNumber, numberOfFloors;
 
     public mapdata data;
@@ -41,13 +40,139 @@ public class floorplan extends AppCompatActivity{
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_floorplan);
 
-        data = new mapdata();
+        //Sets appropriate floorplan layout and spinners.
+        setup();
 
-        Intent goToFloorPlan = getIntent();
-        final Bundle dataContainer = goToFloorPlan.getExtras();
-        data = dataContainer.getParcelable("parse");
+        //Floor spinner listener setup
+        floorSet();
+    }
+
+    //Come back to fix this perhaps after room class stores images
+    //Sets up pop up dialog
+    private void createDialog()
+    {
+        dialog = new Dialog(floorplan.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.imagedialog);
+        buildingLocation = (ImageView)dialog.findViewById(R.id.buildingLocation);
+
+        String dialogImage = fpname.toLowerCase().replaceAll("\\s", "") + "highlighted";
+        int imgid = getResources().getIdentifier(dialogImage, "drawable", getPackageName());
+        buildingLocation.setImageResource(imgid);
+
+        cancel = (TextView) dialog.findViewById(R.id.cancelTxt);
+    }
+
+    private void select(){
+        chooseRoom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String selection = ((TextView) view).getText().toString();
+                if (selection.equals("Choose a room")) {
+                    return;
+                }
+
+                roomName.setVisibility(View.VISIBLE);
+                roomName.setText(selection);
+
+                //Clears existing room markers
+                for (int j = 0; j < data.numberofBuildings; ++j) {
+                    if (data.buildings.get(j).buildingName.equals(fpname)) {
+                        for (int k = 0; k < data.buildings.get(j).floors.size(); ++k) {
+                            if (data.buildings.get(j).floors.get(k).level == Integer.parseInt(floorNumber)) {
+                                for (int m = 0; m < data.buildings.get(j).floors.get(k).rooms.size(); ++m) {
+                                    String tempName = data.buildings.get(j).floors.get(k).rooms.get(m).roomName;
+                                    tempName = tempName.toLowerCase().replaceAll("\\s", "");
+                                    int roomID =
+                                            getResources().getIdentifier(tempName, "id", getPackageName());
+                                    selectedRoom = (ImageView) findViewById(roomID);
+                                    selectedRoom.setVisibility(View.INVISIBLE);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                //Sets new marker
+                selection = selection.toLowerCase().replaceAll("\\s", "");
+                int roomID =
+                        getResources().getIdentifier(selection, "id", getPackageName());
+                selectedRoom = (ImageView) findViewById(roomID);
+                selectedRoom.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {}
+        });
+    }
+
+    private void floorSet() {
+        //What to do when the user clicks on a choice for the first spinner for choosing floors
+        chooseFloor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                //set floor choice
+                floorNumber = ((TextView) view).getText().toString();
+
+                if (floorNumber.equals("Choose a floor"))
+                    return;
+
+                floorselected = Integer.parseInt(floorNumber);
+                roomName.setVisibility(View.INVISIBLE);
+
+                //Flag reset for setup function
+                fromSearch = 0;
+                setRoomfromSearch = 0;
+                //Sets new floorplan name
+                imageName = fpname.toLowerCase().replaceAll("\\s", "") + floorNumber;
+                //Creates new layout based on new floor #
+                setup();
+
+                chooseFloor.setSelection(floorselected,true);
+                chooseFloor.setSelected(true);
+
+                spinner2drop.setVisibility(View.VISIBLE);
+                chooseRoom.setVisibility(View.VISIBLE);
+
+                List<String> spinnerArray = new ArrayList<String>();
+                spinnerArray.add("Choose a room");
+                for(int j = 0; j < data.numberofBuildings; ++j) {
+                    for(int k = 0; k < data.buildings.get(j).floors.size(); ++k) {
+                        if(buildingselected == (j + 1) && data.buildings.get(j).floors.get(k).level == floorselected) {
+                            for(int m = 0; m < data.buildings.get(j).floors.get(k).rooms.size(); ++m) {
+                                spinnerArray.add(data.buildings.get(j).floors.get(k).rooms.get(m).roomName);
+                            }
+                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(floorplan.this,  R.layout.spinner_layout, spinnerArray);
+                            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            chooseRoom.setAdapter(adapter);
+                            break;
+                        }
+                    }
+                }
+                chooseRoom.setSelected(false);
+                chooseRoom.setSelection(0,true);
+
+                select();
+
+                //Resets floor spinner listener
+                floorSet();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {}
+        });
+    }
+
+    private void setup() {
+        setContentView(getResources().getIdentifier(imageName, "layout", this.getPackageName()));
+
+        //Pulling map data on entry into the activity
+        //if(fromSearch == 1) {
+            data = new mapdata();
+            Intent goToFloorPlan = getIntent();
+            dataContainer = goToFloorPlan.getExtras();
+            data = dataContainer.getParcelable("parse");
+        //}
 
         spinner2drop = (ImageView)findViewById(R.id.imageView10); //Dropdown arrow for 2nd spinner
 
@@ -69,17 +194,20 @@ public class floorplan extends AppCompatActivity{
         floorplanname = (TextView) findViewById(R.id.floorPlanName);
         floorplanname.setTypeface(myCustomfont);
         //floorNumber = goToFloorPlan.getStringExtra("floorNumber");
+
+        if(Integer.parseInt(floorNumber) > 0 && fromSearch == 1) {
+            String tempName = rmName.toLowerCase().replaceAll("\\s","");
+            int roomID =
+                    getResources().getIdentifier(tempName,"id",getPackageName());
+            selectedRoom = (ImageView)findViewById(roomID);
+            selectedRoom.setVisibility(View.VISIBLE);
+        }
+
         //If the floor plan title has a floor number, we add that to the title
         if(Integer.parseInt(floorNumber) == 0) //For those without a floor number ("Mia Hamm"/"Tiger Woods"
-        //the default is the first floor
+            //the default is the first floor
             floorNumber = "1";
         floorplanname.setText(fpname + " Floor " + floorNumber);
-
-        //Setting floor plan image
-        //imageName = goToFloorPlan.getStringExtra("imageName");
-        int res = getResources().getIdentifier(imageName, "drawable", this.getPackageName());
-        floorPlanImage = (ImageView) findViewById(R.id.floorPlanImage);
-        floorPlanImage.setImageResource(res);
 
         //spinnerNumber = goToFloorPlan.getIntExtra("spinnerNumber",0);
         buildingselected = spinnerNumber + 1;
@@ -115,6 +243,7 @@ public class floorplan extends AppCompatActivity{
             chooseRoom.setVisibility(View.VISIBLE);
 
             List<String> spinnerArray = new ArrayList<String>();
+            spinnerArray.add("Choose a room");
             for(int i = 0; i < data.numberofBuildings; ++i) {
                 for(int j = 0; j < data.buildings.get(i).floors.size(); ++j) {
                     if(buildingselected == (i + 1) && data.buildings.get(i).floors.get(j).level == floor) {
@@ -147,62 +276,11 @@ public class floorplan extends AppCompatActivity{
                         }
                     }
                 }
+                //+1 to skip past 'choose a room'
                 chooseRoom.setSelection(selection,true);
             }
             select();
         }
-
-        //What to do when the user clicks on a choice for the first spinner for choosing floors
-        chooseFloor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                //User selects the floor #
-                String theChoice = ((TextView) view).getText().toString();
-                roomName.setVisibility(View.INVISIBLE);
-                if(theChoice.equals("Choose a floor")){
-                    chooseRoom.setSelected(false);
-                    chooseRoom.setSelection(0,true);
-                    return;
-                }
-
-                floorplanname.setText(fpname + " Floor " + theChoice);
-                String chosenImage = fpname.replaceAll("\\s", "").toLowerCase() + theChoice;
-
-                //Set the new floor plan image to reflect the user's choice
-                int res = getResources().getIdentifier(chosenImage, "drawable", floorplan.this.getPackageName());
-                floorPlanImage.setImageResource(res);
-                floorselected = Integer.parseInt(theChoice);
-                //Must subtract 1 since the array of choices begins with 0; this is used to set the right room
-                //values for the room spinner menu
-                int choice = floorselected;
-
-                //After selecting first spinner, now the second one is populated
-                spinner2drop.setVisibility(View.VISIBLE);
-                chooseRoom.setVisibility(View.VISIBLE);
-
-                List<String> spinnerArray = new ArrayList<String>();
-                for(int j = 0; j < data.numberofBuildings; ++j) {
-                    for(int k = 0; k < data.buildings.get(j).floors.size(); ++k) {
-                        if(buildingselected == (j + 1) && data.buildings.get(j).floors.get(k).level == choice) {
-                            for(int m = 0; m < data.buildings.get(j).floors.get(k).rooms.size(); ++m) {
-                                spinnerArray.add(data.buildings.get(j).floors.get(k).rooms.get(m).roomName);
-                            }
-                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(floorplan.this,  R.layout.spinner_layout, spinnerArray);
-                            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                            chooseRoom.setAdapter(adapter);
-                            break;
-                        }
-                    }
-                }
-                chooseRoom.setSelected(false);
-                chooseRoom.setSelection(0,true);
-                select();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {}
-        });
-
         //Pop up dialog for building location
         createDialog();
         maplocationbut = (Button) findViewById(R.id.floorplanbutton2);
@@ -237,49 +315,15 @@ public class floorplan extends AppCompatActivity{
             public void onClick(View v) {
                 Intent theintent = new Intent(floorplan.this, masterSearchWithHeaders.class);
                 theintent.putExtras(dataContainer);
-                floorplan.this.finish();
                 startActivity(theintent);
             }}
         );
     }
 
-    //Come back to fix this perhaps after room class stores images
-    //Sets up pop up dialog
-    private void createDialog()
-    {
-        dialog = new Dialog(floorplan.this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.imagedialog);
-        buildingLocation = (ImageView)dialog.findViewById(R.id.buildingLocation);
-
-        String dialogImage = fpname.toLowerCase().replaceAll("\\s", "") + "highlighted";
-        int imgid = getResources().getIdentifier(dialogImage, "drawable", getPackageName());
-        buildingLocation.setImageResource(imgid);
-
-        cancel = (TextView) dialog.findViewById(R.id.cancelTxt);
-    }
-
-    private void select(){
-        chooseRoom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String selection = ((TextView) view).getText().toString();
-                if(selection.equals("Choose a room")){
-                    return;
-                }
-
-                //Set the room title on the page to the user's choice
-                roomName.setVisibility(View.VISIBLE);
-                roomName.setText(selection);
-
-                //Set the image on the page to reflect the user's choice
-                selection = selection.toLowerCase().replaceAll("\\s","");
-                int resource = getResources().getIdentifier(selection, "drawable", floorplan.this.getPackageName());
-                floorPlanImage.setImageResource(resource);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {}
-        });
+    //Ensures proper reset on back button navigation
+    @Override
+    public void onBackPressed(){
+        fromSearch = 1;
+        super.onBackPressed();
     }
 }

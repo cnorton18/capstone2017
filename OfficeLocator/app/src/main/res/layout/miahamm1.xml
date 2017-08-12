@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gray"
+    tools:context="com.groupc.officelocator.floorplan">
+
+    <TextView
+        android:id="@+id/floorPlanName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Building + Floor"
+        android:textColor="@android:color/white"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:id="@+id/floorPlanImage"
+        android:layout_width="380dip"
+        android:layout_height="380dip"
+        app:srcCompat="@drawable/miahamm"
+        android:layout_alignTop="@+id/floorplanbutton2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="5dp"/>
+
+
+    <Button
+        android:id="@+id/floorplanbutton2"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:background="@android:color/transparent"
+        android:layout_marginTop="27dp"
+        android:layout_below="@+id/floorPlanName"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:id="@+id/floorplanbutton1"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@android:color/transparent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        app:srcCompat="@drawable/home" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        app:srcCompat="@drawable/locator"
+        android:layout_alignTop="@+id/floorplanbutton2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:id="@+id/search"
+        android:layout_width="55dip"
+        android:layout_height="55dip"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/transparent"/>
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="55dip"
+        android:layout_height="55dip"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        app:srcCompat="@drawable/search" />
+
+    <Spinner
+        android:id="@+id/floorSelector"
+        android:layout_width="190dip"
+        android:layout_height="40dip"
+        android:background="#ff7921"
+        android:popupBackground="#ff7921"
+        android:layout_below="@+id/floorPlanImage"
+        android:layout_centerHorizontal="true"/>
+
+    <Spinner
+        android:id="@+id/roomSelector"
+        android:layout_width="190dip"
+        android:layout_height="40dip"
+        android:layout_below="@+id/floorPlanImage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:background="#ff7921"
+        android:popupBackground="#ff7921"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:layout_width="16dip"
+        android:layout_height="16dip"
+        android:src="@drawable/drop"
+        android:layout_marginLeft="245dp"
+        android:layout_alignTop="@+id/floorSelector"
+        android:layout_marginTop="20dp"
+        android:id="@+id/imageView7" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="16dip"
+        android:layout_height="16dip"
+        android:layout_marginLeft="245dp"
+        android:layout_alignTop="@+id/roomSelector"
+        android:layout_marginTop="20dp"
+        app:srcCompat="@drawable/drop"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/roomName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Room Name"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:layout_below="@+id/floorPlanName"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"/>
+
+    <ImageView
+        android:id="@+id/flyknit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/floorSelector"
+        android:layout_marginBottom="35dp"
+        android:layout_toEndOf="@+id/floorPlanName"
+        android:layout_toRightOf="@+id/floorPlanName"
+        android:visibility="invisible"
+        app:srcCompat="@android:drawable/btn_star_big_on" />
+
+    <ImageView
+        android:id="@+id/cachana"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/roomName"
+        android:layout_alignStart="@+id/roomName"
+        android:layout_below="@+id/airmax"
+        android:layout_marginLeft="14dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="44dp"
+        android:visibility="invisible"
+        app:srcCompat="@android:drawable/btn_star_big_on" />
+
+    <ImageView
+        android:id="@+id/airmax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/floorPlanImage"
+        android:layout_marginTop="49dp"
+        android:layout_toLeftOf="@+id/floorPlanName"
+        android:layout_toStartOf="@+id/floorPlanName"
+        android:visibility="invisible"
+        app:srcCompat="@android:drawable/btn_star_big_on" />
+
+</RelativeLayout>

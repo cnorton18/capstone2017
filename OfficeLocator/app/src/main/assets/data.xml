@@ -4,6 +4,7 @@
         <floor level="1" src="miahamm1">
             <room roomName="Flyknit" vert="0" horiz="0"/>
             <room roomName="Air Max" vert="0" horiz="0"/>
+            <room roomName="Cachana" vert="0" horiz="0"/>
         </floor>
         <floor level="2" src="miahamm2">
             <room roomName="LunarCharge" vert="0" horiz="0"/>

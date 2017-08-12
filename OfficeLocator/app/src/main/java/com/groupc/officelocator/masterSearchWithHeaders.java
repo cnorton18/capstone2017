@@ -96,7 +96,8 @@ public class masterSearchWithHeaders extends AppCompatActivity {
                     //goToFloorPlan.putExtra("roomName", "");
                     floorplan.floorNumber = "0";
                     floorplan.rmName = "";
-                    floorplan.imageName = fpname.toLowerCase().replaceAll("\\s","");
+                    //1st floor default
+                    floorplan.imageName = fpname.toLowerCase().replaceAll("\\s","") + "1";
                     floorplan.chosenRoomFromSearch = "";
 
                 }
@@ -108,7 +109,8 @@ public class masterSearchWithHeaders extends AppCompatActivity {
                     //goToFloorPlan.putExtra("imageName", choice.toLowerCase().replaceAll("\\s",""));
                     //goToFloorPlan.putExtra("floorNumber", floorNumber);
                     floorplan.floorNumber = floorNumber;
-                    floorplan.imageName = choice.toLowerCase().replaceAll("\\s","");
+                    floorplan.imageName =
+                            fpname.toLowerCase().replaceAll("\\s","") + floorNumber;
                     floorplan.rmName = choice;
                     floorplan.chosenRoomFromSearch = choice;
                 }

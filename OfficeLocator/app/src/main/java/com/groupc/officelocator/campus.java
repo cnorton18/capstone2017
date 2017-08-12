@@ -50,12 +50,22 @@ public class campus extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Intent goToFloorPlan = new Intent(campus.this, floorplan.class);
+                        /*
                         goToFloorPlan.putExtra("fpname", data.buildings.get(j).buildingName);
                         goToFloorPlan.putExtra("imageName",data.buildings.get(j).buildingName.replaceAll("\\s","").toLowerCase());
                         goToFloorPlan.putExtra("spinnerNumber", j);
                         goToFloorPlan.putExtra("numberOfFloors", data.buildings.get(j).numberofFloors);
-                        goToFloorPlan.putExtra("floorNumber", "1");
+                        goToFloorPlan.putExtra("floorNumber", "1");*/
+
                         goToFloorPlan.putExtras(dataContainer);
+                        floorplan.fromSearch = 1;
+                        floorplan.floorNumber = "0";
+                        floorplan.fpname = data.buildings.get(j).buildingName;
+                        floorplan.imageName = data.buildings.get(j).buildingName.replaceAll("\\s","").toLowerCase() + 1;
+                        floorplan.spinnerNumber = j;
+                        floorplan.numberOfFloors = data.buildings.get(j).numberofFloors;
+                        floorplan.buildingselected = j + 1;
+
                         startActivity(goToFloorPlan);
                     }
                 });
