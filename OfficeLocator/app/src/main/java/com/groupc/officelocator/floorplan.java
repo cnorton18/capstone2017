@@ -1,6 +1,8 @@
 package com.groupc.officelocator;
 
 import android.app.Dialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.content.Intent;
@@ -11,24 +13,37 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 public class floorplan extends AppCompatActivity{
+
+    RelativeLayout relativeLayout;
     public static int buildingselected = 0; //Tracks which building
     public static int setRoomfromSearch = 0; //Determines if a room was chosen in Search
     public static int floorselected = 0; //Determines if a floor number was chosen in Search or through Spinner
     public static int fromSearch = 0; //Determines if the previous page was Search before coming to the floorplan page
 
-    Button maplocationbut, home, search;
-    ImageView floorPlanImage, buildingLocation, spinner2drop, selectedRoom;
+    Button home, search;
+    ImageView buildingLocation, spinner2drop, selectedRoom;
     private Spinner chooseFloor, chooseRoom;
+    ImageButton favorite, maplocationbut;
 
-    Dialog dialog;
-    TextView cancel, floorplanname, roomName;
+    Dialog dialog, favoriteDialog;
+    TextView cancel, floorplanname, roomName, favoriteyes, favoriteno, favoritecancel, roomspinnerprompt;
+    public String addtofavorite;
     public static String fpname, imageName, floorNumber, chosenRoomFromSearch, rmName = "";
     public static int spinnerNumber, numberOfFloors;
 
@@ -37,8 +52,6 @@ public class floorplan extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
         super.onCreate(savedInstanceState);
 
         //Sets appropriate floorplan layout and spinners.
@@ -46,22 +59,6 @@ public class floorplan extends AppCompatActivity{
 
         //Floor spinner listener setup
         floorSet();
-    }
-
-    //Come back to fix this perhaps after room class stores images
-    //Sets up pop up dialog
-    private void createDialog()
-    {
-        dialog = new Dialog(floorplan.this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.imagedialog);
-        buildingLocation = (ImageView)dialog.findViewById(R.id.buildingLocation);
-
-        String dialogImage = fpname.toLowerCase().replaceAll("\\s", "") + "highlighted";
-        int imgid = getResources().getIdentifier(dialogImage, "drawable", getPackageName());
-        buildingLocation.setImageResource(imgid);
-
-        cancel = (TextView) dialog.findViewById(R.id.cancelTxt);
     }
 
     private void select(){
@@ -134,6 +131,7 @@ public class floorplan extends AppCompatActivity{
 
                 spinner2drop.setVisibility(View.VISIBLE);
                 chooseRoom.setVisibility(View.VISIBLE);
+                roomspinnerprompt.setVisibility(View.VISIBLE);
 
                 List<String> spinnerArray = new ArrayList<String>();
                 spinnerArray.add("Choose a room");
@@ -144,7 +142,7 @@ public class floorplan extends AppCompatActivity{
                                 spinnerArray.add(data.buildings.get(j).floors.get(k).rooms.get(m).roomName);
                             }
                             ArrayAdapter<String> adapter = new ArrayAdapter<String>(floorplan.this,  R.layout.spinner_layout, spinnerArray);
-                            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
                             chooseRoom.setAdapter(adapter);
                             break;
                         }
@@ -166,6 +164,10 @@ public class floorplan extends AppCompatActivity{
     private void setup() {
         setContentView(getResources().getIdentifier(imageName, "layout", this.getPackageName()));
 
+        ZoomLayout myZoomView = new ZoomLayout(floorplan.this);
+        relativeLayout = (RelativeLayout) findViewById(R.id.zoom);
+        relativeLayout.addView(myZoomView);
+
         //Pulling map data on entry into the activity
         //if(fromSearch == 1) {
             data = new mapdata();
@@ -175,6 +177,7 @@ public class floorplan extends AppCompatActivity{
         //}
 
         spinner2drop = (ImageView)findViewById(R.id.imageView10); //Dropdown arrow for 2nd spinner
+        roomspinnerprompt = (TextView)findViewById(R.id.roomSpinnerTitle);
 
         //Room title on the floorplan page
         roomName = (TextView) findViewById(R.id.roomName);
@@ -184,16 +187,13 @@ public class floorplan extends AppCompatActivity{
         //If a room was chosen through search, must cause the room title to appear since by default it doesn't until you choose the
         //room through the second spinner
         if(setRoomfromSearch == 1){
-            //rmName = goToFloorPlan.getStringExtra("roomName");
             roomName.setText(rmName);
             roomName.setVisibility(View.VISIBLE);
         }
 
         //Setting floor plan title name + font style
-        //fpname = goToFloorPlan.getStringExtra("fpname");
         floorplanname = (TextView) findViewById(R.id.floorPlanName);
         floorplanname.setTypeface(myCustomfont);
-        //floorNumber = goToFloorPlan.getStringExtra("floorNumber");
 
         if(Integer.parseInt(floorNumber) > 0 && fromSearch == 1) {
             String tempName = rmName.toLowerCase().replaceAll("\\s","");
@@ -209,7 +209,6 @@ public class floorplan extends AppCompatActivity{
             floorNumber = "1";
         floorplanname.setText(fpname + " Floor " + floorNumber);
 
-        //spinnerNumber = goToFloorPlan.getIntExtra("spinnerNumber",0);
         buildingselected = spinnerNumber + 1;
 
         //Creating the two spinner drop down menus that choose the floor and rooms
@@ -219,7 +218,6 @@ public class floorplan extends AppCompatActivity{
         chooseRoom = (Spinner) findViewById(R.id.roomSelector);
 
         //First spinner - Choosing which floor
-        //numberOfFloors = goToFloorPlan.getIntExtra("numberOfFloors",0);
         List<String> list = new ArrayList<String>();
         list.add("Choose a floor");
         for (int i = 1; i <= numberOfFloors; i++){
@@ -241,6 +239,7 @@ public class floorplan extends AppCompatActivity{
 
             spinner2drop.setVisibility(View.VISIBLE);
             chooseRoom.setVisibility(View.VISIBLE);
+            roomspinnerprompt.setVisibility(View.VISIBLE);
 
             List<String> spinnerArray = new ArrayList<String>();
             spinnerArray.add("Choose a room");
@@ -251,7 +250,7 @@ public class floorplan extends AppCompatActivity{
                             spinnerArray.add(data.buildings.get(i).floors.get(j).rooms.get(k).roomName);
                         }
                         ArrayAdapter<String> adapter = new ArrayAdapter<String>(floorplan.this,  R.layout.spinner_layout, spinnerArray);
-                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
                         chooseRoom.setAdapter(adapter);
                         break;
                     }
@@ -262,10 +261,10 @@ public class floorplan extends AppCompatActivity{
 
             //If the room was also chosen through the search result chosen, we choose that value to
             //appear in the second spinner for the rooms
+            Log.d("helpme", Integer.toString(setRoomfromSearch));
             if(setRoomfromSearch==1){
                 chooseRoom.setSelected(true);
                 int selection = 0;
-                //chosenRoomFromSearch = goToFloorPlan.getStringExtra("roomName");
                 if(chosenRoomFromSearch != null) {
                     for(int i = 0; i < data.numberofBuildings; ++i) {
                         for (int j = 0; j < data.buildings.get(i).floors.size(); ++j) {
@@ -277,13 +276,15 @@ public class floorplan extends AppCompatActivity{
                     }
                 }
                 //+1 to skip past 'choose a room'
-                chooseRoom.setSelection(selection,true);
+                chooseRoom.setSelection(selection+1,true);
+                //Flag reset
+                setRoomfromSearch = 0;
             }
             select();
         }
         //Pop up dialog for building location
         createDialog();
-        maplocationbut = (Button) findViewById(R.id.floorplanbutton2);
+        maplocationbut = (ImageButton) findViewById(R.id.buildinglocator);
         maplocationbut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -299,26 +300,127 @@ public class floorplan extends AppCompatActivity{
             }
         });
 
-        //Home button
-        home = (Button) findViewById(R.id.floorplanbutton1);
-        home.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent theintent = new Intent(floorplan.this, campus.class);
-                theintent.putExtras(dataContainer);
-                startActivity(theintent);
-            }}
-        );
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation.setSelected(false);
 
-        //Search button
-        search = (Button) findViewById(R.id.search);
-        search.setOnClickListener(new View.OnClickListener() {
+        createFavoriteDialog();
+        favorite = (ImageButton) findViewById(R.id.favorite);
+        favorite.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                favoriteDialog.show();
+            }
+        });
+
+        //If cancel button in dialog popup is clicked then exit the dialog
+        favoritecancel.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
-                Intent theintent = new Intent(floorplan.this, masterSearchWithHeaders.class);
-                theintent.putExtras(dataContainer);
-                startActivity(theintent);
-            }}
-        );
+                favoriteDialog.dismiss();
+            }
+        });
+
+        //If the no button in the dialog is clicked then exit the dialog
+        favoriteno.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                favoriteDialog.dismiss();
+            }
+        });
+
+        //If the yes button in the favorite dialog is clicked then save the string to the favorites
+        favoriteyes.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                SharedPreferences favoritesList = getSharedPreferences("MyFavorites", Context.MODE_PRIVATE);
+                Set<String> favRooms = new HashSet<>(favoritesList.getStringSet("favRooms", new HashSet<String>()));
+
+                String display = null;
+                if(floorNumber.equals("0")) {
+                    addtofavorite = fpname;
+                    display = fpname;
+                }
+                else if(chosenRoomFromSearch == null) {
+                    addtofavorite = fpname + " " + floorNumber;
+                    display = fpname + " Floor " + floorNumber;
+                }
+                else {
+                    addtofavorite = fpname + " " + floorNumber + " " + chosenRoomFromSearch;
+                    display = fpname + " Floor " + floorNumber + " " + chosenRoomFromSearch;
+                }
+                for(String room : favRooms) {
+                    if (room.matches(addtofavorite)) {
+                        Toast.makeText(floorplan.this, display + " was already added to favorites", Toast.LENGTH_SHORT).show();
+                        favoriteDialog.dismiss();
+                        return;
+                    }
+                }
+                favRooms.add(addtofavorite);
+                SharedPreferences.Editor editor = favoritesList.edit();
+                editor.putStringSet("favRooms", favRooms);
+                editor.commit();
+
+                Toast.makeText(floorplan.this, display + " was added to favorites", Toast.LENGTH_SHORT).show();
+                favoriteDialog.dismiss();
+            }
+        });
     }
+
+    //Sets up favorite pop up dialog
+    private void createFavoriteDialog(){
+        favoriteDialog = new Dialog(floorplan.this);
+        favoriteDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        favoriteDialog.setContentView(R.layout.favoritedialog);
+        favoritecancel = (TextView) favoriteDialog.findViewById(R.id.cancel);
+        favoriteyes = (TextView) favoriteDialog.findViewById(R.id.yes);
+        favoriteno = (TextView) favoriteDialog.findViewById(R.id.no);
+    }
+
+    //Come back to fix this perhaps after room class stores images
+    //Sets up pop up dialog
+    private void createDialog()
+    {
+        dialog = new Dialog(floorplan.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.imagedialog);
+        buildingLocation = (ImageView)dialog.findViewById(R.id.buildingLocation);
+
+        String dialogImage = fpname.toLowerCase().replaceAll("\\s", "") + "highlighted";
+        int imgid = getResources().getIdentifier(dialogImage, "drawable", getPackageName());
+        buildingLocation.setImageResource(imgid);
+
+        cancel = (TextView) dialog.findViewById(R.id.cancel);
+    }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+            Intent theintent = null;
+
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    theintent = new Intent(floorplan.this, campus.class);
+                    theintent.putExtras(dataContainer);
+                    break;
+
+                case R.id.navigation_search:
+                    theintent = new Intent(floorplan.this, masterSearchWithHeaders.class);
+                    theintent.putExtras(dataContainer);
+                    break;
+
+                case R.id.navigation_favorites:
+                    theintent = new Intent(floorplan.this, favoritesList.class);
+                    theintent.putExtras(dataContainer);
+                    break;
+            }
+            startActivity(theintent);
+            return true;
+        }
+
+    };
 
     //Ensures proper reset on back button navigation
     @Override

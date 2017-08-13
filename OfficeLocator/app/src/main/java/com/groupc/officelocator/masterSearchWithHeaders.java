@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,9 @@ import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.support.design.widget.BottomNavigationView;
+import android.support.annotation.NonNull;
+import android.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -29,11 +33,6 @@ public class masterSearchWithHeaders extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-
-        if(actionBar!=null) {
-            actionBar.hide();
-        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mastersearch);
         floorplan.fromSearch = 1;
@@ -69,19 +68,33 @@ public class masterSearchWithHeaders extends AppCompatActivity {
                 SearchItem object = (SearchItem) allSearchResults.getItemAtPosition(position);
                 choice = object.getName(); //Gets the name of the object at the position
                 for(int i = 0; i < data.numberofBuildings; ++i){
+                    //Section header choice
                     if(choice.contains(data.buildings.get(i).buildingName)){
                         fpname = data.buildings.get(i).buildingName;
                         floorCode = i;
                         choiceFloors = data.buildings.get(i).numberofFloors;
+                        floorplan.floorNumber = "0";
+                        floorplan.rmName = "";
+                        //1st floor default
+                        floorplan.imageName = fpname.toLowerCase().replaceAll("\\s","") + "1";
+                        floorplan.chosenRoomFromSearch = "";
                         break;
                     }
                     for(int j = 0; j < data.buildings.get(i).numberofFloors; ++j) {
+                        //Room choice
                         for(int k = 0; k < data.buildings.get(i).floors.get(j).rooms.size(); ++k) {
                             if(choice.contains(data.buildings.get(i).floors.get(j).rooms.get(k).roomName)) {
                                 fpname = data.buildings.get(i).buildingName;
                                 floorCode = i;
                                 floorNumber = Integer.toString(data.buildings.get(i).floors.get(j).level);
                                 choiceFloors = data.buildings.get(i).numberofFloors;
+                                floorplan.buildingselected = floorCode + 1; //Used in floorplan class
+                                floorplan.setRoomfromSearch = 1;
+                                floorplan.floorNumber = floorNumber;
+                                floorplan.imageName =
+                                        fpname.toLowerCase().replaceAll("\\s","") + floorNumber;
+                                floorplan.rmName = choice;
+                                floorplan.chosenRoomFromSearch = choice;
                                 break;
                             }
                         }
@@ -89,11 +102,9 @@ public class masterSearchWithHeaders extends AppCompatActivity {
                 }
 
                 Intent goToFloorPlan = new Intent(masterSearchWithHeaders.this, floorplan.class);
-                //If the user clicks a section header ("Mia Hamm"/"Tiger Woods")
+             /*   //If the user clicks a section header ("Mia Hamm"/"Tiger Woods")
                 if(object.isSection()){
-                    //goToFloorPlan.putExtra("imageName",fpname.toLowerCase().replaceAll("\\s",""));
-                    //goToFloorPlan.putExtra("floorNumber", "0");
-                    //goToFloorPlan.putExtra("roomName", "");
+                    Log.d("helpme", "checkpoint");
                     floorplan.floorNumber = "0";
                     floorplan.rmName = "";
                     //1st floor default
@@ -105,18 +116,13 @@ public class masterSearchWithHeaders extends AppCompatActivity {
                 else{
                     floorplan.buildingselected = floorCode + 1; //Used in floorplan class
                     floorplan.setRoomfromSearch = 1;
-                    //goToFloorPlan.putExtra("roomName", choice);
-                    //goToFloorPlan.putExtra("imageName", choice.toLowerCase().replaceAll("\\s",""));
-                    //goToFloorPlan.putExtra("floorNumber", floorNumber);
                     floorplan.floorNumber = floorNumber;
                     floorplan.imageName =
                             fpname.toLowerCase().replaceAll("\\s","") + floorNumber;
                     floorplan.rmName = choice;
                     floorplan.chosenRoomFromSearch = choice;
-                }
-                //goToFloorPlan.putExtra("fpname", fpname);
-                //goToFloorPlan.putExtra("spinnerNumber", floorCode);
-                //goToFloorPlan.putExtra("numberOfFloors", choiceFloors);
+                }*/
+
                 goToFloorPlan.putExtras(dataContainer);
                 floorplan.fpname = fpname;
                 floorplan.spinnerNumber = floorCode;
@@ -249,4 +255,30 @@ public class masterSearchWithHeaders extends AppCompatActivity {
             return filter;
         }
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+            Intent theintent = null;
+
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    theintent = new Intent(masterSearchWithHeaders.this, campus.class);
+                    break;
+
+                case R.id.navigation_search:
+                    return true;
+
+                case R.id.navigation_favorites:
+                    theintent = new Intent(masterSearchWithHeaders.this, favoritesList.class);
+                    break;
+            }
+            startActivity(theintent);
+            return true;
+        }
+
+    };
+
 }

@@ -1,89 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.groupc.officelocator.ZoomLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_campus"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gray"
-    android:paddingBottom="0dp"
-    android:paddingLeft="0dp"
-    android:paddingRight="0dp"
-    android:paddingTop="0dp"
-    tools:context="com.groupc.officelocator.campus"
-    android:id="@+id/zoom">
+    tools:context="com.groupc.officelocator.campus">
 
+    <!-- Universal Layout -->
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        layout="@layout/universal_layout" />
 
-    <ImageView
-        android:id="@+id/imageView"
+    <!-- Fixed elements on screen that are unique to the page -->
+
+    <!-- Bottom Navigation Toolbar -->
+    <!-- had to pull out of universal layout cause I could not get it working in the java classes -->
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/campusorange"
-        android:cropToPadding="true"
-        android:paddingTop="13dp"
-        android:scaleType="fitCenter"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_gravity="bottom"
+        app:menu="@menu/navigation"
+        android:layout_alignParentBottom = "true"
+        app:itemIconTint="@drawable/selector"
+        app:itemTextColor="@drawable/selector"/>
 
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/selecttxt"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="@android:color/white"
-        android:textSize="10sp"
-        android:layout_marginBottom="28dp"
-        android:layout_above="@+id/searchbutton"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:id="@+id/tw1"
-        android:layout_width="110dip"
-        android:layout_height="90dip"
-        android:background="@android:color/transparent"
-        android:layout_alignEnd="@+id/campus"
-        android:layout_alignRight="@+id/campus"
-        android:layout_alignTop="@+id/mh1"
-        android:layout_marginEnd="14dp"
-        android:layout_marginRight="14dp"
-        android:visibility="visible" />
-
-    <Button
-        android:id="@+id/searchbutton"
-        android:layout_width="55dip"
-        android:layout_height="55dip"
-        android:background="@android:color/transparent"
-        android:layout_alignTop="@+id/imageView5"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="55dip"
-        android:layout_height="55dip"
-        app:srcCompat="@drawable/search"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:id="@+id/mh1"
-        android:background="@android:color/transparent"
-        android:layout_width="60dip"
-        android:layout_height="230dip"
-        android:layout_below="@+id/campus"
-        android:layout_marginTop="56dp"
-        android:visibility="visible" />
-
+    <!-- Page Title -->
     <TextView
         android:id="@+id/campus"
         android:layout_width="wrap_content"
@@ -93,10 +36,206 @@
         android:paddingTop="5dp"
         android:text="@string/campus_name"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@android:color/white"
         android:textSize="25sp"
         android:textStyle="bold" />
 
+    <!-- "Select a Building or Search Prompt -->
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/selecttxt"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="10sp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="80dp"
+        android:layout_centerHorizontal="true" />
+
+    <!-- Zoomable aspect of the page: the campus map + building buttons -->
+    <com.groupc.officelocator.ZoomLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_campus"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="60dp"
+        android:paddingBottom="60dp">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context="com.groupc.officelocator.campus"
+            android:id="@+id/zoom">
+
+            <!-- Campus Map -->
+            <ImageView
+                android:id="@+id/campusmap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/campus"
+                android:paddingBottom="70dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
+
+            <!-- Tiger Woods Center Button -->
+            <Button
+                android:id="@+id/tigerwoods"
+                android:background="@android:color/transparent"
+                android:layout_width="110dip"
+                android:layout_height="90dip"
+                android:layout_marginRight="87dp"
+                android:layout_marginStart="77dp"
+                android:layout_marginTop="15dp"
+                android:layout_alignTop="@+id/miahamm"
+                android:layout_alignStart="@+id/jerryrice" />
+
+            <!-- Mia Hamm Button -->
+            <Button
+                android:id="@+id/miahamm"
+                android:background="@android:color/transparent"
+                android:layout_width="60dip"
+                android:layout_height="230dip"
+                android:layout_marginTop="31dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <Button
+                android:id="@+id/jerryrice"
+                android:background="@android:color/transparent"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_alignTop="@+id/tigerwoods"
+                android:layout_toEndOf="@+id/miahamm" />
+
+            <Button
+                android:id="@+id/petesampras"
+                android:background="@android:color/transparent"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_below="@+id/jerryrice"
+                android:layout_alignStart="@+id/jerryrice"
+                android:layout_marginStart="21dp" />
+
+            <Button
+                android:id="@+id/kengriffeyjr"
+                android:background="@android:color/transparent"
+                android:layout_width="45dp"
+                android:layout_height="110dp"
+                android:layout_below="@+id/tigerwoods"
+                android:layout_alignStart="@+id/jerryrice" />
+
+            <Button
+                android:id="@+id/nikesportscenter"
+                android:background="@android:color/transparent"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_below="@+id/miahamm"
+                android:layout_alignEnd="@+id/kengriffeyjr"
+                android:layout_marginEnd="27dp" />
+
+            <Button
+                android:id="@+id/nolanryan"
+                android:background="@android:color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nikesportscenter"
+                android:layout_alignStart="@+id/petesampras" />
+
+            <Button
+                android:id="@+id/mikeschmidt"
+                android:background="@android:color/transparent"
+                android:layout_width="40dp"
+                android:layout_height="100dp"
+                android:layout_alignTop="@+id/nikesportscenter"
+                android:layout_toEndOf="@+id/nolanryan"
+                android:layout_marginTop="23dp" />
+
+            <Button
+                android:id="@+id/bojackson"
+                android:background="@android:color/transparent"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="11dp"
+                android:layout_below="@+id/nolanryan"
+                android:layout_toEndOf="@+id/mikeschmidt" />
+
+            <Button
+                android:id="@+id/michaeljordan"
+                android:background="@android:color/transparent"
+                android:layout_width="110dp"
+                android:layout_height="40dp"
+                android:layout_alignBottom="@+id/mikeschmidt"
+                android:layout_toEndOf="@+id/mikeschmidt" />
+
+            <Button
+                android:id="@+id/joanbenoitsamuelson"
+                android:background="@android:color/transparent"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_alignBaseline="@+id/mikeschmidt"
+                android:layout_alignBottom="@+id/mikeschmidt"
+                android:layout_alignEnd="@+id/bojackson" />
+
+            <Button
+                android:id="@+id/johnmcenroe"
+                android:background="@android:color/transparent"
+                android:layout_width="45dp"
+                android:layout_height="100dp"
+                android:layout_alignBottom="@+id/joanbenoitsamuelson"
+                android:layout_toEndOf="@+id/joanbenoitsamuelson" />
+
+            <Button
+                android:id="@+id/steveprefontaine"
+                android:background="@android:color/transparent"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginBottom="36dp"
+                android:layout_above="@+id/joanbenoitsamuelson"
+                android:layout_toStartOf="@+id/johnmcenroe" />
+
+            <Button
+                android:id="@+id/albertosalazar"
+                android:background="@android:color/transparent"
+                android:layout_width="45dp"
+                android:layout_height="90dp"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/steveprefontaine" />
+
+            <Button
+                android:id="@+id/danfouts"
+                android:background="@android:color/transparent"
+                android:layout_width="80dp"
+                android:layout_height="45dp"
+                android:layout_alignBaseline="@+id/kengriffeyjr"
+                android:layout_alignBottom="@+id/kengriffeyjr"
+                android:layout_alignEnd="@+id/michaeljordan" />
+
+            <Button
+                android:id="@+id/nikechilddevelopmentcenter"
+                android:background="@android:color/transparent"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_alignBaseline="@+id/petesampras"
+                android:layout_alignBottom="@+id/petesampras"
+                android:layout_alignStart="@+id/steveprefontaine" />
+
+        </RelativeLayout>
+        </com.groupc.officelocator.ZoomLayout>
+
+    <!-- "Satellite View Button -->
+    <ImageButton
+        android:id="@+id/satelliteViewButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/satelliteviewbutton"
+        android:layout_marginTop="62dp"
+        android:layout_alignParentEnd="true"
+        android:tint="@color/iconColor"/>
+
 
 </RelativeLayout>
-</com.groupc.officelocator.ZoomLayout>

@@ -7,7 +7,6 @@
     <TextView
         android:id="@+id/searchItems"
         android:text="Large Text"
-        android:textColor="@android:color/white"
         android:layout_margin="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

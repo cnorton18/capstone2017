@@ -1,18 +1,11 @@
 package com.groupc.officelocator;
 
-import android.content.Context;
+
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
-import android.widget.ImageView;
-
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -22,15 +15,12 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    public Button locate;
     public Button search;
     public mapdata data;
+    private static int SPLASH_TIME_OUT = 1500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        final int SPLASH_TIME_OUT = 1500;
-        android.support.v7.app.ActionBar actionBar = getSupportActionBar(); assert actionBar != null;
-        actionBar.hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
