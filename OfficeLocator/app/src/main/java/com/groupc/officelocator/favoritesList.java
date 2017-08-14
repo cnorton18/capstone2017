@@ -148,10 +148,11 @@ public class favoritesList extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> arg0, View view, int position, long id) {
                 choice = (String) allFavorites.getAdapter().getItem(position);
                 for (String room : favRooms) {
-                    if(choice.contains("Floor"))
-                        choice = choice.replace("Floor ","");
-                    if (room.matches(choice)) {
-                        favRooms.remove(choice);
+                    if(choice.contains("Floor")) {
+                        choice = choice.replace("Floor ", "");
+                    }
+                    if (room.trim().matches(choice)) {
+                        favRooms.remove(room);
                         SharedPreferences.Editor editor = favoritesList.edit();
                         editor.clear();
                         editor.putStringSet("favRooms", favRooms);
