@@ -234,8 +234,8 @@ public class floorplan extends AppCompatActivity{
         if(fromSearch == 1){
             //All search results have floor values set into them (if there is not one explicitly set, it gets sent
             //to the first floor
-            int floor = Integer.parseInt(floorNumber);
-            chooseFloor.setSelection(floor,true);
+            floorselected = Integer.parseInt(floorNumber);
+            chooseFloor.setSelection(floorselected,true);
             chooseFloor.setSelected(true);
 
             spinner2drop.setVisibility(View.VISIBLE);
@@ -246,7 +246,7 @@ public class floorplan extends AppCompatActivity{
             spinnerArray.add("Choose a room");
             for(int i = 0; i < data.numberofBuildings; ++i) {
                 for(int j = 0; j < data.buildings.get(i).floors.size(); ++j) {
-                    if(buildingselected == (i + 1) && data.buildings.get(i).floors.get(j).level == floor) {
+                    if(buildingselected == (i + 1) && data.buildings.get(i).floors.get(j).level == floorselected) {
                         for(int k = 0; k < data.buildings.get(i).floors.get(j).rooms.size(); ++k) {
                             spinnerArray.add(data.buildings.get(i).floors.get(j).rooms.get(k).roomName);
                         }
@@ -342,12 +342,12 @@ public class floorplan extends AppCompatActivity{
                     display = fpname;
                 }
                 else if(chosenRoomFromSearch == null) {
-                    addtofavorite = fpname + " " + floorNumber;
-                    display = fpname + " Floor " + floorNumber;
+                    addtofavorite = fpname + " " + Integer.toString(floorselected);
+                    display = fpname + " Floor " + Integer.toString(floorselected);
                 }
                 else {
-                    addtofavorite = fpname + " " + floorNumber + " " + rmName;
-                    display = fpname + " Floor " + floorNumber + " " + rmName;
+                    addtofavorite = fpname + " " + Integer.toString(floorselected) + " " + rmName;
+                    display = fpname + " Floor " + Integer.toString(floorselected) + " " + rmName;
                 }
                 for(String room : favRooms) {
                     if (room.matches(addtofavorite)) {
