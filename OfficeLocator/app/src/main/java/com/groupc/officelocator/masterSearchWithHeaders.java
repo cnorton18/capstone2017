@@ -30,6 +30,7 @@ public class masterSearchWithHeaders extends AppCompatActivity {
     private int floorCode;
     public mapdata data;
     public int choiceFloors; //Number of floors in chosen building
+    Bundle dataContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class masterSearchWithHeaders extends AppCompatActivity {
         allSearchResults.setEmptyView(findViewById(R.id.empty));
 
         Intent priorInt = getIntent();
-        final Bundle dataContainer = priorInt.getExtras();
+        dataContainer = priorInt.getExtras();
         data = new mapdata();
         data = dataContainer.getParcelable("parse");
 
@@ -102,26 +103,6 @@ public class masterSearchWithHeaders extends AppCompatActivity {
                 }
 
                 Intent goToFloorPlan = new Intent(masterSearchWithHeaders.this, floorplan.class);
-             /*   //If the user clicks a section header ("Mia Hamm"/"Tiger Woods")
-                if(object.isSection()){
-                    Log.d("helpme", "checkpoint");
-                    floorplan.floorNumber = "0";
-                    floorplan.rmName = "";
-                    //1st floor default
-                    floorplan.imageName = fpname.toLowerCase().replaceAll("\\s","") + "1";
-                    floorplan.chosenRoomFromSearch = "";
-
-                }
-                //If the user clicks a non section header ("Mia Hamm 1" or "Mia Hamm Flyknit")
-                else{
-                    floorplan.buildingselected = floorCode + 1; //Used in floorplan class
-                    floorplan.setRoomfromSearch = 1;
-                    floorplan.floorNumber = floorNumber;
-                    floorplan.imageName =
-                            fpname.toLowerCase().replaceAll("\\s","") + floorNumber;
-                    floorplan.rmName = choice;
-                    floorplan.chosenRoomFromSearch = choice;
-                }*/
 
                 goToFloorPlan.putExtras(dataContainer);
                 floorplan.fpname = fpname;
@@ -147,6 +128,10 @@ public class masterSearchWithHeaders extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {}
         });
+
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation.getMenu().getItem(1).setChecked(true);
     }
 
     //WHERE WE DEFINE THE SEARCH ITEMS THAT WILL POPULATE THE SEARCH RESULT LISTVIEW
@@ -266,6 +251,7 @@ public class masterSearchWithHeaders extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     theintent = new Intent(masterSearchWithHeaders.this, campus.class);
+                    theintent.putExtras(dataContainer);
                     break;
 
                 case R.id.navigation_search:
@@ -273,6 +259,7 @@ public class masterSearchWithHeaders extends AppCompatActivity {
 
                 case R.id.navigation_favorites:
                     theintent = new Intent(masterSearchWithHeaders.this, favoritesList.class);
+                    theintent.putExtras(dataContainer);
                     break;
             }
             startActivity(theintent);
