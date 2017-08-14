@@ -181,22 +181,22 @@
 
     <ImageView
         android:id="@+id/airjordan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_alignStart="@+id/imageView7"
         android:layout_below="@+id/buildinglocator"
         android:layout_marginTop="48dp"
         android:visibility="invisible"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
+        app:srcCompat="@drawable/marker" />
 
     <ImageView
         android:id="@+id/roshe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/floorSelector"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="84dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:visibility="invisible"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
+        app:srcCompat="@drawable/marker"
+        android:layout_below="@+id/airjordan"
+        android:layout_alignEnd="@+id/roomName"
+        android:layout_marginTop="82dp" />
 
 </RelativeLayout>

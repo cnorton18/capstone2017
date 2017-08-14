@@ -36,6 +36,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="5dp"
                 app:srcCompat="@drawable/miahamm1" />
+
         </RelativeLayout>
     </com.groupc.officelocator.ZoomLayout>
 
@@ -180,43 +181,54 @@
         app:itemTextColor="@color/colorSecondary" />
 
     <ImageView
-        android:id="@+id/flyknit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/grind"
-        android:layout_toEndOf="@+id/imageView7"
-        android:visibility="invisible"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
-
-    <ImageView
-        android:id="@+id/grind"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/floorSelector"
-        android:layout_alignEnd="@+id/roomName"
-        android:layout_marginBottom="14dp"
-        android:visibility="invisible"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
-
-    <ImageView
         android:id="@+id/cachana"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_alignStart="@+id/roomName"
         android:layout_below="@+id/airmax"
         android:layout_marginStart="15dp"
         android:layout_marginTop="40dp"
         android:visibility="invisible"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
+        app:srcCompat="@drawable/marker" />
 
     <ImageView
         android:id="@+id/airmax"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_alignTop="@+id/buildinglocator"
         android:layout_marginTop="53dp"
         android:layout_toStartOf="@+id/floorPlanName"
         android:visibility="invisible"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
+        app:srcCompat="@drawable/marker" />
+
+    <ImageView
+        android:id="@+id/flyknit"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/marker"
+        android:layout_alignTop="@+id/grind"
+        android:layout_toEndOf="@+id/grind" />
+
+    <ImageView
+        android:id="@+id/grind"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/cachana"
+        android:layout_marginTop="79dp"
+        android:layout_toStartOf="@+id/imageView7"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/marker" />
+
+    <ImageView
+        android:id="@+id/mercurialvapor"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignEnd="@+id/airmax"
+        android:layout_below="@+id/grind"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="27dp"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/marker" />
 
 </RelativeLayout>

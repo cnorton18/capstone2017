@@ -39,14 +39,14 @@
 
             <ImageView
                 android:id="@+id/lunarcharge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/floorPlanImage"
-                android:layout_alignParentEnd="true"
-                android:layout_marginBottom="70dp"
-                android:layout_marginEnd="154dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginBottom="126dp"
+                android:layout_marginEnd="149dp"
                 android:visibility="invisible"
-                app:srcCompat="@android:drawable/btn_star_big_on" />
+                app:srcCompat="@drawable/marker"
+                android:layout_alignBottom="@+id/floorPlanImage"
+                android:layout_alignParentEnd="true" />
         </RelativeLayout>
     </com.groupc.officelocator.ZoomLayout>
 
@@ -192,12 +192,12 @@
 
     <ImageView
         android:id="@+id/kobemamba"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_alignTop="@+id/buildinglocator"
         android:layout_marginTop="47dp"
         android:layout_toStartOf="@+id/floorPlanName"
         android:visibility="invisible"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
+        app:srcCompat="@drawable/marker" />
 
 </RelativeLayout>

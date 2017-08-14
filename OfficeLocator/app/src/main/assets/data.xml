@@ -2,24 +2,25 @@
 <campus campusName="Nike" numberOfBuildings = "2">
     <building buildingName="Mia Hamm" numberOfFloors="2">
         <floor level="1" src="miahamm1">
-            <room roomName="Flyknit" vert="0" horiz="0"/>
-            <room roomName="Air Max" vert="0" horiz="0"/>
-            <room roomName="Cachana" vert="0" horiz="0"/>
-            <room roomName="Grind" vert="0" horiz="0"/>
+            <room roomName="Flyknit"/>
+            <room roomName="Air Max"/>
+            <room roomName="Cachana"/>
+            <room roomName="Grind"/>
+            <room roomName="Mercurial Vapor"/>
         </floor>
         <floor level="2" src="miahamm2">
-            <room roomName="LunarCharge" vert="0" horiz="0"/>
-            <room roomName="Kobe Mamba" vert="0" horiz="0"/>
+            <room roomName="LunarCharge"/>
+            <room roomName="Kobe Mamba"/>
         </floor>
     </building>
     <building buildingName="Tiger Woods" numberOfFloors="2">
         <floor level="1" src="tigerwoods1">
-            <room roomName="Air Jordan" vert="0" horiz="0"/>
-            <room roomName="Roshe" vert="0" horiz="0"/>
+            <room roomName="Air Jordan"/>
+            <room roomName="Roshe"/>
         </floor>
         <floor level="2" src="tigerwoods2">
-            <room roomName="Pegasus" vert="0" horiz="0"/>
-            <room roomName="VaporMax" vert="0" horiz="0"/>
+            <room roomName="Pegasus"/>
+            <room roomName="VaporMax"/>
         </floor>
     </building>
 </campus>

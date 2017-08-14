@@ -95,8 +95,6 @@ public class MainActivity extends AppCompatActivity {
                             if(name.equals("room")) {
                                 currentRoom = new mapdata.room();
                                 currentRoom.roomName = parser.getAttributeValue(null, "roomName");
-                                currentRoom.vert = Integer.parseInt(parser.getAttributeValue(null, "vert"));
-                                currentRoom.horiz = Integer.parseInt(parser.getAttributeValue(null, "horiz"));
                                 currentFloor.rooms.add(currentRoom);
                             }
                         }
