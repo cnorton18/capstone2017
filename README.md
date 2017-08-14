@@ -1,6 +1,6 @@
 # capstone2017
 Team C: CS Capstone 2017
-For now, view properly formated instructions under with Raw. 
+For now, view properly formated instructions with Raw. 
 
                                       Map Entry Instructions
 I. Adding a Building 
