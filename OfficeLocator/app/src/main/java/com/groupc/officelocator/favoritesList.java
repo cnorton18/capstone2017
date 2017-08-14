@@ -211,7 +211,6 @@ public class favoritesList extends AppCompatActivity {
             }
             return false;
         }
-
     };
 
     private boolean firstTime(){

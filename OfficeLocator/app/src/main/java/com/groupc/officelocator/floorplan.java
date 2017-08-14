@@ -69,6 +69,7 @@ public class floorplan extends AppCompatActivity{
                 if (selection.equals("Choose a room")) {
                     return;
                 }
+                rmName = selection;
 
                 roomName.setVisibility(View.VISIBLE);
                 roomName.setText(selection);
@@ -261,7 +262,6 @@ public class floorplan extends AppCompatActivity{
 
             //If the room was also chosen through the search result chosen, we choose that value to
             //appear in the second spinner for the rooms
-            Log.d("helpme", Integer.toString(setRoomfromSearch));
             if(setRoomfromSearch==1){
                 chooseRoom.setSelected(true);
                 int selection = 0;
@@ -346,8 +346,8 @@ public class floorplan extends AppCompatActivity{
                     display = fpname + " Floor " + floorNumber;
                 }
                 else {
-                    addtofavorite = fpname + " " + floorNumber + " " + chosenRoomFromSearch;
-                    display = fpname + " Floor " + floorNumber + " " + chosenRoomFromSearch;
+                    addtofavorite = fpname + " " + floorNumber + " " + rmName;
+                    display = fpname + " Floor " + floorNumber + " " + rmName;
                 }
                 for(String room : favRooms) {
                     if (room.matches(addtofavorite)) {
