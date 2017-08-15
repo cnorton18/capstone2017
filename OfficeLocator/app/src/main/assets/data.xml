@@ -13,12 +13,12 @@
             <room roomName="Kobe Mamba"/>
         </floor>
     </building>
-    <building buildingName="Tiger Woods" numberOfFloors="2">
-        <floor level="1" src="tigerwoods1">
+    <building buildingName="Tiger Woods Center" numberOfFloors="2">
+        <floor level="1" src="tigerwoodscenter1">
             <room roomName="Air Jordan"/>
             <room roomName="Roshe"/>
         </floor>
-        <floor level="2" src="tigerwoods2">
+        <floor level="2" src="tigerwoodscenter2">
             <room roomName="Pegasus"/>
             <room roomName="VaporMax"/>
         </floor>

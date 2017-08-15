@@ -22,7 +22,7 @@
         <item>LunarCharge</item>
     </string-array>
 
-    <string-array name="tigerWoods1">
+    <string-array name="tigerWoodsCenter1">
         <item>Select</item>
         <item>Bay Hill</item>
         <item>Coghill</item>
@@ -36,7 +36,7 @@
         <item>Wollaston</item>
     </string-array>
 
-    <string-array name="tigerWoods2">
+    <string-array name="tigerWoodsCenter2">
         <item>Select</item>
         <item>Alpine</item>
         <item>Blue Canyon</item>
@@ -52,7 +52,7 @@
         <item>Valderrama</item>
     </string-array>
 
-    <string-array name="tigerWoods3">
+    <string-array name="tigerWoodsCenter3">
         <item>Select</item>
         <item>Air Birkdale</item>
         <item>Elite Feel</item>

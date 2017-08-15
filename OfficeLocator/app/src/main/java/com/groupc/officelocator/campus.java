@@ -18,7 +18,7 @@ public class campus extends AppCompatActivity {
         RelativeLayout relativeLayout;
 
         //Buttons for just 2 buildings
-        public Button miaHamm, tigerWoods, search;
+        public Button miaHamm, tigerWoods;
         Button[] arrayButtons = {miaHamm, tigerWoods};
         int[] buttonNames = {R.id.miahamm, R.id.tigerwoods};
         public mapdata data;

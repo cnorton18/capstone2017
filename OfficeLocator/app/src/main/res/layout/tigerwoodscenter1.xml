@@ -35,7 +35,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="5dp"
-                app:srcCompat="@drawable/tigerwoods2" />
+                app:srcCompat="@drawable/tigerwoodscenter1" />
         </RelativeLayout>
     </com.groupc.officelocator.ZoomLayout>
 
@@ -180,24 +180,23 @@
         app:itemTextColor="@color/colorSecondary" />
 
     <ImageView
-        android:id="@+id/pegasus"
+        android:id="@+id/airjordan"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="50dp"
-        android:visibility="invisible"
-        app:srcCompat="@drawable/marker"
+        android:layout_alignStart="@+id/imageView7"
         android:layout_below="@+id/buildinglocator"
-        android:layout_alignEnd="@+id/roomName"
-        android:layout_marginEnd="10dp" />
+        android:layout_marginTop="48dp"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/marker" />
 
     <ImageView
-        android:id="@+id/vapormax"
+        android:id="@+id/roshe"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:visibility="invisible"
         app:srcCompat="@drawable/marker"
-        android:layout_below="@+id/pegasus"
-        android:layout_toStartOf="@+id/floorPlanName"
-        android:layout_marginTop="79dp" />
+        android:layout_below="@+id/airjordan"
+        android:layout_alignEnd="@+id/roomName"
+        android:layout_marginTop="82dp" />
 
 </RelativeLayout>
