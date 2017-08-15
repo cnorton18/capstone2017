@@ -13,7 +13,11 @@ public class campus extends mapstorage {
         RelativeLayout relativeLayout;
 
         //Buttons for just 2 buildings
+
+
         public Button miaHamm, tigerWoods, search, globe;
+
+
         private static int globesetting = 0;
         ImageView mapimage, mapicon;
 
@@ -68,7 +72,31 @@ public class campus extends mapstorage {
 
 
 
+
+
+
             mapimage = (ImageView) findViewById(R.id.themap);
+            mapicon = (ImageView) findViewById(R.id.globeicon);
+
+
+            //set up satellite view when going back to the campus map from another screen
+            if(globesetting == 1){
+                //change to satellite
+                mapimage.setImageResource(R.drawable.campusaboveorange);
+                mapicon.setImageResource(R.drawable.globe2);
+                globesetting = 1;
+
+
+                //satellite view
+            }else{
+                //change to normal
+                mapimage.setImageResource(R.drawable.campusorange);
+                mapicon.setImageResource(R.drawable.globe);
+                globesetting = 0;
+
+            }
+
+
 
             //satellite view
             globe = (Button) findViewById(R.id.maptoggle1);
@@ -79,6 +107,7 @@ public class campus extends mapstorage {
                                               if(globesetting == 0){
                                                   //change to satellite
                                                   mapimage.setImageResource(R.drawable.campusaboveorange);
+                                                  mapicon.setImageResource(R.drawable.globe2);
                                                   globesetting = 1;
 
 
@@ -86,6 +115,7 @@ public class campus extends mapstorage {
                                               }else{
                                                   //change to normal
                                                   mapimage.setImageResource(R.drawable.campusorange);
+                                                  mapicon.setImageResource(R.drawable.globe);
                                                   globesetting = 0;
 
                                               }
