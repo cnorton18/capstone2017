@@ -312,7 +312,12 @@ public class floorplan extends AppCompatActivity{
         favorite.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                favoriteDialog.show();
+                if(floorNumber.equals("Choose a floor")) {
+                    Toast.makeText(floorplan.this, "Select a floor", Toast.LENGTH_SHORT).show();
+                    favoriteDialog.dismiss();
+                }
+                else
+                    favoriteDialog.show();
             }
         });
 
