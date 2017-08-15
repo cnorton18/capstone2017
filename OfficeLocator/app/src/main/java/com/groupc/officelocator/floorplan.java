@@ -113,6 +113,9 @@ public class floorplan extends AppCompatActivity{
                 //set floor choice
                 floorNumber = ((TextView) view).getText().toString();
 
+                //Clearing room variable
+                rmName = "";
+
                 if (floorNumber.equals("Choose a floor"))
                     return;
 
@@ -341,7 +344,7 @@ public class floorplan extends AppCompatActivity{
                     addtofavorite = fpname;
                     display = fpname;
                 }
-                else if(chosenRoomFromSearch == null) {
+                else if(rmName.equals("")) {
                     addtofavorite = fpname + " " + Integer.toString(floorselected);
                     display = fpname + " Floor " + Integer.toString(floorselected);
                 }
