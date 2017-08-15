@@ -37,8 +37,7 @@
                 android:layout_width="380dip"
                 android:layout_height="380dip"
                 app:srcCompat="@drawable/miahamm1"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
                 android:layout_alignParentStart="true" />
 
             <ImageView
@@ -75,21 +74,21 @@
                 android:id="@+id/mercurialvapor"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginTop="280dp"
-                android:layout_marginLeft="70dp"
-                android:tint="@color/markerColor"
                 android:visibility="invisible"
-                app:srcCompat="@drawable/locate" />
+                app:srcCompat="@drawable/locate"
+                android:tint="@color/markerColor"
+                android:layout_marginTop="280dp"
+                android:layout_marginLeft="70dp" />
 
             <ImageView
                 android:id="@+id/grind"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginLeft="200dp"
-                android:layout_marginTop="260dp"
-                android:tint="@color/markerColor"
                 android:visibility="invisible"
-                app:srcCompat="@drawable/locate" />
+                app:srcCompat="@drawable/locate"
+                android:tint="@color/markerColor"
+                android:layout_marginLeft="200dp"
+                android:layout_marginTop="260dp" />
 
 
         </RelativeLayout>
@@ -173,6 +172,16 @@
         android:layout_marginTop="12dp"
         app:srcCompat="@drawable/drop"
         android:visibility="invisible"/>
+
+    <!-- Button to tell a user to select a floor if they click on Choose a Room when the floor isn't set -->
+    <Button
+        android:id="@+id/cantselectroom"
+        android:layout_width="210dp"
+        android:layout_height="40dp"
+        android:layout_alignLeft="@id/roomSelector"
+        android:layout_alignTop="@id/roomSelector"
+        android:background="@android:color/transparent"
+        android:clickable="false"/>
 
     <!-- Building + Floor header -->
     <TextView

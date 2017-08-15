@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingTop="60dp"
-        android:paddingBottom="60dp">
+        android:paddingBottom="160dp">
 
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
@@ -34,19 +34,34 @@
                 android:layout_height="380dip"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="5dp"
-                app:srcCompat="@drawable/miahamm2" />
+                app:srcCompat="@drawable/miahamm2"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
 
             <ImageView
                 android:id="@+id/lunarcharge"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginBottom="126dp"
-                android:layout_marginEnd="149dp"
                 android:visibility="invisible"
-                app:srcCompat="@drawable/marker"
-                android:layout_alignBottom="@+id/floorPlanImage"
-                android:layout_alignParentEnd="true" />
+                app:srcCompat="@drawable/locate"
+                android:tint="@color/markerColor"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@+id/kobemamba"
+                android:layout_marginStart="81dp"
+                android:layout_marginBottom="61dp" />
+
+            <ImageView
+                android:id="@+id/kobemamba"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/locate"
+                android:tint="@color/markerColor"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="88dp"
+                android:layout_marginTop="27dp" />
+
         </RelativeLayout>
     </com.groupc.officelocator.ZoomLayout>
 
@@ -189,15 +204,5 @@
         android:layout_alignParentBottom = "true"
         app:itemIconTint="@color/colorSecondary"
         app:itemTextColor="@color/colorSecondary" />
-
-    <ImageView
-        android:id="@+id/kobemamba"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_alignTop="@+id/buildinglocator"
-        android:layout_marginTop="47dp"
-        android:layout_toStartOf="@+id/floorPlanName"
-        android:visibility="invisible"
-        app:srcCompat="@drawable/marker" />
 
 </RelativeLayout>

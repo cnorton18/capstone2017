@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -37,7 +38,6 @@ public class floorplan extends AppCompatActivity{
     public static int floorselected = 0; //Determines if a floor number was chosen in Search or through Spinner
     public static int fromSearch = 0; //Determines if the previous page was Search before coming to the floorplan page
 
-    Button home, search;
     ImageView buildingLocation, spinner2drop, selectedRoom;
     private Spinner chooseFloor, chooseRoom;
     ImageButton favorite, maplocationbut;
@@ -68,6 +68,8 @@ public class floorplan extends AppCompatActivity{
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selection = ((TextView) view).getText().toString();
                 if (selection.equals("Choose a room")) {
+                    rmName ="";
+                    roomName.setVisibility(View.INVISIBLE);
                     return;
                 }
                 rmName = selection;
@@ -111,17 +113,26 @@ public class floorplan extends AppCompatActivity{
         chooseFloor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                roomName.setVisibility(View.INVISIBLE);
+
                 //set floor choice
                 floorNumber = ((TextView) view).getText().toString();
 
                 //Clearing room variable
                 rmName = "";
 
-                if (floorNumber.equals("Choose a floor"))
+                if (floorNumber.equals("Choose a floor")) {
+                    //Disable Room spinner
+                    chooseRoom.setSelection(0,true);
+                    chooseRoom.setEnabled(false);
+                    chooseRoom.setClickable(false);
                     return;
+                }
+
+                chooseRoom.setEnabled(true);
+                chooseRoom.setClickable(true);
 
                 floorselected = Integer.parseInt(floorNumber);
-                roomName.setVisibility(View.INVISIBLE);
 
                 //Flag reset for setup function
                 fromSearch = 0;
@@ -168,6 +179,7 @@ public class floorplan extends AppCompatActivity{
 
     private void setup() {
         setContentView(getResources().getIdentifier(imageName, "layout", this.getPackageName()));
+        rmName = ""; 
 
         ZoomLayout myZoomView = new ZoomLayout(floorplan.this);
         relativeLayout = (RelativeLayout) findViewById(R.id.zoom);
