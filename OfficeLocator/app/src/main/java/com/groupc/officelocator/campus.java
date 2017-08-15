@@ -31,8 +31,8 @@ public class campus extends AppCompatActivity {
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_campus);
-            ZoomLayout myZoomView = new ZoomLayout(campus.this);
 
+            ZoomLayout myZoomView = new ZoomLayout(campus.this);
             relativeLayout = (RelativeLayout) findViewById(R.id.zoom);
             relativeLayout.addView(myZoomView);
 
@@ -58,6 +58,7 @@ public class campus extends AppCompatActivity {
 
                         goToFloorPlan.putExtras(dataContainer);
                         floorplan.fromSearch = 1;
+                        floorplan.fromCampus = 1;
                         floorplan.floorNumber = "0";
                         floorplan.fpname = data.buildings.get(j).buildingName;
                         floorplan.imageName = data.buildings.get(j).buildingName.replaceAll("\\s","").toLowerCase() + 1;

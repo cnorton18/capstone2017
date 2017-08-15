@@ -37,6 +37,7 @@ public class floorplan extends AppCompatActivity{
     public static int setRoomfromSearch = 0; //Determines if a room was chosen in Search
     public static int floorselected = 0; //Determines if a floor number was chosen in Search or through Spinner
     public static int fromSearch = 0; //Determines if the previous page was Search before coming to the floorplan page
+    public static int fromCampus = 0; //Determines if the previous page was the campus page
 
     ImageView buildingLocation, spinner2drop, selectedRoom;
     private Spinner chooseFloor, chooseRoom;
@@ -179,7 +180,9 @@ public class floorplan extends AppCompatActivity{
 
     private void setup() {
         setContentView(getResources().getIdentifier(imageName, "layout", this.getPackageName()));
-        rmName = ""; 
+        if(fromCampus == 1)
+            rmName = "";
+        fromCampus = 0;
 
         ZoomLayout myZoomView = new ZoomLayout(floorplan.this);
         relativeLayout = (RelativeLayout) findViewById(R.id.zoom);
@@ -296,6 +299,7 @@ public class floorplan extends AppCompatActivity{
                 //Flag reset
                 setRoomfromSearch = 0;
             }
+            fromSearch = 0;
             select();
         }
         //Pop up dialog for building location
