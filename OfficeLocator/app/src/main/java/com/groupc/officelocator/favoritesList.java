@@ -94,7 +94,7 @@ public class favoritesList extends AppCompatActivity {
                 choice = part1.replace(" Floor","");
 
                 for(int i = 0; i < data.numberofBuildings; ++i) {
-                    //If the user clicks a section header ("Mia Hamm"/"Tiger Woods")
+                    //If the user clicks a floor
                     //If string reads ...Floor (number) [this will not work for buildings
                     //with over 100 floors, but that shouldn't be an issue for now. If we
                     //sell the app to a New York City developer, change this line!]
@@ -103,11 +103,12 @@ public class favoritesList extends AppCompatActivity {
                         fpname = data.buildings.get(i).buildingName;
                         floorCode = i;
                         choiceFloors = data.buildings.get(i).numberofFloors;
-                        floorplan.floorNumber = "0";
+                        floorplan.floorNumber = part2;
                         floorplan.rmName = "";
-                        //1st floor default
-                        floorplan.imageName = fpname.toLowerCase().replaceAll("\\s","") + "1";
+                        //Sending to appropriate floor
+                        floorplan.imageName = fpname.toLowerCase().replaceAll("\\s","") + part2;
                         floorplan.chosenRoomFromSearch = "";
+                        floorplan.fromFavsFloor = 1;
                         break;
                     }
                     //If a room is selected

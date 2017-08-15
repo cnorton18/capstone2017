@@ -38,6 +38,7 @@ public class floorplan extends AppCompatActivity{
     public static int floorselected = 0; //Determines if a floor number was chosen in Search or through Spinner
     public static int fromSearch = 0; //Determines if the previous page was Search before coming to the floorplan page
     public static int fromCampus = 0; //Determines if the previous page was the campus page
+    public static int fromFavsFloor = 0; //Determines if previous page was Favorites floor selection
 
     ImageView buildingLocation, spinner2drop, selectedRoom;
     private Spinner chooseFloor, chooseRoom;
@@ -215,7 +216,7 @@ public class floorplan extends AppCompatActivity{
         floorplanname = (TextView) findViewById(R.id.floorPlanName);
         floorplanname.setTypeface(myCustomfont);
 
-        if(Integer.parseInt(floorNumber) > 0 && fromSearch == 1) {
+        if(Integer.parseInt(floorNumber) > 0 && fromSearch == 1 && fromFavsFloor == 0) {
             String tempName = rmName.toLowerCase().replaceAll("\\s","");
             int roomID =
                     getResources().getIdentifier(tempName,"id",getPackageName());
@@ -296,10 +297,11 @@ public class floorplan extends AppCompatActivity{
                 }
                 //+1 to skip past 'choose a room'
                 chooseRoom.setSelection(selection+1,true);
-                //Flag reset
+                //Flag resets
                 setRoomfromSearch = 0;
             }
             fromSearch = 0;
+            fromFavsFloor = 0;
             select();
         }
         //Pop up dialog for building location
