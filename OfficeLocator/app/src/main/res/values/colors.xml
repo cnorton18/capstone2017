@@ -8,5 +8,6 @@
     <color name="darkGray">#808080</color>
     <color name="veryDarkGray">#303030</color>
     <color name="iconColor">#FFFFFF</color>
+    <color name="markerColor">#FF6600</color>
 </resources>
 

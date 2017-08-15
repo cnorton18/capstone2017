@@ -2,6 +2,7 @@ package com.groupc.officelocator;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -39,6 +40,8 @@ public class masterSearchWithHeaders extends AppCompatActivity {
         floorplan.fromSearch = 1;
 
         searchBar = (EditText) findViewById(R.id.searchBar);
+        Typeface myCustomfont = Typeface.createFromAsset(getAssets(), "fonts/newsgothiccondensedbold.ttf");
+        searchBar.setTypeface(myCustomfont);
         allSearchResults = (ListView) findViewById(R.id.searchList);
         allSearchResults.setEmptyView(findViewById(R.id.empty));
 

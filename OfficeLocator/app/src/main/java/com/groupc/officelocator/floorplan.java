@@ -13,6 +13,7 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -66,7 +67,7 @@ public class floorplan extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selection = ((TextView) view).getText().toString();
-                if (selection.equals("Choose a room")) {
+                if (selection.equals("Select")) {
                     return;
                 }
                 rmName = selection;
@@ -116,7 +117,7 @@ public class floorplan extends AppCompatActivity{
                 //Clearing room variable
                 rmName = "";
 
-                if (floorNumber.equals("Choose a floor"))
+                if (floorNumber.equals("Select"))
                     return;
 
                 floorselected = Integer.parseInt(floorNumber);
@@ -138,7 +139,7 @@ public class floorplan extends AppCompatActivity{
                 roomspinnerprompt.setVisibility(View.VISIBLE);
 
                 List<String> spinnerArray = new ArrayList<String>();
-                spinnerArray.add("Choose a room");
+                spinnerArray.add("Select");
                 for(int j = 0; j < data.numberofBuildings; ++j) {
                     for(int k = 0; k < data.buildings.get(j).floors.size(); ++k) {
                         if(buildingselected == (j + 1) && data.buildings.get(j).floors.get(k).level == floorselected) {
@@ -223,11 +224,11 @@ public class floorplan extends AppCompatActivity{
 
         //First spinner - Choosing which floor
         List<String> list = new ArrayList<String>();
-        list.add("Choose a floor");
+        list.add("Select");
         for (int i = 1; i <= numberOfFloors; i++){
             list.add(String.valueOf(i));
         }
-        ArrayAdapter<String> numberAdapter = new ArrayAdapter<String>(this, R.layout.spinner_layout, list);
+        ArrayAdapter<String> numberAdapter = new ArrayAdapter<String>(this, R.layout.spinner_dropdown_layout, list);
         chooseFloor.setAdapter(numberAdapter);
         chooseFloor.setSelected(false);
         chooseFloor.setSelection(0,true);
@@ -246,7 +247,7 @@ public class floorplan extends AppCompatActivity{
             roomspinnerprompt.setVisibility(View.VISIBLE);
 
             List<String> spinnerArray = new ArrayList<String>();
-            spinnerArray.add("Choose a room");
+            spinnerArray.add("Select");
             for(int i = 0; i < data.numberofBuildings; ++i) {
                 for(int j = 0; j < data.buildings.get(i).floors.size(); ++j) {
                     if(buildingselected == (i + 1) && data.buildings.get(i).floors.get(j).level == floorselected) {
@@ -312,7 +313,7 @@ public class floorplan extends AppCompatActivity{
         favorite.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                if(floorNumber.equals("Choose a floor")) {
+                if(floorNumber.equals("Select")) {
                     Toast.makeText(floorplan.this, "Select a floor", Toast.LENGTH_SHORT).show();
                     favoriteDialog.dismiss();
                 }
