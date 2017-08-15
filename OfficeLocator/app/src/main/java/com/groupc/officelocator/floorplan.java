@@ -67,7 +67,7 @@ public class floorplan extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selection = ((TextView) view).getText().toString();
-                if (selection.equals("Select")) {
+                if (selection.equals("Choose a room")) {
                     return;
                 }
                 rmName = selection;
@@ -117,7 +117,7 @@ public class floorplan extends AppCompatActivity{
                 //Clearing room variable
                 rmName = "";
 
-                if (floorNumber.equals("Select"))
+                if (floorNumber.equals("Choose a floor"))
                     return;
 
                 floorselected = Integer.parseInt(floorNumber);
@@ -139,7 +139,7 @@ public class floorplan extends AppCompatActivity{
                 roomspinnerprompt.setVisibility(View.VISIBLE);
 
                 List<String> spinnerArray = new ArrayList<String>();
-                spinnerArray.add("Select");
+                spinnerArray.add("Choose a room");
                 for(int j = 0; j < data.numberofBuildings; ++j) {
                     for(int k = 0; k < data.buildings.get(j).floors.size(); ++k) {
                         if(buildingselected == (j + 1) && data.buildings.get(j).floors.get(k).level == floorselected) {
@@ -224,7 +224,7 @@ public class floorplan extends AppCompatActivity{
 
         //First spinner - Choosing which floor
         List<String> list = new ArrayList<String>();
-        list.add("Select");
+        list.add("Choose a floor");
         for (int i = 1; i <= numberOfFloors; i++){
             list.add(String.valueOf(i));
         }
@@ -247,7 +247,7 @@ public class floorplan extends AppCompatActivity{
             roomspinnerprompt.setVisibility(View.VISIBLE);
 
             List<String> spinnerArray = new ArrayList<String>();
-            spinnerArray.add("Select");
+            spinnerArray.add("Choose a room");
             for(int i = 0; i < data.numberofBuildings; ++i) {
                 for(int j = 0; j < data.buildings.get(i).floors.size(); ++j) {
                     if(buildingselected == (i + 1) && data.buildings.get(i).floors.get(j).level == floorselected) {
@@ -313,7 +313,7 @@ public class floorplan extends AppCompatActivity{
         favorite.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                if(floorNumber.equals("Select")) {
+                if(floorNumber.equals("Choose a floor")) {
                     Toast.makeText(floorplan.this, "Select a floor", Toast.LENGTH_SHORT).show();
                     favoriteDialog.dismiss();
                 }
