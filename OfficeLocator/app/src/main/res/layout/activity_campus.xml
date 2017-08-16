@@ -39,18 +39,6 @@
         android:textSize="25sp"
         android:textStyle="bold" />
 
-    <!-- "Select a Building or Search Prompt -->
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/selecttxt"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textSize="10sp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="80dp"
-        android:layout_centerHorizontal="true" />
-
     <!-- Zoomable aspect of the page: the campus map + building buttons -->
     <com.groupc.officelocator.ZoomLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -237,5 +225,16 @@
         android:layout_alignParentEnd="true"
         android:tint="@color/iconColor"/>
 
-
+    <!-- "Select a Building or Search Prompt -->
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/selecttxt"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="10sp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="80dp"
+        android:layout_centerHorizontal="true" />
+    
 </RelativeLayout>
