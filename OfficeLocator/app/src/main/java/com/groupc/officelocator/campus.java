@@ -18,13 +18,13 @@ public class campus extends AppCompatActivity {
         RelativeLayout relativeLayout;
 
         //Buttons for just 2 buildings
-        public Button miaHamm, tigerWoods;
+        public Button miaHamm, tigerWoods, globe;
         Button[] arrayButtons = {miaHamm, tigerWoods};
         int[] buttonNames = {R.id.miahamm, R.id.tigerwoods};
         public mapdata data;
         public ImageButton satelliteview;
         private static int globesetting = 0;
-        ImageView mapimage;
+        ImageView mapimage, mapicon;
         Bundle dataContainer;
 
         @Override
@@ -71,27 +71,71 @@ public class campus extends AppCompatActivity {
                 });
             }
 
-            //Satellite View
-            mapimage = (ImageView)findViewById(R.id.campusmap);
-            satelliteview = (ImageButton)findViewById(R.id.satelliteViewButton);
-            satelliteview.setOnClickListener(new View.OnClickListener(){
-                public void onClick(View v){
-                    //Normal view -> Satellite
-                    if(globesetting == 0){
-                        mapimage.setImageResource(R.drawable.satellitenolabels);
-                        globesetting = 1;
-                    }
-                    //Satellite view -> Normal
-                    else{
-                        mapimage.setImageResource(R.drawable.campus);
-                        globesetting = 0;
-                    }
-                }
-            });
 
             BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
             navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
             navigation.getMenu().getItem(0).setChecked(true);
+
+
+
+
+
+
+            mapimage = (ImageView) findViewById(R.id.campusmap);
+            mapicon = (ImageView) findViewById(R.id.globeimage);
+
+
+            //set up satellite view when going back to the campus map from another screen
+            if(globesetting == 1){
+                //change to satellite
+                mapimage.setImageResource(R.drawable.campusaboveorange);
+                mapicon.setImageResource(R.drawable.globe2);
+                globesetting = 1;
+
+
+                //satellite view
+            }else{
+                //change to normal
+                mapimage.setImageResource(R.drawable.campus);
+                mapicon.setImageResource(R.drawable.globe);
+                globesetting = 0;
+
+            }
+
+
+
+            //satellite view
+            globe = (Button) findViewById(R.id.globebutton);
+            globe.setOnClickListener(new View.OnClickListener() {
+
+                public void onClick(View v) {
+                    //normal view
+                    if(globesetting == 0){
+                        //change to satellite
+                        mapimage.setImageResource(R.drawable.campusaboveorange);
+                        mapicon.setImageResource(R.drawable.globe2);
+                        globesetting = 1;
+
+
+                        //satellite view
+                    }else{
+                        //change to normal
+                        mapimage.setImageResource(R.drawable.campus);
+                        mapicon.setImageResource(R.drawable.globe);
+                        globesetting = 0;
+
+                    }
+
+
+                }
+
+            });
+
+
+
+
+
+
         }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
