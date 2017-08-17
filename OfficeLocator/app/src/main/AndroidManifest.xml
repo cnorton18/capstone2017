@@ -4,8 +4,10 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@drawable/appicon"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="com.groupc.officelocator.MainActivity"
@@ -19,15 +21,14 @@
         <activity android:name="com.groupc.officelocator.campus"
             android:screenOrientation="portrait"/>
         <activity android:name="com.groupc.officelocator.floorplan"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.groupc.officelocator.directions"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.groupc.officelocator.splash"
-            android:screenOrientation="portrait"/>
-            android:windowSoftInputMode="stateHidden"/>
+            android:screenOrientation="portrait"/><![CDATA[
+        android:windowSoftInputMode="stateHidden"/>
+        ]]>
         <activity android:name="com.groupc.officelocator.masterSearchWithHeaders"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity android:name="com.groupc.officelocator.favoritesList"
+            android:screenOrientation="portrait" />
 
     </application>
 

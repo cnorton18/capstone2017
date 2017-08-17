@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="400dip"
-    android:background="@drawable/plaingray">
+    android:background="@color/veryDarkGray">
 
     <ImageView
         android:id="@+id/buildingLocation"
@@ -19,12 +19,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:height="30dp"
-        android:background="#d3d3d3"
+        android:background="@color/lightGray"
         android:clickable="true"
         android:gravity="center_vertical|center_horizontal"
         android:padding="5dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#000000"
+        android:textColor="@color/colorAccent"
         android:textSize="15sp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -33,18 +33,16 @@
         android:layout_alignParentEnd="true" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:height="30dp"
         android:clickable="true"
         android:padding="5dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:gravity="center_vertical|center_horizontal"
-        android:text="X"
-        android:textSize="15sp"
-        android:textColor="#000000"
-        android:background="#d3d3d3"
-        android:id="@+id/cancelTxt"
+        android:background="@drawable/cancel"
+        android:tint="@color/iconColor"
+        android:id="@+id/cancel"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
