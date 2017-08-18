@@ -51,8 +51,7 @@ public class floorplan extends AppCompatActivity{
     TextView cancel, floorplanname, roomName, favoriteyes, favoriteno, favoritecancel, favoritesecondcancel, favoritesubmit, roomspinnerprompt;
     public static String addtofavorite, display, savetofavorites;
     public static String fpname, imageName, floorNumber, chosenRoomFromSearch, rmName = "";
-    public static int spinnerNumber, numberOfFloors;
-    public static int modifiedfavorite;
+    public static int spinnerNumber, numberOfFloors, modifiedfavorite;
     EditText favoriteinput;
 
     public mapdata data;
@@ -366,7 +365,8 @@ public class floorplan extends AppCompatActivity{
         final SharedPreferences favoritesList = getSharedPreferences("MyFavorites", Context.MODE_PRIVATE);
         final SharedPreferences favoritesValues = getSharedPreferences("UserEnteredValues",Context.MODE_PRIVATE);
         final Set<String> favRooms = new HashSet<>(favoritesList.getStringSet("favRooms", new HashSet<String>()));
-        
+        final Set<String> favUserKeys = new HashSet<>(favoritesList.getStringSet("favUserKeys", new HashSet<String>()));
+
         favoriteyes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -388,6 +388,16 @@ public class floorplan extends AppCompatActivity{
                         return;
                     }
                 }
+
+                for (String key: favUserKeys){
+                    String value = favoritesValues.getString(key, "default value");
+                    if(value.matches(addtofavorite)){
+                        Toast.makeText(floorplan.this, addtofavorite + " was already added to favorites as " + key, Toast.LENGTH_LONG).show();
+                        favoriteDialog.dismiss();
+                        return;
+                    }
+                }
+
                 favoriteDialog.dismiss();
                 favoriteSecondDialog.show();
 
@@ -408,8 +418,6 @@ public class floorplan extends AppCompatActivity{
                     public void afterTextChanged(Editable s) {
                     }
                 });
-
-                final Set<String> favUserKeys = new HashSet<>(favoritesList.getStringSet("favUserKeys", new HashSet<String>()));
 
                 favoritesubmit.setOnClickListener(new View.OnClickListener() {
                     @Override
