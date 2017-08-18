@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FF6600</color> <!-- Nike Orange color -->
-    <color name="colorPrimaryDark">#db5700</color>
+    <color name="colorPrimary">#ccff00</color> <!-- Nike Orange color -->
+    <color name="colorPrimaryDark">#A3CC00</color>
     <color name="colorSecondary">#FFFFFF</color>
     <color name="colorAccent">#000000</color>
     <color name="lightGray">#d3d3d3</color>
     <color name="darkGray">#808080</color>
     <color name="veryDarkGray">#303030</color>
     <color name="iconColor">#FFFFFF</color>
-    <color name="markerColor">#FF6600</color>
+    <color name="markerColor">#A3CC00</color>
+    <color name="pageTitles">#303030</color>
+    <color name="spinnerText">#303030</color>
+    <color name="buttonText">#303030</color>
 </resources>
 

@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Swoosh Room Finder</string>
-    <string name="campus_name">World Headquarters</string>
+    <string name="campus_name">Nike World Headquarters</string>
     <string name="selecttxt">Select A Building Or Search</string>
 
     //List of buildings

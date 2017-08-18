@@ -366,7 +366,7 @@ public class floorplan extends AppCompatActivity{
         final SharedPreferences favoritesList = getSharedPreferences("MyFavorites", Context.MODE_PRIVATE);
         final SharedPreferences favoritesValues = getSharedPreferences("UserEnteredValues",Context.MODE_PRIVATE);
         final Set<String> favRooms = new HashSet<>(favoritesList.getStringSet("favRooms", new HashSet<String>()));
-
+        
         favoriteyes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

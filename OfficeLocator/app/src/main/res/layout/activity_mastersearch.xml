@@ -36,17 +36,18 @@
     <!-- Search bar where the user enters in the search term -->
     <EditText
         android:id="@+id/searchBar"
-        android:textColorHint="@color/colorSecondary"
+        android:textColorHint="@color/pageTitles"
         android:hint="Search..."
-        android:textColor="@color/colorSecondary"
+        android:textColor="@color/pageTitles"
         android:paddingTop="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="30dp"
+        android:layout_marginTop="7dp"
         android:backgroundTint="@android:color/transparent"
         android:drawableBottom="@android:color/transparent"
         android:textCursorDrawable="@null"
-        android:paddingBottom="20dp"/>
+        android:paddingBottom="10dp"/>
 
     <!-- List of all search values -->
     <ListView

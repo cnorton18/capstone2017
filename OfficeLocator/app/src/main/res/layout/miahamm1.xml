@@ -21,7 +21,7 @@
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:paddingTop="60dp"
+        android:paddingTop="62dp"
         android:paddingBottom="160dp">
 
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -191,7 +191,9 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/pageTitles"/>
 
     <!-- Room name header -->
     <TextView
@@ -200,10 +202,12 @@
         android:layout_height="wrap_content"
         android:text="Room Name"
         android:textStyle="bold"
-        android:textSize="15sp"
-        android:layout_below="@+id/floorPlanName"
+        android:textSize="12sp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="42dp"
         android:layout_centerHorizontal="true"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        android:textColor="@color/pageTitles"/>
 
     <!-- Building locator button -->
     <ImageButton
