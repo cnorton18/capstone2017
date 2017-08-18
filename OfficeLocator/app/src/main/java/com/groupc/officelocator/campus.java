@@ -74,16 +74,33 @@ public class campus extends AppCompatActivity {
             //Satellite View
             mapimage = (ImageView)findViewById(R.id.campusmap);
             satelliteview = (ImageButton)findViewById(R.id.satelliteViewButton);
+
+            //Set to satellite view when going back to the campus map from another page
+            if(globesetting == 1){
+                //Set to satellite view
+                mapimage.setImageResource(R.drawable.campusaboveorange);
+                satelliteview.setImageResource(R.drawable.globe2);
+                globesetting = 1;
+
+                //Satellite view -> Normal
+            }else{
+                mapimage.setImageResource(R.drawable.campus);
+                satelliteview.setImageResource(R.drawable.globe);
+                globesetting = 0;
+
+            }
             satelliteview.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View v){
-                    //Normal view -> Satellite
+                    //Normal View -> satellite view
                     if(globesetting == 0){
                         mapimage.setImageResource(R.drawable.satellitenolabels);
+                        satelliteview.setImageResource(R.drawable.globe2);
                         globesetting = 1;
                     }
-                    //Satellite view -> Normal
+                    //Satellite View -> Normal
                     else{
                         mapimage.setImageResource(R.drawable.campus);
+                        satelliteview.setImageResource(R.drawable.globe);
                         globesetting = 0;
                     }
                 }

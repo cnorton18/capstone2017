@@ -93,7 +93,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginLeft="12dp"
         android:layout_marginStart="12dp"
-        android:visibility="invisible"
+        android:visibility="visible"
         android:text="Room:" />
 
     <!-- Room spinner -->
@@ -106,7 +106,7 @@
         android:layout_marginBottom="70dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:visibility="invisible" />
+        android:visibility="visible" />
 
     <!-- Room spinner drop down arrow -->
     <ImageView
@@ -117,7 +117,7 @@
         android:layout_alignTop="@+id/roomSelector"
         android:layout_marginTop="12dp"
         app:srcCompat="@drawable/drop"
-        android:visibility="invisible"/>
+        android:visibility="visible"/>
 
     <!-- Building + Floor header -->
     <TextView
