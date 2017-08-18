@@ -29,5 +29,11 @@ There are two options to run this application on your android device:
 For copyright information for this project see the COPYRIGHT file. 
 
 ## Contact
+Victor Diego - vdiego@pdx.edu
 Nhi Vu - vunhi@pdx.edu
+Zachary Pfister-Shanders - zrp@pdx.edu
+Derek Keeton - dkeeton@pdx.edu
+Tyler Wood - tywood@pdx.edu
+Chris Norton - cnorton@pdx.edu 
+
 
