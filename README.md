@@ -1,48 +1,31 @@
-# capstone2017
-Team C: CS Capstone 2017
-For now, view properly formated instructions with Raw. 
+# Swoosh Room Finder
+Copyright © 2017 Victor Diego, Nhi Vu, Zachary, Derek Keeton, Tyler Wood, Chris Norton 
 
-                                      Map Entry Instructions
-I. Adding a Building 
+## Description
 
-II. Adding a Floor to an Existing Building
-	1. Navigate to ...\OfficeLocator\app\src\main\assets\data.xml
-	2. Locate desired building; floors are a child element of a building, and should be placed 
-	   immediately under the opening tag for the appropriate building, or under the closing 
-	   tag of prior floor of that building.  
-	3. The open tag for a floor is <floor level = "#" src="filename">
-		i. Attribute floor level requires the floor number, in double quotes.
-		ii. Atribute src requires the filename for the floor layout, in double quotes.
-			a. Expected style for floor names is the name of the building in all lower case, 
-			   followed by the floor number. There should be no spaces. 
-		iii. Ex. <floor level = "1" src = "floorname1">
-	4. The closing tag for a floor is <\floor>
-	5. Navigate to ...\OfficeLocator\app\src\main\res\layout
-	6. Create a copy of the file activity_floorplan.xml in the directory; name
-           the new file so as to match the filename from step 3ii, adding an .xml extension. 
-		i. Ex. floorname1.xml 
-	7. Open the created file, and navigate to design view. 
-	8. Select the floorPlanimage (ID of the image will be floorPlanImage, viewable in Properties). 
-	9. In Properties, edit srcCompat view to read: drawable/imagename
-		i. imagename should match that entered in 3iii. Ex. floorname1
-	10. Navigate to ...\OfficeLocator\app\src\main\res\drawable
-	11. Add the image file for the floor, matching the naming convention of 3iii. 
-	 
-III. Adding a Room to an Existing Floor  
-	1. Navigate to ...\OfficeLocator\app\src\main\assets\data.xml
-	2. Locate desired building and floor; rooms are a child element of a floor. 
-	3. The tag for a room is <room roomName="Room Name"/>
-		i. Attribute room name should be written as one wishes to display, including 
-		   following normal capitalization and spacing conventions, in double quotes. 
-		ii. Ex. <room roomName="Awesome Room/>
-	4. Navigate to ...\OfficeLocator\app\src\main\res\layout
-	5. Locate the desired floor layout .xml file in which your room is to be placed. 
-	6. Open the file and navigate to design view. 
-	7. Use the Palette to drag and drop an ImageView onto the location of the room; this 
-	   image will appear as a marker in the application when the room is selected.  
-	8. When given the option, select the desired marker image from 
-           ...\OfficeLocator\app\src\main\res\drawable
-        9. In Properties, edit the ID field of the ImageView and add the name of the room, 
-           all in lower case, with no spaces. 
-        	i. Ex. awesomeroom
-	10. In Properties, set visiblity of the ImageView to invisible. 
+The Swoosh Room Finder is an android application that helps users navigate their way through the large Nike Headquarters campus in Beaverton, Oregon, specifically by helping the user to locate a specific room in the campus. 
+
+There are 3 key features in this mobile app: 1) an interactive map, 2) a search function, and 3) a favorites page. The user can navigate through the campus and find information for a building through the interactive campus map, they can search for a room through the search function, and they can save locations to a Favorites page for future use. 
+
+Currently the only two buildings that a user can click on are Mia Hamm and Tiger Woods Center. The floor plans used in this application are mock floor plans, not actual Nike floor plans. 
+
+
+## [How to use the Application]
+
+
+## Build
+The Minimum API Level for the Swoosh Room Finder application is 22. The mobile device or emulator running the application must have an API greater than or equal to 22. This application was designed specifically for a device with a resolution of 1080 x 1920. Placement of certain markers and buttons may be slightly off on screens of different resolutions. 
+
+There are two options to run this application on your android device: 
+
+1. Download the [apk] - (must add the apk later). Use the file manager on your device to locate the file and install it on your phone. Allow for the application to be installed in your settings. 
+
+2. Using an Android development environment like Android Studio, Clone or Download the source code from this github repository and build the application and run it on your device (hooking up your device to your computer) or an appropriate emulator. 
+
+## Copyright
+
+For copyright information for this project see the COPYRIGHT file. 
+
+## Contact
+Nhi Vu - vunhi@pdx.edu
+
