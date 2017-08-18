@@ -40,27 +40,27 @@
 
             <ImageView
                 android:id="@+id/lunarcharge"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:visibility="invisible"
-                app:srcCompat="@drawable/locate"
-                android:tint="@color/markerColor"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_alignParentBottom="true"
+                android:layout_marginBottom="77dp"
+                android:layout_marginStart="89dp"
                 android:layout_toEndOf="@+id/kobemamba"
-                android:layout_marginStart="81dp"
-                android:layout_marginBottom="61dp" />
+                android:tint="@color/markerColor"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/locate" />
 
             <ImageView
                 android:id="@+id/kobemamba"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:visibility="invisible"
-                app:srcCompat="@drawable/locate"
-                android:tint="@color/markerColor"
-                android:layout_alignParentTop="true"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_alignParentStart="true"
-                android:layout_marginStart="88dp"
-                android:layout_marginTop="27dp" />
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="75dp"
+                android:layout_marginTop="7dp"
+                android:tint="@color/markerColor"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/locate" />
 
         </RelativeLayout>
     </com.groupc.officelocator.ZoomLayout>

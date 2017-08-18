@@ -42,53 +42,53 @@
 
             <ImageView
                 android:id="@+id/cachana"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:visibility="invisible"
-                app:srcCompat="@drawable/locate"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="159dp"
+                android:layout_marginTop="70dp"
                 android:tint="@color/markerColor"
-                android:layout_marginTop="80dp"
-                android:layout_marginLeft="170dp"/>
+                android:visibility="invisible"
+                app:srcCompat="@drawable/locate" />
 
             <ImageView
                 android:id="@+id/airmax"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:visibility="invisible"
-                app:srcCompat="@drawable/locate"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="78dp"
+                android:layout_marginTop="9dp"
                 android:tint="@color/markerColor"
-                android:layout_marginLeft="80dp"
-                android:layout_marginTop="10dp" />
+                android:visibility="invisible"
+                app:srcCompat="@drawable/locate" />
 
             <ImageView
                 android:id="@+id/flyknit"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:visibility="invisible"
-                app:srcCompat="@drawable/locate"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="255dp"
+                android:layout_marginTop="242dp"
                 android:tint="@color/markerColor"
-                android:layout_marginLeft="270dp"
-                android:layout_marginTop="260dp"/>
+                android:visibility="invisible"
+                app:srcCompat="@drawable/locate" />
 
             <ImageView
                 android:id="@+id/mercurialvapor"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:visibility="invisible"
-                app:srcCompat="@drawable/locate"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="74dp"
+                android:layout_marginTop="262dp"
                 android:tint="@color/markerColor"
-                android:layout_marginTop="280dp"
-                android:layout_marginLeft="70dp" />
+                android:visibility="invisible"
+                app:srcCompat="@drawable/locate" />
 
             <ImageView
                 android:id="@+id/grind"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:visibility="invisible"
-                app:srcCompat="@drawable/locate"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="189dp"
+                android:layout_marginTop="242dp"
                 android:tint="@color/markerColor"
-                android:layout_marginLeft="200dp"
-                android:layout_marginTop="260dp" />
+                android:visibility="invisible"
+                app:srcCompat="@drawable/locate" />
 
 
         </RelativeLayout>
