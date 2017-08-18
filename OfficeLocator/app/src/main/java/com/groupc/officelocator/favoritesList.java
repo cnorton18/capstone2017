@@ -28,9 +28,10 @@ public class favoritesList extends AppCompatActivity {
     private ListView allFavorites;
     private String choice, fpname, floorNumber;
     private int floorCode;
-    SharedPreferences favoritesList;
-    Set<String> defaultrooms, favRooms;
+    SharedPreferences favoritesList, favoritesValues;
+    Set<String> defaultrooms, favRooms, userkeys, favUserKeys;
     ArrayAdapter<String> arrayAdapter;
+    ArrayList<String> listofFavorites;
     public mapdata data;
     public int choiceFloors; //Number of floors in chosen building
     Bundle dataContainer;
@@ -52,7 +53,7 @@ public class favoritesList extends AppCompatActivity {
         allFavorites = (ListView) findViewById(R.id.favoritesList);
         allFavorites.setEmptyView(findViewById(R.id.empty));
 
-        ArrayList<String> listofFavorites = new ArrayList<String>();
+        listofFavorites = new ArrayList<String>();
         favoritesList = getSharedPreferences("MyFavorites", Context.MODE_PRIVATE);
         defaultrooms = new HashSet();
         favRooms = favoritesList.getStringSet("favRooms", defaultrooms);
@@ -68,6 +69,12 @@ public class favoritesList extends AppCompatActivity {
             listofFavorites.add(room);
         }
 
+        userkeys = new HashSet();
+        favUserKeys = favoritesList.getStringSet("favUserKeys", userkeys);
+        for(String keys: favUserKeys){
+            listofFavorites.add(keys);
+        }
+
         arrayAdapter = new ArrayAdapter<String>(this, R.layout.listview_item_format, listofFavorites);
         allFavorites.setAdapter(arrayAdapter);
 
@@ -81,6 +88,8 @@ public class favoritesList extends AppCompatActivity {
             favoritesInstruction.show();
         }
 
+        favoritesValues = getSharedPreferences("UserEnteredValues", Context.MODE_PRIVATE);
+
         //What to do when the user clicks on a result from the favorites list
         allFavorites.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -88,6 +97,12 @@ public class favoritesList extends AppCompatActivity {
                 floorplan.fromSearch = 1;
                 //Gets object at the position and parses
                 choice = (String) allFavorites.getAdapter().getItem(position);
+
+                for(String keys: favUserKeys){
+                    if(choice.matches(keys))
+                        choice = favoritesValues.getString(keys, "default value");
+                }
+
                 String[] parts = choice.split("\\d+",2);
                 String part1 = parts[0].trim();
                 String part2 = choice.substring(part1.length() + 1).trim();
@@ -147,23 +162,46 @@ public class favoritesList extends AppCompatActivity {
         allFavorites.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
             @Override
             public boolean onItemLongClick(AdapterView<?> arg0, View view, int position, long id) {
+                int foundmatch = 0;
                 choice = (String) allFavorites.getAdapter().getItem(position);
+                for(String keys: favUserKeys) {
+                    if (choice.matches(keys)) {
+                        foundmatch = 1;
+                        favUserKeys.remove(keys);
+                        SharedPreferences.Editor editor = favoritesList.edit();
+                        editor.clear();
+                        editor.putStringSet("favRooms", favRooms);
+                        editor.putStringSet("favUserKeys", favUserKeys);
+                        SharedPreferences.Editor editor2 = favoritesValues.edit();
+                        editor2.remove(keys);
+                        editor.commit();
+                        editor2.commit();
+                        break;
+                    }
+                }
+
                 for (String room : favRooms) {
-                    if(choice.contains("Floor")) {
+                    if (choice.contains("Floor")) {
                         choice = choice.replace("Floor ", "");
                     }
                     if (room.trim().matches(choice)) {
+                        foundmatch = 1;
                         favRooms.remove(room);
                         SharedPreferences.Editor editor = favoritesList.edit();
                         editor.clear();
                         editor.putStringSet("favRooms", favRooms);
+                        editor.putStringSet("favUserKeys",favUserKeys);
                         editor.commit();
+                        break;
+                    }
+                }
 
+                    if(foundmatch == 1){
                         Toast.makeText(favoritesList.this, choice + " was removed from favorites", Toast.LENGTH_SHORT).show();
                         arrayAdapter.clear();
 
-                        ArrayList<String> listofFavorites = new ArrayList<String>();
-                        favRooms = favoritesList.getStringSet("favRooms", defaultrooms);
+                    ArrayList<String> listofFavorites = new ArrayList<String>();
+                    favRooms = favoritesList.getStringSet("favRooms", defaultrooms);
                         for(String rooms : favRooms) {
                             if (rooms.matches(".*\\d+.*")){
                                 String[] parts = rooms.split("\\d+",2);
@@ -175,12 +213,15 @@ public class favoritesList extends AppCompatActivity {
                             }
                             listofFavorites.add(rooms);
                         }
+
+                        favUserKeys = favoritesList.getStringSet("favUserKeys", userkeys);
+                        for(String key: favUserKeys){
+                            listofFavorites.add(key);
+                        }
                         arrayAdapter = new ArrayAdapter<String>(favoritesList.this, R.layout.listview_item_format, listofFavorites);
                         allFavorites.invalidateViews();
                         allFavorites.setAdapter(arrayAdapter);
-                        break;
                     }
-                }
                 return true;
             }
         });

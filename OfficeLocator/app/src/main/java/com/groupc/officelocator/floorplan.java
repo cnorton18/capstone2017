@@ -7,6 +7,8 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -14,6 +16,7 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -44,11 +47,13 @@ public class floorplan extends AppCompatActivity{
     private Spinner chooseFloor, chooseRoom;
     ImageButton favorite, maplocationbut;
 
-    Dialog dialog, favoriteDialog;
-    TextView cancel, floorplanname, roomName, favoriteyes, favoriteno, favoritecancel, roomspinnerprompt;
-    public String addtofavorite;
+    Dialog dialog, favoriteDialog, favoriteSecondDialog;
+    TextView cancel, floorplanname, roomName, favoriteyes, favoriteno, favoritecancel, favoritesecondcancel, favoritesubmit, roomspinnerprompt;
+    public static String addtofavorite, display, savetofavorites;
     public static String fpname, imageName, floorNumber, chosenRoomFromSearch, rmName = "";
     public static int spinnerNumber, numberOfFloors;
+    public static int modifiedfavorite;
+    EditText favoriteinput;
 
     public mapdata data;
     Bundle dataContainer;
@@ -181,7 +186,7 @@ public class floorplan extends AppCompatActivity{
 
     private void setup() {
         setContentView(getResources().getIdentifier(imageName, "layout", this.getPackageName()));
-        if(fromCampus == 1)
+        if (fromCampus == 1)
             rmName = "";
         fromCampus = 0;
 
@@ -191,14 +196,14 @@ public class floorplan extends AppCompatActivity{
 
         //Pulling map data on entry into the activity
         //if(fromSearch == 1) {
-            data = new mapdata();
-            Intent goToFloorPlan = getIntent();
-            dataContainer = goToFloorPlan.getExtras();
-            data = dataContainer.getParcelable("parse");
+        data = new mapdata();
+        Intent goToFloorPlan = getIntent();
+        dataContainer = goToFloorPlan.getExtras();
+        data = dataContainer.getParcelable("parse");
         //}
 
-        spinner2drop = (ImageView)findViewById(R.id.imageView10); //Dropdown arrow for 2nd spinner
-        roomspinnerprompt = (TextView)findViewById(R.id.roomSpinnerTitle);
+        spinner2drop = (ImageView) findViewById(R.id.imageView10); //Dropdown arrow for 2nd spinner
+        roomspinnerprompt = (TextView) findViewById(R.id.roomSpinnerTitle);
 
         //Room title on the floorplan page
         roomName = (TextView) findViewById(R.id.roomName);
@@ -207,7 +212,7 @@ public class floorplan extends AppCompatActivity{
 
         //If a room was chosen through search, must cause the room title to appear since by default it doesn't until you choose the
         //room through the second spinner
-        if(setRoomfromSearch == 1){
+        if (setRoomfromSearch == 1) {
             roomName.setText(rmName);
             roomName.setVisibility(View.VISIBLE);
         }
@@ -216,16 +221,16 @@ public class floorplan extends AppCompatActivity{
         floorplanname = (TextView) findViewById(R.id.floorPlanName);
         floorplanname.setTypeface(myCustomfont);
 
-        if(Integer.parseInt(floorNumber) > 0 && fromSearch == 1 && fromFavsFloor == 0) {
-            String tempName = rmName.toLowerCase().replaceAll("\\s","");
+        if (Integer.parseInt(floorNumber) > 0 && fromSearch == 1 && fromFavsFloor == 0) {
+            String tempName = rmName.toLowerCase().replaceAll("\\s", "");
             int roomID =
-                    getResources().getIdentifier(tempName,"id",getPackageName());
-            selectedRoom = (ImageView)findViewById(roomID);
+                    getResources().getIdentifier(tempName, "id", getPackageName());
+            selectedRoom = (ImageView) findViewById(roomID);
             selectedRoom.setVisibility(View.VISIBLE);
         }
 
         //If the floor plan title has a floor number, we add that to the title
-        if(Integer.parseInt(floorNumber) == 0) //For those without a floor number ("Mia Hamm"/"Tiger Woods"
+        if (Integer.parseInt(floorNumber) == 0) //For those without a floor number ("Mia Hamm"/"Tiger Woods"
             //the default is the first floor
             floorNumber = "1";
         floorplanname.setText(fpname + " Floor " + floorNumber);
@@ -235,27 +240,27 @@ public class floorplan extends AppCompatActivity{
         //Creating the two spinner drop down menus that choose the floor and rooms
         //Choosing a floor in the first spinner causes the second spinner to be visible
         //The choice of the floor also determines the choices of rooms for the second spinner
-        chooseFloor = (Spinner)findViewById(R.id.floorSelector);
+        chooseFloor = (Spinner) findViewById(R.id.floorSelector);
         chooseRoom = (Spinner) findViewById(R.id.roomSelector);
 
         //First spinner - Choosing which floor
         List<String> list = new ArrayList<String>();
         list.add("Choose a floor");
-        for (int i = 1; i <= numberOfFloors; i++){
+        for (int i = 1; i <= numberOfFloors; i++) {
             list.add(String.valueOf(i));
         }
         ArrayAdapter<String> numberAdapter = new ArrayAdapter<String>(this, R.layout.spinner_dropdown_layout, list);
         chooseFloor.setAdapter(numberAdapter);
         chooseFloor.setSelected(false);
-        chooseFloor.setSelection(0,true);
+        chooseFloor.setSelection(0, true);
 
         //When coming from the search menu, the floor number is already chosen and the room can be chosen through the search
         //results. If they are we must set the spinners to reflect these predetermined choices
-        if(fromSearch == 1){
+        if (fromSearch == 1) {
             //All search results have floor values set into them (if there is not one explicitly set, it gets sent
             //to the first floor
             floorselected = Integer.parseInt(floorNumber);
-            chooseFloor.setSelection(floorselected,true);
+            chooseFloor.setSelection(floorselected, true);
             chooseFloor.setSelected(true);
 
             spinner2drop.setVisibility(View.VISIBLE);
@@ -264,13 +269,13 @@ public class floorplan extends AppCompatActivity{
 
             List<String> spinnerArray = new ArrayList<String>();
             spinnerArray.add("Choose a room");
-            for(int i = 0; i < data.numberofBuildings; ++i) {
-                for(int j = 0; j < data.buildings.get(i).floors.size(); ++j) {
-                    if(buildingselected == (i + 1) && data.buildings.get(i).floors.get(j).level == floorselected) {
-                        for(int k = 0; k < data.buildings.get(i).floors.get(j).rooms.size(); ++k) {
+            for (int i = 0; i < data.numberofBuildings; ++i) {
+                for (int j = 0; j < data.buildings.get(i).floors.size(); ++j) {
+                    if (buildingselected == (i + 1) && data.buildings.get(i).floors.get(j).level == floorselected) {
+                        for (int k = 0; k < data.buildings.get(i).floors.get(j).rooms.size(); ++k) {
                             spinnerArray.add(data.buildings.get(i).floors.get(j).rooms.get(k).roomName);
                         }
-                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(floorplan.this,  R.layout.spinner_layout, spinnerArray);
+                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(floorplan.this, R.layout.spinner_layout, spinnerArray);
                         adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
                         chooseRoom.setAdapter(adapter);
                         break;
@@ -278,15 +283,15 @@ public class floorplan extends AppCompatActivity{
                 }
             }
             chooseRoom.setSelected(false);
-            chooseRoom.setSelection(0,true);
+            chooseRoom.setSelection(0, true);
 
             //If the room was also chosen through the search result chosen, we choose that value to
             //appear in the second spinner for the rooms
-            if(setRoomfromSearch==1){
+            if (setRoomfromSearch == 1) {
                 chooseRoom.setSelected(true);
                 int selection = 0;
-                if(chosenRoomFromSearch != null) {
-                    for(int i = 0; i < data.numberofBuildings; ++i) {
+                if (chosenRoomFromSearch != null) {
+                    for (int i = 0; i < data.numberofBuildings; ++i) {
                         for (int j = 0; j < data.buildings.get(i).floors.size(); ++j) {
                             for (int k = 0; k < data.buildings.get(i).floors.get(j).rooms.size(); ++k) {
                                 if (chosenRoomFromSearch.matches(data.buildings.get(i).floors.get(j).rooms.get(k).roomName))
@@ -296,7 +301,7 @@ public class floorplan extends AppCompatActivity{
                     }
                 }
                 //+1 to skip past 'choose a room'
-                chooseRoom.setSelection(selection+1,true);
+                chooseRoom.setSelection(selection + 1, true);
                 //Flag resets
                 setRoomfromSearch = 0;
             }
@@ -328,14 +333,13 @@ public class floorplan extends AppCompatActivity{
 
         createFavoriteDialog();
         favorite = (ImageButton) findViewById(R.id.favorite);
-        favorite.setOnClickListener(new View.OnClickListener(){
+        favorite.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-                if(floorNumber.equals("Choose a floor")) {
+            public void onClick(View view) {
+                if (floorNumber.equals("Choose a floor")) {
                     Toast.makeText(floorplan.this, "Select a floor", Toast.LENGTH_SHORT).show();
                     favoriteDialog.dismiss();
-                }
-                else
+                } else
                     favoriteDialog.show();
             }
         });
@@ -357,43 +361,100 @@ public class floorplan extends AppCompatActivity{
         });
 
         //If the yes button in the favorite dialog is clicked then save the string to the favorites
-        favoriteyes.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                SharedPreferences favoritesList = getSharedPreferences("MyFavorites", Context.MODE_PRIVATE);
-                Set<String> favRooms = new HashSet<>(favoritesList.getStringSet("favRooms", new HashSet<String>()));
+        createSecondFavoriteDialog();
 
-                String display = null;
-                if(floorNumber.equals("0")) {
+        final SharedPreferences favoritesList = getSharedPreferences("MyFavorites", Context.MODE_PRIVATE);
+        final SharedPreferences favoritesValues = getSharedPreferences("UserEnteredValues",Context.MODE_PRIVATE);
+        final Set<String> favRooms = new HashSet<>(favoritesList.getStringSet("favRooms", new HashSet<String>()));
+
+        favoriteyes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                display = null;
+                if (floorNumber.equals("0")) {
                     addtofavorite = fpname;
                     display = fpname;
-                }
-                else if(rmName.equals("")) {
+                } else if (rmName.equals("")) {
                     addtofavorite = fpname + " " + Integer.toString(floorselected);
                     display = fpname + " Floor " + Integer.toString(floorselected);
-                }
-                else {
+                } else {
                     addtofavorite = fpname + " " + Integer.toString(floorselected) + " " + rmName;
                     display = fpname + " Floor " + Integer.toString(floorselected) + " " + rmName;
                 }
-                for(String room : favRooms) {
+                for (String room : favRooms) {
                     if (room.matches(addtofavorite)) {
                         Toast.makeText(floorplan.this, display + " was already added to favorites", Toast.LENGTH_SHORT).show();
                         favoriteDialog.dismiss();
                         return;
                     }
                 }
-                favRooms.add(addtofavorite);
-                SharedPreferences.Editor editor = favoritesList.edit();
-                editor.putStringSet("favRooms", favRooms);
-                editor.commit();
-
-                Toast.makeText(floorplan.this, display + " was added to favorites", Toast.LENGTH_SHORT).show();
                 favoriteDialog.dismiss();
+                favoriteSecondDialog.show();
+
+                favoriteinput.setText(display);
+                favoriteinput.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        //If the user enters in text
+                        modifiedfavorite = 1;
+                        savetofavorites = favoriteinput.getText().toString();
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                    }
+                });
+
+                final Set<String> favUserKeys = new HashSet<>(favoritesList.getStringSet("favUserKeys", new HashSet<String>()));
+
+                favoritesubmit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (modifiedfavorite == 1) {
+                            for (String userKey : favUserKeys) {
+                                if (userKey.matches(savetofavorites)) {
+                                    Toast.makeText(floorplan.this, savetofavorites + " was already added to favorites", Toast.LENGTH_SHORT).show();
+                                    favoriteSecondDialog.dismiss();
+                                    return;
+                                }
+                            }
+                            favUserKeys.add(savetofavorites);
+                            SharedPreferences.Editor editor = favoritesList.edit();
+                            editor.putStringSet("favUserKeys",favUserKeys);
+
+                            SharedPreferences.Editor editor2 = favoritesValues.edit();
+                            editor2.putString(savetofavorites, addtofavorite);
+                            editor.commit();
+                            editor2.commit();
+                            Toast.makeText(floorplan.this, savetofavorites + " was added to favorites", Toast.LENGTH_SHORT).show();
+                        } else {
+                            favRooms.add(addtofavorite);
+                            SharedPreferences.Editor editor = favoritesList.edit();
+                            editor.putStringSet("favRooms", favRooms);
+                            editor.commit();
+                            Toast.makeText(floorplan.this, addtofavorite + " was added to favorites", Toast.LENGTH_SHORT).show();
+                        }
+                        favoriteSecondDialog.dismiss();
+                        modifiedfavorite = 0;
+                    }
+                });
             }
         });
-    }
 
+        //If cancel button in dialog popup is clicked then exit the dialog
+        favoritesecondcancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                favoriteSecondDialog.dismiss();
+            }
+        });
+
+
+    }
     //Sets up favorite pop up dialog
     private void createFavoriteDialog(){
         favoriteDialog = new Dialog(floorplan.this);
@@ -402,6 +463,16 @@ public class floorplan extends AppCompatActivity{
         favoritecancel = (TextView) favoriteDialog.findViewById(R.id.cancel);
         favoriteyes = (TextView) favoriteDialog.findViewById(R.id.yes);
         favoriteno = (TextView) favoriteDialog.findViewById(R.id.no);
+    }
+
+    //Sets up second favorite pop up dialog
+    private void createSecondFavoriteDialog(){
+        favoriteSecondDialog = new Dialog(floorplan.this);
+        favoriteSecondDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        favoriteSecondDialog.setContentView(R.layout.favoriteseconddialog);
+        favoritesecondcancel = (TextView) favoriteSecondDialog.findViewById(R.id.cancel);
+        favoritesubmit = (TextView) favoriteSecondDialog.findViewById(R.id.submit);
+        favoriteinput = (EditText) favoriteSecondDialog.findViewById(R.id.savetofavorites);
     }
 
     //Come back to fix this perhaps after room class stores images
