@@ -1,11 +1,11 @@
 Portland State University
 CS Capstone 2017
  
-#How to add new floor plan data
+# How to add new floor plan data
 
-##I. Adding a Building
+## I. Adding a Building
 
-##II. Adding a Floor to an Existing Building 
+## II. Adding a Floor to an Existing Building 
 
 1. Navigate to ...\OfficeLocator\app\src\main\assets\data.xml 
 
@@ -27,7 +27,7 @@ CS Capstone 2017
 
 10. Navigate to ...\OfficeLocator\app\src\main\res\drawable 11. Add the image file for the floor, matching the naming convention of 3iii.
 
-##III. Adding a Room to an Existing Floor
+## III. Adding a Room to an Existing Floor
 
 1. Navigate to ...\OfficeLocator\app\src\main\assets\data.xml 
 

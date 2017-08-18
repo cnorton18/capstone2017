@@ -10,7 +10,9 @@ There are 3 key features in this mobile app: 1) an interactive map, 2) a search 
 Currently the only two buildings that a user can click on are Mia Hamm and Tiger Woods Center. The floor plans used in this application are mock floor plans, not actual Nike floor plans. 
 
 
-## [How to use the Application]
+## [How to Navigate Through the Application](https://github.com/cnorton18/capstone2017/blob/nhi's-latest-branch/How%20to%20Use%20The%20Swoosh%20Room%20Finder.md)
+
+## [How to Add Floor Plans to the Application](https://github.com/cnorton18/capstone2017/blob/nhi's-latest-branch/How%20To%20Add%20New%20Floor%20Buildings%2C%20Floors%2C%20and%20Room.md)
 
 
 ## Build
