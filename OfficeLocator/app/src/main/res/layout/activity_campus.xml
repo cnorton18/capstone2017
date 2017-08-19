@@ -177,7 +177,7 @@
                 android:layout_toEndOf="@+id/bojackson" />
 
             <Button
-                android:id="@+id/steveprefontaine"
+                android:id="@+id/steveprefontainehall"
                 android:background="@android:color/transparent"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -189,7 +189,7 @@
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:layout_centerVertical="true"
-                android:layout_toEndOf="@+id/steveprefontaine"
+                android:layout_toEndOf="@+id/steveprefontainehall"
                 android:background="@android:color/transparent" />
 
             <Button
