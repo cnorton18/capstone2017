@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<campus campusName="Nike" numberOfBuildings = "3">
+<campus campusName="Nike" numberOfBuildings = "4">
     <building buildingName="Mia Hamm" numberOfFloors="2">
         <floor level="1" src="miahamm1">
-            <room roomName="Flyknit"/>
             <room roomName="Air Max"/>
             <room roomName="Cachana"/>
+            <room roomName="Flyknit"/>
             <room roomName="Grind"/>
             <room roomName="Mercurial Vapor"/>
         </floor>
         <floor level="2" src="miahamm2">
-            <room roomName="LunarCharge"/>
             <room roomName="Kobe Mamba"/>
+            <room roomName="LunarCharge"/>
         </floor>
     </building>
     <building buildingName="Tiger Woods Center" numberOfFloors="2">
@@ -28,6 +28,13 @@
             <room roomName="Cross Country"/>
             <room roomName="Long Distance"/>
             <room roomName="Marathon"/>
+        </floor>
+    </building>
+    <building buildingName="Bo Jackson" numberOfFloors="1">
+        <floor level="1" src="bojackson1">
+            <room roomName="auburn"/>
+            <room roomName="football"/>
+            <room roomName="runningback"/>
         </floor>
     </building>
 

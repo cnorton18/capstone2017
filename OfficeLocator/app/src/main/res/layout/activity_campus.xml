@@ -90,12 +90,13 @@
 
             <Button
                 android:id="@+id/jerryrice"
-                android:background="@android:color/transparent"
                 android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_height="30dp"
                 android:layout_alignTop="@+id/tigerwoods"
-                android:layout_toEndOf="@+id/miahamm" />
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="0dp"
+                android:layout_toEndOf="@+id/miahamm"
+                android:background="@android:color/transparent" />
 
             <Button
                 android:id="@+id/petesampras"
@@ -109,20 +110,21 @@
 
             <Button
                 android:id="@+id/kengriffeyjr"
-                android:background="@android:color/transparent"
                 android:layout_width="45dp"
-                android:layout_height="110dp"
-                android:layout_below="@+id/tigerwoods"
-                android:layout_alignStart="@+id/jerryrice" />
+                android:layout_height="55dp"
+                android:layout_marginLeft="0dp"
+                android:background="@android:color/transparent"
+                android:layout_above="@+id/albertosalazar"
+                android:layout_toEndOf="@+id/miahamm"
+                android:layout_marginStart="17dp" />
 
             <Button
                 android:id="@+id/nikesportscenter"
-                android:background="@android:color/transparent"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_below="@+id/miahamm"
-                android:layout_alignEnd="@+id/kengriffeyjr"
-                android:layout_marginEnd="27dp" />
+                android:background="@android:color/transparent"
+                android:layout_alignBottom="@+id/albertosalazar"
+                android:layout_toStartOf="@+id/nolanryan" />
 
             <Button
                 android:id="@+id/nolanryan"
@@ -180,9 +182,9 @@
                 android:background="@android:color/transparent"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginBottom="36dp"
-                android:layout_above="@+id/joanbenoitsamuelson"
-                android:layout_toStartOf="@+id/johnmcenroe" />
+                android:layout_alignBaseline="@+id/nikesportscenter"
+                android:layout_alignBottom="@+id/nikesportscenter"
+                android:layout_toEndOf="@+id/tigerwoods" />
 
             <Button
                 android:id="@+id/albertosalazar"
