@@ -10,6 +10,14 @@ There are 3 key features in this mobile app: 1) an interactive map, 2) a search 
 Currently the only two buildings that a user can click on are Mia Hamm and Tiger Woods Center. The floor plans used in this application are mock floor plans, not actual Nike floor plans. 
 
 
+## Online Simulations of the Application
+
+- [Swoosh Room Finder v1.0](https://appetize.io/app/p5hd6ygwmz1n0774pqk5ke9xw0?device=nexus5&scale=75&orientation=portrait&osVersion=7.0) (original orange theme): 
+
+- [Swoosh Room Finder v2.0](https://appetize.io/app/ckfg33p5he6c9grpp1xruceqn8?device=nexus5&scale=75&orientation=portrait&osVersion=7.0) (neon green theme)
+
+- [PSU Locator v1.0](https://appetize.io/app/5qc1u4aua8mg24ub3k20d2yp2w?device=nexus5&scale=75&orientation=portrait&osVersion=7.0) (sister app to the Swoosh Room Finder)
+
 ## [How to Navigate Through the Application](https://github.com/cnorton18/capstone2017/blob/nhi's-latest-branch/How%20to%20Use%20The%20Swoosh%20Room%20Finder.md)
 
 ## [How to Add Floor Plans to the Application](https://github.com/cnorton18/capstone2017/blob/nhi's-latest-branch/How%20To%20Add%20New%20Floor%20Buildings%2C%20Floors%2C%20and%20Room.md)
