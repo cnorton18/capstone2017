@@ -84,7 +84,7 @@ public class campus extends AppCompatActivity {
 
                 //Satellite view -> Normal
             }else{
-                mapimage.setImageResource(R.drawable.campusdarkergray);
+                mapimage.setImageResource(R.drawable.campuswhite1);
                 satelliteview.setColorFilter(getResources().getColor(R.color.colorSecondary));
                 globesetting = 0;
 
@@ -99,7 +99,7 @@ public class campus extends AppCompatActivity {
                     }
                     //Satellite View -> Normal
                     else{
-                        mapimage.setImageResource(R.drawable.campusdarkergray);
+                        mapimage.setImageResource(R.drawable.campuswhite1);
                         satelliteview.setColorFilter(getResources().getColor(R.color.colorSecondary));
                         globesetting = 0;
                     }

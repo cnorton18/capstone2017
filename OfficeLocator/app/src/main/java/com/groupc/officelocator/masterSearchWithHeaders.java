@@ -27,6 +27,7 @@ import java.util.Locale;
 public class masterSearchWithHeaders extends AppCompatActivity {
     private ListView allSearchResults;
     private EditText searchBar;
+    private TextView title;
     private String choice, fpname, floorNumber;
     private int floorCode;
     public mapdata data;
@@ -39,9 +40,11 @@ public class masterSearchWithHeaders extends AppCompatActivity {
         setContentView(R.layout.activity_mastersearch);
         floorplan.fromSearch = 1;
 
-        searchBar = (EditText) findViewById(R.id.searchBar);
+        title = (TextView) findViewById(R.id.searchTitle);
         Typeface myCustomfont = Typeface.createFromAsset(getAssets(), "fonts/newsgothiccondensedbold.ttf");
-        searchBar.setTypeface(myCustomfont);
+        title.setTypeface(myCustomfont);
+
+        searchBar = (EditText) findViewById(R.id.searchBar);
         allSearchResults = (ListView) findViewById(R.id.searchList);
         allSearchResults.setEmptyView(findViewById(R.id.empty));
 

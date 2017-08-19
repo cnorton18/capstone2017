@@ -62,7 +62,7 @@
                 android:id="@+id/campusmap"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/campusdarkergray"
+                app:srcCompat="@drawable/campuswhite1"
                 android:paddingBottom="40dp"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
@@ -224,9 +224,10 @@
         android:layout_height="40dp"
         android:background="@android:color/transparent"
         android:scaleType="fitXY"
-        app:srcCompat="@drawable/satelliteviewbutton"
-        android:layout_marginTop="62dp"
-        android:layout_alignParentEnd="true" />
+        app:srcCompat="@drawable/ic_layers_white_48dp"
+        android:layout_marginTop="63dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="3dp"/>
 
     <!-- "Select a Building or Search Prompt -->
     <TextView

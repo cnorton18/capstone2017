@@ -1,5 +1,5 @@
 # Swoosh Room Finder
-Copyright © 2017 Victor Diego, Nhi Vu, Zachary, Derek Keeton, Tyler Wood, Chris Norton 
+Copyright © 2017 Victor Diego, Nhi Vu, Zachary Pfister-Shanders, Derek Keeton, Tyler Wood, Chris Norton 
 
 ## Description
 

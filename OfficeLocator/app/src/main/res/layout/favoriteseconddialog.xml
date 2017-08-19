@@ -68,7 +68,7 @@
         android:id="@+id/savetofavorites"
         style="@style/Widget.AppCompat.EditText"
         android:textColor="@color/colorSecondary"
-        android:background="@drawable/submitbox"
+        android:background="@drawable/rectangleborder"
         android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:textSize="15dp"

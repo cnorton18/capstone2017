@@ -2,16 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorSecondary">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/searchHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:padding="10dp"
         android:text="Section"
-        android:textColor="@color/buttonText"
-        android:textStyle="bold" />
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        android:padding="8dp"/>
 </LinearLayout>
