@@ -1,28 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<campus campusName="Nike" numberOfBuildings = "8">
-    <building buildingName="Mia Hamm" numberOfFloors="2">
-        <floor level="1" src="miahamm1">
-            <room roomName="Air Max"/>
-            <room roomName="Cachana"/>
-            <room roomName="Flyknit"/>
-            <room roomName="Grind"/>
-            <room roomName="Mercurial Vapor"/>
-        </floor>
-        <floor level="2" src="miahamm2">
-            <room roomName="Kobe Mamba"/>
-            <room roomName="LunarCharge"/>
-        </floor>
-    </building>
-    <building buildingName="Tiger Woods Center" numberOfFloors="2">
-        <floor level="1" src="tigerwoodscenter1">
-            <room roomName="Air Jordan"/>
-            <room roomName="Roshe"/>
-        </floor>
-        <floor level="2" src="tigerwoodscenter2">
-            <room roomName="Pegasus"/>
-            <room roomName="VaporMax"/>
-        </floor>
-    </building>
+<campus campusName="Nike" numberOfBuildings = "9">
     <building buildingName="Alberto Salazar" numberOfFloors="1">
         <floor level="1" src="albertosalazar1">
             <room roomName="Cross Country"/>
@@ -63,6 +40,36 @@
             <room roomName="Deuce"/>
             <room roomName="Doubles"/>
             <room roomName="Tennis"/>
+        </floor>
+    </building>
+    <building buildingName="Ken Griffey Jr" numberOfFloors="1">
+        <floor level="1" src="kengriffeyjr1">
+            <room roomName="First Base"/>
+            <room roomName="Junior"/>
+            <room roomName="Outfield"/>
+        </floor>
+    </building>
+    <building buildingName="Mia Hamm" numberOfFloors="2">
+        <floor level="1" src="miahamm1">
+            <room roomName="Air Max"/>
+            <room roomName="Cachana"/>
+            <room roomName="Flyknit"/>
+            <room roomName="Grind"/>
+            <room roomName="Mercurial Vapor"/>
+        </floor>
+        <floor level="2" src="miahamm2">
+            <room roomName="Kobe Mamba"/>
+            <room roomName="LunarCharge"/>
+        </floor>
+    </building>
+    <building buildingName="Tiger Woods Center" numberOfFloors="2">
+        <floor level="1" src="tigerwoodscenter1">
+            <room roomName="Air Jordan"/>
+            <room roomName="Roshe"/>
+        </floor>
+        <floor level="2" src="tigerwoodscenter2">
+            <room roomName="Pegasus"/>
+            <room roomName="VaporMax"/>
         </floor>
     </building>
 

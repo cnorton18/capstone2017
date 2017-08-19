@@ -114,9 +114,10 @@
                 android:layout_height="55dp"
                 android:layout_marginLeft="0dp"
                 android:background="@android:color/transparent"
-                android:layout_above="@+id/albertosalazar"
+                android:layout_alignBaseline="@+id/miahamm"
+                android:layout_alignBottom="@+id/miahamm"
                 android:layout_toEndOf="@+id/miahamm"
-                android:layout_marginStart="17dp" />
+                android:layout_marginStart="15dp" />
 
             <Button
                 android:id="@+id/nikesportscenter"
@@ -148,9 +149,9 @@
                 android:background="@android:color/transparent"
                 android:layout_width="60dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="11dp"
-                android:layout_below="@+id/nolanryan"
-                android:layout_toEndOf="@+id/mikeschmidt" />
+                android:layout_marginTop="21dp"
+                android:layout_below="@+id/michaeljordan"
+                android:layout_toStartOf="@+id/albertosalazar" />
 
             <Button
                 android:id="@+id/michaeljordan"
@@ -171,11 +172,12 @@
 
             <Button
                 android:id="@+id/johnmcenroe"
+                android:layout_width="35dp"
+                android:layout_height="40dp"
                 android:background="@android:color/transparent"
-                android:layout_width="45dp"
-                android:layout_height="100dp"
-                android:layout_alignBottom="@+id/joanbenoitsamuelson"
-                android:layout_toEndOf="@+id/joanbenoitsamuelson" />
+                android:layout_alignBaseline="@+id/nolanryan"
+                android:layout_alignBottom="@+id/nolanryan"
+                android:layout_toEndOf="@+id/bojackson" />
 
             <Button
                 android:id="@+id/steveprefontaine"
@@ -188,11 +190,11 @@
 
             <Button
                 android:id="@+id/albertosalazar"
-                android:background="@android:color/transparent"
                 android:layout_width="45dp"
-                android:layout_height="90dp"
+                android:layout_height="45dp"
                 android:layout_centerVertical="true"
-                android:layout_toEndOf="@+id/steveprefontaine" />
+                android:layout_toEndOf="@+id/steveprefontaine"
+                android:background="@android:color/transparent" />
 
             <Button
                 android:id="@+id/danfouts"
