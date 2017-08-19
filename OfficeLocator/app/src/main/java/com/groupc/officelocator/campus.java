@@ -18,10 +18,12 @@ public class campus extends AppCompatActivity {
         RelativeLayout relativeLayout;
 
         //Buttons for just 2 buildings
-        public Button miaHamm, tigerWoods, albertoSalazar, boJackson, danFouts, jerryRice, globe;
-        Button[] arrayButtons = {miaHamm, tigerWoods, albertoSalazar, boJackson, danFouts, jerryRice};
+        public Button miaHamm, tigerWoods, albertoSalazar, boJackson, danFouts, jerryRice,
+                joanBenoitSamuelson, globe;
+        Button[] arrayButtons = {miaHamm, tigerWoods, albertoSalazar, boJackson, danFouts,
+                jerryRice, joanBenoitSamuelson};
         int[] buttonNames = {R.id.miahamm, R.id.tigerwoods, R.id.albertosalazar, R.id.bojackson,
-                R.id.danfouts, R.id.jerryrice};
+                R.id.danfouts, R.id.jerryrice, R.id.joanbenoitsamuelson};
         public mapdata data;
         public ImageButton satelliteview;
         private static int globesetting = 0;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<campus campusName="Nike" numberOfBuildings = "6">
+<campus campusName="Nike" numberOfBuildings = "7">
     <building buildingName="Mia Hamm" numberOfFloors="2">
         <floor level="1" src="miahamm1">
             <room roomName="Air Max"/>
@@ -49,6 +49,13 @@
             <room roomName="Catches"/>
             <room roomName="Wide Receiver"/>
             <room roomName="Receptions"/>
+        </floor>
+    </building>
+    <building buildingName="Joan Benoit Samuelson" numberOfFloors="1">
+        <floor level="1" src="joanbenoitsamuelson1">
+            <room roomName="Aeroloft"/>
+            <room roomName="Dynamic Fit"/>
+            <room roomName="Flyease"/>
         </floor>
     </building>
 
