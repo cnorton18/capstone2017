@@ -4,12 +4,13 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/veryDarkGray</item>
         <item name="colorAccent">@color/colorSecondary</item>
         <item name="android:windowBackground">@color/veryDarkGray</item> <!-- Set the background for the entire app -->
         <item name="android:textColor">@android:color/white</item>
         <item name="windowActionBar">false</item> <!-- No action bar for the entire app -->
         <item name="windowNoTitle">true</item> <!-- No window title for the entire app -->
+        <item name="android:navigationBarColor">@color/veryDarkGray</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

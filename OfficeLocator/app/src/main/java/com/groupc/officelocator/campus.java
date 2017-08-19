@@ -78,13 +78,13 @@ public class campus extends AppCompatActivity {
             //Set to satellite view when going back to the campus map from another page
             if(globesetting == 1){
                 //Set to satellite view
-                mapimage.setImageResource(R.drawable.satellitenolabels);
+                mapimage.setImageResource(R.drawable.satellite);
                 satelliteview.setColorFilter(getResources().getColor(R.color.colorPrimary));
                 globesetting = 1;
 
                 //Satellite view -> Normal
             }else{
-                mapimage.setImageResource(R.drawable.campusgray);
+                mapimage.setImageResource(R.drawable.campusdarkergray);
                 satelliteview.setColorFilter(getResources().getColor(R.color.colorSecondary));
                 globesetting = 0;
 
@@ -93,13 +93,13 @@ public class campus extends AppCompatActivity {
                 public void onClick(View v){
                     //Normal View -> satellite view
                     if(globesetting == 0){
-                        mapimage.setImageResource(R.drawable.satellitenolabels);
+                        mapimage.setImageResource(R.drawable.satellite);
                         satelliteview.setColorFilter(getResources().getColor(R.color.colorPrimary));
                         globesetting = 1;
                     }
                     //Satellite View -> Normal
                     else{
-                        mapimage.setImageResource(R.drawable.campusgray);
+                        mapimage.setImageResource(R.drawable.campusdarkergray);
                         satelliteview.setColorFilter(getResources().getColor(R.color.colorSecondary));
                         globesetting = 0;
                     }

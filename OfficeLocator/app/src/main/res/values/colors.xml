@@ -7,6 +7,7 @@
     <color name="lightGray">#d3d3d3</color>
     <color name="darkGray">#808080</color>
     <color name="veryDarkGray">#303030</color>
+    <color name="secondDarkestGray">#3c3c3c</color>
     <color name="iconColor">#FFFFFF</color>
     <color name="markerColor">#A3CC00</color>
     <color name="pageTitles">#303030</color>

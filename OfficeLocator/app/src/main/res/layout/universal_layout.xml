@@ -10,8 +10,16 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/rectanglegradient"
         android:layout_alignParentTop="true" />
+
+    <!-- Bottom navigation toolbar divider -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/secondDarkestGray"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="60dp"/>
 
     <!-- Nike Swoosh Logo -->
     <ImageView
