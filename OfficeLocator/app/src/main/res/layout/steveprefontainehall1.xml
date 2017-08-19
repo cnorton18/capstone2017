@@ -32,10 +32,41 @@
                 android:id="@+id/floorPlanImage"
                 android:layout_width="380dip"
                 android:layout_height="380dip"
-                app:srcCompat="@drawable/miahamm1"
-                android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="5dp"/>
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="5dp"
+                app:srcCompat="@drawable/steveprefontainehall1" />
+
+            <ImageView
+                android:id="@+id/adrianaleon"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="140dp"
+                android:layout_marginTop="80dp"
+                android:tint="@color/markerColor"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/locate" />
+
+            <ImageView
+                android:id="@+id/alexmorgan"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="137dp"
+                android:layout_marginTop="200dp"
+                android:tint="@color/markerColor"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/locate" />
+
+            <ImageView
+                android:id="@+id/eliudkipchoge"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="285dp"
+                android:layout_marginTop="125dp"
+                android:tint="@color/markerColor"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/locate" />
+
 
         </RelativeLayout>
     </com.groupc.officelocator.ZoomLayout>

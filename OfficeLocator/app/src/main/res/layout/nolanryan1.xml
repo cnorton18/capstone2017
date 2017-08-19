@@ -30,12 +30,42 @@
 
             <ImageView
                 android:id="@+id/floorPlanImage"
-                android:layout_width="380dip"
-                android:layout_height="380dip"
-                app:srcCompat="@drawable/miahamm1"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="5dp"/>
+                android:layout_width="290dp"
+                android:layout_height="290dp"
+                app:srcCompat="@drawable/nolanryan1"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
+
+            <ImageView
+                android:id="@+id/curveball"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="276dp"
+                android:layout_marginTop="118dp"
+                android:tint="@color/markerColor"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/locate" />
+
+            <ImageView
+                android:id="@+id/homerun"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="167dp"
+                android:layout_marginTop="110dp"
+                android:tint="@color/markerColor"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/locate" />
+
+            <ImageView
+                android:id="@+id/strikeout"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="73dp"
+                android:layout_marginTop="258dp"
+                android:tint="@color/markerColor"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/locate" />
+
 
         </RelativeLayout>
     </com.groupc.officelocator.ZoomLayout>

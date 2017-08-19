@@ -19,7 +19,7 @@
         android:id="@+id/activity_floorplan"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="62dp"
+        android:paddingTop="60dp"
         android:paddingBottom="160dp">
 
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -30,12 +30,41 @@
 
             <ImageView
                 android:id="@+id/floorPlanImage"
-                android:layout_width="380dip"
-                android:layout_height="380dip"
-                app:srcCompat="@drawable/miahamm1"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="5dp"/>
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                app:srcCompat="@drawable/jerryrice1"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
+
+            <ImageView
+                android:id="@+id/widereceiver"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="168dp"
+                android:layout_marginTop="166dp"
+                android:tint="@color/markerColor"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/locate" />
+
+            <ImageView
+                android:id="@+id/catches"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="68dp"
+                android:layout_marginTop="202dp"
+                android:tint="@color/markerColor"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/locate" />
+
+            <ImageView
+                android:id="@+id/receptions"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="267dp"
+                android:layout_marginTop="230dp"
+                android:tint="@color/markerColor"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/locate" />
 
         </RelativeLayout>
     </com.groupc.officelocator.ZoomLayout>
@@ -93,7 +122,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginLeft="12dp"
         android:layout_marginStart="12dp"
-        android:visibility="visible"
+        android:visibility="invisible"
         android:text="Room:" />
 
     <!-- Room spinner -->
@@ -106,7 +135,7 @@
         android:layout_marginBottom="70dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:visibility="visible" />
+        android:visibility="invisible" />
 
     <!-- Room spinner drop down arrow -->
     <ImageView
@@ -117,7 +146,7 @@
         android:layout_alignTop="@+id/roomSelector"
         android:layout_marginTop="12dp"
         app:srcCompat="@drawable/drop"
-        android:visibility="visible"/>
+        android:visibility="invisible"/>
 
     <!-- Building + Floor header -->
     <TextView
@@ -128,9 +157,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="15dp"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/pageTitles"/>
+        android:layout_centerHorizontal="true" />
 
     <!-- Room name header -->
     <TextView
@@ -139,12 +166,10 @@
         android:layout_height="wrap_content"
         android:text="Room Name"
         android:textStyle="bold"
-        android:textSize="12sp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="42dp"
+        android:textSize="15sp"
+        android:layout_below="@+id/floorPlanName"
         android:layout_centerHorizontal="true"
-        android:visibility="invisible"
-        android:textColor="@color/pageTitles"/>
+        android:visibility="invisible"/>
 
     <!-- Building locator button -->
     <ImageButton
