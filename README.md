@@ -11,7 +11,8 @@ I. Adding a Building
 	3. Navigate to ...\OfficeLocator\app\src\main\java\com\groupc\officelocator\campus.java
 		i. Edit variables Button, arrayButtons, buttonnames with building name in respective formats. 
 	4. Add the first floor of the building (see II). 
-	5. [add button to campus xml] (already done for all Nike buildings)
+	5. Increment the number of buildings on the campus 
+	6. [add button to campus xml] (already done for all Nike buildings)
 
 II. Adding a Floor to an Existing Building
 	1. Navigate to ...\OfficeLocator\app\src\main\assets\data.xml
