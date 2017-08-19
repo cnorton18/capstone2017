@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<campus campusName="Nike" numberOfBuildings = "4">
+<campus campusName="Nike" numberOfBuildings = "5">
     <building buildingName="Mia Hamm" numberOfFloors="2">
         <floor level="1" src="miahamm1">
             <room roomName="Air Max"/>
@@ -32,9 +32,16 @@
     </building>
     <building buildingName="Bo Jackson" numberOfFloors="1">
         <floor level="1" src="bojackson1">
-            <room roomName="auburn"/>
-            <room roomName="football"/>
-            <room roomName="runningback"/>
+            <room roomName="Auburn"/>
+            <room roomName="Football"/>
+            <room roomName="Running Back"/>
+        </floor>
+    </building>
+    <building buildingName="Dan Fouts" numberOfFloors="1">
+        <floor level="1" src="danfouts1">
+            <room roomName="Fuel Band"/>
+            <room roomName="Hypervenom"/>
+            <room roomName="Terminator"/>
         </floor>
     </building>
 

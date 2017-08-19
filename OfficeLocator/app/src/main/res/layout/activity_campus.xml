@@ -208,9 +208,8 @@
                 android:background="@android:color/transparent"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_alignBaseline="@+id/petesampras"
-                android:layout_alignBottom="@+id/petesampras"
-                android:layout_alignStart="@+id/steveprefontaine" />
+                android:layout_above="@+id/danfouts"
+                android:layout_toEndOf="@+id/tigerwoods" />
 
         </RelativeLayout>
 
