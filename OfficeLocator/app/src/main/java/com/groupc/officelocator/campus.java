@@ -18,12 +18,12 @@ public class campus extends AppCompatActivity {
         RelativeLayout relativeLayout;
 
         public Button albertoSalazar, boJackson, danFouts, jerryRice, joanBenoitSamuelson,
-                johnMcEnroe, kenGriffeyJr, miaHamm, michaelJordan, mikeSchmidt, tigerWoods, globe;
+                johnMcEnroe, kenGriffeyJr, miaHamm, michaelJordan, mikeSchmidt, nikeSportsCenter, tigerWoods, globe;
         Button[] arrayButtons = {albertoSalazar, boJackson, danFouts, jerryRice, joanBenoitSamuelson,
-                johnMcEnroe, kenGriffeyJr, miaHamm, michaelJordan, mikeSchmidt, tigerWoods};
+                johnMcEnroe, kenGriffeyJr, miaHamm, michaelJordan, mikeSchmidt, nikeSportsCenter, tigerWoods};
         int[] buttonNames = {R.id.albertosalazar, R.id.bojackson, R.id.danfouts, R.id.jerryrice,
                 R.id.joanbenoitsamuelson, R.id.johnmcenroe, R.id.kengriffeyjr, R.id.miahamm,
-                R.id.michaeljordan, R.id.mikeschmidt, R.id.tigerwoods};
+                R.id.michaeljordan, R.id.mikeschmidt, R.id.nikesportscenter, R.id.tigerwoods};
         public mapdata data;
         public ImageButton satelliteview;
         private static int globesetting = 0;
