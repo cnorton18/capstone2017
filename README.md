@@ -4,6 +4,15 @@ For now, view properly formated instructions with Raw.
 
                                       Map Entry Instructions
 I. Adding a Building 
+	1. Navigate to ...\OfficeLocator\app\src\main\assets\data.xml
+	2. As a sub-element of campus, add a building. 
+		i. Opening tag is <building buildingName="Building Name" numberOfFloors="x">
+		ii. Closing tag is </building>
+	3. Navigate to ...\OfficeLocator\app\src\main\java\com\groupc\officelocator\campus.java
+		i. Edit variables Button, arrayButtons, buttonnames with building name in respective formats. 
+	4. Add the first floor of the building (see II). 
+	5. Increment the number of buildings on the campus 
+	6. [add button to campus xml] (already done for all Nike buildings)
 
 II. Adding a Floor to an Existing Building
 	1. Navigate to ...\OfficeLocator\app\src\main\assets\data.xml
@@ -46,3 +55,6 @@ III. Adding a Room to an Existing Floor
            all in lower case, with no spaces. 
         	i. Ex. awesomeroom
 	10. In Properties, set visiblity of the ImageView to invisible. 
+	Temporary Notes for those adding markers: 
+	*Nest markers under zoom relative layout. 
+	*You can adjust markers easily with layout margins under Properties. 
