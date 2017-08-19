@@ -30,19 +30,18 @@
 
             <ImageView
                 android:id="@+id/floorPlanImage"
-                android:layout_width="380dip"
-                android:layout_height="380dip"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="5dp"
+                android:layout_width="320dp"
+                android:layout_height="320dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
                 app:srcCompat="@drawable/petesampras1" />
 
             <ImageView
                 android:id="@+id/haiyanwu"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginLeft="65dp"
-                android:layout_marginTop="85dp"
+                android:layout_marginLeft="73dp"
+                android:layout_marginTop="97dp"
                 android:tint="@color/markerColor"
                 android:visibility="invisible"
                 app:srcCompat="@drawable/locate" />
@@ -51,8 +50,8 @@
                 android:id="@+id/michellewie"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginLeft="75dp"
-                android:layout_marginTop="225dp"
+                android:layout_marginLeft="79dp"
+                android:layout_marginTop="230dp"
                 android:tint="@color/markerColor"
                 android:visibility="invisible"
                 app:srcCompat="@drawable/locate" />
@@ -61,8 +60,8 @@
                 android:id="@+id/suzannpettersen"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginLeft="216dp"
-                android:layout_marginTop="82dp"
+                android:layout_marginLeft="212dp"
+                android:layout_marginTop="94dp"
                 android:tint="@color/markerColor"
                 android:visibility="invisible"
                 app:srcCompat="@drawable/locate" />

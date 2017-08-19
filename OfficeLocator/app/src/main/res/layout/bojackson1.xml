@@ -30,19 +30,18 @@
 
             <ImageView
                 android:id="@+id/floorPlanImage"
-                android:layout_width="380dip"
-                android:layout_height="380dip"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="5dp"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
                 app:srcCompat="@drawable/bojackson1" />
 
             <ImageView
                 android:id="@+id/auburn"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginLeft="150dp"
-                android:layout_marginTop="145dp"
+                android:layout_marginLeft="152dp"
+                android:layout_marginTop="143dp"
                 android:tint="@color/markerColor"
                 android:visibility="invisible"
                 app:srcCompat="@drawable/locate" />
@@ -51,7 +50,7 @@
                 android:id="@+id/football"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="55dp"
                 android:layout_marginTop="125dp"
                 android:tint="@color/markerColor"
                 android:visibility="invisible"
@@ -61,8 +60,8 @@
                 android:id="@+id/runningback"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginLeft="298dp"
-                android:layout_marginTop="68dp"
+                android:layout_marginLeft="276dp"
+                android:layout_marginTop="80dp"
                 android:tint="@color/markerColor"
                 android:visibility="invisible"
                 app:srcCompat="@drawable/locate" />

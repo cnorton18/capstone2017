@@ -30,19 +30,18 @@
 
             <ImageView
                 android:id="@+id/floorPlanImage"
-                android:layout_width="380dip"
-                android:layout_height="380dip"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="5dp"
-                app:srcCompat="@drawable/jerryrice1" />
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                app:srcCompat="@drawable/jerryrice1"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
 
             <ImageView
                 android:id="@+id/widereceiver"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginLeft="170dp"
-                android:layout_marginTop="143dp"
+                android:layout_marginLeft="168dp"
+                android:layout_marginTop="166dp"
                 android:tint="@color/markerColor"
                 android:visibility="invisible"
                 app:srcCompat="@drawable/locate" />
@@ -51,8 +50,8 @@
                 android:id="@+id/catches"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginLeft="50dp"
-                android:layout_marginTop="190dp"
+                android:layout_marginLeft="68dp"
+                android:layout_marginTop="202dp"
                 android:tint="@color/markerColor"
                 android:visibility="invisible"
                 app:srcCompat="@drawable/locate" />
@@ -61,8 +60,8 @@
                 android:id="@+id/receptions"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginLeft="285dp"
-                android:layout_marginTop="225dp"
+                android:layout_marginLeft="267dp"
+                android:layout_marginTop="230dp"
                 android:tint="@color/markerColor"
                 android:visibility="invisible"
                 app:srcCompat="@drawable/locate" />

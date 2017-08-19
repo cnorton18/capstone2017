@@ -30,19 +30,18 @@
 
             <ImageView
                 android:id="@+id/floorPlanImage"
-                android:layout_width="380dip"
-                android:layout_height="380dip"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="5dp"
-                app:srcCompat="@drawable/nikesportscenter1" />
+                android:layout_width="320dp"
+                android:layout_height="320dp"
+                app:srcCompat="@drawable/nikesportscenter1"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
 
             <ImageView
                 android:id="@+id/philknight"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginLeft="44dp"
-                android:layout_marginTop="55dp"
+                android:layout_marginLeft="57dp"
+                android:layout_marginTop="75dp"
                 android:tint="@color/markerColor"
                 android:visibility="invisible"
                 app:srcCompat="@drawable/locate" />
@@ -51,8 +50,8 @@
                 android:id="@+id/shoedog"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginLeft="220dp"
-                android:layout_marginTop="163dp"
+                android:layout_marginLeft="212dp"
+                android:layout_marginTop="169dp"
                 android:tint="@color/markerColor"
                 android:visibility="invisible"
                 app:srcCompat="@drawable/locate" />
@@ -61,8 +60,8 @@
                 android:id="@+id/sports"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginLeft="210dp"
-                android:layout_marginTop="57dp"
+                android:layout_marginLeft="206dp"
+                android:layout_marginTop="77dp"
                 android:tint="@color/markerColor"
                 android:visibility="invisible"
                 app:srcCompat="@drawable/locate" />

@@ -30,19 +30,18 @@
 
             <ImageView
                 android:id="@+id/floorPlanImage"
-                android:layout_width="380dip"
-                android:layout_height="380dip"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="5dp"
-                app:srcCompat="@drawable/michaeljordan1" />
+                android:layout_width="290dp"
+                android:layout_height="290dp"
+                app:srcCompat="@drawable/michaeljordan1"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
 
             <ImageView
                 android:id="@+id/basketball"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginLeft="75dp"
-                android:layout_marginTop="45dp"
+                android:layout_marginLeft="92dp"
+                android:layout_marginTop="90dp"
                 android:tint="@color/markerColor"
                 android:visibility="invisible"
                 app:srcCompat="@drawable/locate" />
@@ -51,8 +50,8 @@
                 android:id="@+id/chicagobulls"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginLeft="81dp"
-                android:layout_marginTop="180dp"
+                android:layout_marginLeft="97dp"
+                android:layout_marginTop="200dp"
                 android:tint="@color/markerColor"
                 android:visibility="invisible"
                 app:srcCompat="@drawable/locate" />
@@ -61,8 +60,8 @@
                 android:id="@+id/mvp"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginLeft="285dp"
-                android:layout_marginTop="226dp"
+                android:layout_marginLeft="260dp"
+                android:layout_marginTop="235dp"
                 android:tint="@color/markerColor"
                 android:visibility="invisible"
                 app:srcCompat="@drawable/locate" />
