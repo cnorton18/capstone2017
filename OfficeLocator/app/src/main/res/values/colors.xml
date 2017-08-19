@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#ccff00</color> <!-- Nike Orange color -->
+    <color name="colorPrimary">#ccff00</color> <!-- Nike Neon Green color -->
     <color name="colorPrimaryDark">#A3CC00</color>
     <color name="colorSecondary">#FFFFFF</color>
     <color name="colorAccent">#000000</color>
