@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -18,7 +17,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -413,14 +411,22 @@ public class floorplan extends AppCompatActivity{
                         favoriteinput.setOnKeyListener(new View.OnKeyListener() {
                             public boolean onKey(View v, int keyCode, KeyEvent event) {
                                 // If user hits "Enter" button"
-                                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                                    savetofavorites = favoriteinput.getText().toString();
-                                    addUserFavorite(modifiedfavorite);
+                                if ((keyCode == KeyEvent.KEYCODE_ENTER)) {
+                                    if(favoriteinput.getText().toString().trim().length()==0 || favoriteinput.getText().toString().isEmpty()) {
+                                        Toast instruction = Toast.makeText(getApplicationContext(), "Please enter in a value", Toast.LENGTH_SHORT);
+                                        instruction.setGravity(Gravity.CENTER_VERTICAL|Gravity.CENTER_HORIZONTAL, 0, 0);
+                                        instruction.show();
+                                        return false;
+                                    }
+                                    else{
+                                        savetofavorites = favoriteinput.getText().toString().trim();
+                                        addUserFavorite(modifiedfavorite);
+                                        return true;
+                                    }
                                 }
                                 return false;
                             }
                         });
-                        savetofavorites = favoriteinput.getText().toString();
                     }
 
                     @Override
@@ -430,7 +436,16 @@ public class floorplan extends AppCompatActivity{
                 favoritesubmit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        addUserFavorite(modifiedfavorite);
+                        if(favoriteinput.getText().toString().trim().length()==0 || favoriteinput.getText().toString().isEmpty()) {
+                            Toast instruction = Toast.makeText(getApplicationContext(), "Please enter in a value", Toast.LENGTH_SHORT);
+                            instruction.setGravity(Gravity.CENTER_VERTICAL|Gravity.CENTER_HORIZONTAL, 0, 0);
+                            instruction.show();
+                            return;
+                        }
+                        else {
+                            savetofavorites = favoriteinput.getText().toString().trim();
+                            addUserFavorite(modifiedfavorite);
+                        }
                     }
                 });
             }
@@ -470,7 +485,7 @@ public class floorplan extends AppCompatActivity{
         if (modifiedfavorite == 1) {
             for (String userKey : favUserKeys) {
                 if (userKey.matches(savetofavorites)) {
-                    Toast.makeText(floorplan.this, savetofavorites + " was already added to favorites", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(floorplan.this, "\"" + savetofavorites + "\" is already in your favorites", Toast.LENGTH_SHORT).show();
                     favoriteSecondDialog.dismiss();
                     return;
                 }

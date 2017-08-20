@@ -62,7 +62,7 @@
                 android:id="@+id/campusmap"
                 android:layout_width="420dp"
                 android:layout_height="480dp"
-                app:srcCompat="@drawable/campuswhite"
+                app:srcCompat="@drawable/campus"
                 android:paddingBottom="40dp"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
