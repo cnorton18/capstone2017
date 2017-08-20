@@ -206,4 +206,15 @@
         android:layout_alignParentBottom = "true"
         app:itemIconTint="@color/colorSecondary"
         app:itemTextColor="@color/colorSecondary" />
+
+    <!-- Room Spinner Disabled Button -->
+    <Button
+        android:id="@+id/instructionButton"
+        android:layout_width="210dip"
+        android:layout_height="40dip"
+        android:background="@android:color/transparent"
+        android:visibility="invisible"
+        android:layout_alignTop="@+id/roomSelector"
+        android:layout_toEndOf="@+id/roomSpinnerTitle" />
+
 </RelativeLayout>

@@ -116,6 +116,8 @@ public class floorplan extends AppCompatActivity{
     }
 
     private void floorSet() {
+        final String previousFloor = floorNumber;
+
         //What to do when the user clicks on a choice for the first spinner for choosing floors
         chooseFloor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -134,6 +136,31 @@ public class floorplan extends AppCompatActivity{
                     chooseRoom.setEnabled(false);
                     chooseRoom.setClickable(false);
                     floorplanname.setText(fpname);
+                    Button instructionbutton = (Button)findViewById(R.id.instructionButton);
+                    instructionbutton.setVisibility(View.VISIBLE);
+                    instructionbutton.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            Toast.makeText(floorplan.this, "Please select a floor first", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    //Clears existing room markers
+                    for (int j = 0; j < data.numberofBuildings; ++j) {
+                        if (data.buildings.get(j).buildingName.equals(fpname)) {
+                            for (int k = 0; k < data.buildings.get(j).floors.size(); ++k) {
+                                if (data.buildings.get(j).floors.get(k).level == Integer.parseInt(previousFloor)) {
+                                    for (int m = 0; m < data.buildings.get(j).floors.get(k).rooms.size(); ++m) {
+                                        String tempName = data.buildings.get(j).floors.get(k).rooms.get(m).roomName;
+                                        tempName = tempName.toLowerCase().replaceAll("\\s", "");
+                                        int roomID =
+                                                getResources().getIdentifier(tempName, "id", getPackageName());
+                                        selectedRoom = (ImageView) findViewById(roomID);
+                                        selectedRoom.setVisibility(View.INVISIBLE);
+                                    }
+                                }
+                            }
+                        }
+                    }
                     return;
                 }
 
@@ -394,7 +421,7 @@ public class floorplan extends AppCompatActivity{
                 for (String key: favUserKeys){
                     String value = favoritesValues.getString(key, "default value");
                     if(value.matches(addtofavorite)){
-                        Toast.makeText(floorplan.this, addtofavorite + " was already added to favorites as " + key, Toast.LENGTH_LONG).show();
+                        Toast.makeText(floorplan.this, addtofavorite + " was already added to favorites as \"" + key + "\"", Toast.LENGTH_LONG).show();
                         favoriteDialog.dismiss();
                         return;
                     }
