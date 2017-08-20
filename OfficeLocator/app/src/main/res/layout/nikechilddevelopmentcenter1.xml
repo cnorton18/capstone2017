@@ -157,6 +157,7 @@
         android:text="Building + Floor"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold"
+        android:textSize="20sp"
         android:layout_alignParentTop="true"
         android:layout_marginTop="15dp"
         android:layout_centerHorizontal="true"

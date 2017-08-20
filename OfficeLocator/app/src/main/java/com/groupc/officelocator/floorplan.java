@@ -133,6 +133,7 @@ public class floorplan extends AppCompatActivity{
                     chooseRoom.setSelection(0,true);
                     chooseRoom.setEnabled(false);
                     chooseRoom.setClickable(false);
+                    floorplanname.setText(fpname);
                     return;
                 }
 
