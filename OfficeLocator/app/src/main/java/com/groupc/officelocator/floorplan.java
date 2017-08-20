@@ -52,7 +52,7 @@ public class floorplan extends AppCompatActivity{
     TextView cancel, floorplanname, roomName, favoriteyes, favoriteno, favoritecancel, favoritesecondcancel, favoritesubmit, roomspinnerprompt;
     public static String addtofavorite, display, savetofavorites;
     public static String fpname, imageName, floorNumber, chosenRoomFromSearch, rmName = "";
-    public static int spinnerNumber, numberOfFloors, modifiedfavorite;
+    public static int roomID, spinnerNumber, numberOfFloors, modifiedfavorite;
     EditText favoriteinput;
 
     public mapdata data;
@@ -77,6 +77,8 @@ public class floorplan extends AppCompatActivity{
                 if (selection.equals("Choose a room")) {
                     rmName ="";
                     roomName.setVisibility(View.INVISIBLE);
+                    selectedRoom = (ImageView) findViewById(roomID);
+                    selectedRoom.setVisibility(View.INVISIBLE);
                     return;
                 }
                 rmName = selection;
@@ -92,8 +94,7 @@ public class floorplan extends AppCompatActivity{
                                 for (int m = 0; m < data.buildings.get(j).floors.get(k).rooms.size(); ++m) {
                                     String tempName = data.buildings.get(j).floors.get(k).rooms.get(m).roomName;
                                     tempName = tempName.toLowerCase().replaceAll("\\s", "");
-                                    int roomID =
-                                            getResources().getIdentifier(tempName, "id", getPackageName());
+                                    roomID = getResources().getIdentifier(tempName, "id", getPackageName());
                                     selectedRoom = (ImageView) findViewById(roomID);
                                     selectedRoom.setVisibility(View.INVISIBLE);
                                 }
@@ -104,8 +105,7 @@ public class floorplan extends AppCompatActivity{
 
                 //Sets new marker
                 selection = selection.toLowerCase().replaceAll("\\s", "");
-                int roomID =
-                        getResources().getIdentifier(selection, "id", getPackageName());
+                roomID = getResources().getIdentifier(selection, "id", getPackageName());
                 selectedRoom = (ImageView) findViewById(roomID);
                 selectedRoom.setVisibility(View.VISIBLE);
             }
@@ -152,8 +152,7 @@ public class floorplan extends AppCompatActivity{
                                     for (int m = 0; m < data.buildings.get(j).floors.get(k).rooms.size(); ++m) {
                                         String tempName = data.buildings.get(j).floors.get(k).rooms.get(m).roomName;
                                         tempName = tempName.toLowerCase().replaceAll("\\s", "");
-                                        int roomID =
-                                                getResources().getIdentifier(tempName, "id", getPackageName());
+                                        roomID = getResources().getIdentifier(tempName, "id", getPackageName());
                                         selectedRoom = (ImageView) findViewById(roomID);
                                         selectedRoom.setVisibility(View.INVISIBLE);
                                     }
@@ -251,8 +250,7 @@ public class floorplan extends AppCompatActivity{
 
         if (Integer.parseInt(floorNumber) > 0 && fromSearch == 1 && fromFavsFloor == 0) {
             String tempName = rmName.toLowerCase().replaceAll("\\s", "");
-            int roomID =
-                    getResources().getIdentifier(tempName, "id", getPackageName());
+            roomID = getResources().getIdentifier(tempName, "id", getPackageName());
             selectedRoom = (ImageView) findViewById(roomID);
             selectedRoom.setVisibility(View.VISIBLE);
         }

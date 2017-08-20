@@ -19,7 +19,7 @@
         android:id="@+id/activity_floorplan"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="60dp"
+        android:paddingTop="62dp"
         android:paddingBottom="160dp">
 
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -122,7 +122,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginLeft="12dp"
         android:layout_marginStart="12dp"
-        android:visibility="invisible"
+        android:visibility="visible"
         android:text="Room:" />
 
     <!-- Room spinner -->
@@ -135,7 +135,7 @@
         android:layout_marginBottom="70dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:visibility="invisible" />
+        android:visibility="visible" />
 
     <!-- Room spinner drop down arrow -->
     <ImageView
@@ -146,7 +146,7 @@
         android:layout_alignTop="@+id/roomSelector"
         android:layout_marginTop="12dp"
         app:srcCompat="@drawable/drop"
-        android:visibility="invisible"/>
+        android:visibility="visible"/>
 
     <!-- Building + Floor header -->
     <TextView
@@ -157,7 +157,9 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/pageTitles"/>
 
     <!-- Room name header -->
     <TextView
@@ -166,10 +168,12 @@
         android:layout_height="wrap_content"
         android:text="Room Name"
         android:textStyle="bold"
-        android:textSize="15sp"
-        android:layout_below="@+id/floorPlanName"
+        android:textSize="12sp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="42dp"
         android:layout_centerHorizontal="true"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        android:textColor="@color/pageTitles"/>
 
     <!-- Building locator button -->
     <ImageButton
