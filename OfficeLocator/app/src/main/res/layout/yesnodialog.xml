@@ -23,6 +23,7 @@
         android:layout_alignParentEnd="true" />
 
     <TextView
+        android:id="@+id/cancel"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:height="30dp"
@@ -32,13 +33,12 @@
         android:gravity="center_vertical|center_horizontal"
         android:background="@drawable/cancel"
         android:tint="@color/iconColor"
-        android:id="@+id/cancel"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
     <TextView
-        android:id="@+id/favorite_prompt"
+        android:id="@+id/prompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -62,9 +62,9 @@
         android:gravity="center_vertical|center_horizontal"
         android:layout_marginLeft="23dp"
         android:layout_marginStart="23dp"
-        android:layout_below="@+id/favorite_prompt"
-        android:layout_alignLeft="@+id/favorite_prompt"
-        android:layout_alignStart="@+id/favorite_prompt"
+        android:layout_below="@+id/prompt"
+        android:layout_alignLeft="@+id/prompt"
+        android:layout_alignStart="@+id/prompt"
         android:layout_marginTop="26dp" />
 
     <TextView

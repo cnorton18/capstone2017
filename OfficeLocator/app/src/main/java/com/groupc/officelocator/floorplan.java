@@ -515,7 +515,7 @@ public class floorplan extends AppCompatActivity{
     private void createFavoriteDialog(){
         favoriteDialog = new Dialog(floorplan.this);
         favoriteDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        favoriteDialog.setContentView(R.layout.favoritedialog);
+        favoriteDialog.setContentView(R.layout.yesnodialog);
         favoritecancel = (TextView) favoriteDialog.findViewById(R.id.cancel);
         favoriteyes = (TextView) favoriteDialog.findViewById(R.id.yes);
         favoriteno = (TextView) favoriteDialog.findViewById(R.id.no);

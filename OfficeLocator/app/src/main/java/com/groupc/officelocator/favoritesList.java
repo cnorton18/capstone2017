@@ -1,5 +1,6 @@
 package com.groupc.officelocator;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,8 +15,10 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +38,9 @@ public class favoritesList extends AppCompatActivity {
     public mapdata data;
     public int choiceFloors; //Number of floors in chosen building
     Bundle dataContainer;
+    ImageButton clearAll;
+    TextView cancel, yes, no, prompt;
+    Dialog clearDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -226,9 +232,82 @@ public class favoritesList extends AppCompatActivity {
             }
         });
 
+
+        //User clicks on button to clear Favorites List
+        clearAll = (ImageButton)findViewById(R.id.clearAll);
+        createClearDialog();
+        clearAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    clearDialog.show();
+            }
+        });
+
+        //If cancel button in dialog popup is clicked then exit the dialog
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearDialog.dismiss();
+            }
+        });
+
+        //If the no button in the dialog is clicked then exit the dialog
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearDialog.dismiss();
+            }
+        });
+
+        //If the yes button in the dialog is clicked then exit the dialog
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(arrayAdapter.isEmpty()){
+                    Toast.makeText(favoritesList.this, "There is nothing to remove", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    SharedPreferences.Editor editor = favoritesList.edit();
+                    editor.clear();
+                    editor.commit();
+                    SharedPreferences.Editor editor2 = favoritesValues.edit();
+                    editor2.clear();
+                    editor.commit();
+                    arrayAdapter.clear();
+                    allFavorites.invalidateViews();
+                    allFavorites.setAdapter(arrayAdapter);
+                }
+                clearDialog.dismiss();
+            }
+        });
+
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.getMenu().getItem(2).setChecked(true);
+    }
+
+    //Sets up clear all pop up dialog
+    private void createClearDialog(){
+        clearDialog = new Dialog(favoritesList.this);
+        clearDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        clearDialog.setContentView(R.layout.yesnodialog);
+        prompt = (TextView) clearDialog.findViewById(R.id.prompt);
+        prompt.setText("Would you like to clear your Favorites?");
+        cancel = (TextView) clearDialog.findViewById(R.id.cancel);
+        yes = (TextView) clearDialog.findViewById(R.id.yes);
+        no = (TextView) clearDialog.findViewById(R.id.no);
+    }
+
+    private boolean firstTime(){
+        SharedPreferences firstTime = getSharedPreferences("FirstTime", Context.MODE_PRIVATE);
+        boolean isFirstTime = firstTime.getBoolean("isFirstTime", false);
+        if(!isFirstTime){
+            SharedPreferences.Editor editor = firstTime.edit();
+            editor.putBoolean("isFirstTime",true);
+            editor.commit();
+        }
+        return !isFirstTime;
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -256,14 +335,4 @@ public class favoritesList extends AppCompatActivity {
         }
     };
 
-    private boolean firstTime(){
-        SharedPreferences firstTime = getSharedPreferences("FirstTime", Context.MODE_PRIVATE);
-        boolean isFirstTime = firstTime.getBoolean("isFirstTime", false);
-        if(!isFirstTime){
-            SharedPreferences.Editor editor = firstTime.edit();
-            editor.putBoolean("isFirstTime",true);
-            editor.commit();
-        }
-        return !isFirstTime;
-    }
 }

@@ -38,7 +38,7 @@
         android:layout_alignParentEnd="true" />
 
     <TextView
-        android:id="@+id/favorite_prompt"
+        android:id="@+id/prompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -74,8 +74,8 @@
         android:textSize="15dp"
         android:padding="10dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/favorite_prompt"
-        android:layout_alignStart="@+id/favorite_prompt"
+        android:layout_below="@+id/prompt"
+        android:layout_alignStart="@+id/prompt"
         android:layout_marginTop="10dp"
         android:maxLines="1"/>
 
