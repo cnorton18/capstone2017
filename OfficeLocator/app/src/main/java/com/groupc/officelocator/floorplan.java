@@ -404,8 +404,7 @@ public class floorplan extends AppCompatActivity{
                 favoriteinput.setText(display);
                 favoriteinput.addTextChangedListener(new TextWatcher() {
                     @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                    }
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
                     @Override
                     public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -416,33 +415,7 @@ public class floorplan extends AppCompatActivity{
                                 // If user hits "Enter" button"
                                 if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
                                     savetofavorites = favoriteinput.getText().toString();
-                                    if (modifiedfavorite == 1) {
-                                        for (String userKey : favUserKeys) {
-                                            if (userKey.matches(savetofavorites)) {
-                                                Toast.makeText(floorplan.this, savetofavorites + " was already added to favorites", Toast.LENGTH_SHORT).show();
-                                                favoriteSecondDialog.dismiss();
-                                                return true;
-                                            }
-                                        }
-                                        favUserKeys.add(savetofavorites);
-                                        SharedPreferences.Editor editor = favoritesList.edit();
-                                        editor.putStringSet("favUserKeys",favUserKeys);
-
-                                        SharedPreferences.Editor editor2 = favoritesValues.edit();
-                                        editor2.putString(savetofavorites, addtofavorite);
-                                        editor.commit();
-                                        editor2.commit();
-                                        Toast.makeText(floorplan.this, savetofavorites + " was added to favorites", Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        favRooms.add(addtofavorite);
-                                        SharedPreferences.Editor editor = favoritesList.edit();
-                                        editor.putStringSet("favRooms", favRooms);
-                                        editor.commit();
-                                        Toast.makeText(floorplan.this, addtofavorite + " was added to favorites", Toast.LENGTH_SHORT).show();
-                                    }
-                                    favoriteSecondDialog.dismiss();
-                                    modifiedfavorite = 0;
-                                    return true;
+                                    addUserFavorite(modifiedfavorite);
                                 }
                                 return false;
                             }
@@ -451,39 +424,13 @@ public class floorplan extends AppCompatActivity{
                     }
 
                     @Override
-                    public void afterTextChanged(Editable s) {
-                    }
+                    public void afterTextChanged(Editable s) {}
                 });
 
                 favoritesubmit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (modifiedfavorite == 1) {
-                            for (String userKey : favUserKeys) {
-                                if (userKey.matches(savetofavorites)) {
-                                    Toast.makeText(floorplan.this, savetofavorites + " was already added to favorites", Toast.LENGTH_SHORT).show();
-                                    favoriteSecondDialog.dismiss();
-                                    return;
-                                }
-                            }
-                            favUserKeys.add(savetofavorites);
-                            SharedPreferences.Editor editor = favoritesList.edit();
-                            editor.putStringSet("favUserKeys",favUserKeys);
-
-                            SharedPreferences.Editor editor2 = favoritesValues.edit();
-                            editor2.putString(savetofavorites, addtofavorite);
-                            editor.commit();
-                            editor2.commit();
-                            Toast.makeText(floorplan.this, savetofavorites + " was added to favorites", Toast.LENGTH_SHORT).show();
-                        } else {
-                            favRooms.add(addtofavorite);
-                            SharedPreferences.Editor editor = favoritesList.edit();
-                            editor.putStringSet("favRooms", favRooms);
-                            editor.commit();
-                            Toast.makeText(floorplan.this, addtofavorite + " was added to favorites", Toast.LENGTH_SHORT).show();
-                        }
-                        favoriteSecondDialog.dismiss();
-                        modifiedfavorite = 0;
+                        addUserFavorite(modifiedfavorite);
                     }
                 });
             }
@@ -496,8 +443,7 @@ public class floorplan extends AppCompatActivity{
                 favoriteSecondDialog.dismiss();
             }
         });
-
-
+        
     }
 
     private void clearMarkers(String floorNumber){
@@ -517,6 +463,37 @@ public class floorplan extends AppCompatActivity{
                 }
             }
         }
+    }
+
+    //What to do with user-entered favorites input
+    private void addUserFavorite(int modifiedfavorite){
+        if (modifiedfavorite == 1) {
+            for (String userKey : favUserKeys) {
+                if (userKey.matches(savetofavorites)) {
+                    Toast.makeText(floorplan.this, savetofavorites + " was already added to favorites", Toast.LENGTH_SHORT).show();
+                    favoriteSecondDialog.dismiss();
+                    return;
+                }
+            }
+            favUserKeys.add(savetofavorites);
+            SharedPreferences.Editor editor = favoritesList.edit();
+            editor.putStringSet("favUserKeys",favUserKeys);
+
+            SharedPreferences.Editor editor2 = favoritesValues.edit();
+            editor2.putString(savetofavorites, addtofavorite);
+            editor.commit();
+            editor2.commit();
+            Toast.makeText(floorplan.this, savetofavorites + " was added to favorites", Toast.LENGTH_SHORT).show();
+        } else {
+            favRooms.add(addtofavorite);
+            SharedPreferences.Editor editor = favoritesList.edit();
+            editor.putStringSet("favRooms", favRooms);
+            editor.commit();
+            Toast.makeText(floorplan.this, addtofavorite + " was added to favorites", Toast.LENGTH_SHORT).show();
+        }
+        favoriteSecondDialog.dismiss();
+        modifiedfavorite = 0;
+        return;
     }
 
     //Sets up favorite pop up dialog
