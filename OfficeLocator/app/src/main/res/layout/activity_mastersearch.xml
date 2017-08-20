@@ -68,7 +68,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
         android:drawableBottom="@android:color/transparent"
-        android:textCursorDrawable="@null" />
+        android:textCursorDrawable="@null"
+        android:maxLines="1"/>
 
     <!-- List of all search values -->
     <ListView
