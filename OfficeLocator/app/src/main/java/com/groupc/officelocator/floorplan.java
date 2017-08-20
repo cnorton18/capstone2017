@@ -41,7 +41,7 @@ public class floorplan extends AppCompatActivity{
     public static int setRoomfromSearch = 0; //Determines if a room was chosen in Search
     public static int floorselected = 0; //Determines if a floor number was chosen in Search or through Spinner
     public static int fromSearch = 0; //Determines if the previous page was Search before coming to the floorplan page
-    public static int fromCampus = 0; //Determines if the previous page was the campus page
+    public static int fromCampus = 0; //Determines if the previous page was the campusorange page
     public static int fromFavsFloor = 0; //Determines if previous page was Favorites floor selection
 
     ImageView buildingLocation, spinner2drop, selectedRoom;
@@ -443,7 +443,7 @@ public class floorplan extends AppCompatActivity{
                 favoriteSecondDialog.dismiss();
             }
         });
-        
+
     }
 
     private void clearMarkers(String floorNumber){

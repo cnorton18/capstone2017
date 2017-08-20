@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
                 case XmlPullParser.START_TAG:
                     name = parser.getName();
-                    if(name.equals("campus")) {
+                    if(name.equals("campusorange")) {
                         data.buildings = new ArrayList<>();
                         data.campusName = parser.getAttributeValue(null, "campusName");
                         data.numberofBuildings = Integer.parseInt(parser.getAttributeValue(null, "numberOfBuildings"));

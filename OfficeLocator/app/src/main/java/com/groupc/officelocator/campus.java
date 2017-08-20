@@ -81,7 +81,7 @@ public class campus extends AppCompatActivity {
             mapimage = (ImageView)findViewById(R.id.campusmap);
             satelliteview = (ImageButton)findViewById(R.id.satelliteViewButton);
 
-            //Set to satellite view when going back to the campus map from another page
+            //Set to satellite view when going back to the campusorange map from another page
             if(globesetting == 1){
                 //Set to satellite view
                 mapimage.setImageResource(R.drawable.satellite);

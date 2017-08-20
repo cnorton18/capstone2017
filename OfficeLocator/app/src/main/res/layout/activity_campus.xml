@@ -41,7 +41,7 @@
         android:textStyle="bold"
         android:textColor="@color/pageTitles"/>
 
-    <!-- Zoomable aspect of the page: the campus map + building buttons -->
+    <!-- Zoomable aspect of the page: the campusorange map + building buttons -->
     <com.groupc.officelocator.ZoomLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
