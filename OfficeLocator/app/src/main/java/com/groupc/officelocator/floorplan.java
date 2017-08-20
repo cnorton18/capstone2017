@@ -58,6 +58,9 @@ public class floorplan extends AppCompatActivity{
     public mapdata data;
     Bundle dataContainer;
 
+    SharedPreferences favoritesList, favoritesValues;
+    Set<String> favRooms, favUserKeys;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,22 +89,8 @@ public class floorplan extends AppCompatActivity{
                 roomName.setVisibility(View.VISIBLE);
                 roomName.setText(selection);
 
-                //Clears existing room markers
-                for (int j = 0; j < data.numberofBuildings; ++j) {
-                    if (data.buildings.get(j).buildingName.equals(fpname)) {
-                        for (int k = 0; k < data.buildings.get(j).floors.size(); ++k) {
-                            if (data.buildings.get(j).floors.get(k).level == Integer.parseInt(floorNumber)) {
-                                for (int m = 0; m < data.buildings.get(j).floors.get(k).rooms.size(); ++m) {
-                                    String tempName = data.buildings.get(j).floors.get(k).rooms.get(m).roomName;
-                                    tempName = tempName.toLowerCase().replaceAll("\\s", "");
-                                    roomID = getResources().getIdentifier(tempName, "id", getPackageName());
-                                    selectedRoom = (ImageView) findViewById(roomID);
-                                    selectedRoom.setVisibility(View.INVISIBLE);
-                                }
-                            }
-                        }
-                    }
-                }
+                //Clear existing room markers
+                clearMarkers(floorNumber);
 
                 //Sets new marker
                 selection = selection.toLowerCase().replaceAll("\\s", "");
@@ -144,22 +133,8 @@ public class floorplan extends AppCompatActivity{
                         }
                     });
 
-                    //Clears existing room markers
-                    for (int j = 0; j < data.numberofBuildings; ++j) {
-                        if (data.buildings.get(j).buildingName.equals(fpname)) {
-                            for (int k = 0; k < data.buildings.get(j).floors.size(); ++k) {
-                                if (data.buildings.get(j).floors.get(k).level == Integer.parseInt(previousFloor)) {
-                                    for (int m = 0; m < data.buildings.get(j).floors.get(k).rooms.size(); ++m) {
-                                        String tempName = data.buildings.get(j).floors.get(k).rooms.get(m).roomName;
-                                        tempName = tempName.toLowerCase().replaceAll("\\s", "");
-                                        roomID = getResources().getIdentifier(tempName, "id", getPackageName());
-                                        selectedRoom = (ImageView) findViewById(roomID);
-                                        selectedRoom.setVisibility(View.INVISIBLE);
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    //Clear existing room markers
+                    clearMarkers(previousFloor);
                     return;
                 }
 
@@ -222,12 +197,10 @@ public class floorplan extends AppCompatActivity{
         relativeLayout.addView(myZoomView);
 
         //Pulling map data on entry into the activity
-        //if(fromSearch == 1) {
         data = new mapdata();
         Intent goToFloorPlan = getIntent();
         dataContainer = goToFloorPlan.getExtras();
         data = dataContainer.getParcelable("parse");
-        //}
 
         spinner2drop = (ImageView) findViewById(R.id.imageView10); //Dropdown arrow for 2nd spinner
         roomspinnerprompt = (TextView) findViewById(R.id.roomSpinnerTitle);
@@ -389,10 +362,10 @@ public class floorplan extends AppCompatActivity{
         //If the yes button in the favorite dialog is clicked then save the string to the favorites
         createSecondFavoriteDialog();
 
-        final SharedPreferences favoritesList = getSharedPreferences("MyFavorites", Context.MODE_PRIVATE);
-        final SharedPreferences favoritesValues = getSharedPreferences("UserEnteredValues",Context.MODE_PRIVATE);
-        final Set<String> favRooms = new HashSet<>(favoritesList.getStringSet("favRooms", new HashSet<String>()));
-        final Set<String> favUserKeys = new HashSet<>(favoritesList.getStringSet("favUserKeys", new HashSet<String>()));
+        favoritesList = getSharedPreferences("MyFavorites", Context.MODE_PRIVATE);
+        favoritesValues = getSharedPreferences("UserEnteredValues",Context.MODE_PRIVATE);
+        favRooms = new HashSet<>(favoritesList.getStringSet("favRooms", new HashSet<String>()));
+        favUserKeys = new HashSet<>(favoritesList.getStringSet("favUserKeys", new HashSet<String>()));
 
         favoriteyes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -526,6 +499,26 @@ public class floorplan extends AppCompatActivity{
 
 
     }
+
+    private void clearMarkers(String floorNumber){
+        //Clears existing room markers
+        for (int j = 0; j < data.numberofBuildings; ++j) {
+            if (data.buildings.get(j).buildingName.equals(fpname)) {
+                for (int k = 0; k < data.buildings.get(j).floors.size(); ++k) {
+                    if (data.buildings.get(j).floors.get(k).level == Integer.parseInt(floorNumber)) {
+                        for (int m = 0; m < data.buildings.get(j).floors.get(k).rooms.size(); ++m) {
+                            String tempName = data.buildings.get(j).floors.get(k).rooms.get(m).roomName;
+                            tempName = tempName.toLowerCase().replaceAll("\\s", "");
+                            roomID = getResources().getIdentifier(tempName, "id", getPackageName());
+                            selectedRoom = (ImageView) findViewById(roomID);
+                            selectedRoom.setVisibility(View.INVISIBLE);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     //Sets up favorite pop up dialog
     private void createFavoriteDialog(){
         favoriteDialog = new Dialog(floorplan.this);
