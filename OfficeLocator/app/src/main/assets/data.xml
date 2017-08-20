@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<campus campusName="Nike" numberOfBuildings = "15">
+<campus campusName="Nike" numberOfBuildings = "16">
     <building buildingName="Alberto Salazar" numberOfFloors="1">
         <floor level="1" src="albertosalazar1">
             <room roomName="Cross Country"/>
@@ -74,6 +74,13 @@
             <room roomName="Phillies"/>
             <room roomName="Shortstop"/>
             <room roomName="Third Baseman"/>
+        </floor>
+    </building>
+    <building buildingName="Nike Child Development Center" numberOfFloors="1">
+        <floor level="1" src="nikechilddevelopmentcenter1">
+            <room roomName="Softball"/>
+            <room roomName="Swimming"/>
+            <room roomName="Volleyball"/>
         </floor>
     </building>
     <building buildingName="Nike Sports Center" numberOfFloors="1">
