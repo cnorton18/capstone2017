@@ -10,7 +10,7 @@
     <include
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        layout="@layout/universal_layout" />
+        layout="@layout/theme_layout" />
 
     <!-- Zoomable floorplan image -->
     <com.groupc.officelocator.ZoomLayout
@@ -92,7 +92,7 @@
     <!-- Floor spinner -->
     <Spinner
         android:id="@+id/floorSelector"
-        android:background="@drawable/roundedcorners"
+        android:background="@drawable/greenbgroundedcorners"
         android:layout_width="210dip"
         android:layout_height="40dip"
         android:layout_alignParentBottom="true"
@@ -129,7 +129,7 @@
 
     <!-- Room spinner -->
     <Spinner
-        android:background="@drawable/roundedcorners"
+        android:background="@drawable/greenbgroundedcorners"
         android:id="@+id/roomSelector"
         android:layout_width="210dip"
         android:layout_height="40dip"
@@ -224,5 +224,13 @@
         android:visibility="invisible"
         android:layout_alignTop="@+id/roomSelector"
         android:layout_toEndOf="@+id/roomSpinnerTitle" />
+
+    <Button
+        android:id="@+id/colors"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/transparent"/>
 
 </RelativeLayout>

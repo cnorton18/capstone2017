@@ -3,9 +3,12 @@ package com.groupc.officelocator;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.content.Intent;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -16,6 +19,7 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -59,9 +63,20 @@ public class floorplan extends AppCompatActivity{
     SharedPreferences favoritesList, favoritesValues;
     Set<String> favRooms, favUserKeys;
 
+    //Change color feature variables
+    Button changeColors;
+    private static String colorValue;
+    Dialog colorDialog;
+    TextView colorCancel, colorSubmit, colorPrompt;
+    CheckBox colorOrange, colorGreen;
+    SharedPreferences colorPreferences; //1 = Green, 2 = Orange
+    SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        colorPreferences = getSharedPreferences("ColorPreferences", Context.MODE_PRIVATE);
+        colorValue = colorPreferences.getString("color", "default");
 
         //Sets appropriate floorplan layout and spinners.
         setup();
@@ -94,6 +109,10 @@ public class floorplan extends AppCompatActivity{
                 selection = selection.toLowerCase().replaceAll("\\s", "");
                 roomID = getResources().getIdentifier(selection, "id", getPackageName());
                 selectedRoom = (ImageView) findViewById(roomID);
+                if(colorValue.equals("1") || colorValue.equals("default"))
+                    selectedRoom.setColorFilter(getResources().getColor(R.color.colorPrimary));
+                else
+                    selectedRoom.setColorFilter(getResources().getColor(R.color.NikeOrange));
                 selectedRoom.setVisibility(View.VISIBLE);
             }
 
@@ -164,10 +183,17 @@ public class floorplan extends AppCompatActivity{
                             for(int m = 0; m < data.buildings.get(j).floors.get(k).rooms.size(); ++m) {
                                 spinnerArray.add(data.buildings.get(j).floors.get(k).rooms.get(m).roomName);
                             }
-                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(floorplan.this,  R.layout.spinner_layout, spinnerArray);
-                            adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
-                            chooseRoom.setAdapter(adapter);
-                            break;
+                            if(colorValue.equals("1")||colorValue.equals("default")) {
+                                ArrayAdapter<String> adapter = new ArrayAdapter<String>(floorplan.this, R.layout.spinner_layout_green, spinnerArray);
+                                adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout_green);
+                                chooseRoom.setAdapter(adapter);
+                            }
+                            else{
+                                ArrayAdapter<String> adapter = new ArrayAdapter<String>(floorplan.this, R.layout.spinner_layout_orange, spinnerArray);
+                                adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout_orange);
+                                chooseRoom.setAdapter(adapter);
+                            }
+                                break;
                         }
                     }
                 }
@@ -223,6 +249,10 @@ public class floorplan extends AppCompatActivity{
             String tempName = rmName.toLowerCase().replaceAll("\\s", "");
             roomID = getResources().getIdentifier(tempName, "id", getPackageName());
             selectedRoom = (ImageView) findViewById(roomID);
+            if(colorValue.equals("1") || colorValue.equals("default"))
+                selectedRoom.setColorFilter(getResources().getColor(R.color.colorPrimary));
+            else
+                selectedRoom.setColorFilter(getResources().getColor(R.color.NikeOrange));
             selectedRoom.setVisibility(View.VISIBLE);
         }
 
@@ -246,8 +276,14 @@ public class floorplan extends AppCompatActivity{
         for (int i = 1; i <= numberOfFloors; i++) {
             list.add(String.valueOf(i));
         }
-        ArrayAdapter<String> numberAdapter = new ArrayAdapter<String>(this, R.layout.spinner_dropdown_layout, list);
-        chooseFloor.setAdapter(numberAdapter);
+        if(colorValue.equals("1")||colorValue.equals("default")) {
+            ArrayAdapter<String> numberAdapter = new ArrayAdapter<String>(this, R.layout.spinner_dropdown_layout_green, list);
+            chooseFloor.setAdapter(numberAdapter);
+        }
+        else {
+            ArrayAdapter<String> numberAdapter = new ArrayAdapter<String>(this, R.layout.spinner_dropdown_layout_orange, list);
+            chooseFloor.setAdapter(numberAdapter);
+        }
         chooseFloor.setSelected(false);
         chooseFloor.setSelection(0, true);
 
@@ -272,9 +308,16 @@ public class floorplan extends AppCompatActivity{
                         for (int k = 0; k < data.buildings.get(i).floors.get(j).rooms.size(); ++k) {
                             spinnerArray.add(data.buildings.get(i).floors.get(j).rooms.get(k).roomName);
                         }
-                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(floorplan.this, R.layout.spinner_layout, spinnerArray);
-                        adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
-                        chooseRoom.setAdapter(adapter);
+                        if(colorValue.equals("1")||colorValue.equals("default")) {
+                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(floorplan.this, R.layout.spinner_layout_green, spinnerArray);
+                            adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout_green);
+                            chooseRoom.setAdapter(adapter);
+                        }
+                        else {
+                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(floorplan.this, R.layout.spinner_layout_orange, spinnerArray);
+                            adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout_orange);
+                            chooseRoom.setAdapter(adapter);
+                        }
                         break;
                     }
                 }
@@ -327,6 +370,10 @@ public class floorplan extends AppCompatActivity{
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setSelected(false);
+        navigation.getMenu().getItem(0).setChecked(false);
+        navigation.getMenu().getItem(1).setChecked(false);
+        navigation.getMenu().getItem(2).setChecked(false);
+
 
         createFavoriteDialog();
         favorite = (ImageButton) findViewById(R.id.favorite);
@@ -459,6 +506,89 @@ public class floorplan extends AppCompatActivity{
             }
         });
 
+
+        //Changing colors
+        RelativeLayout universalLayout = (RelativeLayout)findViewById(R.id.universal_layout);
+        View gradientBlock = (View) universalLayout.findViewById(R.id.gradientBlock);
+        editor = colorPreferences.edit();
+        changeColors = (Button)findViewById(R.id.colors);
+        createColorDialog();
+        changeColors.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                colorDialog.show();
+                if (colorValue.equals("1") || colorValue.equals("default")) {
+                    colorGreen.setChecked(true);
+                    colorOrange.setChecked(false);
+                }
+                else {
+                    colorOrange.setChecked(true);
+                    colorGreen.setChecked(false);
+                }
+                editor.clear();
+            }
+        });
+
+        colorOrange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                colorOrange.setChecked(true);
+                colorGreen.setChecked(false);
+                editor.putString("color", "2");
+            }
+        });
+
+        colorGreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                colorGreen.setChecked(true);
+                colorOrange.setChecked(false);
+                editor.putString("color", "1");
+            }
+        });
+
+        colorSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                editor.commit();
+                colorDialog.dismiss();
+                recreate();
+            }
+        });
+
+        colorCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                if (colorValue.equals("1") || colorValue.equals("default")){
+                    colorGreen.setChecked(true);
+                    colorOrange.setChecked(false);
+                }
+                else {
+                    colorOrange.setChecked(true);
+                    colorGreen.setChecked(false);
+                }
+                colorDialog.dismiss();
+            }
+        });
+
+        switch (colorValue) {
+            //Green Dark
+            case "default":
+            case "1":
+                gradientBlock.setBackgroundResource(R.drawable.greengradient);
+                ((TextView)colorDialog.findViewById(R.id.submit)).setBackgroundResource(R.drawable.greengradient);
+                ((Spinner)findViewById(R.id.floorSelector)).setBackgroundResource(R.drawable.greenbgroundedcorners);
+                ((Spinner)findViewById(R.id.roomSelector)).setBackgroundResource(R.drawable.greenbgroundedcorners);
+                break;
+
+            //Orange Dark
+            case "2":
+                gradientBlock.setBackgroundResource(R.drawable.orangegradient);
+                ((TextView)colorDialog.findViewById(R.id.submit)).setBackgroundResource(R.drawable.orangegradient);
+                ((Spinner)findViewById(R.id.floorSelector)).setBackgroundResource(R.drawable.orangebgroundedcorners);
+                ((Spinner)findViewById(R.id.roomSelector)).setBackgroundResource(R.drawable.orangebgroundedcorners);
+                break;
+        }
     }
 
     private void clearMarkers(String floorNumber){
@@ -521,6 +651,20 @@ public class floorplan extends AppCompatActivity{
         favoriteno = (TextView) favoriteDialog.findViewById(R.id.no);
     }
 
+    //Sets up color dialog
+    private void createColorDialog(){
+        colorDialog = new Dialog(floorplan.this);
+        colorDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        colorDialog.setContentView(R.layout.colordialog);
+        colorCancel = (TextView) colorDialog.findViewById(R.id.cancel);
+        colorPrompt = (TextView) colorDialog.findViewById(R.id.prompt);
+        Typeface myCustomfont = Typeface.createFromAsset(getAssets(), "fonts/newsgothiccondensedbold.ttf");
+        colorPrompt.setTypeface(myCustomfont);
+        colorSubmit = (TextView) colorDialog.findViewById(R.id.submit);
+        colorOrange = (CheckBox) colorDialog.findViewById(R.id.checkorange);
+        colorGreen = (CheckBox) colorDialog.findViewById(R.id.checkneongreen);
+    }
+
     //Sets up second favorite pop up dialog
     private void createSecondFavoriteDialog(){
         favoriteSecondDialog = new Dialog(floorplan.this);
@@ -540,9 +684,16 @@ public class floorplan extends AppCompatActivity{
         dialog.setContentView(R.layout.imagedialog);
         buildingLocation = (ImageView)dialog.findViewById(R.id.buildingLocation);
 
-        String dialogImage = fpname.toLowerCase().replaceAll("\\s", "") + "highlighted";
-        int imgid = getResources().getIdentifier(dialogImage, "drawable", getPackageName());
-        buildingLocation.setImageResource(imgid);
+        if(colorValue.equals("1")||colorValue.equals("default")){
+            String dialogImage = fpname.toLowerCase().replaceAll("\\s", "") + "highlighted";
+            int imgid = getResources().getIdentifier(dialogImage, "drawable", getPackageName());
+            buildingLocation.setImageResource(imgid);
+        }
+        else {
+            String dialogImage = fpname.toLowerCase().replaceAll("\\s", "") + "orangehighlighted";
+            int imgid = getResources().getIdentifier(dialogImage, "drawable", getPackageName());
+            buildingLocation.setImageResource(imgid);
+        }
 
         cancel = (TextView) dialog.findViewById(R.id.cancel);
     }
@@ -582,4 +733,5 @@ public class floorplan extends AppCompatActivity{
         fromSearch = 1;
         super.onBackPressed();
     }
+
 }

@@ -1,11 +1,15 @@
 package com.groupc.officelocator;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -18,11 +22,24 @@ public class MainActivity extends AppCompatActivity {
     public Button search;
     public mapdata data;
     private static int SPLASH_TIME_OUT = 1500;
+    private static String colorValue;
+    SharedPreferences colorPreferences; //1 = Green, 2 = Orange
+    ImageView splash;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        colorPreferences = getSharedPreferences("ColorPreferences", Context.MODE_PRIVATE);
+        colorValue = colorPreferences.getString("color", "default");
+        splash = (ImageView) findViewById(R.id.splash);
+
+        if(colorValue.equals("1") || colorValue.equals("default"))
+            splash.setImageResource(R.drawable.splashneon);
+        else
+            splash.setImageResource(R.drawable.splashorange);
+
 
         data = new mapdata();
 

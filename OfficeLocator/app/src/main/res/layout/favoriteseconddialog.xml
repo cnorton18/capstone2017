@@ -52,7 +52,7 @@
 
     <TextView
         android:id="@+id/submit"
-        android:background="@drawable/roundedcorners"
+        android:background="@drawable/greenbgroundedcorners"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/buttonText"

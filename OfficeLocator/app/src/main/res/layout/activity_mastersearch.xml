@@ -10,7 +10,7 @@
     <include
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        layout="@layout/universal_layout" />
+        layout="@layout/theme_layout" />
 
     <!-- Fixed elements on screen that are unique to the page -->
 
@@ -23,8 +23,8 @@
         android:layout_gravity="bottom"
         app:menu="@menu/navigation"
         android:layout_alignParentBottom = "true"
-        app:itemIconTint="@drawable/selector"
-        app:itemTextColor="@drawable/selector"/>
+        app:itemIconTint="@drawable/greennavigation"
+        app:itemTextColor="@drawable/greennavigation"/>
 
     <!-- Page Title -->
     <TextView
@@ -103,5 +103,13 @@
         android:layout_marginLeft="10dp"
         android:tint="@color/darkGray"
         app:srcCompat="@drawable/search" />
+
+    <Button
+        android:id="@+id/colors"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/transparent"/>
 
 </RelativeLayout>

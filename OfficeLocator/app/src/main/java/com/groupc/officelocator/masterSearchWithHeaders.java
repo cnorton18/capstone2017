@@ -1,21 +1,28 @@
 package com.groupc.officelocator;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.annotation.NonNull;
@@ -33,6 +40,15 @@ public class masterSearchWithHeaders extends AppCompatActivity {
     public mapdata data;
     public int choiceFloors; //Number of floors in chosen building
     Bundle dataContainer;
+
+    //Change color feature variables
+    Button changeColors;
+    private static String colorValue;
+    Dialog colorDialog;
+    TextView colorCancel, colorSubmit, colorPrompt;
+    CheckBox colorOrange, colorGreen;
+    SharedPreferences colorPreferences; //1 = Green, 2 = Orange
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,6 +154,134 @@ public class masterSearchWithHeaders extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.getMenu().getItem(1).setChecked(true);
+
+        //Changing colors
+        RelativeLayout universalLayout = (RelativeLayout)findViewById(R.id.universal_layout);
+        View gradientBlock = (View) universalLayout.findViewById(R.id.gradientBlock);
+        colorPreferences = getSharedPreferences("ColorPreferences", Context.MODE_PRIVATE);
+        colorValue = colorPreferences.getString("color", "default");
+        editor = colorPreferences.edit();
+        changeColors = (Button)findViewById(R.id.colors);
+        createColorDialog();
+        changeColors.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                colorDialog.show();
+                if (colorValue.equals("1") || colorValue.equals("default")) {
+                    colorGreen.setChecked(true);
+                    colorOrange.setChecked(false);
+                }
+                else {
+                    colorOrange.setChecked(true);
+                    colorGreen.setChecked(false);
+                }
+                editor.clear();
+            }
+        });
+
+        colorOrange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                colorOrange.setChecked(true);
+                colorGreen.setChecked(false);
+                editor.putString("color", "2");
+            }
+        });
+
+        colorGreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                colorGreen.setChecked(true);
+                colorOrange.setChecked(false);
+                editor.putString("color", "1");
+            }
+        });
+
+        colorSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                editor.commit();
+                colorDialog.dismiss();
+                finish();
+                overridePendingTransition( 0, 0);
+                startActivity(getIntent());
+                overridePendingTransition( 0, 0);
+            }
+        });
+
+        colorCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                if (colorValue.equals("1") || colorValue.equals("default")){
+                    colorGreen.setChecked(true);
+                    colorOrange.setChecked(false);
+                }
+                else {
+                    colorOrange.setChecked(true);
+                    colorGreen.setChecked(false);
+                }
+                colorDialog.dismiss();
+            }
+        });
+
+
+        //Setting colors for bottom navigation bar
+        //Different icon states
+        int[][] iconStates = new int[][]{
+                new int[]{android.R.attr.state_checked},//checked state
+                new int[]{-android.R.attr.state_checked},//unchecked state
+                new int[]{} //default color
+        };
+
+        //Different icon colors - Green dark theme
+        int[] greenColors = new int[]{
+                ResourcesCompat.getColor(getResources(),R.color.colorPrimary, null),
+                ResourcesCompat.getColor(getResources(),R.color.iconColor, null),
+                ResourcesCompat.getColor(getResources(),R.color.iconColor, null),
+        };
+
+        //Different icon colors - Orange dark theme
+        int[] orangeColors = new int[]{
+                ResourcesCompat.getColor(getResources(),R.color.NikeOrange, null),
+                ResourcesCompat.getColor(getResources(),R.color.iconColor, null),
+                ResourcesCompat.getColor(getResources(),R.color.iconColor, null),
+        };
+
+
+        switch (colorValue) {
+            //Green Dark
+            case "default":
+            case "1":
+                gradientBlock.setBackgroundResource(R.drawable.greengradient);
+                ((TextView)colorDialog.findViewById(R.id.submit)).setBackgroundResource(R.drawable.greengradient);
+                ColorStateList navigationColorStateList = new ColorStateList(iconStates, greenColors);
+                navigation.setItemTextColor(navigationColorStateList);
+                navigation.setItemIconTintList(navigationColorStateList);
+                break;
+
+            //Orange Dark
+            case "2":
+                gradientBlock.setBackgroundResource(R.drawable.orangegradient);
+                ((TextView)colorDialog.findViewById(R.id.submit)).setBackgroundResource(R.drawable.orangegradient);
+                ColorStateList navigationColorStateList2 = new ColorStateList(iconStates, orangeColors);
+                navigation.setItemTextColor(navigationColorStateList2);
+                navigation.setItemIconTintList(navigationColorStateList2);
+                break;
+        }
+    }
+
+    //Sets up color dialog
+    private void createColorDialog(){
+        colorDialog = new Dialog(masterSearchWithHeaders.this);
+        colorDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        colorDialog.setContentView(R.layout.colordialog);
+        colorCancel = (TextView) colorDialog.findViewById(R.id.cancel);
+        colorPrompt = (TextView) colorDialog.findViewById(R.id.prompt);
+        Typeface myCustomfont = Typeface.createFromAsset(getAssets(), "fonts/newsgothiccondensedbold.ttf");
+        colorPrompt.setTypeface(myCustomfont);
+        colorSubmit = (TextView) colorDialog.findViewById(R.id.submit);
+        colorOrange = (CheckBox) colorDialog.findViewById(R.id.checkorange);
+        colorGreen = (CheckBox) colorDialog.findViewById(R.id.checkneongreen);
     }
 
     //WHERE WE DEFINE THE SEARCH ITEMS THAT WILL POPULATE THE SEARCH RESULT LISTVIEW
@@ -189,7 +333,10 @@ public class masterSearchWithHeaders extends AppCompatActivity {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             if (searchItem.get(position).isSection()) {
                 //If the item in the listview search result is a section header...
-                convertView = inflater.inflate(R.layout.list_header, parent, false);
+                if(colorValue.equals("1") || colorValue.equals("default"))
+                    convertView = inflater.inflate(R.layout.list_header_green, parent, false);
+                else
+                    convertView = inflater.inflate(R.layout.list_header_orange, parent,false);
                 TextView headerName = (TextView) convertView.findViewById(R.id.searchHeader);
                 headerName.setText(((BuildingName) searchItem.get(position)).getName());
             }
@@ -273,5 +420,12 @@ public class masterSearchWithHeaders extends AppCompatActivity {
         }
 
     };
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.getMenu().getItem(1).setChecked(true);
+    }
 
 }

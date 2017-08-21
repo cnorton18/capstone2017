@@ -6,11 +6,12 @@
     android:layout_height="match_parent"
     android:id="@+id/universal_layout">
 
-    <!-- Top horizontal divider -->
+    <!-- Top color bar -->
     <View
+        android:id="@+id/gradientBlock"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@drawable/rectanglegradient"
+        android:background="@drawable/greengradient"
         android:layout_alignParentTop="true" />
 
     <!-- Bottom navigation toolbar divider -->

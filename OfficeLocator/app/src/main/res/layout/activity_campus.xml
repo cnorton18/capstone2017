@@ -8,9 +8,10 @@
 
     <!-- Universal Layout -->
     <include
+        android:id="@+id/universal_layout"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        layout="@layout/universal_layout" />
+        layout="@layout/theme_layout" />
 
     <!-- Fixed elements on screen that are unique to the page -->
 
@@ -23,8 +24,8 @@
         android:layout_gravity="bottom"
         app:menu="@menu/navigation"
         android:layout_alignParentBottom = "true"
-        app:itemIconTint="@drawable/selector"
-        app:itemTextColor="@drawable/selector"/>
+        app:itemIconTint="@drawable/greennavigation"
+        app:itemTextColor="@drawable/greennavigation"/>
 
     <!-- Page Title -->
     <TextView
@@ -215,7 +216,8 @@
                 android:layout_marginTop="96dp"/>
 
         </RelativeLayout>
-        </com.groupc.officelocator.ZoomLayout>
+
+    </com.groupc.officelocator.ZoomLayout>
 
     <!-- "Satellite View Button -->
     <ImageButton
@@ -232,7 +234,7 @@
 
     <!-- "Select a Building or Search Prompt -->
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/prompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/selecttxt"
@@ -241,5 +243,13 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="80dp"
         android:layout_centerHorizontal="true" />
-    
+
+    <Button
+        android:id="@+id/colors"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/transparent"/>
+
 </RelativeLayout>

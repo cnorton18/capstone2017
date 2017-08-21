@@ -5,6 +5,6 @@
     android:textSize="14sp"
     android:text="Select"
     android:padding="5dp"
-    android:background="@drawable/roundedcorners"
+    android:background="@drawable/greenbgroundedcorners"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" />
