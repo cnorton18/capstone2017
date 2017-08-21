@@ -71,7 +71,7 @@
 
             <!-- Tiger Woods Center Button -->
             <Button
-                android:id="@+id/tigerwoods"
+                android:id="@+id/tigerwoodscenter"
                 android:background="@android:color/transparent"
                 android:layout_width="68dip"
                 android:layout_height="19dip"

@@ -17,16 +17,6 @@ import android.support.design.widget.BottomNavigationView;
 public class campus extends AppCompatActivity {
         RelativeLayout relativeLayout;
 
-    public Button albertoSalazar, boJackson, danFouts, jerryRice, joanBenoitSamuelson,
-            johnMcEnroe, kenGriffeyJr, miaHamm, michaelJordan, mikeSchmidt, nikeChildDevelopmentCenter,
-            nikeSportsCenter, nolanRyan, peteSampras, stevePrefontaineHall, tigerWoods, globe;
-    Button[] arrayButtons = {albertoSalazar, boJackson, danFouts, jerryRice, joanBenoitSamuelson,
-            johnMcEnroe, kenGriffeyJr, miaHamm, michaelJordan, mikeSchmidt, nikeChildDevelopmentCenter,
-            nikeSportsCenter, nolanRyan, peteSampras, stevePrefontaineHall, tigerWoods};
-    int[] buttonNames = {R.id.albertosalazar, R.id.bojackson, R.id.danfouts, R.id.jerryrice,
-            R.id.joanbenoitsamuelson, R.id.johnmcenroe, R.id.kengriffeyjr, R.id.miahamm,
-            R.id.michaeljordan, R.id.mikeschmidt, R.id.nikechilddevelopmentcenter,
-            R.id.nikesportscenter, R.id.nolanryan, R.id.petesampras, R.id.steveprefontainehall, R.id.tigerwoods};
     public mapdata data;
     public ImageButton satelliteview;
     private static int globesetting = 0;
@@ -53,11 +43,16 @@ public class campus extends AppCompatActivity {
 
             if(data == null)
                 android.os.Process.killProcess(android.os.Process.myPid());
+            Button[] buttons = new Button[data.buildings.size()];
 
             for (int i = 0; i < data.buildings.size(); i++) {
                 final int j = i;
-                arrayButtons[i] = (Button) findViewById(buttonNames[i]);
-                arrayButtons[i].setOnClickListener(new View.OnClickListener() {
+
+                String temp = data.buildings.get(i).buildingName.toLowerCase().replaceAll("\\s", "");
+                int id = getResources().getIdentifier(temp, "id", getPackageName());
+                buttons[i] = (Button) findViewById(id);
+
+                buttons[i].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent goToFloorPlan = new Intent(campus.this, floorplan.class);
