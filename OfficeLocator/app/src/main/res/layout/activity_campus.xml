@@ -222,15 +222,13 @@
     <!-- "Satellite View Button -->
     <ImageButton
         android:id="@+id/satelliteViewButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:background="@android:color/transparent"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/globe"
-        android:tint="@color/colorSecondary"
-        android:layout_marginTop="63dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="3dp"/>
+        android:layout_marginTop="60dp"
+        android:layout_alignParentRight="true" />
 
     <!-- "Select a Building or Search Prompt -->
     <TextView

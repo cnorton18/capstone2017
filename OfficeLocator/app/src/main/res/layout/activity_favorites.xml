@@ -69,8 +69,8 @@
 
     <ImageButton
         android:id="@+id/clearAll"
-        android:layout_width="40dp"
-        android:layout_height="35dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:scaleType="fitXY"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
