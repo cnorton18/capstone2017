@@ -15,3 +15,10 @@ On the page that displays the floor plan images there is another icon besides th
 
 The first time the user opens the Favorites page an instruction pop up dialog appears letting them know how to utilize this page. If they simply click on a location it will take them to its floor plan. If they hold down on the location it will remove the location from the list. 
 
+## Feature 4 - Sharing a location 
+A user can now share a floor plan for a building as well as a campus map image with that building highlighted on it with a user outside of the application. To do so navigate to the floor plan page for a building/room. On that floor plan activity page click on the "Share Location" icon. Then choose which method you would like to use to share the two images. 
+
+## Feature 5 - Changing Color Themes 
+A user can now choose between two classic Nike color schemes for the application: Nike Orange or Nike Neon Green. To change the color scheme for the theme click on the Nike swoosh logo above the header of the activity page then select your color choice and hit submit. The color changes will be enacted immediately and will persist for each use of the app until the user changes their color preference again. 
+
+
