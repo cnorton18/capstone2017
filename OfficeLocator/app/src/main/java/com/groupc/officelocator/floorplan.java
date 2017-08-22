@@ -18,6 +18,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.content.Intent;
 import android.os.Environment;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -588,8 +589,8 @@ public class floorplan extends AppCompatActivity {
 
     //Opens sharing intent in android device so user can share the floorplan + highlighted building image
     private void shareImages() {
-        Uri uri = Uri.fromFile(imagePath);
-        Uri uri2 = Uri.fromFile(imagePath2);
+        Uri uri = FileProvider.getUriForFile(floorplan.this, BuildConfig.APPLICATION_ID + ".provider",imagePath);
+        Uri uri2 = FileProvider.getUriForFile(floorplan.this, BuildConfig.APPLICATION_ID + ".provider",imagePath2);
         //Add URI of both floorplan + highlighted building images
         ArrayList<Uri> Imageuris = new ArrayList<Uri>();
         Imageuris.add(uri);

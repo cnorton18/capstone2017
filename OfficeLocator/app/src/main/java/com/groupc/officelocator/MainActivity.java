@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         colorValue = colorPreferences.getString("color", "default");
         splash = (ImageView) findViewById(R.id.splash);
         if(colorValue.equals("1") || colorValue.equals("default"))
-            splash.setImageResource(R.drawable.splashneon);
+            splash.setImageResource(R.drawable.splashgreen);
         else
             splash.setImageResource(R.drawable.splashorange);
 
