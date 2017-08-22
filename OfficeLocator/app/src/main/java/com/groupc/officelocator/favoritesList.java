@@ -320,76 +320,7 @@ public class favoritesList extends AppCompatActivity {
                 clearDialog.dismiss();
             }
         });
-    }
 
-    //Sets up color dialog
-    private void createColorDialog(){
-        colorDialog = new Dialog(favoritesList.this);
-        colorDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        colorDialog.setContentView(R.layout.colordialog);
-        colorCancel = (TextView) colorDialog.findViewById(R.id.cancel);
-        colorPrompt = (TextView) colorDialog.findViewById(R.id.prompt);
-        Typeface myCustomfont = Typeface.createFromAsset(getAssets(), "fonts/newsgothiccondensedbold.ttf");
-        colorPrompt.setTypeface(myCustomfont);
-        colorSubmit = (TextView) colorDialog.findViewById(R.id.submit);
-        colorOrange = (CheckBox) colorDialog.findViewById(R.id.checkorange);
-        colorGreen = (CheckBox) colorDialog.findViewById(R.id.checkneongreen);
-    }
-
-    //Sets up clear all pop up dialog
-    private void createClearDialog(){
-        clearDialog = new Dialog(favoritesList.this);
-        clearDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        clearDialog.setContentView(R.layout.yesnodialog);
-        prompt = (TextView) clearDialog.findViewById(R.id.prompt);
-        prompt.setText("Would you like to clear your Favorites?");
-        cancel = (TextView) clearDialog.findViewById(R.id.cancel);
-        yes = (TextView) clearDialog.findViewById(R.id.yes);
-        no = (TextView) clearDialog.findViewById(R.id.no);
-    }
-
-    //Determines if this is the user's first time running the app
-    private boolean firstTime(){
-        SharedPreferences firstTime = getSharedPreferences("FirstTime", Context.MODE_PRIVATE);
-        boolean isFirstTime = firstTime.getBoolean("isFirstTime", false);
-        if(!isFirstTime){
-            SharedPreferences.Editor editor = firstTime.edit();
-            editor.putBoolean("isFirstTime",true);
-            editor.commit();
-        }
-        return !isFirstTime;
-    }
-
-    //Setting up the bottom navigation toolbar
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    Intent theintent = new Intent(favoritesList.this, campus.class);
-                    theintent.putExtras(dataContainer);
-                    startActivity(theintent);
-                    return true;
-
-                case R.id.navigation_search:
-                    Intent theintent2 = new Intent(favoritesList.this, masterSearchWithHeaders.class);
-                    theintent2.putExtras(dataContainer);
-                    startActivity(theintent2);
-                    return true;
-
-                case R.id.navigation_favorites:
-                    return true;
-            }
-            return false;
-        }
-    };
-
-    //When the user presses the back button to get back to the Favorites page then the Favorites icon in the
-    //bottom navigation toolbar should be set
-    @Override
-    public void onResume(){
         //Bottom navigation toolbar. Set "FAVORITE" to checked
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -514,6 +445,79 @@ public class favoritesList extends AppCompatActivity {
                 break;
         }
 
-        super.onResume();
     }
+
+    //Sets up color dialog
+    private void createColorDialog(){
+        colorDialog = new Dialog(favoritesList.this);
+        colorDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        colorDialog.setContentView(R.layout.colordialog);
+        colorCancel = (TextView) colorDialog.findViewById(R.id.cancel);
+        colorPrompt = (TextView) colorDialog.findViewById(R.id.prompt);
+        Typeface myCustomfont = Typeface.createFromAsset(getAssets(), "fonts/newsgothiccondensedbold.ttf");
+        colorPrompt.setTypeface(myCustomfont);
+        colorSubmit = (TextView) colorDialog.findViewById(R.id.submit);
+        colorOrange = (CheckBox) colorDialog.findViewById(R.id.checkorange);
+        colorGreen = (CheckBox) colorDialog.findViewById(R.id.checkneongreen);
+    }
+
+    //Sets up clear all pop up dialog
+    private void createClearDialog(){
+        clearDialog = new Dialog(favoritesList.this);
+        clearDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        clearDialog.setContentView(R.layout.yesnodialog);
+        prompt = (TextView) clearDialog.findViewById(R.id.prompt);
+        prompt.setText("Would you like to clear your Favorites?");
+        cancel = (TextView) clearDialog.findViewById(R.id.cancel);
+        yes = (TextView) clearDialog.findViewById(R.id.yes);
+        no = (TextView) clearDialog.findViewById(R.id.no);
+    }
+
+    //Determines if this is the user's first time running the app
+    private boolean firstTime(){
+        SharedPreferences firstTime = getSharedPreferences("FirstTime", Context.MODE_PRIVATE);
+        boolean isFirstTime = firstTime.getBoolean("isFirstTime", false);
+        if(!isFirstTime){
+            SharedPreferences.Editor editor = firstTime.edit();
+            editor.putBoolean("isFirstTime",true);
+            editor.commit();
+        }
+        return !isFirstTime;
+    }
+
+    //Setting up the bottom navigation toolbar
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    Intent theintent = new Intent(favoritesList.this, campus.class);
+                    theintent.putExtras(dataContainer);
+                    startActivity(theintent);
+                    return true;
+
+                case R.id.navigation_search:
+                    Intent theintent2 = new Intent(favoritesList.this, masterSearchWithHeaders.class);
+                    theintent2.putExtras(dataContainer);
+                    startActivity(theintent2);
+                    return true;
+
+                case R.id.navigation_favorites:
+                    return true;
+            }
+            return false;
+        }
+    };
+
+    //When the user presses the back button to get back to the Favorites page then the Favorites icon in the
+    //bottom navigation toolbar should be set
+    @Override
+    public void onResume(){
+        super.onResume();
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.getMenu().getItem(2).setChecked(true);
+    }
+
 }
