@@ -103,6 +103,21 @@ public class floorplan extends AppCompatActivity {
     }
 
     private void select() {
+        if (floorNumber.equals("Choose a floor")) {
+            //Disable Room spinner
+            chooseRoom.setSelection(0, true);
+            chooseRoom.setEnabled(false);
+            chooseRoom.setClickable(false);
+            floorplanname.setText(fpname);
+            //If user tries to click on the room spinner, a message pops up telling them to select a floor first
+            Button instructionbutton = (Button) findViewById(R.id.instructionButton);
+            instructionbutton.setVisibility(View.VISIBLE);
+            instructionbutton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Toast.makeText(floorplan.this, "Please select a floor first", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
         chooseRoom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -285,11 +300,15 @@ public class floorplan extends AppCompatActivity {
             selectedRoom.setVisibility(View.VISIBLE);
         }
 
-        if (Integer.parseInt(floorNumber) == 0) { //For those without a floor number ("Mia Hamm"/"Tiger Woods"
-            //the default is the first floor
-            floorNumber = "1";
+        if(floorNumber.equals("Choose a floor"))
+            floorplanname.setText(fpname);
+        else {
+            if (Integer.parseInt(floorNumber) == 0) { //For those without a floor number ("Mia Hamm"/"Tiger Woods"
+                //the default is the first floor
+                floorNumber = "1";
+            }
+            floorplanname.setText(fpname + " Floor " + floorNumber);
         }
-        floorplanname.setText(fpname + " Floor " + floorNumber);
 
         buildingselected = spinnerNumber + 1;
 
@@ -321,9 +340,13 @@ public class floorplan extends AppCompatActivity {
         if (fromSearch == 1) {
             //All search results have floor values set into them (if there is not one explicitly set, it gets sent
             //to the first floor
-            floorselected = Integer.parseInt(floorNumber);
-            chooseFloor.setSelection(floorselected, true);
-            chooseFloor.setSelected(true);
+            if(floorNumber.equals("Choose a floor"))
+                chooseFloor.setSelection(0,true);
+            else{
+                floorselected = Integer.parseInt(floorNumber);
+                chooseFloor.setSelection(floorselected, true);
+                chooseFloor.setSelected(true);
+            }
 
             //Make the room spinner appear
             spinner2drop.setVisibility(View.VISIBLE);
