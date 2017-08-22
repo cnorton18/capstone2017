@@ -677,7 +677,12 @@ public class floorplan extends AppCompatActivity {
     private void createFavoriteDialog() {
         favoriteDialog = new Dialog(floorplan.this);
         favoriteDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        favoriteDialog.setContentView(R.layout.yesnodialog);
+
+        if (colorValue.equals("1") || colorValue.equals("default"))
+            favoriteDialog.setContentView(R.layout.yesnodialog_green);
+        else
+            favoriteDialog.setContentView(R.layout.yesnodialog_orange);
+
         favoritecancel = (TextView) favoriteDialog.findViewById(R.id.cancel);
         favoriteyes = (TextView) favoriteDialog.findViewById(R.id.yes);
         favoriteno = (TextView) favoriteDialog.findViewById(R.id.no);
@@ -687,7 +692,11 @@ public class floorplan extends AppCompatActivity {
     private void createSecondFavoriteDialog() {
         favoriteSecondDialog = new Dialog(floorplan.this);
         favoriteSecondDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        favoriteSecondDialog.setContentView(R.layout.favoriteseconddialog);
+        if (colorValue.equals("1") || colorValue.equals("default"))
+            favoriteSecondDialog.setContentView(R.layout.favoriteseconddialog_green);
+        else
+            favoriteSecondDialog.setContentView(R.layout.favoriteseconddialog_orange);
+
         favoritesecondcancel = (TextView) favoriteSecondDialog.findViewById(R.id.cancel);
         favoritesubmit = (TextView) favoriteSecondDialog.findViewById(R.id.submit);
         favoriteinput = (EditText) favoriteSecondDialog.findViewById(R.id.savetofavorites);

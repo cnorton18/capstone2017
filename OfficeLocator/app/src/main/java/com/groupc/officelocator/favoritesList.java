@@ -66,6 +66,9 @@ public class favoritesList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorites);
 
+        colorPreferences = getSharedPreferences("ColorPreferences", Context.MODE_PRIVATE);
+        colorValue = colorPreferences.getString("color", "default");
+
         //Grab data from mapdata class
         Intent priorInt = getIntent();
         dataContainer = priorInt.getExtras();
@@ -340,7 +343,12 @@ public class favoritesList extends AppCompatActivity {
     private void createClearDialog(){
         clearDialog = new Dialog(favoritesList.this);
         clearDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        clearDialog.setContentView(R.layout.yesnodialog);
+
+        if (colorValue.equals("1") || colorValue.equals("default"))
+            clearDialog.setContentView(R.layout.yesnodialog_green);
+        else
+            clearDialog.setContentView(R.layout.yesnodialog_orange);
+
         prompt = (TextView) clearDialog.findViewById(R.id.prompt);
         prompt.setText("Would you like to clear your Favorites?");
         cancel = (TextView) clearDialog.findViewById(R.id.cancel);
