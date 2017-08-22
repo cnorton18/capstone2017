@@ -52,7 +52,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-public class floorplan extends AppCompatActivity{
+public class floorplan extends AppCompatActivity {
 
     RelativeLayout relativeLayout;
     public static int buildingselected = 0; //Tracks which building
@@ -102,14 +102,14 @@ public class floorplan extends AppCompatActivity{
         floorSet();
     }
 
-    private void select(){
+    private void select() {
         chooseRoom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selection = ((TextView) view).getText().toString();
                 if (selection.equals("Choose a room")) {
                     //Make room header + markers invisible
-                    rmName ="";
+                    rmName = "";
                     roomName.setVisibility(View.INVISIBLE);
                     selectedRoom = (ImageView) findViewById(roomID);
                     selectedRoom.setVisibility(View.INVISIBLE);
@@ -127,7 +127,7 @@ public class floorplan extends AppCompatActivity{
                 selection = selection.toLowerCase().replaceAll("\\s", "");
                 roomID = getResources().getIdentifier(selection, "id", getPackageName());
                 selectedRoom = (ImageView) findViewById(roomID);
-                if(colorValue.equals("1") || colorValue.equals("default"))
+                if (colorValue.equals("1") || colorValue.equals("default"))
                     selectedRoom.setColorFilter(getResources().getColor(R.color.colorPrimary));
                 else
                     selectedRoom.setColorFilter(getResources().getColor(R.color.NikeOrange));
@@ -135,7 +135,8 @@ public class floorplan extends AppCompatActivity{
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {}
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
         });
     }
 
@@ -156,12 +157,12 @@ public class floorplan extends AppCompatActivity{
 
                 if (floorNumber.equals("Choose a floor")) {
                     //Disable Room spinner
-                    chooseRoom.setSelection(0,true);
+                    chooseRoom.setSelection(0, true);
                     chooseRoom.setEnabled(false);
                     chooseRoom.setClickable(false);
                     floorplanname.setText(fpname);
                     //If user tries to click on the room spinner, a message pops up telling them to select a floor first
-                    Button instructionbutton = (Button)findViewById(R.id.instructionButton);
+                    Button instructionbutton = (Button) findViewById(R.id.instructionButton);
                     instructionbutton.setVisibility(View.VISIBLE);
                     instructionbutton.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
@@ -188,7 +189,7 @@ public class floorplan extends AppCompatActivity{
                 setup();
 
                 //Sets floor spinner to appropriate floor
-                chooseFloor.setSelection(floorselected,true);
+                chooseFloor.setSelection(floorselected, true);
                 chooseFloor.setSelected(true);
 
                 //Make room spinners appear
@@ -199,38 +200,40 @@ public class floorplan extends AppCompatActivity{
                 //Set room spinner list based on floor selected
                 List<String> spinnerArray = new ArrayList<String>();
                 spinnerArray.add("Choose a room");
-                for(int j = 0; j < data.numberofBuildings; ++j) {
-                    for(int k = 0; k < data.buildings.get(j).floors.size(); ++k) {
-                        if(buildingselected == (j + 1) && data.buildings.get(j).floors.get(k).level == floorselected) {
-                            for(int m = 0; m < data.buildings.get(j).floors.get(k).rooms.size(); ++m) {
+                for (int j = 0; j < data.numberofBuildings; ++j) {
+                    for (int k = 0; k < data.buildings.get(j).floors.size(); ++k) {
+                        if (buildingselected == (j + 1) && data.buildings.get(j).floors.get(k).level == floorselected) {
+                            for (int m = 0; m < data.buildings.get(j).floors.get(k).rooms.size(); ++m) {
                                 spinnerArray.add(data.buildings.get(j).floors.get(k).rooms.get(m).roomName);
                             }
                             //If color theme is 1/default, use green spinner layouts
-                            if(colorValue.equals("1")||colorValue.equals("default")) {
+                            if (colorValue.equals("1") || colorValue.equals("default")) {
                                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(floorplan.this, R.layout.spinner_layout_green, spinnerArray);
                                 adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout_green);
                                 chooseRoom.setAdapter(adapter);
                             }
                             //If color theme is 2, use orange spinner layouts
-                            else{
+                            else {
                                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(floorplan.this, R.layout.spinner_layout_orange, spinnerArray);
                                 adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout_orange);
                                 chooseRoom.setAdapter(adapter);
                             }
-                                break;
+                            break;
                         }
                     }
                 }
                 chooseRoom.setSelected(false);
-                chooseRoom.setSelection(0,true);
+                chooseRoom.setSelection(0, true);
 
                 select();
 
                 //Resets floor spinner listener
                 floorSet();
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {}
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
         });
     }
 
@@ -271,21 +274,21 @@ public class floorplan extends AppCompatActivity{
         floorplanname.setTypeface(myCustomfont);
 
         //Set appropriate color for room markers based on user's color preference
-        if (Integer.parseInt(floorNumber) > 0 && fromSearch == 1 && fromFavsFloor == 0) {
+        if (!rmName.equals("") && fromSearch == 1 && fromFavsFloor == 0) {
             String tempName = rmName.toLowerCase().replaceAll("\\s", "");
             roomID = getResources().getIdentifier(tempName, "id", getPackageName());
             selectedRoom = (ImageView) findViewById(roomID);
-            if(colorValue.equals("1") || colorValue.equals("default"))
+            if (colorValue.equals("1") || colorValue.equals("default"))
                 selectedRoom.setColorFilter(getResources().getColor(R.color.colorPrimary));
             else
                 selectedRoom.setColorFilter(getResources().getColor(R.color.NikeOrange));
             selectedRoom.setVisibility(View.VISIBLE);
         }
 
-        //If the floor plan title has a floor number, we add that to the title
-        if (Integer.parseInt(floorNumber) == 0) //For those without a floor number ("Mia Hamm"/"Tiger Woods"
+        if (Integer.parseInt(floorNumber) == 0) { //For those without a floor number ("Mia Hamm"/"Tiger Woods"
             //the default is the first floor
             floorNumber = "1";
+        }
         floorplanname.setText(fpname + " Floor " + floorNumber);
 
         buildingselected = spinnerNumber + 1;
@@ -303,11 +306,10 @@ public class floorplan extends AppCompatActivity{
             list.add(String.valueOf(i));
         }
         //If color theme is 1/default, use green spinner layouts
-        if(colorValue.equals("1")||colorValue.equals("default")) {
+        if (colorValue.equals("1") || colorValue.equals("default")) {
             ArrayAdapter<String> numberAdapter = new ArrayAdapter<String>(this, R.layout.spinner_dropdown_layout_green, list);
             chooseFloor.setAdapter(numberAdapter);
-        }
-        else { //Else if color theme is 2, use orange spinner layouts
+        } else { //Else if color theme is 2, use orange spinner layouts
             ArrayAdapter<String> numberAdapter = new ArrayAdapter<String>(this, R.layout.spinner_dropdown_layout_orange, list);
             chooseFloor.setAdapter(numberAdapter);
         }
@@ -337,12 +339,11 @@ public class floorplan extends AppCompatActivity{
                         for (int k = 0; k < data.buildings.get(i).floors.get(j).rooms.size(); ++k) {
                             spinnerArray.add(data.buildings.get(i).floors.get(j).rooms.get(k).roomName);
                         }
-                        if(colorValue.equals("1")||colorValue.equals("default")) {
+                        if (colorValue.equals("1") || colorValue.equals("default")) {
                             ArrayAdapter<String> adapter = new ArrayAdapter<String>(floorplan.this, R.layout.spinner_layout_green, spinnerArray);
                             adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout_green);
                             chooseRoom.setAdapter(adapter);
-                        }
-                        else {
+                        } else {
                             ArrayAdapter<String> adapter = new ArrayAdapter<String>(floorplan.this, R.layout.spinner_layout_orange, spinnerArray);
                             adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout_orange);
                             chooseRoom.setAdapter(adapter);
@@ -435,7 +436,7 @@ public class floorplan extends AppCompatActivity{
         createSecondFavoriteDialog();
 
         favoritesList = getSharedPreferences("MyFavorites", Context.MODE_PRIVATE);
-        favoritesValues = getSharedPreferences("UserEnteredValues",Context.MODE_PRIVATE);
+        favoritesValues = getSharedPreferences("UserEnteredValues", Context.MODE_PRIVATE);
         favRooms = new HashSet<>(favoritesList.getStringSet("favRooms", new HashSet<String>()));
         favUserKeys = new HashSet<>(favoritesList.getStringSet("favUserKeys", new HashSet<String>()));
 
@@ -465,9 +466,9 @@ public class floorplan extends AppCompatActivity{
                 }
 
                 //... or as a user-entered key
-                for (String key: favUserKeys){
+                for (String key : favUserKeys) {
                     String value = favoritesValues.getString(key, "default value");
-                    if(value.matches(addtofavorite)){
+                    if (value.matches(addtofavorite)) {
                         Toast.makeText(floorplan.this, addtofavorite + " was already added to favorites as \"" + key + "\"", Toast.LENGTH_LONG).show();
                         favoriteDialog.dismiss();
                         return;
@@ -481,7 +482,8 @@ public class floorplan extends AppCompatActivity{
                 favoriteinput.setText(display);
                 favoriteinput.addTextChangedListener(new TextWatcher() {
                     @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    }
 
                     @Override
                     public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -491,13 +493,12 @@ public class floorplan extends AppCompatActivity{
                             public boolean onKey(View v, int keyCode, KeyEvent event) {
                                 // If user hits "Enter" button"
                                 if ((keyCode == KeyEvent.KEYCODE_ENTER)) {
-                                    if(favoriteinput.getText().toString().trim().length()==0 || favoriteinput.getText().toString().isEmpty()) {
+                                    if (favoriteinput.getText().toString().trim().length() == 0 || favoriteinput.getText().toString().isEmpty()) {
                                         Toast instruction = Toast.makeText(getApplicationContext(), "Please enter in a value", Toast.LENGTH_SHORT);
-                                        instruction.setGravity(Gravity.CENTER_VERTICAL|Gravity.CENTER_HORIZONTAL, 0, 0);
+                                        instruction.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0, 0);
                                         instruction.show();
                                         return false;
-                                    }
-                                    else{
+                                    } else {
                                         savetofavorites = favoriteinput.getText().toString().trim();
                                         addUserFavorite(modifiedfavorite);
                                         return true;
@@ -509,20 +510,20 @@ public class floorplan extends AppCompatActivity{
                     }
 
                     @Override
-                    public void afterTextChanged(Editable s) {}
+                    public void afterTextChanged(Editable s) {
+                    }
                 });
 
                 //Submits the value in the EditText to save it to the favorites list
                 favoritesubmit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(favoriteinput.getText().toString().trim().length()==0 || favoriteinput.getText().toString().isEmpty()) {
+                        if (favoriteinput.getText().toString().trim().length() == 0 || favoriteinput.getText().toString().isEmpty()) {
                             Toast instruction = Toast.makeText(getApplicationContext(), "Please enter in a value", Toast.LENGTH_SHORT);
-                            instruction.setGravity(Gravity.CENTER_VERTICAL|Gravity.CENTER_HORIZONTAL, 0, 0);
+                            instruction.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0, 0);
                             instruction.show();
                             return;
-                        }
-                        else {
+                        } else {
                             savetofavorites = favoriteinput.getText().toString().trim();
                             addUserFavorite(modifiedfavorite);
                         }
@@ -539,7 +540,224 @@ public class floorplan extends AppCompatActivity{
             }
         });
 
+        //Sharing the map floorplan
+        share = (ImageButton) findViewById(R.id.share);
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bitmap floorplan = takeScreenshot(); //Takes a screenshot of the floorplan
+                //Grab the "highlighted building" in the campus image
+                ImageView highlighteddrawable = ((ImageView) dialog.findViewById(R.id.buildingLocation));
+                Bitmap highlightedimage = ((BitmapDrawable) highlighteddrawable.getDrawable()).getBitmap();
+                saveBitmaps(floorplan, highlightedimage); //Save both bitmap images to device external drive
+                shareImages(); //Allow user to share these two images via Sharing Intent
+            }
+        });
 
+        //Code to allow user to change color preferences
+        colorSet();
+    }
+
+    //Takes a screenshot of the floorplan activity page
+    public Bitmap takeScreenshot() {
+        View screenshot = findViewById(android.R.id.content).getRootView();
+        screenshot.setDrawingCacheEnabled(true);
+        return screenshot.getDrawingCache();
+    }
+
+    //Saves the floorplan screenshot and highlighted building imageview to device's external storage
+    public void saveBitmaps(Bitmap bitmap1, Bitmap bitmap2) {
+        imagePath = new File(Environment.getExternalStorageDirectory() + "/BuildingFloorplan.png"); //Floorplan screenshot
+        imagePath2 = new File(Environment.getExternalStorageDirectory() + "/NikeCampus.png"); //Image of building highlighted on campus
+        FileOutputStream fos1, fos2;
+        //Save both bitmap images to external storage
+        try {
+            fos1 = new FileOutputStream(imagePath);
+            bitmap1.compress(Bitmap.CompressFormat.JPEG, 100, fos1);
+            fos1.flush();
+            fos1.close();
+            fos2 = new FileOutputStream(imagePath2);
+            bitmap2.compress(Bitmap.CompressFormat.JPEG, 100, fos2);
+            fos2.flush();
+            fos2.close();
+        } catch (FileNotFoundException e) {
+            Log.e("GREC", e.getMessage(), e);
+        } catch (IOException e) {
+            Log.e("GREC", e.getMessage(), e);
+        }
+    }
+
+    //Opens sharing intent in android device so user can share the floorplan + highlighted building image
+    private void shareImages() {
+        Uri uri = FileProvider.getUriForFile(floorplan.this, BuildConfig.APPLICATION_ID + ".provider",imagePath);
+        Uri uri2 = FileProvider.getUriForFile(floorplan.this, BuildConfig.APPLICATION_ID + ".provider",imagePath2);
+        //Add URI of both floorplan + highlighted building images
+        ArrayList<Uri> Imageuris = new ArrayList<Uri>();
+        Imageuris.add(uri);
+        Imageuris.add(uri2);
+        Intent sharingImages = new Intent(android.content.Intent.ACTION_SEND_MULTIPLE);
+        sharingImages.setType("image/*");
+        sharingImages.putExtra(android.content.Intent.EXTRA_SUBJECT, "Sharing Nike Campus Location");
+        sharingImages.putExtra(android.content.Intent.EXTRA_TEXT, "I would like to share this location with you.");
+        sharingImages.putExtra(Intent.EXTRA_STREAM, Imageuris);
+        startActivity(Intent.createChooser(sharingImages, "Share via"));
+    }
+
+    //Clears existing room markers
+    private void clearMarkers(String floorNumber) {
+        for (int j = 0; j < data.numberofBuildings; ++j) {
+            if (data.buildings.get(j).buildingName.equals(fpname)) {
+                for (int k = 0; k < data.buildings.get(j).floors.size(); ++k) {
+                    if (data.buildings.get(j).floors.get(k).level == Integer.parseInt(floorNumber)) {
+                        for (int m = 0; m < data.buildings.get(j).floors.get(k).rooms.size(); ++m) {
+                            String tempName = data.buildings.get(j).floors.get(k).rooms.get(m).roomName;
+                            tempName = tempName.toLowerCase().replaceAll("\\s", "");
+                            roomID = getResources().getIdentifier(tempName, "id", getPackageName());
+                            selectedRoom = (ImageView) findViewById(roomID);
+                            selectedRoom.setVisibility(View.INVISIBLE);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    //What to do with user-entered favorites input
+    private void addUserFavorite(int modifiedfavorite) {
+        //If user has entered in their own value
+        if (modifiedfavorite == 1) {
+            //Check if that alias has already been used, if it has exit out
+            for (String userKey : favUserKeys) {
+                if (userKey.matches(savetofavorites)) {
+                    Toast.makeText(floorplan.this, "\"" + savetofavorites + "\" is already in your favorites", Toast.LENGTH_SHORT).show();
+                    favoriteSecondDialog.dismiss();
+                    return;
+                }
+            }
+
+            //If user hasn't used this alias before, then grab the location value and store both the user entered
+            //key and the location value in their respective SharedPreference values
+            favUserKeys.add(savetofavorites);
+            SharedPreferences.Editor editor = favoritesList.edit();
+            editor.putStringSet("favUserKeys", favUserKeys);
+
+            SharedPreferences.Editor editor2 = favoritesValues.edit();
+            editor2.putString(savetofavorites, addtofavorite);
+            editor.commit();
+            editor2.commit();
+            Toast.makeText(floorplan.this, savetofavorites + " was added to favorites", Toast.LENGTH_SHORT).show();
+        } else { //If user did not enter in a value and wants to just save it as its location name
+            //save the location to the appropriate SharedPreference File
+            favRooms.add(addtofavorite);
+            SharedPreferences.Editor editor = favoritesList.edit();
+            editor.putStringSet("favRooms", favRooms);
+            editor.commit();
+            Toast.makeText(floorplan.this, addtofavorite + " was added to favorites", Toast.LENGTH_SHORT).show();
+        }
+        favoriteSecondDialog.dismiss();
+        modifiedfavorite = 0;
+        return;
+    }
+
+    //Sets up color dialog
+    private void createColorDialog() {
+        colorDialog = new Dialog(floorplan.this);
+        colorDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        colorDialog.setContentView(R.layout.colordialog);
+        colorCancel = (TextView) colorDialog.findViewById(R.id.cancel);
+        colorPrompt = (TextView) colorDialog.findViewById(R.id.prompt);
+        Typeface myCustomfont = Typeface.createFromAsset(getAssets(), "fonts/newsgothiccondensedbold.ttf");
+        colorPrompt.setTypeface(myCustomfont);
+        colorSubmit = (TextView) colorDialog.findViewById(R.id.submit);
+        colorOrange = (CheckBox) colorDialog.findViewById(R.id.checkorange);
+        colorGreen = (CheckBox) colorDialog.findViewById(R.id.checkneongreen);
+    }
+
+    //Sets up favorite pop up dialog
+    private void createFavoriteDialog() {
+        favoriteDialog = new Dialog(floorplan.this);
+        favoriteDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        if (colorValue.equals("1") || colorValue.equals("default"))
+            favoriteDialog.setContentView(R.layout.yesnodialog_green);
+        else
+            favoriteDialog.setContentView(R.layout.yesnodialog_orange);
+
+        favoritecancel = (TextView) favoriteDialog.findViewById(R.id.cancel);
+        favoriteyes = (TextView) favoriteDialog.findViewById(R.id.yes);
+        favoriteno = (TextView) favoriteDialog.findViewById(R.id.no);
+    }
+
+    //Sets up second favorite pop up dialog
+    private void createSecondFavoriteDialog() {
+        favoriteSecondDialog = new Dialog(floorplan.this);
+        favoriteSecondDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        if (colorValue.equals("1") || colorValue.equals("default"))
+            favoriteSecondDialog.setContentView(R.layout.favoriteseconddialog_green);
+        else
+            favoriteSecondDialog.setContentView(R.layout.favoriteseconddialog_orange);
+
+        favoritesecondcancel = (TextView) favoriteSecondDialog.findViewById(R.id.cancel);
+        favoritesubmit = (TextView) favoriteSecondDialog.findViewById(R.id.submit);
+        favoriteinput = (EditText) favoriteSecondDialog.findViewById(R.id.savetofavorites);
+    }
+
+    //Come back to fix this perhaps after room class stores images
+    //Sets up pop up dialog of highlighted building in campus image
+    private void createDialog() {
+        dialog = new Dialog(floorplan.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.imagedialog);
+        buildingLocation = (ImageView) dialog.findViewById(R.id.buildingLocation);
+
+        //If the color preference is 1, use the appropriate green images
+        if (colorValue.equals("1") || colorValue.equals("default")) {
+            String dialogImage = fpname.toLowerCase().replaceAll("\\s", "") + "highlighted";
+            int imgid = getResources().getIdentifier(dialogImage, "drawable", getPackageName());
+            buildingLocation.setImageResource(imgid);
+        }
+        //Else use the appropriate orange images
+        else {
+            String dialogImage = fpname.toLowerCase().replaceAll("\\s", "") + "orangehighlighted";
+            int imgid = getResources().getIdentifier(dialogImage, "drawable", getPackageName());
+            buildingLocation.setImageResource(imgid);
+        }
+
+        cancel = (TextView) dialog.findViewById(R.id.cancel);
+    }
+
+    //Setting up the bottom navigation toolbar
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+            Intent theintent = null;
+
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    theintent = new Intent(floorplan.this, campus.class);
+                    theintent.putExtras(dataContainer);
+                    break;
+
+                case R.id.navigation_search:
+                    theintent = new Intent(floorplan.this, masterSearchWithHeaders.class);
+                    theintent.putExtras(dataContainer);
+                    break;
+
+                case R.id.navigation_favorites:
+                    theintent = new Intent(floorplan.this, favoritesList.class);
+                    theintent.putExtras(dataContainer);
+                    break;
+            }
+            startActivity(theintent);
+            return true;
+        }
+
+    };
+
+    //Sets all color preferences in layout
+    private void colorSet() {
         //Code to allow user to change color preferences
         RelativeLayout universalLayout = (RelativeLayout)findViewById(R.id.universal_layout);
         View gradientBlock = (View) universalLayout.findViewById(R.id.gradientBlock); //Color block in theme
@@ -630,218 +848,22 @@ public class floorplan extends AppCompatActivity{
                 ((Spinner)findViewById(R.id.roomSelector)).setBackgroundResource(R.drawable.orangebgroundedcorners); //set room spinner to orange
                 break;
         }
-
-        //Sharing the map floorplan
-        share = (ImageButton) findViewById(R.id.share);
-        share.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bitmap floorplan = takeScreenshot(); //Takes a screenshot of the floorplan
-                //Grab the "highlighted building" in the campus image
-                ImageView highlighteddrawable = ((ImageView)dialog.findViewById(R.id.buildingLocation));
-                Bitmap highlightedimage = ((BitmapDrawable)highlighteddrawable.getDrawable()).getBitmap();
-                saveBitmaps(floorplan, highlightedimage); //Save both bitmap images to device external drive
-                shareImages(); //Allow user to share these two images via Sharing Intent
-            }
-        });
-
     }
-
-    //Takes a screenshot of the floorplan activity page
-    public Bitmap takeScreenshot() {
-        View screenshot = findViewById(android.R.id.content).getRootView();
-        screenshot.setDrawingCacheEnabled(true);
-        return screenshot.getDrawingCache();
-    }
-
-    //Saves the floorplan screenshot and highlighted building imageview to device's external storage
-    public void saveBitmaps(Bitmap bitmap1, Bitmap bitmap2) {
-        imagePath = new File(Environment.getExternalStorageDirectory() + "/BuildingFloorplan.png"); //Floorplan screenshot
-        imagePath2 = new File(Environment.getExternalStorageDirectory() + "/NikeCampus.png"); //Image of building highlighted on campus
-        FileOutputStream fos1, fos2;
-        //Save both bitmap images to external storage
-        try {
-            fos1 = new FileOutputStream(imagePath);
-            bitmap1.compress(Bitmap.CompressFormat.JPEG, 100, fos1);
-            fos1.flush();
-            fos1.close();
-            fos2 = new FileOutputStream(imagePath2);
-            bitmap2.compress(Bitmap.CompressFormat.JPEG, 100, fos2);
-            fos2.flush();
-            fos2.close();
-        } catch (FileNotFoundException e) {
-            Log.e("GREC", e.getMessage(), e);
-        } catch (IOException e) {
-            Log.e("GREC", e.getMessage(), e);
-        }
-    }
-
-    //Opens sharing intent in android device so user can share the floorplan + highlighted building image
-    private void shareImages() {
-        Uri uri = FileProvider.getUriForFile(floorplan.this, BuildConfig.APPLICATION_ID + ".provider",imagePath);
-        Uri uri2 = FileProvider.getUriForFile(floorplan.this, BuildConfig.APPLICATION_ID + ".provider",imagePath2);
-        //Add URI of both floorplan + highlighted building images
-        ArrayList<Uri> Imageuris = new ArrayList<Uri>();
-        Imageuris.add(uri);
-        Imageuris.add(uri2);
-        Intent sharingImages = new Intent(android.content.Intent.ACTION_SEND_MULTIPLE);
-        sharingImages.setType("image/*");
-        sharingImages.putExtra(android.content.Intent.EXTRA_SUBJECT, "Sharing Nike Campus Location");
-        sharingImages.putExtra(android.content.Intent.EXTRA_TEXT, "I would like to share this location with you.");
-        sharingImages.putExtra(Intent.EXTRA_STREAM, Imageuris);
-        startActivity(Intent.createChooser(sharingImages, "Share via"));
-    }
-
-    //Clears existing room markers
-    private void clearMarkers(String floorNumber){
-        for (int j = 0; j < data.numberofBuildings; ++j) {
-            if (data.buildings.get(j).buildingName.equals(fpname)) {
-                for (int k = 0; k < data.buildings.get(j).floors.size(); ++k) {
-                    if (data.buildings.get(j).floors.get(k).level == Integer.parseInt(floorNumber)) {
-                        for (int m = 0; m < data.buildings.get(j).floors.get(k).rooms.size(); ++m) {
-                            String tempName = data.buildings.get(j).floors.get(k).rooms.get(m).roomName;
-                            tempName = tempName.toLowerCase().replaceAll("\\s", "");
-                            roomID = getResources().getIdentifier(tempName, "id", getPackageName());
-                            selectedRoom = (ImageView) findViewById(roomID);
-                            selectedRoom.setVisibility(View.INVISIBLE);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    //What to do with user-entered favorites input
-    private void addUserFavorite(int modifiedfavorite){
-        //If user has entered in their own value
-        if (modifiedfavorite == 1) {
-            //Check if that alias has already been used, if it has exit out
-            for (String userKey : favUserKeys) {
-                if (userKey.matches(savetofavorites)) {
-                    Toast.makeText(floorplan.this, "\"" + savetofavorites + "\" is already in your favorites", Toast.LENGTH_SHORT).show();
-                    favoriteSecondDialog.dismiss();
-                    return;
-                }
-            }
-
-            //If user hasn't used this alias before, then grab the location value and store both the user entered
-            //key and the location value in their respective SharedPreference values
-            favUserKeys.add(savetofavorites);
-            SharedPreferences.Editor editor = favoritesList.edit();
-            editor.putStringSet("favUserKeys",favUserKeys);
-
-            SharedPreferences.Editor editor2 = favoritesValues.edit();
-            editor2.putString(savetofavorites, addtofavorite);
-            editor.commit();
-            editor2.commit();
-            Toast.makeText(floorplan.this, savetofavorites + " was added to favorites", Toast.LENGTH_SHORT).show();
-        } else { //If user did not enter in a value and wants to just save it as its location name
-            //save the location to the appropriate SharedPreference File
-            favRooms.add(addtofavorite);
-            SharedPreferences.Editor editor = favoritesList.edit();
-            editor.putStringSet("favRooms", favRooms);
-            editor.commit();
-            Toast.makeText(floorplan.this, addtofavorite + " was added to favorites", Toast.LENGTH_SHORT).show();
-        }
-        favoriteSecondDialog.dismiss();
-        modifiedfavorite = 0;
-        return;
-    }
-
-    //Sets up color dialog
-    private void createColorDialog(){
-        colorDialog = new Dialog(floorplan.this);
-        colorDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        colorDialog.setContentView(R.layout.colordialog);
-        colorCancel = (TextView) colorDialog.findViewById(R.id.cancel);
-        colorPrompt = (TextView) colorDialog.findViewById(R.id.prompt);
-        Typeface myCustomfont = Typeface.createFromAsset(getAssets(), "fonts/newsgothiccondensedbold.ttf");
-        colorPrompt.setTypeface(myCustomfont);
-        colorSubmit = (TextView) colorDialog.findViewById(R.id.submit);
-        colorOrange = (CheckBox) colorDialog.findViewById(R.id.checkorange);
-        colorGreen = (CheckBox) colorDialog.findViewById(R.id.checkneongreen);
-    }
-
-    //Sets up favorite pop up dialog
-    private void createFavoriteDialog(){
-        favoriteDialog = new Dialog(floorplan.this);
-        favoriteDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        favoriteDialog.setContentView(R.layout.yesnodialog);
-        favoritecancel = (TextView) favoriteDialog.findViewById(R.id.cancel);
-        favoriteyes = (TextView) favoriteDialog.findViewById(R.id.yes);
-        favoriteno = (TextView) favoriteDialog.findViewById(R.id.no);
-    }
-
-    //Sets up second favorite pop up dialog
-    private void createSecondFavoriteDialog(){
-        favoriteSecondDialog = new Dialog(floorplan.this);
-        favoriteSecondDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        favoriteSecondDialog.setContentView(R.layout.favoriteseconddialog);
-        favoritesecondcancel = (TextView) favoriteSecondDialog.findViewById(R.id.cancel);
-        favoritesubmit = (TextView) favoriteSecondDialog.findViewById(R.id.submit);
-        favoriteinput = (EditText) favoriteSecondDialog.findViewById(R.id.savetofavorites);
-    }
-
-    //Come back to fix this perhaps after room class stores images
-    //Sets up pop up dialog of highlighted building in campus image
-    private void createDialog()
-    {
-        dialog = new Dialog(floorplan.this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.imagedialog);
-        buildingLocation = (ImageView)dialog.findViewById(R.id.buildingLocation);
-
-        //If the color preference is 1, use the appropriate green images
-        if(colorValue.equals("1")||colorValue.equals("default")){
-            String dialogImage = fpname.toLowerCase().replaceAll("\\s", "") + "highlighted";
-            int imgid = getResources().getIdentifier(dialogImage, "drawable", getPackageName());
-            buildingLocation.setImageResource(imgid);
-        }
-        //Else use the appropriate orange images
-        else {
-            String dialogImage = fpname.toLowerCase().replaceAll("\\s", "") + "orangehighlighted";
-            int imgid = getResources().getIdentifier(dialogImage, "drawable", getPackageName());
-            buildingLocation.setImageResource(imgid);
-        }
-
-        cancel = (TextView) dialog.findViewById(R.id.cancel);
-    }
-
-    //Setting up the bottom navigation toolbar
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-            Intent theintent = null;
-
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    theintent = new Intent(floorplan.this, campus.class);
-                    theintent.putExtras(dataContainer);
-                    break;
-
-                case R.id.navigation_search:
-                    theintent = new Intent(floorplan.this, masterSearchWithHeaders.class);
-                    theintent.putExtras(dataContainer);
-                    break;
-
-                case R.id.navigation_favorites:
-                    theintent = new Intent(floorplan.this, favoritesList.class);
-                    theintent.putExtras(dataContainer);
-                    break;
-            }
-            startActivity(theintent);
-            return true;
-        }
-
-    };
 
     //Ensures proper reset on back button navigation
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         fromSearch = 1;
         super.onBackPressed();
     }
 
+    @Override
+    public void onResume() {
+
+        colorPreferences = getSharedPreferences("ColorPreferences", Context.MODE_PRIVATE);
+        colorValue = colorPreferences.getString("color", "default");
+
+        colorSet();
+        super.onResume();
+    }
 }
