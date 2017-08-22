@@ -14,16 +14,21 @@ All buildings on the campus map are clickable. Currently the only two buildings 
 
 ### - [Swoosh Room Finder v2.0](https://appetize.io/app/tquh84phqn64q1hbkrw5h7qjm8) 
 
-Features added: 1) User can now click on all buildings in the campus, 2) Ability to change overall app theme (Nike Green & Nike Orange, 3) Ability to share floor plan and campus map images, 4) Ability to save a location in favorites under user alias, 5) Ability to clear favorites list
+Features added:
+- User can now click on all buildings in the campus
+- Ability to change overall app theme (Nike Green & Nike Orange
+- Ability to share floor plan and campus map images
+- Ability to save a location in favorites under user alias
+- Ability to clear favorites list
 
 
 ### - [Swoosh Room Finder v1.0](https://appetize.io/app/p5hd6ygwmz1n0774pqk5ke9xw0?device=nexus5&scale=75&orientation=portrait&osVersion=7.0) (original orange theme): 
 
 ### - [PSU Locator v1.0](https://appetize.io/app/5qc1u4aua8mg24ub3k20d2yp2w?device=nexus5&scale=75&orientation=portrait&osVersion=7.0) (sister app to the Swoosh Room Finder)
 
-## [How to Navigate Through the Application](https://github.com/cnorton18/capstone2017/blob/nhi's-latest-branch/How%20to%20Use%20The%20Swoosh%20Room%20Finder.md)
+### [How to Navigate Through the Application](https://github.com/cnorton18/capstone2017/blob/nhi's-latest-branch/How%20to%20Use%20The%20Swoosh%20Room%20Finder.md)
 
-## [How to Add Floor Plans to the Application](https://github.com/cnorton18/capstone2017/blob/nhi's-latest-branch/How%20To%20Add%20New%20Floor%20Buildings%2C%20Floors%2C%20and%20Room.md)
+### [How to Add Floor Plans to the Application](https://github.com/cnorton18/capstone2017/blob/nhi's-latest-branch/How%20To%20Add%20New%20Floor%20Buildings%2C%20Floors%2C%20and%20Room.md)
 
 
 ## Build
