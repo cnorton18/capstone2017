@@ -17,7 +17,7 @@
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="false"
-        android:icon="@drawable/appicon"
+        android:icon="@drawable/appicon2"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:supportsRtl="true"
