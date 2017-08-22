@@ -589,6 +589,8 @@ public class floorplan extends AppCompatActivity{
             public void onClick(View v){
                 editor.commit();
                 colorDialog.dismiss();
+                //Saves "spot" in room dropdown
+                fromSearch = 1;
                 recreate();
             }
         });
