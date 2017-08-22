@@ -1,8 +1,16 @@
+/******************************************************************
+ *      Copyright (c) 2017 Nhi Vu, Victor Diego, Tyler Wood       *
+ *      Zachary Pfister-Shanders, Derek Keeton, Chris Norton      *
+ *      Please see the file COPYRIGHT in the source               *
+ *      distribution of this software for further copyright       *
+ *      information and license terms.                            *
+ +/****************************************************************/
+
 package com.groupc.officelocator;
 
 /***************************************************************************************
  *    Title: ZoomLayout.java
- *    Author: anorth
+ *    Author: Alex north, anorth
  *    Date: 2014
  *    Code version: 1.0
  *    Availability: https://gist.github.com/anorth/9845602

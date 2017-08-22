@@ -1,17 +1,27 @@
+/******************************************************************
+ *      Copyright (c) 2017 Nhi Vu, Victor Diego, Tyler Wood       *
+ *      Zachary Pfister-Shanders, Derek Keeton, Chris Norton      *
+ *      Please see the file COPYRIGHT in the source               *
+ *      distribution of this software for further copyright       *
+ *      information and license terms.                            *
+ +/****************************************************************/
+
 package com.groupc.officelocator;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.ColorStateList;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.content.Intent;
-import android.support.v4.content.res.ResourcesCompat;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -26,6 +36,11 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -48,7 +63,8 @@ public class floorplan extends AppCompatActivity{
 
     ImageView buildingLocation, spinner2drop, selectedRoom;
     private Spinner chooseFloor, chooseRoom;
-    ImageButton favorite, maplocationbut;
+    ImageButton favorite, maplocationbut, share;
+    File imagePath, imagePath2;
 
     Dialog dialog, favoriteDialog, favoriteSecondDialog;
     TextView cancel, floorplanname, roomName, favoriteyes, favoriteno, favoritecancel, favoritesecondcancel, favoritesubmit, roomspinnerprompt;
@@ -64,13 +80,13 @@ public class floorplan extends AppCompatActivity{
     Set<String> favRooms, favUserKeys;
 
     //Change color feature variables
-    Button changeColors;
-    private static String colorValue;
-    Dialog colorDialog;
-    TextView colorCancel, colorSubmit, colorPrompt;
-    CheckBox colorOrange, colorGreen;
-    SharedPreferences colorPreferences; //1 = Green, 2 = Orange
-    SharedPreferences.Editor editor;
+    Button changeColors; //Button user clicks on to change color themes
+    private static String colorValue; //Variable used to determine which theme the user selects
+    Dialog colorDialog; //Dialog that pops up allowing user to choose a color theme
+    TextView colorCancel, colorSubmit, colorPrompt; //Different aspects of the Change color popup dialog
+    CheckBox colorOrange, colorGreen; //Checkboxes user uses to select which color theme they want
+    SharedPreferences colorPreferences; //Stores user color preference. 1 = Green, 2 = Orange
+    SharedPreferences.Editor editor; //Editor to edit user color preferences in SharedPreference file
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +107,7 @@ public class floorplan extends AppCompatActivity{
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selection = ((TextView) view).getText().toString();
                 if (selection.equals("Choose a room")) {
+                    //Make room header + markers invisible
                     rmName ="";
                     roomName.setVisibility(View.INVISIBLE);
                     selectedRoom = (ImageView) findViewById(roomID);
@@ -130,7 +147,7 @@ public class floorplan extends AppCompatActivity{
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 roomName.setVisibility(View.INVISIBLE);
 
-                //set floor choice
+                //Set floor choice
                 floorNumber = ((TextView) view).getText().toString();
 
                 //Clearing room variable
@@ -142,6 +159,7 @@ public class floorplan extends AppCompatActivity{
                     chooseRoom.setEnabled(false);
                     chooseRoom.setClickable(false);
                     floorplanname.setText(fpname);
+                    //If user tries to click on the room spinner, a message pops up telling them to select a floor first
                     Button instructionbutton = (Button)findViewById(R.id.instructionButton);
                     instructionbutton.setVisibility(View.VISIBLE);
                     instructionbutton.setOnClickListener(new View.OnClickListener() {
@@ -168,13 +186,16 @@ public class floorplan extends AppCompatActivity{
                 //Creates new layout based on new floor #
                 setup();
 
+                //Sets floor spinner to appropriate floor
                 chooseFloor.setSelection(floorselected,true);
                 chooseFloor.setSelected(true);
 
+                //Make room spinners appear
                 spinner2drop.setVisibility(View.VISIBLE);
                 chooseRoom.setVisibility(View.VISIBLE);
                 roomspinnerprompt.setVisibility(View.VISIBLE);
 
+                //Set room spinner list based on floor selected
                 List<String> spinnerArray = new ArrayList<String>();
                 spinnerArray.add("Choose a room");
                 for(int j = 0; j < data.numberofBuildings; ++j) {
@@ -183,11 +204,13 @@ public class floorplan extends AppCompatActivity{
                             for(int m = 0; m < data.buildings.get(j).floors.get(k).rooms.size(); ++m) {
                                 spinnerArray.add(data.buildings.get(j).floors.get(k).rooms.get(m).roomName);
                             }
+                            //If color theme is 1/default, use green spinner layouts
                             if(colorValue.equals("1")||colorValue.equals("default")) {
                                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(floorplan.this, R.layout.spinner_layout_green, spinnerArray);
                                 adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout_green);
                                 chooseRoom.setAdapter(adapter);
                             }
+                            //If color theme is 2, use orange spinner layouts
                             else{
                                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(floorplan.this, R.layout.spinner_layout_orange, spinnerArray);
                                 adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout_orange);
@@ -216,6 +239,7 @@ public class floorplan extends AppCompatActivity{
             rmName = "";
         fromCampus = 0;
 
+        //Zoom layout - allows user to pinch-zoom on campus map
         ZoomLayout myZoomView = new ZoomLayout(floorplan.this);
         relativeLayout = (RelativeLayout) findViewById(R.id.zoom);
         relativeLayout.addView(myZoomView);
@@ -245,6 +269,7 @@ public class floorplan extends AppCompatActivity{
         floorplanname = (TextView) findViewById(R.id.floorPlanName);
         floorplanname.setTypeface(myCustomfont);
 
+        //Set appropriate color for room markers based on user's color preference
         if (Integer.parseInt(floorNumber) > 0 && fromSearch == 1 && fromFavsFloor == 0) {
             String tempName = rmName.toLowerCase().replaceAll("\\s", "");
             roomID = getResources().getIdentifier(tempName, "id", getPackageName());
@@ -276,11 +301,12 @@ public class floorplan extends AppCompatActivity{
         for (int i = 1; i <= numberOfFloors; i++) {
             list.add(String.valueOf(i));
         }
+        //If color theme is 1/default, use green spinner layouts
         if(colorValue.equals("1")||colorValue.equals("default")) {
             ArrayAdapter<String> numberAdapter = new ArrayAdapter<String>(this, R.layout.spinner_dropdown_layout_green, list);
             chooseFloor.setAdapter(numberAdapter);
         }
-        else {
+        else { //Else if color theme is 2, use orange spinner layouts
             ArrayAdapter<String> numberAdapter = new ArrayAdapter<String>(this, R.layout.spinner_dropdown_layout_orange, list);
             chooseFloor.setAdapter(numberAdapter);
         }
@@ -296,10 +322,12 @@ public class floorplan extends AppCompatActivity{
             chooseFloor.setSelection(floorselected, true);
             chooseFloor.setSelected(true);
 
+            //Make the room spinner appear
             spinner2drop.setVisibility(View.VISIBLE);
             chooseRoom.setVisibility(View.VISIBLE);
             roomspinnerprompt.setVisibility(View.VISIBLE);
 
+            //Set the list of choices for the room spinner based on the floor the user selected
             List<String> spinnerArray = new ArrayList<String>();
             spinnerArray.add("Choose a room");
             for (int i = 0; i < data.numberofBuildings; ++i) {
@@ -367,19 +395,17 @@ public class floorplan extends AppCompatActivity{
             }
         });
 
+        //Bottom navigation toolbar. Set selected to false since the floorplan page is not an option in the toolbar
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setSelected(false);
-        navigation.getMenu().getItem(0).setChecked(false);
-        navigation.getMenu().getItem(1).setChecked(false);
-        navigation.getMenu().getItem(2).setChecked(false);
 
-
-        createFavoriteDialog();
+        createFavoriteDialog(); //Instantiates the popup dialog that asks the user if they would like to add a location to favorites
         favorite = (ImageButton) findViewById(R.id.favorite);
         favorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //If no floor is chosen then the user is told to select a floor first; cannot add to favorites
                 if (floorNumber.equals("Choose a floor")) {
                     Toast.makeText(floorplan.this, "Select a floor", Toast.LENGTH_SHORT).show();
                     favoriteDialog.dismiss();
@@ -426,6 +452,9 @@ public class floorplan extends AppCompatActivity{
                     addtofavorite = fpname + " " + Integer.toString(floorselected) + " " + rmName;
                     display = fpname + " Floor " + Integer.toString(floorselected) + " " + rmName;
                 }
+
+                //Must check if the user has already added this location to their favorites as a...
+                //...pure location value
                 for (String room : favRooms) {
                     if (room.matches(addtofavorite)) {
                         Toast.makeText(floorplan.this, display + " was already added to favorites", Toast.LENGTH_SHORT).show();
@@ -434,6 +463,7 @@ public class floorplan extends AppCompatActivity{
                     }
                 }
 
+                //... or as a user-entered key
                 for (String key: favUserKeys){
                     String value = favoritesValues.getString(key, "default value");
                     if(value.matches(addtofavorite)){
@@ -446,6 +476,7 @@ public class floorplan extends AppCompatActivity{
                 favoriteDialog.dismiss();
                 favoriteSecondDialog.show();
 
+                //If the location hasn't been added yet, ask the user what they would like to add it as (EditText)
                 favoriteinput.setText(display);
                 favoriteinput.addTextChangedListener(new TextWatcher() {
                     @Override
@@ -480,6 +511,7 @@ public class floorplan extends AppCompatActivity{
                     public void afterTextChanged(Editable s) {}
                 });
 
+                //Submits the value in the EditText to save it to the favorites list
                 favoritesubmit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -507,16 +539,18 @@ public class floorplan extends AppCompatActivity{
         });
 
 
-        //Changing colors
+        //Code to allow user to change color preferences
         RelativeLayout universalLayout = (RelativeLayout)findViewById(R.id.universal_layout);
-        View gradientBlock = (View) universalLayout.findViewById(R.id.gradientBlock);
+        View gradientBlock = (View) universalLayout.findViewById(R.id.gradientBlock); //Color block in theme
         editor = colorPreferences.edit();
-        changeColors = (Button)findViewById(R.id.colors);
-        createColorDialog();
+        changeColors = (Button)findViewById(R.id.colors); //Button user clicks on to change color preference
+        createColorDialog();//Sets up color pop up dialog where user makes their color preference
         changeColors.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 colorDialog.show();
+                //Default theme is "Nike Green" (SharedPreference value = 1, default)
+                //Set the appropriate checkedboxes
                 if (colorValue.equals("1") || colorValue.equals("default")) {
                     colorGreen.setChecked(true);
                     colorOrange.setChecked(false);
@@ -529,6 +563,7 @@ public class floorplan extends AppCompatActivity{
             }
         });
 
+        //If user selects the Nike Orange checkbox
         colorOrange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -538,6 +573,7 @@ public class floorplan extends AppCompatActivity{
             }
         });
 
+        //If user selects the Nike Green checkbox
         colorGreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -547,6 +583,7 @@ public class floorplan extends AppCompatActivity{
             }
         });
 
+        //If user submits their preference change, we must change the screen
         colorSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -556,6 +593,7 @@ public class floorplan extends AppCompatActivity{
             }
         });
 
+        //If user cancels their color preference change, reset the checkboxes and exit the pop up dialog
         colorCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -575,24 +613,84 @@ public class floorplan extends AppCompatActivity{
             //Green Dark
             case "default":
             case "1":
-                gradientBlock.setBackgroundResource(R.drawable.greengradient);
-                ((TextView)colorDialog.findViewById(R.id.submit)).setBackgroundResource(R.drawable.greengradient);
-                ((Spinner)findViewById(R.id.floorSelector)).setBackgroundResource(R.drawable.greenbgroundedcorners);
-                ((Spinner)findViewById(R.id.roomSelector)).setBackgroundResource(R.drawable.greenbgroundedcorners);
+                gradientBlock.setBackgroundResource(R.drawable.greengradient);//set color block to green
+                ((TextView)colorDialog.findViewById(R.id.submit)).setBackgroundResource(R.drawable.greengradient); //set submit box color in dialog to green
+                ((Spinner)findViewById(R.id.floorSelector)).setBackgroundResource(R.drawable.greenbgroundedcorners); //set floor spinner to green
+                ((Spinner)findViewById(R.id.roomSelector)).setBackgroundResource(R.drawable.greenbgroundedcorners); //set room spinner to green
                 break;
 
             //Orange Dark
             case "2":
-                gradientBlock.setBackgroundResource(R.drawable.orangegradient);
-                ((TextView)colorDialog.findViewById(R.id.submit)).setBackgroundResource(R.drawable.orangegradient);
-                ((Spinner)findViewById(R.id.floorSelector)).setBackgroundResource(R.drawable.orangebgroundedcorners);
-                ((Spinner)findViewById(R.id.roomSelector)).setBackgroundResource(R.drawable.orangebgroundedcorners);
+                gradientBlock.setBackgroundResource(R.drawable.orangegradient);//set color block to orange
+                ((TextView)colorDialog.findViewById(R.id.submit)).setBackgroundResource(R.drawable.orangegradient);//set submit box color in dialog to orange
+                ((Spinner)findViewById(R.id.floorSelector)).setBackgroundResource(R.drawable.orangebgroundedcorners);//set floor spinner to orange
+                ((Spinner)findViewById(R.id.roomSelector)).setBackgroundResource(R.drawable.orangebgroundedcorners); //set room spinner to orange
                 break;
+        }
+
+        //Sharing the map floorplan
+        share = (ImageButton) findViewById(R.id.share);
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bitmap floorplan = takeScreenshot(); //Takes a screenshot of the floorplan
+                //Grab the "highlighted building" in the campus image
+                ImageView highlighteddrawable = ((ImageView)dialog.findViewById(R.id.buildingLocation));
+                Bitmap highlightedimage = ((BitmapDrawable)highlighteddrawable.getDrawable()).getBitmap();
+                saveBitmaps(floorplan, highlightedimage); //Save both bitmap images to device external drive
+                shareImages(); //Allow user to share these two images via Sharing Intent
+            }
+        });
+
+    }
+
+    //Takes a screenshot of the floorplan activity page
+    public Bitmap takeScreenshot() {
+        View screenshot = findViewById(android.R.id.content).getRootView();
+        screenshot.setDrawingCacheEnabled(true);
+        return screenshot.getDrawingCache();
+    }
+
+    //Saves the floorplan screenshot and highlighted building imageview to device's external storage
+    public void saveBitmaps(Bitmap bitmap1, Bitmap bitmap2) {
+        imagePath = new File(Environment.getExternalStorageDirectory() + "/BuildingFloorplan.png"); //Floorplan screenshot
+        imagePath2 = new File(Environment.getExternalStorageDirectory() + "/NikeCampus.png"); //Image of building highlighted on campus
+        FileOutputStream fos1, fos2;
+        //Save both bitmap images to external storage
+        try {
+            fos1 = new FileOutputStream(imagePath);
+            bitmap1.compress(Bitmap.CompressFormat.JPEG, 100, fos1);
+            fos1.flush();
+            fos1.close();
+            fos2 = new FileOutputStream(imagePath2);
+            bitmap2.compress(Bitmap.CompressFormat.JPEG, 100, fos2);
+            fos2.flush();
+            fos2.close();
+        } catch (FileNotFoundException e) {
+            Log.e("GREC", e.getMessage(), e);
+        } catch (IOException e) {
+            Log.e("GREC", e.getMessage(), e);
         }
     }
 
+    //Opens sharing intent in android device so user can share the floorplan + highlighted building image
+    private void shareImages() {
+        Uri uri = Uri.fromFile(imagePath);
+        Uri uri2 = Uri.fromFile(imagePath2);
+        //Add URI of both floorplan + highlighted building images
+        ArrayList<Uri> Imageuris = new ArrayList<Uri>();
+        Imageuris.add(uri);
+        Imageuris.add(uri2);
+        Intent sharingImages = new Intent(android.content.Intent.ACTION_SEND_MULTIPLE);
+        sharingImages.setType("image/*");
+        sharingImages.putExtra(android.content.Intent.EXTRA_SUBJECT, "Sharing Nike Campus Location");
+        sharingImages.putExtra(android.content.Intent.EXTRA_TEXT, "I would like to share this location with you.");
+        sharingImages.putExtra(Intent.EXTRA_STREAM, Imageuris);
+        startActivity(Intent.createChooser(sharingImages, "Share via"));
+    }
+
+    //Clears existing room markers
     private void clearMarkers(String floorNumber){
-        //Clears existing room markers
         for (int j = 0; j < data.numberofBuildings; ++j) {
             if (data.buildings.get(j).buildingName.equals(fpname)) {
                 for (int k = 0; k < data.buildings.get(j).floors.size(); ++k) {
@@ -612,7 +710,9 @@ public class floorplan extends AppCompatActivity{
 
     //What to do with user-entered favorites input
     private void addUserFavorite(int modifiedfavorite){
+        //If user has entered in their own value
         if (modifiedfavorite == 1) {
+            //Check if that alias has already been used, if it has exit out
             for (String userKey : favUserKeys) {
                 if (userKey.matches(savetofavorites)) {
                     Toast.makeText(floorplan.this, "\"" + savetofavorites + "\" is already in your favorites", Toast.LENGTH_SHORT).show();
@@ -620,6 +720,9 @@ public class floorplan extends AppCompatActivity{
                     return;
                 }
             }
+
+            //If user hasn't used this alias before, then grab the location value and store both the user entered
+            //key and the location value in their respective SharedPreference values
             favUserKeys.add(savetofavorites);
             SharedPreferences.Editor editor = favoritesList.edit();
             editor.putStringSet("favUserKeys",favUserKeys);
@@ -629,7 +732,8 @@ public class floorplan extends AppCompatActivity{
             editor.commit();
             editor2.commit();
             Toast.makeText(floorplan.this, savetofavorites + " was added to favorites", Toast.LENGTH_SHORT).show();
-        } else {
+        } else { //If user did not enter in a value and wants to just save it as its location name
+            //save the location to the appropriate SharedPreference File
             favRooms.add(addtofavorite);
             SharedPreferences.Editor editor = favoritesList.edit();
             editor.putStringSet("favRooms", favRooms);
@@ -639,16 +743,6 @@ public class floorplan extends AppCompatActivity{
         favoriteSecondDialog.dismiss();
         modifiedfavorite = 0;
         return;
-    }
-
-    //Sets up favorite pop up dialog
-    private void createFavoriteDialog(){
-        favoriteDialog = new Dialog(floorplan.this);
-        favoriteDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        favoriteDialog.setContentView(R.layout.yesnodialog);
-        favoritecancel = (TextView) favoriteDialog.findViewById(R.id.cancel);
-        favoriteyes = (TextView) favoriteDialog.findViewById(R.id.yes);
-        favoriteno = (TextView) favoriteDialog.findViewById(R.id.no);
     }
 
     //Sets up color dialog
@@ -665,6 +759,16 @@ public class floorplan extends AppCompatActivity{
         colorGreen = (CheckBox) colorDialog.findViewById(R.id.checkneongreen);
     }
 
+    //Sets up favorite pop up dialog
+    private void createFavoriteDialog(){
+        favoriteDialog = new Dialog(floorplan.this);
+        favoriteDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        favoriteDialog.setContentView(R.layout.yesnodialog);
+        favoritecancel = (TextView) favoriteDialog.findViewById(R.id.cancel);
+        favoriteyes = (TextView) favoriteDialog.findViewById(R.id.yes);
+        favoriteno = (TextView) favoriteDialog.findViewById(R.id.no);
+    }
+
     //Sets up second favorite pop up dialog
     private void createSecondFavoriteDialog(){
         favoriteSecondDialog = new Dialog(floorplan.this);
@@ -676,7 +780,7 @@ public class floorplan extends AppCompatActivity{
     }
 
     //Come back to fix this perhaps after room class stores images
-    //Sets up pop up dialog
+    //Sets up pop up dialog of highlighted building in campus image
     private void createDialog()
     {
         dialog = new Dialog(floorplan.this);
@@ -684,11 +788,13 @@ public class floorplan extends AppCompatActivity{
         dialog.setContentView(R.layout.imagedialog);
         buildingLocation = (ImageView)dialog.findViewById(R.id.buildingLocation);
 
+        //If the color preference is 1, use the appropriate green images
         if(colorValue.equals("1")||colorValue.equals("default")){
             String dialogImage = fpname.toLowerCase().replaceAll("\\s", "") + "highlighted";
             int imgid = getResources().getIdentifier(dialogImage, "drawable", getPackageName());
             buildingLocation.setImageResource(imgid);
         }
+        //Else use the appropriate orange images
         else {
             String dialogImage = fpname.toLowerCase().replaceAll("\\s", "") + "orangehighlighted";
             int imgid = getResources().getIdentifier(dialogImage, "drawable", getPackageName());
@@ -698,6 +804,7 @@ public class floorplan extends AppCompatActivity{
         cancel = (TextView) dialog.findViewById(R.id.cancel);
     }
 
+    //Setting up the bottom navigation toolbar
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override

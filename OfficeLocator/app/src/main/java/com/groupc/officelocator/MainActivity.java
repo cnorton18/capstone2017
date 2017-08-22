@@ -1,5 +1,12 @@
-package com.groupc.officelocator;
+/******************************************************************
+ *      Copyright (c) 2017 Nhi Vu, Victor Diego, Tyler Wood       *
+ *      Zachary Pfister-Shanders, Derek Keeton, Chris Norton      *
+ *      Please see the file COPYRIGHT in the source               *
+ *      distribution of this software for further copyright       *
+ *      information and license terms.                            *
+ +/****************************************************************/
 
+package com.groupc.officelocator;
 
 import android.content.Context;
 import android.content.Intent;
@@ -31,16 +38,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Setting the splash screen to the Nike Green or Nike Orange version depending on the user's preferences
         colorPreferences = getSharedPreferences("ColorPreferences", Context.MODE_PRIVATE);
         colorValue = colorPreferences.getString("color", "default");
         splash = (ImageView) findViewById(R.id.splash);
-
         if(colorValue.equals("1") || colorValue.equals("default"))
             splash.setImageResource(R.drawable.splashneon);
         else
             splash.setImageResource(R.drawable.splashorange);
 
-
+        //Initiates data parsing
         data = new mapdata();
 
         XmlPullParserFactory pullParserFactory;

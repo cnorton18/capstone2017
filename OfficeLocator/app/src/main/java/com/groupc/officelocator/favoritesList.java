@@ -1,3 +1,11 @@
+/******************************************************************
+ *      Copyright (c) 2017 Nhi Vu, Victor Diego, Tyler Wood       *
+ *      Zachary Pfister-Shanders, Derek Keeton, Chris Norton      *
+ *      Please see the file COPYRIGHT in the source               *
+ *      distribution of this software for further copyright       *
+ *      information and license terms.                            *
+ +/****************************************************************/
+
 package com.groupc.officelocator;
 
 import android.app.Dialog;
@@ -30,10 +38,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class favoritesList extends AppCompatActivity {
-    private ListView allFavorites;
-    private String choice, fpname, floorNumber;
-    private int floorCode;
-    SharedPreferences favoritesList, favoritesValues;
+    private ListView allFavorites; //Listview containing the list of all of the favorites
+    private String choice, fpname, floorNumber; //Choice = user selected choice in the list, fpname = floorplan name, floorNumber = floor number
+    private int floorCode; //floorCode - helps with parsing of data between this page and mapdata
+    SharedPreferences favoritesList, favoritesValues; //SharedPreference files that store the favorited locations
     Set<String> defaultrooms, favRooms, userkeys, favUserKeys;
     ArrayAdapter<String> arrayAdapter;
     ArrayList<String> listofFavorites;
@@ -45,35 +53,41 @@ public class favoritesList extends AppCompatActivity {
     Dialog clearDialog;
 
     //Change color feature variables
-    Button changeColors;
-    private static String colorValue;
-    Dialog colorDialog;
-    TextView colorCancel, colorSubmit, colorPrompt;
-    CheckBox colorOrange, colorGreen;
-    SharedPreferences colorPreferences; //1 = Green, 2 = Orange
-    SharedPreferences.Editor editor;
+    Button changeColors; //Button user clicks on to change color themes
+    private static String colorValue; //Variable used to determine which theme the user selects
+    Dialog colorDialog; //Dialog that pops up allowing user to choose a color theme
+    TextView colorCancel, colorSubmit, colorPrompt; //Different aspects of the Change color popup dialog
+    CheckBox colorOrange, colorGreen; //Checkboxes user uses to select which color theme they want
+    SharedPreferences colorPreferences; //Stores user color preference. 1 = Green, 2 = Orange
+    SharedPreferences.Editor editor; //Editor to edit user color preferences in SharedPreference file
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorites);
 
+        //Grab data from mapdata class
         Intent priorInt = getIntent();
         dataContainer = priorInt.getExtras();
         data = new mapdata();
         data = dataContainer.getParcelable("parse");
 
+        //Sets font for page header
         TextView text = (TextView) findViewById(R.id.favoritestitle);
         Typeface myCustomfont = Typeface.createFromAsset(getAssets(), "fonts/newsgothiccondensedbold.ttf");
         text.setTypeface(myCustomfont);
 
         allFavorites = (ListView) findViewById(R.id.favoritesList);
-        allFavorites.setEmptyView(findViewById(R.id.empty));
+        allFavorites.setEmptyView(findViewById(R.id.empty)); //Sets listview empty view
 
         listofFavorites = new ArrayList<String>();
+        //Grab list of favorites stored in SharedPreference file
         favoritesList = getSharedPreferences("MyFavorites", Context.MODE_PRIVATE);
         defaultrooms = new HashSet();
+        //List of actual location values saved (user did not enter in a value to save a location under)
         favRooms = favoritesList.getStringSet("favRooms", defaultrooms);
+        //Adds "Floor" to saved locations to make the favorites list displayed more understandable
+        //Mia Hamm 1 Flyknit -> Mia Hamm Floor 1 Flyknit
         for(String room : favRooms) {
             if (room.matches(".*\\d+.*")){
                 String[] parts = room.split("\\d+",2);
@@ -86,6 +100,7 @@ public class favoritesList extends AppCompatActivity {
             listofFavorites.add(room);
         }
 
+        //List of user saved favorite values
         userkeys = new HashSet();
         favUserKeys = favoritesList.getStringSet("favUserKeys", userkeys);
         for(String keys: favUserKeys){
@@ -105,6 +120,8 @@ public class favoritesList extends AppCompatActivity {
             favoritesInstruction.show();
         }
 
+        //A separate SharedPreference value that stores the location values associated with the
+        //user-entered favorite values
         favoritesValues = getSharedPreferences("UserEnteredValues", Context.MODE_PRIVATE);
 
         //What to do when the user clicks on a result from the favorites list
@@ -115,11 +132,15 @@ public class favoritesList extends AppCompatActivity {
                 //Gets object at the position and parses
                 choice = (String) allFavorites.getAdapter().getItem(position);
 
+                //If the choice in the list matches a user entered favorite key, we must grab the
+                //corresponding location value that this alias is associated with from the SharedPreference file
                 for(String keys: favUserKeys){
                     if(choice.matches(keys))
                         choice = favoritesValues.getString(keys, "default value");
                 }
 
+                //If the displayed entry has "Floor" in it, we must take it out to obtain the proper location
+                //Choice: "Mia Hamm Floor 1 Flyknit" --> Location: "Mia Hamm 1 Flyknit"
                 String[] parts = choice.split("\\d+",2);
                 String part1 = parts[0].trim();
                 String part2 = choice.substring(part1.length() + 1).trim();
@@ -164,23 +185,26 @@ public class favoritesList extends AppCompatActivity {
                     }
                 }
 
+                //Grab necessary data from the selected value in the favorites list and go to the
+                //Floorplan activity page
                 Intent goToFloorPlan = new Intent(favoritesList.this, floorplan.class);
-
                 goToFloorPlan.putExtras(dataContainer);
                 floorplan.fpname = fpname;
                 floorplan.spinnerNumber = floorCode;
                 floorplan.numberOfFloors = choiceFloors;
-
                 startActivity(goToFloorPlan);
             }
 
         });
 
+        //When the user presses down on a value in the favorites list, it will be cleared from the list
         allFavorites.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
             @Override
             public boolean onItemLongClick(AdapterView<?> arg0, View view, int position, long id) {
                 int foundmatch = 0;
                 choice = (String) allFavorites.getAdapter().getItem(position);
+                //If the selection is a user-entered favorite key, we must remove both the key and
+                //its corresponding location value from their respective SharedPreference files
                 for(String keys: favUserKeys) {
                     if (choice.matches(keys)) {
                         foundmatch = 1;
@@ -197,6 +221,8 @@ public class favoritesList extends AppCompatActivity {
                     }
                 }
 
+                //If the selection is an actual location value, take out "Floor" from the value and
+                //remove it from the SharedPreference file
                 for (String room : favRooms) {
                     if (choice.contains("Floor")) {
                         choice = choice.replace("Floor ", "");
@@ -215,10 +241,11 @@ public class favoritesList extends AppCompatActivity {
 
                     if(foundmatch == 1){
                         Toast.makeText(favoritesList.this, choice + " was removed from favorites", Toast.LENGTH_SHORT).show();
-                        arrayAdapter.clear();
 
-                    ArrayList<String> listofFavorites = new ArrayList<String>();
-                    favRooms = favoritesList.getStringSet("favRooms", defaultrooms);
+                        //Now we must update the adapter populating the favorites listview since a value has been removed
+                        arrayAdapter.clear();
+                        ArrayList<String> listofFavorites = new ArrayList<String>();
+                        favRooms = favoritesList.getStringSet("favRooms", defaultrooms);
                         for(String rooms : favRooms) {
                             if (rooms.matches(".*\\d+.*")){
                                 String[] parts = rooms.split("\\d+",2);
@@ -274,9 +301,11 @@ public class favoritesList extends AppCompatActivity {
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Empty list, nothing to clear
                 if(arrayAdapter.isEmpty()){
                     Toast.makeText(favoritesList.this, "There is nothing to remove", Toast.LENGTH_SHORT).show();
                 }
+                //Clear entire list by clearing all SharedPreference files
                 else{
                     SharedPreferences.Editor editor = favoritesList.edit();
                     editor.clear();
@@ -292,23 +321,25 @@ public class favoritesList extends AppCompatActivity {
             }
         });
 
-
+        //Bottom navigation toolbar. Set "FAVORITE" to checked
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.getMenu().getItem(2).setChecked(true);
 
-        //Changing colors
+        //Code to allow user to change color preferences
         RelativeLayout universalLayout = (RelativeLayout)findViewById(R.id.universal_layout);
-        View gradientBlock = (View) universalLayout.findViewById(R.id.gradientBlock);
+        View gradientBlock = (View) universalLayout.findViewById(R.id.gradientBlock); //Color block in theme
         colorPreferences = getSharedPreferences("ColorPreferences", Context.MODE_PRIVATE);
         colorValue = colorPreferences.getString("color", "default");
         editor = colorPreferences.edit();
-        changeColors = (Button)findViewById(R.id.colors);
-        createColorDialog();
+        changeColors = (Button)findViewById(R.id.colors); //Button user clicks on to change color preference
+        createColorDialog(); //Sets up color pop up dialog where user makes their color preference
         changeColors.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 colorDialog.show();
+                //Default theme is "Nike Green" (SharedPreference value = 1, default)
+                //Set the appropriate checkedboxes
                 if (colorValue.equals("1") || colorValue.equals("default")) {
                     colorGreen.setChecked(true);
                     colorOrange.setChecked(false);
@@ -321,6 +352,7 @@ public class favoritesList extends AppCompatActivity {
             }
         });
 
+        //If user selects the Nike Orange checkbox
         colorOrange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -330,6 +362,7 @@ public class favoritesList extends AppCompatActivity {
             }
         });
 
+        //If user selects the Nike Green checkbox
         colorGreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -339,6 +372,7 @@ public class favoritesList extends AppCompatActivity {
             }
         });
 
+        //If user submits their preference change, we must change the screen
         colorSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -351,6 +385,7 @@ public class favoritesList extends AppCompatActivity {
             }
         });
 
+        //If user cancels their color preference change, reset the checkboxes and exit the pop up dialog
         colorCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -393,18 +428,18 @@ public class favoritesList extends AppCompatActivity {
             //Green Dark
             case "default":
             case "1":
-                gradientBlock.setBackgroundResource(R.drawable.greengradient);
-                ((TextView)colorDialog.findViewById(R.id.submit)).setBackgroundResource(R.drawable.greengradient);
-                ColorStateList navigationColorStateList = new ColorStateList(iconStates, greenColors);
+                gradientBlock.setBackgroundResource(R.drawable.greengradient); //set color block to green
+                ((TextView)colorDialog.findViewById(R.id.submit)).setBackgroundResource(R.drawable.greengradient); //set submit box color in dialog to green
+                ColorStateList navigationColorStateList = new ColorStateList(iconStates, greenColors);//set icons in navigation toolbar to green when checked
                 navigation.setItemTextColor(navigationColorStateList);
                 navigation.setItemIconTintList(navigationColorStateList);
                 break;
 
             //Orange Dark
             case "2":
-                gradientBlock.setBackgroundResource(R.drawable.orangegradient);
-                ((TextView)colorDialog.findViewById(R.id.submit)).setBackgroundResource(R.drawable.orangegradient);
-                ColorStateList navigationColorStateList2 = new ColorStateList(iconStates, orangeColors);
+                gradientBlock.setBackgroundResource(R.drawable.orangegradient); //set color block to orange
+                ((TextView)colorDialog.findViewById(R.id.submit)).setBackgroundResource(R.drawable.orangegradient); //set submit box color in dialog to orange
+                ColorStateList navigationColorStateList2 = new ColorStateList(iconStates, orangeColors);//set icons in navigation toolbar to orange when checked
                 navigation.setItemTextColor(navigationColorStateList2);
                 navigation.setItemIconTintList(navigationColorStateList2);
                 break;
@@ -438,6 +473,7 @@ public class favoritesList extends AppCompatActivity {
         no = (TextView) clearDialog.findViewById(R.id.no);
     }
 
+    //Determines if this is the user's first time running the app
     private boolean firstTime(){
         SharedPreferences firstTime = getSharedPreferences("FirstTime", Context.MODE_PRIVATE);
         boolean isFirstTime = firstTime.getBoolean("isFirstTime", false);
@@ -449,6 +485,7 @@ public class favoritesList extends AppCompatActivity {
         return !isFirstTime;
     }
 
+    //Setting up the bottom navigation toolbar
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -474,6 +511,8 @@ public class favoritesList extends AppCompatActivity {
         }
     };
 
+    //When the user presses the back button to get back to the Favorites page then the Favorites icon in the
+    //bottom navigation toolbar should be set
     @Override
     public void onResume(){
         super.onResume();

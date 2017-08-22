@@ -1,3 +1,11 @@
+/******************************************************************
+ *      Copyright (c) 2017 Nhi Vu, Victor Diego, Tyler Wood       *
+ *      Zachary Pfister-Shanders, Derek Keeton, Chris Norton      *
+ *      Please see the file COPYRIGHT in the source               *
+ *      distribution of this software for further copyright       *
+ *      information and license terms.                            *
+ +/****************************************************************/
+
 package com.groupc.officelocator;
 
 import android.app.Dialog;
@@ -32,9 +40,9 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class masterSearchWithHeaders extends AppCompatActivity {
-    private ListView allSearchResults;
-    private EditText searchBar;
-    private TextView title;
+    private ListView allSearchResults; //listview containing all search results
+    private EditText searchBar; //Edittext where user can enter in a value to search
+    private TextView title; //Page title
     private String choice, fpname, floorNumber;
     private int floorCode;
     public mapdata data;
@@ -42,13 +50,13 @@ public class masterSearchWithHeaders extends AppCompatActivity {
     Bundle dataContainer;
 
     //Change color feature variables
-    Button changeColors;
-    private static String colorValue;
-    Dialog colorDialog;
-    TextView colorCancel, colorSubmit, colorPrompt;
-    CheckBox colorOrange, colorGreen;
-    SharedPreferences colorPreferences; //1 = Green, 2 = Orange
-    SharedPreferences.Editor editor;
+    Button changeColors; //Button user clicks on to change color themes
+    private static String colorValue; //Variable used to determine which theme the user selects
+    Dialog colorDialog; //Dialog that pops up allowing user to choose a color theme
+    TextView colorCancel, colorSubmit, colorPrompt; //Different aspects of the Change color popup dialog
+    CheckBox colorOrange, colorGreen; //Checkboxes user uses to select which color theme they want
+    SharedPreferences colorPreferences; //Stores user color preference. 1 = Green, 2 = Orange
+    SharedPreferences.Editor editor; //Editor to edit user color preferences in SharedPreference file
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +64,7 @@ public class masterSearchWithHeaders extends AppCompatActivity {
         setContentView(R.layout.activity_mastersearch);
         floorplan.fromSearch = 1;
 
+        //Set font of page header
         title = (TextView) findViewById(R.id.searchTitle);
         Typeface myCustomfont = Typeface.createFromAsset(getAssets(), "fonts/newsgothiccondensedbold.ttf");
         title.setTypeface(myCustomfont);
@@ -69,6 +78,8 @@ public class masterSearchWithHeaders extends AppCompatActivity {
         data = new mapdata();
         data = dataContainer.getParcelable("parse");
 
+        //Populates the list of all buildings to display through mapdata, this is the list of all buildings,
+        //floors and rooms displayed in the search page if the user hasn't entered in a value to search yet
         ArrayList<SearchItem> campusList = new ArrayList<masterSearchWithHeaders.SearchItem>();
         for (int i = 0; i < data.numberofBuildings; ++i){
             campusList.add(new BuildingName(data.buildings.get(i).buildingName));
@@ -78,7 +89,7 @@ public class masterSearchWithHeaders extends AppCompatActivity {
             }
         }
 
-        // set adapter
+        //Set adapter
         final CampusAdapter adapter = new CampusAdapter(this, campusList);
         allSearchResults.setAdapter(adapter);
         allSearchResults.setTextFilterEnabled(true);
@@ -151,22 +162,25 @@ public class masterSearchWithHeaders extends AppCompatActivity {
             public void afterTextChanged(Editable s) {}
         });
 
+        //Bottom navigation toolbar. Set "SEARCH" to checked
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.getMenu().getItem(1).setChecked(true);
 
-        //Changing colors
+        //Code to allow user to change color preferences
         RelativeLayout universalLayout = (RelativeLayout)findViewById(R.id.universal_layout);
-        View gradientBlock = (View) universalLayout.findViewById(R.id.gradientBlock);
+        View gradientBlock = (View) universalLayout.findViewById(R.id.gradientBlock); //Color block in theme
         colorPreferences = getSharedPreferences("ColorPreferences", Context.MODE_PRIVATE);
         colorValue = colorPreferences.getString("color", "default");
         editor = colorPreferences.edit();
-        changeColors = (Button)findViewById(R.id.colors);
-        createColorDialog();
+        changeColors = (Button)findViewById(R.id.colors); //Button user clicks on to change color preference
+        createColorDialog(); //Sets up color pop up dialog where user makes their color preference
         changeColors.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 colorDialog.show();
+                //Default theme is "Nike Green" (SharedPreference value = 1, default)
+                //Set the appropriate checkedboxes
                 if (colorValue.equals("1") || colorValue.equals("default")) {
                     colorGreen.setChecked(true);
                     colorOrange.setChecked(false);
@@ -179,6 +193,7 @@ public class masterSearchWithHeaders extends AppCompatActivity {
             }
         });
 
+        //If user selects the Nike Orange checkbox
         colorOrange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -188,6 +203,7 @@ public class masterSearchWithHeaders extends AppCompatActivity {
             }
         });
 
+        //If user selects the Nike Green checkbox
         colorGreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -197,6 +213,7 @@ public class masterSearchWithHeaders extends AppCompatActivity {
             }
         });
 
+        //If user submits their preference change, we must change the screen
         colorSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -209,6 +226,7 @@ public class masterSearchWithHeaders extends AppCompatActivity {
             }
         });
 
+        //If user cancels their color preference change, reset the checkboxes and exit the pop up dialog
         colorCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -252,18 +270,18 @@ public class masterSearchWithHeaders extends AppCompatActivity {
             //Green Dark
             case "default":
             case "1":
-                gradientBlock.setBackgroundResource(R.drawable.greengradient);
-                ((TextView)colorDialog.findViewById(R.id.submit)).setBackgroundResource(R.drawable.greengradient);
-                ColorStateList navigationColorStateList = new ColorStateList(iconStates, greenColors);
+                gradientBlock.setBackgroundResource(R.drawable.greengradient); //set color block to green
+                ((TextView)colorDialog.findViewById(R.id.submit)).setBackgroundResource(R.drawable.greengradient); //set submit box color in dialog to green
+                ColorStateList navigationColorStateList = new ColorStateList(iconStates, greenColors); //set icons in navigation toolbar to green when checked
                 navigation.setItemTextColor(navigationColorStateList);
                 navigation.setItemIconTintList(navigationColorStateList);
                 break;
 
             //Orange Dark
             case "2":
-                gradientBlock.setBackgroundResource(R.drawable.orangegradient);
-                ((TextView)colorDialog.findViewById(R.id.submit)).setBackgroundResource(R.drawable.orangegradient);
-                ColorStateList navigationColorStateList2 = new ColorStateList(iconStates, orangeColors);
+                gradientBlock.setBackgroundResource(R.drawable.orangegradient); //set color block to orange
+                ((TextView)colorDialog.findViewById(R.id.submit)).setBackgroundResource(R.drawable.orangegradient); //set submit box color in dialog to orange
+                ColorStateList navigationColorStateList2 = new ColorStateList(iconStates, orangeColors); //set icons in navigation toolbar to orange when checked
                 navigation.setItemTextColor(navigationColorStateList2);
                 navigation.setItemIconTintList(navigationColorStateList2);
                 break;
@@ -394,6 +412,7 @@ public class masterSearchWithHeaders extends AppCompatActivity {
         }
     }
 
+    //Setting up the bottom navigation toolbar
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -421,6 +440,8 @@ public class masterSearchWithHeaders extends AppCompatActivity {
 
     };
 
+    //When the user presses the back button to get back to the Search page then the Search icon in the
+    //bottom navigation toolbar should be set
     @Override
     public void onResume(){
         super.onResume();
