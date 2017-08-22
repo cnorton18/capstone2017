@@ -14,12 +14,7 @@ All buildings on the campus map are clickable. Currently the only two buildings 
 
 ### - [Swoosh Room Finder v2.0](https://appetize.io/app/tquh84phqn64q1hbkrw5h7qjm8) 
 
-Features added: 
-"*1) User can now click on all buildings in the campus"
-"*2) Ability to change overall app theme (Nike Green & Nike Orange"
-"*3) Ability to share floor plan and campus map images"
-"*4) Ability to save a location in favorites under user alias"
-"*5) Ability to clear favorites list"
+Features added: 1) User can now click on all buildings in the campus, 2) Ability to change overall app theme (Nike Green & Nike Orange, 3) Ability to share floor plan and campus map images, 4) Ability to save a location in favorites under user alias, 5) Ability to clear favorites list
 
 
 ### - [Swoosh Room Finder v1.0](https://appetize.io/app/p5hd6ygwmz1n0774pqk5ke9xw0?device=nexus5&scale=75&orientation=portrait&osVersion=7.0) (original orange theme): 
@@ -46,11 +41,11 @@ This project is licensed under the MIT License - see the [LICENSE.md](https://gi
 
 
 ## Contact
-"*Victor Diego - vdiego@pdx.edu"
-"*Nhi Vu - vunhi@pdx.edu"
-"*Zachary Pfister-Shanders - zrp@pdx.edu"
-"*Derek Keeton - dkeeton@pdx.edu"
-"*Tyler Wood - tywood@pdx.edu"
-"*Chris Norton - cnorton@pdx.edu" 
+- Victor Diego - vdiego@pdx.edu
+- Nhi Vu - vunhi@pdx.edu
+- Zachary Pfister-Shanders - zrp@pdx.edu
+- Derek Keeton - dkeeton@pdx.edu
+- Tyler Wood - tywood@pdx.edu
+- Chris Norton - cnorton@pdx.edu
 
 
