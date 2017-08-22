@@ -46,6 +46,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -522,7 +524,14 @@ public class floorplan extends AppCompatActivity {
                                         instruction.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0, 0);
                                         instruction.show();
                                         return false;
-                                    } else {
+                                    }
+                                    else if(isAlphaNumeric(favoriteinput.getText().toString().replaceAll("\\s", "")) == false) {
+                                            Toast instruction = Toast.makeText(getApplicationContext(), "Please enter only alphanumeric characters", Toast.LENGTH_SHORT);
+                                            instruction.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0, 0);
+                                            instruction.show();
+                                            return false;
+                                        }
+                                    else {
                                         savetofavorites = favoriteinput.getText().toString().trim();
                                         addUserFavorite(modifiedfavorite);
                                         return true;
@@ -547,7 +556,14 @@ public class floorplan extends AppCompatActivity {
                             instruction.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0, 0);
                             instruction.show();
                             return;
-                        } else {
+                        }
+                        else if(isAlphaNumeric(favoriteinput.getText().toString().replaceAll("\\s", "")) == false) {
+                            Toast instruction = Toast.makeText(getApplicationContext(), "Please enter only alphanumeric characters", Toast.LENGTH_SHORT);
+                            instruction.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0, 0);
+                            instruction.show();
+                            return;
+                        }
+                        else {
                             savetofavorites = favoriteinput.getText().toString().trim();
                             addUserFavorite(modifiedfavorite);
                         }
@@ -632,7 +648,9 @@ public class floorplan extends AppCompatActivity {
         for (int j = 0; j < data.numberofBuildings; ++j) {
             if (data.buildings.get(j).buildingName.equals(fpname)) {
                 for (int k = 0; k < data.buildings.get(j).floors.size(); ++k) {
-                    if (data.buildings.get(j).floors.get(k).level == Integer.parseInt(floorNumber)) {
+                    if(floorNumber.equals("Choose a floor"))
+                        break;
+                    else if (data.buildings.get(j).floors.get(k).level == Integer.parseInt(floorNumber)) {
                         for (int m = 0; m < data.buildings.get(j).floors.get(k).rooms.size(); ++m) {
                             String tempName = data.buildings.get(j).floors.get(k).rooms.get(m).roomName;
                             tempName = tempName.toLowerCase().replaceAll("\\s", "");
@@ -872,6 +890,11 @@ public class floorplan extends AppCompatActivity {
                 ((Spinner)findViewById(R.id.roomSelector)).setBackgroundResource(R.drawable.orangebgroundedcorners); //set room spinner to orange
                 break;
         }
+    }
+
+    public boolean isAlphaNumeric(String string){
+        String pattern= "^[a-zA-Z0-9]*$";
+        return string.matches(pattern);
     }
 
     //Ensures proper reset on back button navigation
