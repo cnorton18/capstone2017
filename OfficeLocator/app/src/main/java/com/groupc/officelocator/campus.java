@@ -107,28 +107,6 @@ public class campus extends AppCompatActivity {
             mapimage = (ImageView)findViewById(R.id.campusmap);
             satelliteview = (ImageButton)findViewById(R.id.satelliteViewButton);
 
-            //Set to satellite view when going back to the campusorange map from another page
-            if(globesetting == 1){
-                //Set to satellite view
-                mapimage.setImageResource(R.drawable.satellite);
-                satelliteview.setImageResource(R.drawable.globe2);
-                if(colorValue.equals("1") || colorValue.equals("default"))
-                    satelliteview.setColorFilter(getResources().getColor(R.color.colorPrimary));
-                else
-                    satelliteview.setColorFilter(getResources().getColor(R.color.NikeOrange));
-                globesetting = 1;
-
-                //Satellite view -> Normal
-            }else{
-                if(colorValue.equals("1") || colorValue.equals("default"))
-                    mapimage.setImageResource(R.drawable.campus);
-                else
-                    mapimage.setImageResource(R.drawable.campusorange);
-                satelliteview.setImageResource(R.drawable.globe);
-                satelliteview.setColorFilter(getResources().getColor(R.color.white));
-                globesetting = 0;
-
-            }
             satelliteview.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View v){
                     colorValue = colorPreferences.getString("color", "default");
@@ -154,131 +132,6 @@ public class campus extends AppCompatActivity {
                     }
                 }
             });
-
-            //Bottom navigation toolbar. Set "HOME" to checked
-            BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-            navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-            navigation.getMenu().getItem(0).setChecked(true);
-
-
-            //Code to allow user to change color preferences
-            RelativeLayout universalLayout = (RelativeLayout)findViewById(R.id.universal_layout);
-            View gradientBlock = (View) universalLayout.findViewById(R.id.gradientBlock); //Color block in theme
-            editor = colorPreferences.edit();
-            changeColors = (Button) findViewById(R.id.colors); //Button user clicks on to change color preference
-            createColorDialog(); //Sets up color pop up dialog where user makes their color preference
-            changeColors.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    colorDialog.show();
-                    //Default theme is "Nike Green" (SharedPreference value = 1, default)
-                    //Set the appropriate checkedboxes
-                    if (colorValue.equals("1") || colorValue.equals("default")) {
-                        colorGreen.setChecked(true);
-                        colorOrange.setChecked(false);
-                    }
-                    else {
-                        colorOrange.setChecked(true);
-                        colorGreen.setChecked(false);
-                    }
-                    editor.clear();
-                }
-            });
-
-            //If user selects the Nike Orange checkbox
-            colorOrange.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v){
-                    colorOrange.setChecked(true);
-                    colorGreen.setChecked(false);
-                    editor.putString("color", "2");
-                }
-            });
-
-            //If user selects the Nike Green checkbox
-            colorGreen.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v){
-                    colorGreen.setChecked(true);
-                    colorOrange.setChecked(false);
-                    editor.putString("color", "1");
-                }
-            });
-
-            //If user submits their preference change, we must change the screen
-            colorSubmit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v){
-                    editor.commit();
-                    colorDialog.dismiss();
-                    finish();
-                    overridePendingTransition( 0, 0);
-                    startActivity(getIntent());
-                    overridePendingTransition( 0, 0);
-                }
-            });
-
-            //If user cancels their color preference change, reset the checkboxes and exit the pop up dialog
-            colorCancel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v){
-                    if (colorValue.equals("1") || colorValue.equals("default")){
-                        colorGreen.setChecked(true);
-                        colorOrange.setChecked(false);
-                    }
-                    else {
-                        colorOrange.setChecked(true);
-                        colorGreen.setChecked(false);
-                    }
-                    colorDialog.dismiss();
-                }
-            });
-
-            //Setting colors for bottom navigation bar
-            //Different icon states
-            int[][] iconStates = new int[][]{
-                    new int[]{android.R.attr.state_checked},//checked state
-                    new int[]{-android.R.attr.state_checked},//unchecked state
-                    new int[]{} //default color
-            };
-
-            //Different icon colors - Green theme
-            int[] greenColors = new int[]{
-                    ResourcesCompat.getColor(getResources(),R.color.colorPrimary, null),
-                    ResourcesCompat.getColor(getResources(),R.color.iconColor, null),
-                    ResourcesCompat.getColor(getResources(),R.color.iconColor, null),
-            };
-
-            //Different icon colors - Orange theme
-            int[] orangeColors = new int[]{
-                    ResourcesCompat.getColor(getResources(),R.color.NikeOrange, null),
-                    ResourcesCompat.getColor(getResources(),R.color.iconColor, null),
-                    ResourcesCompat.getColor(getResources(),R.color.iconColor, null),
-            };
-
-                switch (colorValue) {
-                    //Green Theme
-                    case "default":
-                    case "1":
-                        mapimage.setImageResource(R.drawable.campus); //set campus map to white-gray version
-                        gradientBlock.setBackgroundResource(R.drawable.greengradient); //set color block to green
-                        ((TextView)colorDialog.findViewById(R.id.submit)).setBackgroundResource(R.drawable.greengradient); //set submit box color in dialog to green
-                        ColorStateList navigationColorStateList = new ColorStateList(iconStates, greenColors); //set icons in navigation toolbar to green when checked
-                        navigation.setItemTextColor(navigationColorStateList);
-                        navigation.setItemIconTintList(navigationColorStateList);
-                        break;
-
-                    //Orange Theme
-                    case "2":
-                        mapimage.setImageResource(R.drawable.campusorange); //set campus map to orange version
-                        gradientBlock.setBackgroundResource(R.drawable.orangegradient); //set color block to orange
-                        ((TextView)colorDialog.findViewById(R.id.submit)).setBackgroundResource(R.drawable.orangegradient); //set submit box color in dialog to orange
-                        ColorStateList navigationColorStateList2 = new ColorStateList(iconStates, orangeColors); //set icons in navigation toolbar to orange when checked
-                        navigation.setItemTextColor(navigationColorStateList2);
-                        navigation.setItemIconTintList(navigationColorStateList2);
-                        break;
-                }
-
         }
 
     //Sets up color dialog
@@ -327,9 +180,157 @@ public class campus extends AppCompatActivity {
     //bottom navigation toolbar should be set
     @Override
     public void onResume(){
-        super.onResume();
+
+        //Bottom navigation toolbar. Set "HOME" to checked
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.getMenu().getItem(0).setChecked(true);
+
+        //Grab user color preferences from SharedPreference file
+        colorPreferences = getSharedPreferences("ColorPreferences", Context.MODE_PRIVATE);
+        colorValue = colorPreferences.getString("color", "default");
+
+        //Code to allow user to change color preferences
+        RelativeLayout universalLayout = (RelativeLayout)findViewById(R.id.universal_layout);
+        View gradientBlock = (View) universalLayout.findViewById(R.id.gradientBlock); //Color block in theme
+        editor = colorPreferences.edit();
+        changeColors = (Button) findViewById(R.id.colors); //Button user clicks on to change color preference
+        createColorDialog(); //Sets up color pop up dialog where user makes their color preference
+        changeColors.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                colorDialog.show();
+                //Default theme is "Nike Green" (SharedPreference value = 1, default)
+                //Set the appropriate checkedboxes
+                if (colorValue.equals("1") || colorValue.equals("default")) {
+                    colorGreen.setChecked(true);
+                    colorOrange.setChecked(false);
+                }
+                else {
+                    colorOrange.setChecked(true);
+                    colorGreen.setChecked(false);
+                }
+                editor.clear();
+            }
+        });
+
+        //If user selects the Nike Orange checkbox
+        colorOrange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                colorOrange.setChecked(true);
+                colorGreen.setChecked(false);
+                editor.putString("color", "2");
+            }
+        });
+
+        //If user selects the Nike Green checkbox
+        colorGreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                colorGreen.setChecked(true);
+                colorOrange.setChecked(false);
+                editor.putString("color", "1");
+            }
+        });
+
+        //If user submits their preference change, we must change the screen
+        colorSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                editor.commit();
+                colorDialog.dismiss();
+                finish();
+                overridePendingTransition( 0, 0);
+                startActivity(getIntent());
+                overridePendingTransition( 0, 0);
+            }
+        });
+
+        //If user cancels their color preference change, reset the checkboxes and exit the pop up dialog
+        colorCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                if (colorValue.equals("1") || colorValue.equals("default")){
+                    colorGreen.setChecked(true);
+                    colorOrange.setChecked(false);
+                }
+                else {
+                    colorOrange.setChecked(true);
+                    colorGreen.setChecked(false);
+                }
+                colorDialog.dismiss();
+            }
+        });
+
+        //Setting colors for bottom navigation bar
+        //Different icon states
+        int[][] iconStates = new int[][]{
+                new int[]{android.R.attr.state_checked},//checked state
+                new int[]{-android.R.attr.state_checked},//unchecked state
+                new int[]{} //default color
+        };
+
+        //Different icon colors - Green theme
+        int[] greenColors = new int[]{
+                ResourcesCompat.getColor(getResources(),R.color.colorPrimary, null),
+                ResourcesCompat.getColor(getResources(),R.color.iconColor, null),
+                ResourcesCompat.getColor(getResources(),R.color.iconColor, null),
+        };
+
+        //Different icon colors - Orange theme
+        int[] orangeColors = new int[]{
+                ResourcesCompat.getColor(getResources(),R.color.NikeOrange, null),
+                ResourcesCompat.getColor(getResources(),R.color.iconColor, null),
+                ResourcesCompat.getColor(getResources(),R.color.iconColor, null),
+        };
+
+        switch (colorValue) {
+            //Green Theme
+            case "default":
+            case "1":
+                mapimage.setImageResource(R.drawable.campus); //set campus map to white-gray version
+                gradientBlock.setBackgroundResource(R.drawable.greengradient); //set color block to green
+                ((TextView)colorDialog.findViewById(R.id.submit)).setBackgroundResource(R.drawable.greengradient); //set submit box color in dialog to green
+                ColorStateList navigationColorStateList = new ColorStateList(iconStates, greenColors); //set icons in navigation toolbar to green when checked
+                navigation.setItemTextColor(navigationColorStateList);
+                navigation.setItemIconTintList(navigationColorStateList);
+                break;
+
+            //Orange Theme
+            case "2":
+                mapimage.setImageResource(R.drawable.campusorange); //set campus map to orange version
+                gradientBlock.setBackgroundResource(R.drawable.orangegradient); //set color block to orange
+                ((TextView)colorDialog.findViewById(R.id.submit)).setBackgroundResource(R.drawable.orangegradient); //set submit box color in dialog to orange
+                ColorStateList navigationColorStateList2 = new ColorStateList(iconStates, orangeColors); //set icons in navigation toolbar to orange when checked
+                navigation.setItemTextColor(navigationColorStateList2);
+                navigation.setItemIconTintList(navigationColorStateList2);
+                break;
+        }
+
+        //Set to satellite view when going back to the campusorange map from another page
+        if(globesetting == 1){
+            //Set to satellite view
+            mapimage.setImageResource(R.drawable.satellite);
+            satelliteview.setImageResource(R.drawable.globe2);
+            if(colorValue.equals("1") || colorValue.equals("default"))
+                satelliteview.setColorFilter(getResources().getColor(R.color.colorPrimary));
+            else
+                satelliteview.setColorFilter(getResources().getColor(R.color.NikeOrange));
+            globesetting = 1;
+
+            //Satellite view -> Normal
+        }else{
+            if(colorValue.equals("1") || colorValue.equals("default"))
+                mapimage.setImageResource(R.drawable.campus);
+            else
+                mapimage.setImageResource(R.drawable.campusorange);
+            satelliteview.setImageResource(R.drawable.globe);
+            satelliteview.setColorFilter(getResources().getColor(R.color.white));
+            globesetting = 0;
+        }
+
+        super.onResume();
     }
 
 }
