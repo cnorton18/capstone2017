@@ -2,6 +2,8 @@
 
 Copyright © 2017 Nhi Vu, Victor Diego, Zachary Pfister-Shanders, Tyle Wood, Chris Norton, Derek Keeton
 
+This Swoosh Room Finder project was a capstone project collaboration between Nike and Group C consisting of Nhi Vu, Victor Diego, Zachary Pfister-Shanders, Tyler Wood, Chris Norton, and Derek Keeton of the 2017 Spring-Summer Capstone course at Portland State University. 
+
 Copyright © 2017 Nike Corporation
 
 The Nike swoosh logo and Nike campus maps belong to the Nike corporation. 

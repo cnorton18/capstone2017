@@ -12,9 +12,14 @@ Currently the only two buildings that a user can click on are Mia Hamm and Tiger
 
 ## Online Simulations of the Application
 
-- [Swoosh Room Finder v1.0](https://appetize.io/app/p5hd6ygwmz1n0774pqk5ke9xw0?device=nexus5&scale=75&orientation=portrait&osVersion=7.0) (original orange theme): 
+### - [Swoosh Room Finder v1.0](https://appetize.io/app/p5hd6ygwmz1n0774pqk5ke9xw0?device=nexus5&scale=75&orientation=portrait&osVersion=7.0) (original orange theme): 
 
-- [Swoosh Room Finder v2.0](https://appetize.io/app/ckfg33p5he6c9grpp1xruceqn8?device=nexus5&scale=75&orientation=portrait&osVersion=7.0) (neon green theme)
+### - [Swoosh Room Finder v2.0](https://appetize.io/app/tquh84phqn64q1hbkrw5h7qjm8) 
+Features added:
+     - Ability to change overall app theme (Nike Green & Nike Orange)
+     - Ability to share floor plan and campus map images 
+     - Ability to save a location in favorites under user alias
+     - Ability to clear favorites list 
 
 - [PSU Locator v1.0](https://appetize.io/app/5qc1u4aua8mg24ub3k20d2yp2w?device=nexus5&scale=75&orientation=portrait&osVersion=7.0) (sister app to the Swoosh Room Finder)
 
@@ -26,15 +31,16 @@ Currently the only two buildings that a user can click on are Mia Hamm and Tiger
 ## Build
 The Minimum API Level for the Swoosh Room Finder application is 22. The mobile device or emulator running the application must have an API greater than or equal to 22. This application was designed specifically for a device with a resolution of 1080 x 1920. Placement of certain markers and buttons may be slightly off on screens of different resolutions. 
 
-There are two options to run this application on your android device: 
-
-1. Download the [apk] - (must add the apk later). Use the file manager on your device to locate the file and install it on your phone. Allow for the application to be installed in your settings. 
-
-2. Using an Android development environment like Android Studio, Clone or Download the source code from this github repository and build the application and run it on your device (hooking up your device to your computer) or an appropriate emulator. 
+Build Instructions: Using an Android development environment like Android Studio, Clone or Download the source code from this github repository and build the application and run it on your device (hooking up your device to your computer) or an appropriate emulator. 
 
 ## Copyright
 
-For copyright information for this project see the COPYRIGHT file. 
+For copyright information for this project see the [COPYRIGHT](https://github.com/cnorton18/capstone2017/blob/nhi's-latest-branch/COPYRIGHT.md) file. 
+
+## License 
+
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/cnorton18/capstone2017/blob/nhi's-latest-branch/LICENSE) file for details.
+
 
 ## Contact
 Victor Diego - vdiego@pdx.edu
