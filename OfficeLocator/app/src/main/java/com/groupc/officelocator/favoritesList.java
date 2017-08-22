@@ -522,6 +522,56 @@ public class favoritesList extends AppCompatActivity {
                 break;
         }
 
+        //User clicks on button to clear Favorites List
+        clearAll = (ImageButton)findViewById(R.id.clearAll);
+        createClearDialog();
+        clearAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clearDialog.show();
+            }
+        });
+
+        //If cancel button in dialog popup is clicked then exit the dialog
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearDialog.dismiss();
+            }
+        });
+
+        //If the no button in the dialog is clicked then exit the dialog
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearDialog.dismiss();
+            }
+        });
+
+        //If the yes button in the dialog is clicked then exit the dialog
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Empty list, nothing to clear
+                if(arrayAdapter.isEmpty()){
+                    Toast.makeText(favoritesList.this, "There is nothing to remove", Toast.LENGTH_SHORT).show();
+                }
+                //Clear entire list by clearing all SharedPreference files
+                else{
+                    SharedPreferences.Editor editor = favoritesList.edit();
+                    editor.clear();
+                    editor.commit();
+                    SharedPreferences.Editor editor2 = favoritesValues.edit();
+                    editor2.clear();
+                    editor.commit();
+                    arrayAdapter.clear();
+                    allFavorites.invalidateViews();
+                    allFavorites.setAdapter(arrayAdapter);
+                }
+                clearDialog.dismiss();
+            }
+        });
+
         super.onResume();
     }
 }
