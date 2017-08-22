@@ -73,6 +73,7 @@ public class floorplan extends AppCompatActivity {
     public static String fpname, imageName, floorNumber, chosenRoomFromSearch, rmName = "";
     public static int roomID, spinnerNumber, numberOfFloors, modifiedfavorite;
     EditText favoriteinput;
+    int fromRecreate = 0; //Changed if app recreated on color change
 
     public mapdata data;
     Bundle dataContainer;
@@ -810,6 +811,7 @@ public class floorplan extends AppCompatActivity {
                 colorDialog.dismiss();
                 //Saves "spot" in room dropdown
                 fromSearch = 1;
+                fromRecreate = 1;
                 recreate();
             }
         });
@@ -860,10 +862,15 @@ public class floorplan extends AppCompatActivity {
     @Override
     public void onResume() {
 
-        colorPreferences = getSharedPreferences("ColorPreferences", Context.MODE_PRIVATE);
-        colorValue = colorPreferences.getString("color", "default");
+        if(fromRecreate==0) {
+            colorPreferences = getSharedPreferences("ColorPreferences", Context.MODE_PRIVATE);
+            colorValue = colorPreferences.getString("color", "default");
 
-        colorSet();
+            colorSet();
+        }
+        else
+            fromRecreate = 0;
+
         super.onResume();
     }
 }
