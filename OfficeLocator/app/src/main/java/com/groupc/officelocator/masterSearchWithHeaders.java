@@ -48,6 +48,8 @@ public class masterSearchWithHeaders extends AppCompatActivity {
     public mapdata data;
     public int choiceFloors; //Number of floors in chosen building
     Bundle dataContainer;
+    public int firstRun = 0; //Changed if app recreated on color change
+    BottomNavigationView navigation;
 
     //Change color feature variables
     Button changeColors; //Button user clicks on to change color themes
@@ -63,6 +65,9 @@ public class masterSearchWithHeaders extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mastersearch);
         floorplan.fromSearch = 1;
+        colorPreferences = getSharedPreferences("ColorPreferences", Context.MODE_PRIVATE);
+        colorValue = colorPreferences.getString("color", "default");
+        navigation = (BottomNavigationView) findViewById(R.id.navigation);
 
         //Set font of page header
         title = (TextView) findViewById(R.id.searchTitle);
@@ -161,6 +166,8 @@ public class masterSearchWithHeaders extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {}
         });
+
+        colorSet();
     }
 
     //Sets up color dialog
@@ -315,20 +322,11 @@ public class masterSearchWithHeaders extends AppCompatActivity {
 
     };
 
-    //When the user presses the back button to get back to the Search page then the Search icon in the
-    //bottom navigation toolbar should be set
-    @Override
-    public void onResume(){
-        //Bottom navigation toolbar. Set "SEARCH" to checked
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        navigation.getMenu().getItem(1).setChecked(true);
-
+    //Sets all color preferences in layout
+    private void colorSet() {
         //Code to allow user to change color preferences
         RelativeLayout universalLayout = (RelativeLayout)findViewById(R.id.universal_layout);
         View gradientBlock = (View) universalLayout.findViewById(R.id.gradientBlock); //Color block in theme
-        colorPreferences = getSharedPreferences("ColorPreferences", Context.MODE_PRIVATE);
-        colorValue = colorPreferences.getString("color", "default");
         editor = colorPreferences.edit();
         changeColors = (Button)findViewById(R.id.colors); //Button user clicks on to change color preference
         createColorDialog(); //Sets up color pop up dialog where user makes their color preference
@@ -443,6 +441,22 @@ public class masterSearchWithHeaders extends AppCompatActivity {
                 navigation.setItemIconTintList(navigationColorStateList2);
                 break;
         }
+    }
+
+    //When the user presses the back button to get back to the Search page then the Search icon in the
+    //bottom navigation toolbar should be set
+    @Override
+    public void onResume(){
+        //Bottom navigation toolbar. Set "SEARCH" to checked
+        //navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation.getMenu().getItem(1).setChecked(true);
+
+        if(firstRun==1) {
+            recreate();
+        }
+        else
+            firstRun = 1;
         super.onResume();
     }
 }
