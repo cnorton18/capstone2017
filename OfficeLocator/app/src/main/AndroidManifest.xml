@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!-- **************************************************************
+ *      Copyright (c) 2017 Nhi Vu, Victor Diego, Tyler Wood       *
+ *      Zachary Pfister-Shanders, Derek Keeton, Chris Norton      *
+ *      Please see the file COPYRIGHT in the source               *
+ *      distribution of this software for further copyright       *
+ *      information and license terms.                            *
+****************************************************************-->
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.groupc.officelocator">
 
@@ -32,6 +41,16 @@
             android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity android:name="com.groupc.officelocator.favoritesList"
             android:screenOrientation="portrait" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
 
     </application>
 
