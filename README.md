@@ -12,7 +12,7 @@ All buildings on the campus map are clickable. Currently the only two buildings 
 
 ## Online Simulations of the Application
 
-### - [Swoosh Room Finder v2.0](https://appetize.io/app/tquh84phqn64q1hbkrw5h7qjm8) 
+### - [Swoosh Room Finder v2.0](https://appetize.io/app/qqnm4drbemfaew4zmuw0u8r75w) 
 
 Features added:
 - User can now click on all buildings in the campus
@@ -22,9 +22,9 @@ Features added:
 - Ability to clear favorites list
 
 
-### - [Swoosh Room Finder v1.0](https://appetize.io/app/p5hd6ygwmz1n0774pqk5ke9xw0?device=nexus5&scale=75&orientation=portrait&osVersion=7.0) (original orange theme): 
+### - [Swoosh Room Finder v1.0](https://appetize.io/app/f6h2d9kbtwy54wu1rqrd4e7b3m?device=nexus5&scale=75&orientation=portrait&osVersion=7.1) (original version with orange theme): 
 
-### - [PSU Locator v1.0](https://appetize.io/app/5qc1u4aua8mg24ub3k20d2yp2w?device=nexus5&scale=75&orientation=portrait&osVersion=7.0) (sister app to the Swoosh Room Finder)
+### - [PSU Locator v1.0](https://appetize.io/app/p14uwwhzqhkan1ndph9051qd38) (sister app to the Swoosh Room Finder)
 
 ### [How to Navigate Through the Application](https://github.com/cnorton18/capstone2017/blob/nhi's-latest-branch/How%20to%20Use%20The%20Swoosh%20Room%20Finder.md)
 
