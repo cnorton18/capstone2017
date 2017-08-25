@@ -17,7 +17,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.content.Intent;
-import android.os.Environment;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -46,8 +45,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -585,8 +582,11 @@ public class floorplan extends AppCompatActivity {
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bitmap floorplan = takeScreenshot(); //Takes a screenshot of the floorplan
-                //Grab the "highlighted building" in the campus image
+              /*if(Build.VERSION.SDK_INT>22){
+                                  ActivityCompat.requestPermissions(floorplan.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+              }*/
+              Bitmap floorplan = takeScreenshot(); //Takes a screenshot of the floorplan
+                // Grab the "highlighted building" in the campus image
                 ImageView highlighteddrawable = ((ImageView) dialog.findViewById(R.id.buildingLocation));
                 Bitmap highlightedimage = ((BitmapDrawable) highlighteddrawable.getDrawable()).getBitmap();
                 saveBitmaps(floorplan, highlightedimage); //Save both bitmap images to device external drive
@@ -607,8 +607,16 @@ public class floorplan extends AppCompatActivity {
 
     //Saves the floorplan screenshot and highlighted building imageview to device's external storage
     public void saveBitmaps(Bitmap bitmap1, Bitmap bitmap2) {
-        imagePath = new File(Environment.getExternalStorageDirectory() + "/BuildingFloorplan.png"); //Floorplan screenshot
-        imagePath2 = new File(Environment.getExternalStorageDirectory() + "/NikeCampus.png"); //Image of building highlighted on campus
+        String screenshot = null;
+        if (floorNumber.equals("0") || floorNumber.equals("Choose a floor")) {
+            screenshot = fpname;
+        } else if (rmName.equals("")) {
+            screenshot = fpname + " Floor " + Integer.toString(floorselected);
+        } else {
+            screenshot = fpname + " Floor " + Integer.toString(floorselected) + " " + rmName;
+        }
+        imagePath = new File(getApplicationContext().getFilesDir().getPath() + "/" + screenshot + " Floor Plan.png");
+        imagePath2 = new File(getApplicationContext().getFilesDir().getPath() + "/" + fpname + " Campus Map.png");
         FileOutputStream fos1, fos2;
         //Save both bitmap images to external storage
         try {
@@ -639,7 +647,10 @@ public class floorplan extends AppCompatActivity {
         sharingImages.setType("image/*");
         sharingImages.putExtra(android.content.Intent.EXTRA_SUBJECT, "Sharing Nike Campus Location");
         sharingImages.putExtra(android.content.Intent.EXTRA_TEXT, "I would like to share this location with you.");
-        sharingImages.putExtra(Intent.EXTRA_STREAM, Imageuris);
+        sharingImages.putParcelableArrayListExtra(Intent.EXTRA_STREAM, Imageuris);
+        sharingImages.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        sharingImages.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        //sharingImages.putExtra(Intent.EXTRA_STREAM, Imageuris);
         startActivity(Intent.createChooser(sharingImages, "Share via"));
     }
 
