@@ -394,7 +394,6 @@ public class favoritesList extends AppCompatActivity {
         else
             deleteOneDialog.setContentView(R.layout.yesnodialog_orange);
         prompt = (TextView) deleteOneDialog.findViewById(R.id.prompt);
-        //prompt.setText("Are you sure you want to delete this item?");
         cancel = (TextView) deleteOneDialog.findViewById(R.id.cancel);
         yes = (TextView) deleteOneDialog.findViewById(R.id.yes);
         no = (TextView) deleteOneDialog.findViewById(R.id.no);
