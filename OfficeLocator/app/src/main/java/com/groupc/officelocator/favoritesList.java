@@ -208,6 +208,10 @@ public class favoritesList extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> arg0, View view, final int position, long id) {
                 //deleteOne = (ImageButton)findViewById(R.id.confirmDelete);
                 createSingleDeleteDialog();
+                choice = (String) allFavorites.getAdapter().getItem(position);
+
+                prompt.setText("Are you sure you want to remove "+choice+" from your favorites?");
+
                 deleteOneDialog.show();
                 cancel.setOnClickListener(new View.OnClickListener(){
                     @Override
@@ -226,7 +230,6 @@ public class favoritesList extends AppCompatActivity {
                     public void onClick(View view){
 
                         int foundmatch = 0;
-                        choice = (String) allFavorites.getAdapter().getItem(position);
                         //If the selection is a user-entered favorite key, we must remove both the key and
                         //its corresponding location value from their respective SharedPreference files
                         for(String keys: favUserKeys) {
@@ -391,7 +394,7 @@ public class favoritesList extends AppCompatActivity {
         else
             deleteOneDialog.setContentView(R.layout.yesnodialog_orange);
         prompt = (TextView) deleteOneDialog.findViewById(R.id.prompt);
-        prompt.setText("Are you sure you want to delete this item?");
+        //prompt.setText("Are you sure you want to delete this item?");
         cancel = (TextView) deleteOneDialog.findViewById(R.id.cancel);
         yes = (TextView) deleteOneDialog.findViewById(R.id.yes);
         no = (TextView) deleteOneDialog.findViewById(R.id.no);
