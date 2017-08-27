@@ -206,7 +206,7 @@ public class favoritesList extends AppCompatActivity {
         allFavorites.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
             @Override
             public boolean onItemLongClick(AdapterView<?> arg0, View view, final int position, long id) {
-                deleteOne = (ImageButton)findViewById(R.id.confirmDelete);
+                //deleteOne = (ImageButton)findViewById(R.id.confirmDelete);
                 createSingleDeleteDialog();
                 deleteOneDialog.show();
                 cancel.setOnClickListener(new View.OnClickListener(){

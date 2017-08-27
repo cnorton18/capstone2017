@@ -87,7 +87,7 @@
         app:srcCompat="@drawable/trash"
         android:background="@android:color/transparent"
         android:tint="@color/iconColor"/>
-    <ImageButton
+    <!--<ImageButton
         android:id="@+id/confirmDelete"
         android:layout_width="65dp"
         android:layout_height="65dp"
@@ -97,7 +97,7 @@
         android:layout_marginBottom="64dp"
         app:srcCompat="@drawable/trash"
         android:background="@android:color/transparent"
-        android:tint="@color/iconColor"/>
+        android:tint="@color/iconColor"/>-->
     <Button
         android:id="@+id/colors"
         android:layout_width="50dp"
