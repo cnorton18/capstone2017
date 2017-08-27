@@ -48,9 +48,9 @@ public class favoritesList extends AppCompatActivity {
     public mapdata data;
     public int choiceFloors; //Number of floors in chosen building
     Bundle dataContainer;
-    ImageButton clearAll;
+    ImageButton clearAll, deleteOne;
     TextView cancel, yes, no, prompt;
-    Dialog clearDialog;
+    Dialog clearDialog, deleteOneDialog;
 
     //Change color feature variables
     Button changeColors; //Button user clicks on to change color themes
@@ -200,75 +200,100 @@ public class favoritesList extends AppCompatActivity {
 
         });
 
+
+
         //When the user presses down on a value in the favorites list, it will be cleared from the list
         allFavorites.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
             @Override
-            public boolean onItemLongClick(AdapterView<?> arg0, View view, int position, long id) {
-                int foundmatch = 0;
-                choice = (String) allFavorites.getAdapter().getItem(position);
-                //If the selection is a user-entered favorite key, we must remove both the key and
-                //its corresponding location value from their respective SharedPreference files
-                for(String keys: favUserKeys) {
-                    if (choice.matches(keys)) {
-                        foundmatch = 1;
-                        favUserKeys.remove(keys);
-                        SharedPreferences.Editor editor = favoritesList.edit();
-                        editor.clear();
-                        editor.putStringSet("favRooms", favRooms);
-                        editor.putStringSet("favUserKeys", favUserKeys);
-                        SharedPreferences.Editor editor2 = favoritesValues.edit();
-                        editor2.remove(keys);
-                        editor.commit();
-                        editor2.commit();
-                        break;
+            public boolean onItemLongClick(AdapterView<?> arg0, View view, final int position, long id) {
+                deleteOne = (ImageButton)findViewById(R.id.confirmDelete);
+                createSingleDeleteDialog();
+                deleteOneDialog.show();
+                cancel.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view) {
+                        deleteOneDialog.dismiss();
                     }
-                }
-
-                //If the selection is an actual location value, take out "Floor" from the value and
-                //remove it from the SharedPreference file
-                for (String room : favRooms) {
-                    if (choice.contains("Floor")) {
-                        choice = choice.replace("Floor ", "");
+                });
+                no.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view){
+                        deleteOneDialog.dismiss();
                     }
-                    if (room.trim().matches(choice)) {
-                        foundmatch = 1;
-                        favRooms.remove(room);
-                        SharedPreferences.Editor editor = favoritesList.edit();
-                        editor.clear();
-                        editor.putStringSet("favRooms", favRooms);
-                        editor.putStringSet("favUserKeys",favUserKeys);
-                        editor.commit();
-                        break;
-                    }
-                }
+                });
+                yes.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view){
 
-                    if(foundmatch == 1){
-                        Toast.makeText(favoritesList.this, choice + " was removed from favorites", Toast.LENGTH_SHORT).show();
+                        int foundmatch = 0;
+                        choice = (String) allFavorites.getAdapter().getItem(position);
+                        //If the selection is a user-entered favorite key, we must remove both the key and
+                        //its corresponding location value from their respective SharedPreference files
+                        for(String keys: favUserKeys) {
+                            if (choice.matches(keys)) {
 
-                        //Now we must update the adapter populating the favorites listview since a value has been removed
-                        arrayAdapter.clear();
-                        ArrayList<String> listofFavorites = new ArrayList<String>();
-                        favRooms = favoritesList.getStringSet("favRooms", defaultrooms);
-                        for(String rooms : favRooms) {
-                            if (rooms.matches(".*\\d+.*")){
-                                String[] parts = rooms.split("\\d+",2);
-                                String part1 = parts[0].trim();
-                                String part2 = rooms.substring(part1.length() + 1).trim();
-                                String toAdd = part1 + " Floor " + part2;
-                                listofFavorites.add(toAdd);
-                                continue;
+                                foundmatch = 1;
+                                favUserKeys.remove(keys);
+                                SharedPreferences.Editor editor = favoritesList.edit();
+                                editor.clear();
+                                editor.putStringSet("favRooms", favRooms);
+                                editor.putStringSet("favUserKeys", favUserKeys);
+                                SharedPreferences.Editor editor2 = favoritesValues.edit();
+                                editor2.remove(keys);
+                                editor.commit();
+                                editor2.commit();
+                                break;
                             }
-                            listofFavorites.add(rooms);
                         }
 
-                        favUserKeys = favoritesList.getStringSet("favUserKeys", userkeys);
-                        for(String key: favUserKeys){
-                            listofFavorites.add(key);
+                        //If the selection is an actual location value, take out "Floor" from the value and
+                        //remove it from the SharedPreference file
+                        for (String room : favRooms) {
+                            if (choice.contains("Floor")) {
+                                choice = choice.replace("Floor ", "");
+                            }
+                            if (room.trim().matches(choice)) {
+                                foundmatch = 1;
+                                favRooms.remove(room);
+                                SharedPreferences.Editor editor = favoritesList.edit();
+                                editor.clear();
+                                editor.putStringSet("favRooms", favRooms);
+                                editor.putStringSet("favUserKeys",favUserKeys);
+                                editor.commit();
+                                break;
+                            }
                         }
-                        arrayAdapter = new ArrayAdapter<String>(favoritesList.this, R.layout.listview_item_format, listofFavorites);
-                        allFavorites.invalidateViews();
-                        allFavorites.setAdapter(arrayAdapter);
+
+                        if(foundmatch == 1){
+                            Toast.makeText(favoritesList.this, choice + " was removed from favorites", Toast.LENGTH_SHORT).show();
+
+                            //Now we must update the adapter populating the favorites listview since a value has been removed
+                            arrayAdapter.clear();
+                            ArrayList<String> listofFavorites = new ArrayList<String>();
+                            favRooms = favoritesList.getStringSet("favRooms", defaultrooms);
+                            for(String rooms : favRooms) {
+                                if (rooms.matches(".*\\d+.*")){
+                                    String[] parts = rooms.split("\\d+",2);
+                                    String part1 = parts[0].trim();
+                                    String part2 = rooms.substring(part1.length() + 1).trim();
+                                    String toAdd = part1 + " Floor " + part2;
+                                    listofFavorites.add(toAdd);
+                                    continue;
+                                }
+                                listofFavorites.add(rooms);
+                            }
+
+                            favUserKeys = favoritesList.getStringSet("favUserKeys", userkeys);
+                            for(String key: favUserKeys){
+                                listofFavorites.add(key);
+                            }
+                            arrayAdapter = new ArrayAdapter<String>(favoritesList.this, R.layout.listview_item_format, listofFavorites);
+                            allFavorites.invalidateViews();
+                            allFavorites.setAdapter(arrayAdapter);
+                            deleteOneDialog.dismiss();
+                        }
                     }
+                });
                 return true;
             }
         });
@@ -355,6 +380,23 @@ public class favoritesList extends AppCompatActivity {
         yes = (TextView) clearDialog.findViewById(R.id.yes);
         no = (TextView) clearDialog.findViewById(R.id.no);
     }
+
+//Confirmation dialog pop-up for single delete
+
+    private void createSingleDeleteDialog() {
+        deleteOneDialog = new Dialog(favoritesList.this);
+        deleteOneDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        if (colorValue.equals("1") || colorValue.equals("default"))
+            deleteOneDialog.setContentView((R.layout.yesnodialog_green));
+        else
+            deleteOneDialog.setContentView(R.layout.yesnodialog_orange);
+        prompt = (TextView) deleteOneDialog.findViewById(R.id.prompt);
+        prompt.setText("Are you sure you want to delete this item?");
+        cancel = (TextView) deleteOneDialog.findViewById(R.id.cancel);
+        yes = (TextView) deleteOneDialog.findViewById(R.id.yes);
+        no = (TextView) deleteOneDialog.findViewById(R.id.no);
+    }
+
 
     //Determines if this is the user's first time running the app
     private boolean firstTime(){
